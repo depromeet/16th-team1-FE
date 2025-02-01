@@ -1,5 +1,10 @@
 function App() {
-  return <div>onepiece-fe</div>;
+  return (
+    <div>
+      <p>husky test</p>
+      onepiece-fe
+    </div>
+  );
 }
 
 export default App;
