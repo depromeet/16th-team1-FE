@@ -1,7 +1,7 @@
 /** 테스트용 임시 파일 */
 
-import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
 const baseButtonStyles = css`
   display: flex;
