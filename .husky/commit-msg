@@ -1,0 +1,13 @@
+#!/bin/bash
+
+COMMIT_MSG_FILE=$1
+COMMIT_MSG=$(awk '!/^\s*#/' "$COMMIT_MSG_FILE")
+SECOND_LINE=$(echo "$COMMIT_MSG" | sed -n '2p')
+
+IS_HEADER_FORMAT_VALID='^(:[a-zA-Z_]+: )?(feat|fix|docs|refactor|test|style|chore): .+'
+
+# --- header ---
+if ! echo "$COMMIT_MSG" | grep -E "$IS_HEADER_FORMAT_VALID" > /dev/null; then
+    echo "🚨 커밋 메시지는 'feat: ', 'fix: ', 'docs: ', 'refactor: ', 'test: ', 'style: ', 'chore: ' 중 하나로 시작해야 합니다. (띄워쓰기 포함)" 
+    exit 1
+fi
