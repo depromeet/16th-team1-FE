@@ -1,0 +1,45 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "no-descending-specificity": null,
+    "order/properties-order": [
+      "display",
+      "align-items",
+      "justify-content",
+      "clear",
+      "float",
+      "overflow",
+      "position",
+      "top",
+      "right",
+      "bottom",
+      "left",
+      "z-index",
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "background",
+      "background-size",
+      "border",
+      "color",
+      "font-size",
+      "font-weight",
+      "text-overflow",
+      "text-align",
+      "line-height",
+      "text-indent",
+      "transform",
+      "transition",
+      "box-sizing",
+      "white-space"
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "customSyntax": "postcss-styled-syntax"
+    }
+  ]
+}
