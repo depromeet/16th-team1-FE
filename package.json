@@ -9,7 +9,15 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "pwa": "pwa-assets-generator --preset minimal public/vite.svg",
-    "lint:style": "stylelint '**/*.style.ts' --fix"
+    "lint:style": "stylelint '**/*.style.ts' --fix",
+    "prepare": "husky",
+    "tsc": "tsc -p tsconfig.json --noEmit"
+  },
+  "lint-staged": {
+    "./src/**/*.{ts,tsx}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -31,6 +39,8 @@
     "eslint-plugin-react-refresh": "^0.4.16",
     "eslint-plugin-storybook": "^0.11.2",
     "globals": "^15.14.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
     "postcss-styled-syntax": "^0.7.1",
     "prettier": "^3.4.2",
     "stylelint": "^16.14.1",
