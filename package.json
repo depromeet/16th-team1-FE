@@ -8,9 +8,12 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "pwa": "pwa-assets-generator --preset minimal public/vite.svg"
+    "pwa": "pwa-assets-generator --preset minimal public/vite.svg",
+    "lint:style": "stylelint '**/*.style.ts' --fix"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -24,6 +27,10 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
+    "postcss-styled-syntax": "^0.7.1",
+    "stylelint": "^16.14.1",
+    "stylelint-config-standard": "^37.0.0",
+    "stylelint-order": "^6.0.4",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",
     "vite": "^6.0.5",
