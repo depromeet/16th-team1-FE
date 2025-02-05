@@ -11,7 +11,10 @@
     "pwa": "pwa-assets-generator --preset minimal public/vite.svg",
     "lint:style": "stylelint '**/*.style.ts' --fix",
     "prepare": "husky",
-    "tsc": "tsc -p tsconfig.json --noEmit"
+    "tsc": "tsc -p tsconfig.json --noEmit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "chromatic": "sh script/publish_chromatic.sh"
   },
   "lint-staged": {
     "./src/**/*.{ts,tsx}": [
@@ -22,16 +25,26 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@radix-ui/react-progress": "^1.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.4",
     "@eslint/js": "^9.17.0",
+    "@storybook/addon-essentials": "^8.5.3",
+    "@storybook/addon-interactions": "^8.5.3",
+    "@storybook/addon-onboarding": "^8.5.3",
+    "@storybook/blocks": "^8.5.3",
+    "@storybook/react": "^8.5.3",
+    "@storybook/react-vite": "^8.5.3",
+    "@storybook/test": "^8.5.3",
     "@tanstack/eslint-plugin-query": "^5.66.0",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vite-pwa/assets-generator": "^0.2.6",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "chromatic": "^11.25.2",
     "eslint": "^9.17.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-react": "^7.37.4",
@@ -43,6 +56,7 @@
     "lint-staged": "^15.4.3",
     "postcss-styled-syntax": "^0.7.1",
     "prettier": "^3.4.2",
+    "storybook": "^8.5.3",
     "stylelint": "^16.14.1",
     "stylelint-config-standard": "^37.0.0",
     "stylelint-order": "^6.0.4",

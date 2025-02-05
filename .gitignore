@@ -25,3 +25,7 @@ dist-ssr
 
 # eslint cache
 .eslintcache
+*storybook.log
+
+# env
+.env
