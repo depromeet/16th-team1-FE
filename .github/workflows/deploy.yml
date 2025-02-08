@@ -67,5 +67,5 @@ jobs:
       - name: Invalidate CloudFront Cache
         uses: aws-actions/cloudfront-invalidate-cache-action@v1
         with:
-          distribution-id: ${{ env.CLOUDFRONT_DISTRIBUTION_ID }}
+          distribution-id: ${{ secrets.AWS_CLOUDFRONT_ID }}
           paths: '/*'
