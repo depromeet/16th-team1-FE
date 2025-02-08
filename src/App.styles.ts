@@ -1,7 +1,6 @@
 /** 테스트용 임시 파일 */
 
 import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 
 const baseButtonStyles = css`
   display: flex;
@@ -26,9 +25,11 @@ const focusStyles = css`
   }
 `;
 
-export const StyledButton = styled.button`
+const combinedButtonStyles = css`
   ${baseButtonStyles}
   ${hoverStyles}
   ${focusStyles}
   background-color: #007bff;
 `;
+
+export { baseButtonStyles, hoverStyles, focusStyles, combinedButtonStyles };
