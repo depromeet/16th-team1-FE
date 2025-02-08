@@ -57,11 +57,9 @@ jobs:
       
       
       - name: Upload to S3
-        uses: aws-actions/s3-sync@v2
-        with:
-          bucket: ${{ secrets.AWS_BUCKET_NAME }}
-          region: 'ap-northeast-2'
-          source-dir: './build'
+        run: |
+          aws s3 sync ./build s3://${{ secrets.AWS_BUCKET_NAME }} --region ap-northeast-2
+        
 
       
       - name: Invalidate CloudFront Cache
