@@ -1,8 +1,9 @@
+import * as styles from './App.styles';
+
 function App() {
   return (
     <div>
-      <p>husky test</p>
-      onepiece-fe
+      <button css={styles.combinedButtonStyles}>onepiece-fe</button>
     </div>
   );
 }
