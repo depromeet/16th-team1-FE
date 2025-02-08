@@ -1,0 +1,71 @@
+name: CI Deployment Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  build:
+    name: react build & deploy
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: checkout the code
+        uses: actions/checkout@v3
+      
+
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+      - uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+      
+
+      - name: Install dependencies
+        run: pnpm install
+      
+
+      - name: Build the project
+        run: pnpm run build
+
+  
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+      
+      
+      - name: Upload to S3
+        uses: aws-actions/s3-sync-action@v2
+        with:
+          bucket: ${{ secrets.AWS_BUCKET_NAME }}
+          region: 'ap-northeast-2'
+          source-dir: './build'
+
+      
+      - name: Invalidate CloudFront Cache
+        uses: aws-actions/cloudfront-invalidate-cache-action@v1
+        with:
+          distribution-id: ${{ env.CLOUDFRONT_DISTRIBUTION_ID }}
+          paths: '/*'
