@@ -8,19 +8,19 @@ interface ProgressBarProps {
 
 export default function ProgressBar({ value, status = 'success' }: ProgressBarProps) {
   const progressContainer = css`
+    overflow: hidden;
     position: relative;
     width: 100%;
     height: 8px;
     border-radius: 4px;
     background-color: #e0e0e0;
-    overflow: hidden;
   `;
 
   const progressBar = css`
-    height: 100%;
     width: ${value}%;
-    background-color: ${status === 'warning' ? '#FFA500' : '#4CAF50'};
+    height: 100%;
     transition: width 0.3s ease;
+    background-color: ${status === 'warning' ? '#FFA500' : '#4CAF50'};
   `;
 
   return (
