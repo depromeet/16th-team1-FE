@@ -16,14 +16,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Success: Story = {
   args: {
-    value: 50,
+    value: 100,
     status: 'success',
   },
 };
 
 export const Warning: Story = {
   args: {
-    value: 75,
+    value: 8,
     status: 'warning',
   },
 };
