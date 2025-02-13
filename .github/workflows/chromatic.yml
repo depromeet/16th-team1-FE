@@ -53,11 +53,11 @@ jobs:
         with:
           github-token: ${{ secrets.ACTION_TOKEN }}
           script: |
-            const prNumber = context.payload.pull_request.number;
-            const chromaticUrl = `https://www.chromatic.com/build?appId=${{ secrets.CHROMATIC_PROJECT_TOKEN }}&number=${{ github.run_number }}`;
-            github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: prNumber,
-              body: `🚀 **Chromatic 배포 완료**\n🔗 [스토리북 미리보기](${chromaticUrl})`
-            });
+          const prNumber = context.payload.pull_request.number;
+          const storybookUrl = "${{ steps.chromatic.outputs.storybookUrl }}";
+          github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: prNumber,
+            body: `[스토리북 미리보기](${storybookUrl})`
+          });
