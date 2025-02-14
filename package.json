@@ -16,7 +16,8 @@
     "build-storybook": "storybook build",
     "chromatic": "sh script/publish_chromatic.sh",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "gitcase": "git config --local include.path ./.gitconfig && git rm -r --cached . && git add ."
   },
   "lint-staged": {
     "./src/**/*.{ts,tsx}": [

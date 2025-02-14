@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 
 import { Button, ButtonProps } from '../button';
 
-import * as styles from './kakaoAuthButton.styles';
+import * as styles from './KakaoAuthButton.styles';
 
 const KakaoAuthButton = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   return (
