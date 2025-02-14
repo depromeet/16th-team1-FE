@@ -5,6 +5,7 @@ import { Button, ButtonProps } from '../button';
 import * as styles from './BaseButton.styles';
 
 /** TODO: 디자인 시스템에 따라 추가 예정 */
+/** 디자인 시스템을 따르는 버튼 */
 export type ButtonVariant = 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
 export type ButtonSize = 'default' | 'sm' | 'lg' | 'icon';
 

@@ -4,6 +4,7 @@ import { BaseButton } from './common/components/systembutton';
 function App() {
   return (
     <div>
+      {/* 기본 디폴트 테마 사용 */}
       <BaseButton>Default</BaseButton>
 
       {/* 디자인 시스템 테마 주입 */}
@@ -11,7 +12,7 @@ function App() {
         Small + Destructive
       </BaseButton>
 
-      {/* asChild에 따른 Slot 사용 */}
+      {/* 디자인 시스템 테마 & asChild에 따른 Slot 사용 */}
       <BaseButton variant="link" asChild>
         <a href="https://example.com" target="_blank" rel="noreferrer">
           External Link
