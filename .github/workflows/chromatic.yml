@@ -4,12 +4,12 @@ on:
   pull_request:
     branches: [develop]
     paths:
-      - src/stories/**
+      - '**.stories.ts'
+      - '**.stories.tsx'
 
 jobs:
   chromatic-deploy:
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.changed_files, 'src/stories/')
 
     steps:
       - name: Checkout repository
