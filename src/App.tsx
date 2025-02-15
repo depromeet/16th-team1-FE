@@ -1,5 +1,5 @@
+import { BaseButton } from './common/components/basebutton';
 import { KakaoAuthButton } from './common/components/kakaoauthbutton';
-import { BaseButton } from './common/components/systembutton';
 
 function App() {
   return (
