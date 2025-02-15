@@ -1,24 +1,18 @@
-import { forwardRef } from 'react';
+import { ButtonHTMLAttributes, forwardRef } from 'react';
 
-import { Button, ButtonProps } from '../button';
+import { Slot } from '@radix-ui/react-slot';
 
 import * as styles from './BaseButton.styles';
 
-/** TODO: 디자인 시스템에 따라 추가 예정 */
-/** 디자인 시스템을 따르는 버튼 */
-export type ButtonVariant = 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
-export type ButtonSize = 'default' | 'sm' | 'lg' | 'icon';
-
-export interface BaseButtonProps extends ButtonProps {
-  variant?: ButtonVariant;
-  size?: ButtonSize;
+export interface BaseButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  asChild?: boolean;
 }
 
-const BaseButton = forwardRef<HTMLButtonElement, BaseButtonProps>(
-  ({ variant = 'default', size = 'default', ...props }, ref) => {
-    return <Button css={[styles.sizes[size], styles.variants[variant]]} ref={ref} {...props} />;
-  },
-);
+/** 기본 버튼 스타일 & 주입받은 props를 기반으로 UI를 렌더링하는 컴포넌트 */
+const BaseButton = forwardRef<HTMLButtonElement, BaseButtonProps>(({ asChild, ...props }, ref) => {
+  const Comp = asChild ? Slot : 'button';
+  return <Comp css={styles.buttonStyle} ref={ref} {...props} />;
+});
 BaseButton.displayName = 'BaseButton';
 
 export { BaseButton };
