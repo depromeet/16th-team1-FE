@@ -1,4 +1,3 @@
-// styles/base-button.styles.ts
 import { css } from '@emotion/react';
 
 export const kakaoButtonStyle = css`
