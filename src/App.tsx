@@ -1,9 +1,13 @@
+import { Global } from '@emotion/react';
+
 import { Button } from './common/components/button';
 import { KakaoAuthButton } from './common/components/kakaoauthbutton';
+import { globalStyles } from './styles/globalStyles';
 
 function App() {
   return (
     <div>
+      <Global styles={globalStyles} />
       {/* 기본 디폴트 테마 사용 */}
       <Button>Default</Button>
 
