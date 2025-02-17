@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
 export const sidebarToggleButton = css`
-  background-color: white;
+  background-color: transparent;
   border: none;
 `;

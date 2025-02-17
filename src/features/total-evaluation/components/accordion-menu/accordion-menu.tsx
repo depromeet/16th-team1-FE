@@ -21,7 +21,6 @@ function AccordionMenu({
   renderTrigger,
   renderContent,
 }: AccordionMenuProps) {
-  console.log(clickedTrigger);
   return (
     <div css={styles.container}>
       <Accordion.Root type={type}>

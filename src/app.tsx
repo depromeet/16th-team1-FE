@@ -1,13 +1,13 @@
 import { Global } from '@emotion/react';
 
-import FeedbackResultPage from './features/feedback-result/components/feedback-result';
+import TotalEvalutionPage from './features/total-evaluation/total-evaluation-page';
 import { globalStyles } from './styles/global-styles';
 
 function App() {
   return (
     <div>
       <Global styles={globalStyles} />
-      <FeedbackResultPage />
+      <TotalEvalutionPage />
     </div>
   );
 }
