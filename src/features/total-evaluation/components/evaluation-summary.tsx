@@ -1,6 +1,6 @@
 import DOMPurify from 'dompurify';
 
-import * as styles from './EvaluationSummary.styles';
+import * as styles from './evaluation-summary.styles';
 interface EvaluationSummaryProps {
   evaluationSummary: string;
 }

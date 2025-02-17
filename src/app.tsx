@@ -1,8 +1,8 @@
 import { Global } from '@emotion/react';
 
 import { Button } from './common/components/button';
-import { KakaoAuthButton } from './common/components/kakaoauthbutton';
-import { globalStyles } from './styles/globalStyles';
+import { KakaoAuthButton } from './common/components/kakao-auth-button';
+import { globalStyles } from './styles/global-styles';
 
 function App() {
   return (
