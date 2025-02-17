@@ -1,4 +1,4 @@
-import * as styles from './BarChart.styles';
+import * as styles from './bar-chart.styles';
 
 interface BarChartProps {
   value: number;

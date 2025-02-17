@@ -1,8 +1,8 @@
-import BarChart from '../../../common/components/bar-chart';
-import { EvaluationItemsType } from '../types/evaluationTypes';
+import BarChart from '../../../common/components/bar-chart/bar-chart';
+import { EvaluationItemsType } from '../types/evaluation-types';
 import { getEvaluationData } from '../utils/get-evaluation-data';
 
-import * as styles from './EvaluationChart.styles';
+import * as styles from './evaluation-chart.styles';
 
 interface EvaluationChartProps {
   overallEvaluationGrade: string;

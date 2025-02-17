@@ -1,4 +1,4 @@
-import { EvaluationCriteria } from '../types/evaluationTypes';
+import { EvaluationCriteria } from '../types/evaluation-types';
 
 /** 전체 평가 항목에 해당하는 라벨 */
 export const criteriaLabelConfig: Record<EvaluationCriteria, string> = {

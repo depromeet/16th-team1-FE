@@ -1,7 +1,7 @@
 import { evaluationData } from './common/data';
-import EvaluationChart from './components/EvaluationChart';
-import EvaluationSummary from './components/EvaluationSummary';
-import EvaluationTable from './components/EvaluationTable';
+import EvaluationChart from './components/evaluation-chart';
+import EvaluationSummary from './components/evaluation-summary';
+import EvaluationTable from './components/evaluation-table';
 
 import * as styles from './index.styles';
 

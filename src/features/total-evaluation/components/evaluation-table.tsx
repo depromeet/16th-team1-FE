@@ -1,7 +1,7 @@
-import { EvaluationItemsType } from '../types/evaluationTypes';
+import { EvaluationItemsType } from '../types/evaluation-types';
 import { getEvaluationData } from '../utils/get-evaluation-data';
 
-import * as styles from './EvaluationTable.styles';
+import * as styles from './evaluation-table.styles';
 
 interface EvaluationTableProps {
   evaluationItems: EvaluationItemsType;
