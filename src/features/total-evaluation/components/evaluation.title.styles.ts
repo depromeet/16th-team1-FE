@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export const sectionTitle = css`
+export const evaluationTitle = css`
   display: flex;
   align-items: center;
   color: #38393e;
