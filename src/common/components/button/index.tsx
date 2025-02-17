@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 
-import { BaseButton, BaseButtonProps } from '../basebutton';
+import { BaseButton, BaseButtonProps } from '../base-button';
 
-import * as styles from './Button.styles';
+import * as styles from './button.styles';
 
 /** TODO: 디자인 시스템에 따라 추가 및 세분화 예정 */
 export type ButtonVariant = 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
