@@ -4,9 +4,8 @@ import { BaseButton, BaseButtonProps } from '../../../../common/components/base-
 
 import * as styles from './menu-trigger-button.styles';
 
-/** 고정된 스타일과 로직 사용 */
 const MenuTriggerButton = forwardRef<HTMLButtonElement, BaseButtonProps>((props, ref) => {
-  return <BaseButton onClick={() => {}} css={styles.sidebarToggleButton} ref={ref} {...props} />;
+  return <BaseButton css={styles.sidebarToggleButton} ref={ref} {...props} />;
 });
 MenuTriggerButton.displayName = 'MenuTriggerButton';
 

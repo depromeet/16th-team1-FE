@@ -7,6 +7,7 @@ import * as styles from './accordion-menu.styles';
 export type SingleSingleAccordionItemType = { menu: string; subMenus: string[] };
 
 interface AccordionMenuProps {
+  clickedTrigger: string[];
   sidebarListData: SingleSingleAccordionItemType[];
   type: 'multiple' | 'single';
   renderTrigger?: (menu: string) => ReactNode;
@@ -14,18 +15,20 @@ interface AccordionMenuProps {
 }
 
 function AccordionMenu({
+  clickedTrigger,
   sidebarListData,
   type,
   renderTrigger,
   renderContent,
 }: AccordionMenuProps) {
+  console.log(clickedTrigger);
   return (
     <div css={styles.container}>
       <Accordion.Root type={type}>
         {sidebarListData.map(({ menu, subMenus }) => {
           return (
             <Accordion.Item key={menu} value={menu}>
-              <Accordion.Trigger css={styles.trigger} asChild>
+              <Accordion.Trigger css={styles.trigger(clickedTrigger.includes(menu))} asChild>
                 {typeof renderTrigger === 'function' && renderTrigger(menu)}
               </Accordion.Trigger>
 

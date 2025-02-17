@@ -34,8 +34,9 @@ export const contents = css`
   border-left: 2px solid lightgray;
 `;
 
-export const trigger = css`
+export const trigger = (isSelected: boolean) => css`
   margin: 1rem 0;
+  font-weight: ${isSelected && 'bolder'};
 `;
 
 // Accordion.Content 에 적용할 애니메이션 스타일

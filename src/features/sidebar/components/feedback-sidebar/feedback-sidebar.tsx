@@ -1,8 +1,5 @@
-import { Dispatch } from 'react';
+import { Dispatch, useState } from 'react';
 
-import { css } from '@emotion/react';
-
-import { Button } from '../../../../common/components/button/button';
 import { sidebarList } from '../../service/data';
 import { adaptToAccordionFormat } from '../../utils/adapt-accordion-format';
 import AccordionMenu from '../accordion-menu/accordion-menu';
@@ -19,8 +16,20 @@ interface FeedbackSidebarProps {
 function FeedbackSidebar({ isSidebarOpen, setIsSidebarOpen }: FeedbackSidebarProps) {
   // API 호출(임시 데이터)
   const { data: sidebarListData } = sidebarList;
-
   const adaptedSidebarListData = adaptToAccordionFormat(sidebarListData);
+
+  const [clickedTrigger, setClickedTrigger] = useState<string[]>([]);
+
+  const handleTriggerButton = (menu: string) => {
+    const shallow = [...clickedTrigger];
+    if (shallow.includes(menu)) {
+      shallow.splice(shallow.indexOf(menu), 1);
+    } else {
+      shallow.push(menu);
+    }
+
+    setClickedTrigger(shallow);
+  };
 
   return (
     <LeftSlidePanelToggle
@@ -30,9 +39,12 @@ function FeedbackSidebar({ isSidebarOpen, setIsSidebarOpen }: FeedbackSidebarPro
       title={<h2>포트폴리오 종합 평가</h2>}
     >
       <AccordionMenu
+        clickedTrigger={clickedTrigger}
         sidebarListData={adaptedSidebarListData}
         type="multiple"
-        renderTrigger={(menu) => <MenuTriggerButton>{menu}</MenuTriggerButton>}
+        renderTrigger={(menu) => (
+          <MenuTriggerButton onClick={() => handleTriggerButton(menu)}>{menu}</MenuTriggerButton>
+        )}
         renderContent={(submenu) => <SingleMenuButton>{submenu}</SingleMenuButton>}
       />
     </LeftSlidePanelToggle>
