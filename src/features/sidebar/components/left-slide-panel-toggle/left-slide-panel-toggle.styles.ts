@@ -7,8 +7,8 @@ export const content = (isOpen: boolean) => css`
   left: 0;
   width: 300px;
   min-height: 100vh;
-  padding: 1rem;
+  padding: 4rem 1rem 2rem;
   transform: translateX(${isOpen ? '0' : '-100%'});
   transition: transform 0.2s ease-in-out;
-  background-color: white;
+  background-color: #f6f7f9;
 `;

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export const trigger = css`
+export const sidebarTrigger = css`
   position: fixed;
   top: 1rem;
   left: 1rem;
