@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-import { BaseButton, BaseButtonProps } from '../basebutton';
+import { BaseButton, BaseButtonProps } from '../basebutton/BaseButton';
 
 import * as styles from './Button.styles';
 

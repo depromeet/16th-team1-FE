@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export const kakaoButtonStyle = css`
+export const kakaoButton = css`
   width: 100px;
   height: 20px;
   color: black;
