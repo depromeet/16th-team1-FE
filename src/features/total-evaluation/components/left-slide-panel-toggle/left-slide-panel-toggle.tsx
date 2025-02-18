@@ -33,6 +33,7 @@ function LeftSlidePanelToggle({
         <Dialog.Title asChild>{title}</Dialog.Title>
         {children}
       </Dialog.Content>
+      <div css={styles.sidebarPlaceholder(isSidebarOpen)} />
     </Dialog.Root>
   );
 }

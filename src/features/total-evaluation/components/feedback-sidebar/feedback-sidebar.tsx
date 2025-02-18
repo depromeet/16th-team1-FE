@@ -1,19 +1,17 @@
-import { Dispatch, useState } from 'react';
+import { useState } from 'react';
 
 import { sidebarList } from '../../service/data';
 import { adaptToAccordionFormat } from '../../utils/adapt-accordion-format';
 import AccordionMenu from '../accordion-menu/accordion-menu';
+import { MenuTriggerButton } from '../custom-buttons/menu-trigger-button';
+import { SingleMenuButton } from '../custom-buttons/single-menu-button';
 import LeftSlidePanelToggle from '../left-slide-panel-toggle/left-slide-panel-toggle';
-import { MenuTriggerButton } from '../menu-buttons/menu-trigger-button';
-import { SingleMenuButton } from '../menu-buttons/single-menu-button';
 
 import * as styles from './feedback-sidebar.styles';
 
-interface FeedbackSidebarProps {
-  isSidebarOpen: boolean;
-  setIsSidebarOpen: Dispatch<React.SetStateAction<boolean>>;
-}
-function FeedbackSidebar({ isSidebarOpen, setIsSidebarOpen }: FeedbackSidebarProps) {
+function FeedbackSidebar() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
   // API 호출(임시 데이터)
   const { data: sidebarListData } = sidebarList;
   const adaptedSidebarListData = adaptToAccordionFormat(sidebarListData);

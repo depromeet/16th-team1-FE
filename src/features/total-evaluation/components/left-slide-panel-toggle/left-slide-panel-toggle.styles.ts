@@ -1,14 +1,22 @@
 import { css } from '@emotion/react';
 
-export const content = (isOpen: boolean) => css`
+const SIDEBAR_WIDTH = 300;
+
+export const content = (isSidebarOpen: boolean) => css`
   overflow: auto;
   position: fixed;
   top: 0;
   left: 0;
-  width: 30rem;
+  width: ${SIDEBAR_WIDTH}px;
   min-height: 100vh;
   padding: 4rem 1rem 2rem;
-  transform: translateX(${isOpen ? '0' : '-100%'});
-  transition: transform 0.2s ease-in-out;
+  transform: ${isSidebarOpen ? `translateX(0)` : `translateX(-${SIDEBAR_WIDTH}px)`};
+  transition: transform 0.3s ease;
   background-color: #f6f7f9;
+`;
+
+export const sidebarPlaceholder = (isOpen: boolean) => css`
+  width: 0;
+  flex: ${isOpen ? `0 0 ${SIDEBAR_WIDTH}px` : `0 0 0`};
+  transition: flex 0.3s ease;
 `;
