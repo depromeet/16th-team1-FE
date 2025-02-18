@@ -5,36 +5,36 @@ import * as Accordion from '@radix-ui/react-accordion';
 import * as styles from './single-accordion-item.styles';
 
 interface SingleAccordionItemProps {
-  menu: string;
-  subMenus: string[];
+  accordionTrigger: string;
+  accordionContents: string[];
   currentOpenedTrigger: string[];
-  renderTrigger?: (menu: string) => ReactNode;
+  renderTrigger?: (accordionTrigger: string) => ReactNode;
   renderContent?: (submenu: string) => ReactNode;
 }
 
 function SingleAccordionItem({
-  menu,
-  subMenus,
+  accordionTrigger,
+  accordionContents,
   renderContent,
   renderTrigger,
   currentOpenedTrigger,
 }: SingleAccordionItemProps) {
-  const isCurrentTriggerSelected = currentOpenedTrigger.includes(menu);
+  const isCurrentTriggerSelected = currentOpenedTrigger.includes(accordionTrigger);
 
   return (
-    <Accordion.Item key={menu} value={menu}>
+    <Accordion.Item key={accordionTrigger} value={accordionTrigger}>
       <Accordion.Header>
         <Accordion.Trigger css={styles.selectedEffect(isCurrentTriggerSelected)} asChild>
-          {typeof renderTrigger === 'function' && renderTrigger(menu)}
+          {typeof renderTrigger === 'function' && renderTrigger(accordionTrigger)}
         </Accordion.Trigger>
       </Accordion.Header>
 
       <Accordion.Content css={styles.accordionContent}>
-        {subMenus.map(
-          (submenu, index) =>
+        {accordionContents.map(
+          (content, index) =>
             typeof renderContent === 'function' && (
-              <div css={styles.contentAnimation(index)} key={submenu}>
-                {renderContent(submenu)}
+              <div css={styles.contentAnimation(index)} key={content}>
+                {renderContent(content)}
               </div>
             ),
         )}

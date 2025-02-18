@@ -6,13 +6,16 @@ import SingleAccordionItem from './single-accordion-item';
 
 import * as styles from './accordion-list.styles';
 
-export type SingleSingleAccordionItemType = { menu: string; subMenus: string[] };
+export type SingleSingleAccordionItemType = {
+  accordionTrigger: string;
+  accordionContents: string[];
+};
 
 interface AccordionListProps {
   currentOpenedTrigger: string[];
   sidebarListData: SingleSingleAccordionItemType[];
   type: 'multiple' | 'single';
-  renderTrigger?: (menu: string) => ReactNode;
+  renderTrigger?: (accordionTrigger: string) => ReactNode;
   renderContent?: (submenu: string) => ReactNode;
 }
 
@@ -26,12 +29,12 @@ function AccordionList({
   return (
     <div css={styles.container}>
       <Accordion.Root type={type}>
-        {sidebarListData.map(({ menu, subMenus }) => {
+        {sidebarListData.map(({ accordionTrigger, accordionContents }) => {
           return (
             <SingleAccordionItem
-              key={menu}
-              menu={menu}
-              subMenus={subMenus}
+              key={accordionTrigger}
+              accordionTrigger={accordionTrigger}
+              accordionContents={accordionContents}
               renderContent={renderContent}
               renderTrigger={renderTrigger}
               currentOpenedTrigger={currentOpenedTrigger}

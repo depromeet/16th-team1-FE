@@ -8,7 +8,7 @@ interface SidebarProps {
   children: ReactNode;
   isSidebarOpen: boolean;
   setIsSidebarOpen: Dispatch<React.SetStateAction<boolean>>;
-  trigger: ReactNode;
+  SidebarTrigger: ReactNode;
   title: ReactNode;
 }
 
@@ -16,12 +16,12 @@ function LeftSlidePanelToggle({
   children,
   isSidebarOpen,
   setIsSidebarOpen,
-  trigger,
+  SidebarTrigger,
   title,
 }: SidebarProps) {
   return (
     <Dialog.Root modal={false} open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
-      <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
+      <Dialog.Trigger asChild>{SidebarTrigger}</Dialog.Trigger>
 
       <Dialog.Content
         onInteractOutside={(e) => e.preventDefault()}
