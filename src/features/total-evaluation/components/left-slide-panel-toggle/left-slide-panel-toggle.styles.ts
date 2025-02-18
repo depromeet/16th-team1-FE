@@ -8,7 +8,7 @@ export const content = (isSidebarOpen: boolean) => css`
   top: 0;
   left: 0;
   width: ${SIDEBAR_WIDTH}px;
-  min-height: 100vh;
+  height: 100dvh;
   padding: 4rem 1rem 2rem;
   transform: ${isSidebarOpen ? `translateX(0)` : `translateX(-${SIDEBAR_WIDTH}px)`};
   transition: transform 0.3s ease;
