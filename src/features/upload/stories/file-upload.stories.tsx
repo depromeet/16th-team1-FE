@@ -13,42 +13,4 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {
-    maxFiles: 1,
-  },
-};
-
-export const Multiple: Story = {
-  args: {
-    maxFiles: 3,
-  },
-};
-
-export const AcceptPDF: Story = {
-  args: {
-    maxFiles: 1,
-    accept: '.pdf',
-  },
-};
-
-export const FileSizeLimit: Story = {
-  args: {
-    accept: '.pdf',
-    minSize: 1024 * 1024 * 1,
-    maxSize: 1024 * 1024 * 2,
-    onFilesChange: (files) => {
-      console.log('files', files);
-    },
-  },
-};
-
-export const FilesChangeCallback: Story = {
-  args: {
-    accept: '.pdf',
-    maxSize: 1024 * 1024 * 20,
-    onFilesChange: (files) => {
-      console.log('files', files);
-    },
-  },
-};
+export const Default: Story = {};
