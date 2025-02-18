@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import FileUpload from '../components/file-upload';
+import FileUpload from '../components/file-upload/file-upload';
 
 const meta = {
   title: 'Components/FileUpload',
