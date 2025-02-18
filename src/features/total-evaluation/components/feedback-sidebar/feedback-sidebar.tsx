@@ -13,6 +13,9 @@ function FeedbackSidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [currentOpenedTrigger, setCurrentOpenedTrigger] = useState<string[]>([]);
 
+  // 현재 선택된 세부 페이지값 >> 피드백 결과 페이지에서도 써야하니까 결국은 Context로 써야 할수도?
+  const [currentSelectedContent, setCurrentSelectedContent] = useState<string | null>(null);
+
   // API 호출(임시 데이터)
   const { data: sidebarListData } = sidebarList;
   const adaptedSidebarListData = adaptToAccordionFormat(sidebarListData);
@@ -28,6 +31,10 @@ function FeedbackSidebar() {
     setCurrentOpenedTrigger(shallow);
   };
 
+  const handleContentButton = (content: string) => {
+    setCurrentSelectedContent(content);
+  };
+
   return (
     <LeftSlidePanelToggle
       isSidebarOpen={isSidebarOpen}
@@ -37,6 +44,7 @@ function FeedbackSidebar() {
     >
       <AccordionList
         currentOpenedTrigger={currentOpenedTrigger}
+        currentSelectedContent={currentSelectedContent}
         sidebarListData={adaptedSidebarListData}
         type="multiple"
         renderTrigger={(triggerTitle) => (
@@ -44,7 +52,11 @@ function FeedbackSidebar() {
             {triggerTitle}
           </AccordionTriggerButton>
         )}
-        renderContent={(content) => <SingleContentButton>{content}</SingleContentButton>}
+        renderContent={(content) => (
+          <SingleContentButton onClick={() => handleContentButton(content)}>
+            {content}
+          </SingleContentButton>
+        )}
       />
     </LeftSlidePanelToggle>
   );

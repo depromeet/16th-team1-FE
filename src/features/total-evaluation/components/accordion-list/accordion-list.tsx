@@ -13,6 +13,7 @@ export type SingleSingleAccordionItemType = {
 
 interface AccordionListProps {
   currentOpenedTrigger: string[];
+  currentSelectedContent: string | null;
   sidebarListData: SingleSingleAccordionItemType[];
   type: 'multiple' | 'single';
   renderTrigger?: (accordionTrigger: string) => ReactNode;
@@ -21,6 +22,7 @@ interface AccordionListProps {
 
 function AccordionList({
   currentOpenedTrigger,
+  currentSelectedContent,
   sidebarListData,
   type,
   renderTrigger,
@@ -38,6 +40,7 @@ function AccordionList({
               renderContent={renderContent}
               renderTrigger={renderTrigger}
               currentOpenedTrigger={currentOpenedTrigger}
+              currentSelectedContent={currentSelectedContent}
             />
           );
         })}

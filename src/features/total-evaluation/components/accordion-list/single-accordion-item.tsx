@@ -8,6 +8,7 @@ interface SingleAccordionItemProps {
   accordionTrigger: string;
   accordionContents: string[];
   currentOpenedTrigger: string[];
+  currentSelectedContent: string | null;
   renderTrigger?: (accordionTrigger: string) => ReactNode;
   renderContent?: (submenu: string) => ReactNode;
 }
@@ -18,6 +19,7 @@ function SingleAccordionItem({
   renderContent,
   renderTrigger,
   currentOpenedTrigger,
+  currentSelectedContent,
 }: SingleAccordionItemProps) {
   const isCurrentTriggerSelected = currentOpenedTrigger.includes(accordionTrigger);
 
@@ -33,7 +35,10 @@ function SingleAccordionItem({
         {accordionContents.map(
           (content, index) =>
             typeof renderContent === 'function' && (
-              <div css={styles.contentAnimation(index)} key={content}>
+              <div
+                css={styles.basicContentEffect(index, currentSelectedContent === content)}
+                key={content}
+              >
                 {renderContent(content)}
               </div>
             ),

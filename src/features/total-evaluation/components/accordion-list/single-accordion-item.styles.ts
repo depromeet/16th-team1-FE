@@ -39,11 +39,37 @@ export const accordionContent = css`
   }
 `;
 
-export const contentAnimation = (index: number) => css`
+export const basicContentEffect = (index: number, isCurrentContentSelected: boolean) => css`
+  margin: 0.5rem 0;
   transform: translateY(30px);
   opacity: 0;
   animation: fade-in 0.2s forwards;
   animation-delay: ${index * 0.07}s;
+
+  ${isCurrentContentSelected &&
+  css`
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1; /* 텍스트 뒤로 보내기 */
+      width: 0;
+      height: 100%;
+      content: '';
+      background-color: lightgray;
+      animation: fill-right 0.3s forwards;
+    }
+  `}
+
+  @keyframes fill-right {
+    from {
+      width: 0;
+    }
+
+    to {
+      width: 100%;
+    }
+  }
 
   @keyframes fade-in {
     to {
