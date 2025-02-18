@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 /* 공통(base) 스타일 */
-export const buttonStyle = css`
+export const button = css`
   display: inline-flex;
   align-items: center;
   justify-content: center;
