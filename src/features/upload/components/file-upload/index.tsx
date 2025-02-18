@@ -37,6 +37,7 @@ export default function FileUpload({
     }
     if (!hasError) {
       setFiles(files);
+      setError('');
       onFilesChange?.(files);
     }
   };
