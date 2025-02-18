@@ -7,12 +7,19 @@ import EvaluationSummary from './components/evaluation-summary';
 import EvaluationTable from './components/evaluation-table';
 import EvaluationTitle from './components/evaluation-title';
 import FeedbackSidebar from './components/feedback-sidebar/feedback-sidebar';
+import ImprovementSection from './components/improvement-section/improvement-section';
 
 import * as styles from './total-evaluation-page.styles';
 
 export default function TotalEvalutionPage() {
-  const { evaluationSummary, overallEvaluationGrade, evaluationItems, strengths, solutions } =
-    evaluationData;
+  const {
+    evaluationSummary,
+    overallEvaluationGrade,
+    evaluationItems,
+    strengths,
+    solutions,
+    improvementData,
+  } = evaluationData;
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   return (
     <div css={styles.container}>
@@ -38,6 +45,7 @@ export default function TotalEvalutionPage() {
             }
             analysisItems={solutions}
           />
+          <ImprovementSection improvementData={improvementData} />
         </div>
       </div>
     </div>
