@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-import { BaseButton, BaseButtonProps } from '../base-button';
+import { BaseButton, BaseButtonProps } from '../base-button/base-button';
 
 import * as styles from './kakao-auth-button.styles';
 
@@ -9,7 +9,7 @@ const KakaoAuthButton = forwardRef<HTMLButtonElement, BaseButtonProps>((props, r
   return (
     <BaseButton
       onClick={() => console.log('Kakao login!')}
-      css={styles.kakaoButtonStyle}
+      css={styles.kakaoButton}
       ref={ref}
       {...props}
     />
