@@ -4,13 +4,13 @@ export const improvementSectionWrapper = css`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 1rem;
 `;
 
 export const improvementTextWrapper = css`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
-  margin-left: 27px;
+  gap: 1.6rem;
+  margin-left: 2.7rem;
 `;
