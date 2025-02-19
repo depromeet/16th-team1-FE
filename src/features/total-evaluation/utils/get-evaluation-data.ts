@@ -1,4 +1,4 @@
-import { criteriaLabelConfig } from '../config/evaluation-config';
+import { CRITERIA_LABEL } from '../constants/evaluation-constant';
 import { EvaluationCriteria, EvaluationItemsType } from '../types/evaluation-types';
 
 /**
@@ -9,7 +9,7 @@ import { EvaluationCriteria, EvaluationItemsType } from '../types/evaluation-typ
 export const getEvaluationData = (evaluationItems: EvaluationItemsType) => {
   return Object.entries(evaluationItems).map(([key, value]) => ({
     criteria: key as EvaluationCriteria,
-    label: criteriaLabelConfig[key as EvaluationCriteria],
+    label: CRITERIA_LABEL[key as EvaluationCriteria],
     ...value,
   }));
 };

@@ -1,15 +1,15 @@
 import { useState } from 'react';
 
 import { evaluationData } from './common/data';
-import EvaluationAnalyze from './components/evaluation-analyze';
-import EvaluationChart from './components/evaluation-chart';
-import EvaluationSummary from './components/evaluation-summary';
-import EvaluationTable from './components/evaluation-table';
-import EvaluationTitle from './components/evaluation-title';
+import EvaluationAnalyze from './components/evaluation-analyze/evaluation-analyze';
+import EvaluationChart from './components/evaluation-chart/evaluation-chart';
+import EvaluationSummary from './components/evaluation-summary/evaluation-summary';
+import EvaluationTable from './components/evaluation-table/evaluation-table';
+import EvaluationTitle from './components/evaluation-title/evaluation-title';
 import FeedbackSidebar from './components/feedback-sidebar/feedback-sidebar';
 import ImprovementSection from './components/improvement-section/improvement-section';
 import NestedList from './components/nested-list/nested-list';
-import { EVALUATION_LABEL } from './constants/evaluation-config';
+import { EVALUATION_LABEL } from './constants/evaluation-constant';
 
 import * as styles from './total-evaluation-page.styles';
 
@@ -40,12 +40,14 @@ export default function TotalEvalutionPage() {
           <EvaluationTable evaluationItems={evaluationItems} />
 
           <EvaluationAnalyze
-            evaluationTitle={<EvaluationTitle title="강점 분석" icon={<span>🔥</span>} />}
+            evaluationTitle={
+              <EvaluationTitle title={EVALUATION_LABEL['strengths']} icon={<span>🔥</span>} />
+            }
             analysisItems={strengths}
           />
           <EvaluationAnalyze
             evaluationTitle={
-              <EvaluationTitle title="개선할 점 및 해결방안" icon={<span>👀</span>} />
+              <EvaluationTitle title={EVALUATION_LABEL['solutions']} icon={<span>👀</span>} />
             }
             analysisItems={solutions}
           />

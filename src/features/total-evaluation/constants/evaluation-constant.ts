@@ -1,7 +1,12 @@
 import { EvaluationCriteria } from '../types/evaluation-types';
 
+export const ImprovementConstant = {
+  originalText: '기존문장',
+  revisedText: '수정',
+} as const;
+
 /** 전체 평가 항목에 해당하는 라벨 */
-export const CRITERIA_LABEL_CONFIG: Record<EvaluationCriteria, string> = {
+export const CRITERIA_LABEL: Record<EvaluationCriteria, string> = {
   jobFit: '직무 적합도',
   logicalThinking: '논리적 사고',
   sentenceReadability: '문장 가독성',

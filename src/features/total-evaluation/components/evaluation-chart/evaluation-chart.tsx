@@ -1,6 +1,6 @@
-import BarChart from '../../../common/components/bar-chart/bar-chart';
-import { EvaluationItemsType } from '../types/evaluation-types';
-import { getEvaluationData } from '../utils/get-evaluation-data';
+import BarChart from '../../../../common/components/bar-chart/bar-chart';
+import { EvaluationItemsType } from '../../types/evaluation-types';
+import { getEvaluationData } from '../../utils/get-evaluation-data';
 
 import * as styles from './evaluation-chart.styles';
 
