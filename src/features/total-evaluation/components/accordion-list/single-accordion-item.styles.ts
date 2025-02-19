@@ -1,22 +1,26 @@
 import { css } from '@emotion/react';
 
 export const container = css`
-  margin-bottom: 24px;
-  font-size: 14px;
+  margin-bottom: 2.4rem;
+  font-size: 1.4rem;
+  line-height: 1.68rem;
 `;
 
 export const selectedEffect = (isCurrentTriggerSelected: boolean) => css`
-  font-size: ${isCurrentTriggerSelected && '16px'};
+  font-size: ${isCurrentTriggerSelected && '1.6rem'};
   font-weight: ${isCurrentTriggerSelected && 'bolder'};
+  line-height: ${isCurrentTriggerSelected && '1.92rem'};
+  transition:
+    font-size 0.3s ease-in-out,
+    font-weight 0.3s ease-in-out,
+    line-height 0.3s ease-in;
 `;
 
 export const accordionContent = css`
   overflow: hidden;
-  font-size: 14px;
-  transition: height 0.3s ease-in-out;
-  margin-top: 14px;
-  padding-left: 17px;
-  border-left: 2px solid lightgray;
+  margin-top: 1.4rem;
+  padding-left: 1.7rem;
+  border-left: 0.2rem solid lightgray;
 
   &[data-state='open'] {
     animation: slide-down 300ms ease-out;
@@ -48,7 +52,7 @@ export const accordionContent = css`
 `;
 
 export const basicContentEffect = (index: number, isCurrentContentSelected: boolean) => css`
-  transform: translateY(30px);
+  transform: translateY(3rem);
   opacity: 0;
   animation: fade-in 0.2s forwards;
   animation-delay: ${index * 0.07}s;

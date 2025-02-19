@@ -1,47 +1,47 @@
 import { css } from '@emotion/react';
 
-const SIDEBAR_WIDTH = 237;
-const SIDEBAR_CLOSED_WIDTH = 40;
+const SIDEBAR_WIDTH = 23.7;
+const SIDEBAR_CLOSED_WIDTH = 4;
 
 export const sidebarTopSection = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 24px;
+  font-size: 2.4rem;
 `;
 
 export const controlButtons = css`
   display: flex;
-  gap: 4px;
+  gap: 0.4rem;
   align-items: center;
 `;
 
 export const container = (isSidebarOpen: boolean) => css`
   display: flex;
   flex-direction: column;
-  gap: 80.75px;
+  gap: 8.075rem;
   overflow: auto;
   position: fixed;
   top: 0;
   left: 0;
-  width: ${SIDEBAR_WIDTH}px;
+  width: ${SIDEBAR_WIDTH}rem;
   height: 100dvh;
   padding-left: 1rem;
-  padding-right: 14px;
-  padding-top: 15px;
+  padding-right: 1.4rem;
+  padding-top: 1.5rem;
   transform: ${isSidebarOpen
     ? `translateX(0)`
-    : `translateX(-${SIDEBAR_WIDTH - SIDEBAR_CLOSED_WIDTH}px)`};
+    : `translateX(-${SIDEBAR_WIDTH - SIDEBAR_CLOSED_WIDTH}rem)`};
   transition: transform 0.3s ease;
   background-color: #f6f7f9;
 `;
 
 export const title = css`
-  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
 `;
 
 export const sidebarPlaceholder = (isOpen: boolean) => css`
   width: 0;
-  flex: ${isOpen ? `0 0 ${SIDEBAR_WIDTH}px` : `0 0 ${SIDEBAR_CLOSED_WIDTH}px`};
+  flex: ${isOpen ? `0 0 ${SIDEBAR_WIDTH}rem` : `0 0 ${SIDEBAR_CLOSED_WIDTH}rem`};
   transition: flex 0.3s ease;
 `;
