@@ -21,7 +21,7 @@ export const totalEvaluationSection = css`
   padding: 2rem;
 `;
 
-export const evaluationCriteria = (gap: string) => css`
+export const evaluationSection = (gap: string) => css`
   display: flex;
   flex-direction: column;
   gap: ${gap};

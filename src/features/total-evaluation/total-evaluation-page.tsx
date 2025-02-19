@@ -39,28 +39,26 @@ export default function TotalEvalutionPage() {
           />
           <EvaluationTable evaluationItems={evaluationItems} />
 
-          <EvaluationAnalyze
-            evaluationTitle={
-              <EvaluationTitle title={EVALUATION_LABEL['strengths']} icon={<span>🔥</span>} />
-            }
-            analysisItems={strengths}
-          />
-          <EvaluationAnalyze
-            evaluationTitle={
-              <EvaluationTitle title={EVALUATION_LABEL['solutions']} icon={<span>👀</span>} />
-            }
-            analysisItems={solutions}
-          />
+          <section css={styles.evaluationSection('2.2rem')}>
+            <EvaluationTitle title={EVALUATION_LABEL['strengths']} icon={<span>🔥</span>} />
+            <EvaluationAnalyze analysisItems={strengths} />
+          </section>
+
+          <section css={styles.evaluationSection('2.2rem')}>
+            <EvaluationTitle title={EVALUATION_LABEL['solutions']} icon={<span>👀</span>} />
+            <EvaluationAnalyze analysisItems={solutions} />
+          </section>
+
           <ImprovementSection improvementData={improvementData} />
 
-          <div css={styles.evaluationCriteria('3.2rem')}>
+          <section css={styles.evaluationSection('3.2rem')}>
             <EvaluationTitle title={EVALUATION_LABEL['positives']} icon={<span>🔥</span>} />
             <NestedList listItems={positives} />
-          </div>
-          <div css={styles.evaluationCriteria('3.2rem')}>
+          </section>
+          <section css={styles.evaluationSection('3.2rem')}>
             <EvaluationTitle title={EVALUATION_LABEL['negatives']} icon={<span>🔥</span>} />
             <NestedList listItems={negatives} />
-          </div>
+          </section>
         </div>
       </div>
     </div>
