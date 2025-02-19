@@ -88,7 +88,7 @@ function Dropzone({ onChange }: { onChange?: (...event: unknown[]) => void }) {
           acceptedFiles.length === 0 && <p>포트폴리오 PDF 업로드하기</p>
         )}
 
-        <div>{acceptedFiles?.[0]?.name}</div>
+        {!isDragActive && <div>{acceptedFiles?.[0]?.name}</div>}
       </div>
 
       <Button type="button" onClick={open} css={styles.uploadButton}>
