@@ -18,3 +18,9 @@ export const totalEvaluationSection = css`
   gap: 50px;
   width: 100%;
 `;
+
+export const evaluationCriteria = (gap: string) => css`
+  display: flex;
+  flex-direction: column;
+  gap: ${gap};
+`;
