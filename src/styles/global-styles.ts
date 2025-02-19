@@ -1,9 +1,30 @@
 import { css } from '@emotion/react';
 
 export const globalStyles = css`
-  html {
-    font-size: 62.5%; /* 1rem = 10px */
-    text-size-adjust: none;
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    line-height: 1.5;
+    box-sizing: border-box;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  button,
+  input,
+  label {
+    font-size: inherit;
+    line-height: 1.1;
   }
 
   html,
@@ -96,32 +117,6 @@ export const globalStyles = css`
     display: block;
   }
 
-  body {
-    line-height: 1.5;
-    box-sizing: border-box;
-  }
-
-  *,
-  *::before,
-  *::after {
-    box-sizing: inherit;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: inherit;
-    line-height: 1.2;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-
   ol,
   ul {
     list-style: none;
@@ -178,5 +173,12 @@ export const globalStyles = css`
   input[type='button'],
   input[type='submit'] {
     cursor: pointer;
+  }
+
+  html {
+    font-size: 62.5%; /* 1rem = 10px */
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
   }
 `;
