@@ -1,13 +1,15 @@
+import { RouterProvider } from 'react-router';
+
 import { Global } from '@emotion/react';
 
-import TotalEvalutionPage from './features/total-evaluation/total-evaluation-page';
+import { router } from './route';
 import { globalStyles } from './styles/global-styles';
 
 function App() {
   return (
     <div>
       <Global styles={globalStyles} />
-      <TotalEvalutionPage />
+      <RouterProvider router={router} />
     </div>
   );
 }
