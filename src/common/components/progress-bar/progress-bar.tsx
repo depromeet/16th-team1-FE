@@ -11,8 +11,8 @@ export default function ProgressBar({ value, status = 'success' }: ProgressBarPr
     overflow: hidden;
     position: relative;
     width: 100%;
-    height: 8px;
-    border-radius: 4px;
+    height: 0.8rem;
+    border-radius: 0.4rem;
     background-color: #e0e0e0;
   `;
 

@@ -14,7 +14,7 @@ export const nestedListItem = css`
 
 export const orderListText = css`
   color: #4a5468;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-style: normal;
   font-weight: 600;
   line-height: 145%;
@@ -24,7 +24,7 @@ export const orderListText = css`
 
 export const unorderListText = css`
   color: #74767d;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: 500;
   line-height: 170%;

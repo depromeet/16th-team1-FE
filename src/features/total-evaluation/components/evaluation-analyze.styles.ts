@@ -27,7 +27,7 @@ export const highlightBox = css`
 
 export const titleText = css`
   color: #4a5468;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 600;
   line-height: 145%;
   transform: skewX(15deg);
@@ -36,7 +36,7 @@ export const titleText = css`
 
 export const descriptionText = css`
   color: #74767d;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: 500;
   line-height: 170%;

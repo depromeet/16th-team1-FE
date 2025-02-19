@@ -3,7 +3,7 @@ import { css, keyframes } from '@emotion/react';
 const slideDown = keyframes`
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-1rem);
   }
   to {
     opacity: 1;
@@ -18,7 +18,7 @@ const slideUp = keyframes`
   }
   to {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-1rem);
   }
 `;
 
@@ -31,7 +31,7 @@ export const contents = css`
   flex-direction: column;
   margin-left: 0.5rem;
   padding-left: 0.5rem;
-  border-left: 2px solid lightgray;
+  border-left: 0.2rem solid lightgray;
 `;
 
 export const trigger = (isSelected: boolean) => css`
@@ -42,7 +42,7 @@ export const trigger = (isSelected: boolean) => css`
 // Accordion.Content 에 적용할 애니메이션 스타일
 export const accordionContent = css`
   padding: 0.5rem 0;
-  border-left: 2px solid lightgray;
+  border-left: 0.2rem solid lightgray;
 
   &[data-state='open'] {
     animation: ${slideDown} 300ms ease-out forwards;
@@ -61,7 +61,7 @@ export const itemWithSidebar = css`
     top: 0;
     bottom: 0;
     left: -0.5rem; /* 적절한 위치 조절 */
-    width: 2px;
+    width: 0.2rem;
     content: '';
     background-color: lightgray;
   }
