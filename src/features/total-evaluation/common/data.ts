@@ -60,6 +60,13 @@ export const evaluationData = {
     },
   ],
 
+  improvementData: {
+    improvementTitle: '번역체/어색한 표현',
+    originalText: "퍼넬이 불필요하게 길 필요 없음. '인트로-브릿지-결과' 3장만으로 임팩트 가능",
+    revisedText:
+      '퍼넬이 지나치게 길어지면 안 됨. 인트로, 브릿지, 결과 총 3단계만으로도 충분한 임팩트를 줄 수 있음.',
+  },
+
   positives: [
     {
       title: '데이터 기반의 문제 해결',

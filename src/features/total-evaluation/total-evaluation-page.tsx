@@ -7,6 +7,7 @@ import EvaluationSummary from './components/evaluation-summary';
 import EvaluationTable from './components/evaluation-table';
 import EvaluationTitle from './components/evaluation-title';
 import FeedbackSidebar from './components/feedback-sidebar/feedback-sidebar';
+import ImprovementSection from './components/improvement-section/improvement-section';
 import NestedList from './components/nested-list/nested-list';
 import { EVALUATION_LABEL } from './constants/evaluation-config';
 
@@ -19,10 +20,10 @@ export default function TotalEvalutionPage() {
     evaluationItems,
     strengths,
     solutions,
+    improvementData,
     positives,
     negatives,
   } = evaluationData;
-
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   return (
@@ -48,6 +49,7 @@ export default function TotalEvalutionPage() {
             }
             analysisItems={solutions}
           />
+          <ImprovementSection improvementData={improvementData} />
 
           <div css={styles.evaluationCriteria('3.2rem')}>
             <EvaluationTitle title={EVALUATION_LABEL['positives']} icon={<span>🔥</span>} />
