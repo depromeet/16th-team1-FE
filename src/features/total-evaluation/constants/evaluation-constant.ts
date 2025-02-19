@@ -1,8 +1,13 @@
 import { EvaluationCriteria } from '../types/evaluation-types';
 
-export const ImprovementConstant = {
+export const IMPROVEMENT_CONSTANT = {
   originalText: '기존문장',
   revisedText: '수정',
+} as const;
+
+export const LOGICAL_LEAP_CONSTANT = {
+  logicalError: '논리적 오류',
+  improvement: '개선 방향',
 } as const;
 
 /** 전체 평가 항목에 해당하는 라벨 */
