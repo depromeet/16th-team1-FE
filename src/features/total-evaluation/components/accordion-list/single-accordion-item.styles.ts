@@ -7,7 +7,7 @@ export const selectedEffect = (isCurrentTriggerSelected: boolean) => css`
 export const accordionContent = css`
   overflow: hidden;
   transition: height 0.3s ease-in-out;
-  padding-left: 20px;
+  padding-left: 0.7rem;
   border-left: 2px solid lightgray;
 
   &[data-state='open'] {

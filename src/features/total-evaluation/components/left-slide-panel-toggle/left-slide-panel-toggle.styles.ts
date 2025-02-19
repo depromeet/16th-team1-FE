@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-const SIDEBAR_WIDTH = 300;
+const SIDEBAR_WIDTH = 250;
 
 export const content = (isSidebarOpen: boolean) => css`
   overflow: auto;
