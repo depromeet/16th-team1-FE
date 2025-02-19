@@ -24,7 +24,7 @@ function SingleAccordionItem({
   const isCurrentTriggerSelected = currentOpenedTrigger.includes(accordionTrigger);
 
   return (
-    <Accordion.Item key={accordionTrigger} value={accordionTrigger}>
+    <Accordion.Item key={accordionTrigger} value={accordionTrigger} css={styles.container}>
       <Accordion.Header>
         <Accordion.Trigger css={styles.selectedEffect(isCurrentTriggerSelected)} asChild>
           {typeof renderTrigger === 'function' && renderTrigger(accordionTrigger)}

@@ -29,7 +29,7 @@ function AccordionList({
   renderContent,
 }: AccordionListProps) {
   return (
-    <div css={styles.container}>
+    <div>
       <Accordion.Root type={type}>
         {sidebarListData.map(({ accordionTrigger, accordionContents }) => {
           return (

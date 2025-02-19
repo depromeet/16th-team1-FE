@@ -5,7 +5,9 @@ export const singleContentButton = css`
   justify-content: flex-start;
   width: 100%;
   height: 100%; /* 명시적 높이 지정 */
-  padding: 0.7rem;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 10px;
   border: none;
   background-color: transparent;
   border-radius: 5px;

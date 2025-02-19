@@ -1,5 +1,9 @@
 import { css } from '@emotion/react';
 
+export const container = css`
+  margin-bottom: 24px;
+`;
+
 export const selectedEffect = (isCurrentTriggerSelected: boolean) => css`
   font-weight: ${isCurrentTriggerSelected && 'bolder'};
 `;
@@ -7,7 +11,8 @@ export const selectedEffect = (isCurrentTriggerSelected: boolean) => css`
 export const accordionContent = css`
   overflow: hidden;
   transition: height 0.3s ease-in-out;
-  padding-left: 0.7rem;
+  margin-top: 14px;
+  padding-left: 17px;
   border-left: 2px solid lightgray;
 
   &[data-state='open'] {
@@ -40,7 +45,6 @@ export const accordionContent = css`
 `;
 
 export const basicContentEffect = (index: number, isCurrentContentSelected: boolean) => css`
-  margin: 0.5rem 0;
   transform: translateY(30px);
   opacity: 0;
   animation: fade-in 0.2s forwards;

@@ -9,6 +9,7 @@ interface SidebarProps {
   isSidebarOpen: boolean;
   setIsSidebarOpen: Dispatch<React.SetStateAction<boolean>>;
   SidebarTrigger: ReactNode;
+  newTaskButton?: ReactNode;
   title: ReactNode;
 }
 
@@ -17,22 +18,32 @@ function LeftSlidePanelToggle({
   isSidebarOpen,
   setIsSidebarOpen,
   SidebarTrigger,
+  newTaskButton,
   title,
 }: SidebarProps) {
   return (
     <Dialog.Root modal={false} open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
-      <Dialog.Trigger asChild>{SidebarTrigger}</Dialog.Trigger>
+      <div css={styles.container(isSidebarOpen)}>
+        <div css={styles.sidebarTopSection}>
+          CRITX
+          <div>
+            {newTaskButton}
+            <Dialog.Trigger asChild>{SidebarTrigger}</Dialog.Trigger>
+          </div>
+        </div>
 
-      <Dialog.Content
-        onInteractOutside={(e) => e.preventDefault()}
-        onPointerDownOutside={(e) => e.preventDefault()}
-        css={styles.content(isSidebarOpen)}
-        forceMount // display: none 방지
-      >
-        <Dialog.Description aria-describedby={undefined} />
-        <Dialog.Title asChild>{title}</Dialog.Title>
-        {children}
-      </Dialog.Content>
+        <Dialog.Content
+          onInteractOutside={(e) => e.preventDefault()}
+          onPointerDownOutside={(e) => e.preventDefault()}
+          forceMount // display: none 방지
+        >
+          <Dialog.Description aria-describedby={undefined} />
+          <Dialog.Title css={styles.title} asChild>
+            {title}
+          </Dialog.Title>
+          {children}
+        </Dialog.Content>
+      </div>
       <div css={styles.sidebarPlaceholder(isSidebarOpen)} />
     </Dialog.Root>
   );

@@ -39,8 +39,9 @@ function FeedbackSidebar() {
     <LeftSlidePanelToggle
       isSidebarOpen={isSidebarOpen}
       setIsSidebarOpen={setIsSidebarOpen}
-      SidebarTrigger={<button css={styles.sidebarTrigger}>토글버튼</button>}
-      title={<h2>포트폴리오 종합 평가</h2>}
+      newTaskButton={<button>+</button>}
+      SidebarTrigger={<button>토글</button>}
+      title={<p>포트폴리오 종합 평가</p>}
     >
       <AccordionList
         currentOpenedTrigger={currentOpenedTrigger}
