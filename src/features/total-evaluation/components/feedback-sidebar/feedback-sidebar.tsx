@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { FaPlus } from 'react-icons/fa6';
+import { MdOutlineKeyboardDoubleArrowLeft } from 'react-icons/md';
+import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md';
 
 import { sidebarList } from '../../service/data';
 import { adaptToAccordionFormat } from '../../utils/adapt-accordion-format';
@@ -6,8 +9,6 @@ import AccordionList from '../accordion-list/accordion-list';
 import { AccordionTriggerButton } from '../custom-buttons/accordion-trigger-button';
 import { SingleContentButton } from '../custom-buttons/single-content-button';
 import LeftSlidePanelToggle from '../left-slide-panel-toggle/left-slide-panel-toggle';
-
-import * as styles from './feedback-sidebar.styles';
 
 function FeedbackSidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -39,8 +40,14 @@ function FeedbackSidebar() {
     <LeftSlidePanelToggle
       isSidebarOpen={isSidebarOpen}
       setIsSidebarOpen={setIsSidebarOpen}
-      newTaskButton={<button>+</button>}
-      SidebarTrigger={<button>토글</button>}
+      newTaskButton={<FaPlus />}
+      triggerSidebar={(isSidebarOpen) => {
+        return isSidebarOpen ? (
+          <MdOutlineKeyboardDoubleArrowLeft size={24} />
+        ) : (
+          <MdOutlineKeyboardDoubleArrowRight size={24} />
+        );
+      }}
       title={<p>포트폴리오 종합 평가</p>}
     >
       <AccordionList

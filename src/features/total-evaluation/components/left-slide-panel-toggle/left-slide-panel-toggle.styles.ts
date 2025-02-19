@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 const SIDEBAR_WIDTH = 237;
-const SIDEBAR_CLOSED_WIDTH = 50;
+const SIDEBAR_CLOSED_WIDTH = 40;
 
 export const sidebarTopSection = css`
   display: flex;
@@ -11,7 +11,8 @@ export const sidebarTopSection = css`
 
 export const controlButtons = css`
   display: flex;
-  gap: 10px;
+  gap: 4px;
+  align-items: center;
 `;
 
 export const container = (isSidebarOpen: boolean) => css`

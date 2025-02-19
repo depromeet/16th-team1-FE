@@ -8,7 +8,7 @@ interface SidebarProps {
   children: ReactNode;
   isSidebarOpen: boolean;
   setIsSidebarOpen: Dispatch<React.SetStateAction<boolean>>;
-  SidebarTrigger: ReactNode;
+  triggerSidebar: (isSidebarOpen: boolean) => ReactNode;
   newTaskButton?: ReactNode;
   title: ReactNode;
 }
@@ -17,7 +17,7 @@ function LeftSlidePanelToggle({
   children,
   isSidebarOpen,
   setIsSidebarOpen,
-  SidebarTrigger,
+  triggerSidebar,
   newTaskButton,
   title,
 }: SidebarProps) {
@@ -26,9 +26,9 @@ function LeftSlidePanelToggle({
       <div css={styles.container(isSidebarOpen)}>
         <div css={styles.sidebarTopSection}>
           CRITX
-          <div>
+          <div css={styles.controlButtons}>
             {newTaskButton}
-            <Dialog.Trigger asChild>{SidebarTrigger}</Dialog.Trigger>
+            <Dialog.Trigger asChild>{triggerSidebar(isSidebarOpen)}</Dialog.Trigger>
           </div>
         </div>
 
