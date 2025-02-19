@@ -1,10 +1,12 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import svgr from 'vite-plugin-svgr';
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
+    svgr(),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
