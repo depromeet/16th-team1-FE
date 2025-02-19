@@ -8,6 +8,8 @@ import EvaluationTable from './components/evaluation-table/evaluation-table';
 import EvaluationTitle from './components/evaluation-title/evaluation-title';
 import FeedbackSidebar from './components/feedback-sidebar/feedback-sidebar';
 import ImprovementSection from './components/improvement-section/improvement-section';
+import ImprovementTitle from './components/improvement-title/improvement-title';
+import LogicalLeap from './components/logical-leap/logical-leap';
 import NestedList from './components/nested-list/nested-list';
 import { EVALUATION_LABEL } from './constants/evaluation-constant';
 
@@ -23,6 +25,7 @@ export default function TotalEvalutionPage() {
     improvementData,
     positives,
     negatives,
+    logicalLeaps,
   } = evaluationData;
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
@@ -49,7 +52,15 @@ export default function TotalEvalutionPage() {
             <EvaluationAnalyze analysisItems={solutions} />
           </section>
 
-          <ImprovementSection improvementData={improvementData} />
+          <section css={styles.evaluationSection('1rem')}>
+            <ImprovementTitle improvementTitle={improvementData.title} />
+            <ImprovementSection improvementData={improvementData} />
+          </section>
+
+          <section css={styles.evaluationSection('3.2rem')}>
+            <ImprovementTitle improvementTitle={logicalLeaps.title} />
+            <LogicalLeap logicalLeapData={logicalLeaps} />
+          </section>
 
           <section css={styles.evaluationSection('3.2rem')}>
             <EvaluationTitle title={EVALUATION_LABEL['positives']} icon={<span>🔥</span>} />
