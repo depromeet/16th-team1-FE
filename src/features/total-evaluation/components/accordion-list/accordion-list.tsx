@@ -4,8 +4,6 @@ import * as Accordion from '@radix-ui/react-accordion';
 
 import SingleAccordionItem from './single-accordion-item';
 
-import * as styles from './accordion-list.styles';
-
 export type SingleSingleAccordionItemType = {
   accordionTrigger: string;
   accordionContents: string[];

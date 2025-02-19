@@ -2,14 +2,17 @@ import { css } from '@emotion/react';
 
 export const container = css`
   margin-bottom: 24px;
+  font-size: 14px;
 `;
 
 export const selectedEffect = (isCurrentTriggerSelected: boolean) => css`
+  font-size: ${isCurrentTriggerSelected && '16px'};
   font-weight: ${isCurrentTriggerSelected && 'bolder'};
 `;
 
 export const accordionContent = css`
   overflow: hidden;
+  font-size: 14px;
   transition: height 0.3s ease-in-out;
   margin-top: 14px;
   padding-left: 17px;

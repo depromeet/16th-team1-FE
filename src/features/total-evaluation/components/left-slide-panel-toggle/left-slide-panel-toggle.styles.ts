@@ -7,6 +7,7 @@ export const sidebarTopSection = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 24px;
 `;
 
 export const controlButtons = css`

@@ -10,11 +10,13 @@ import { AccordionTriggerButton } from '../custom-buttons/accordion-trigger-butt
 import { SingleContentButton } from '../custom-buttons/single-content-button';
 import LeftSlidePanelToggle from '../left-slide-panel-toggle/left-slide-panel-toggle';
 
+import * as styles from './feedback-sidebar.styles';
+
 function FeedbackSidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [currentOpenedTrigger, setCurrentOpenedTrigger] = useState<string[]>([]);
 
-  // 현재 선택된 세부 페이지값 >> 피드백 결과 페이지에서도 써야하니까 결국은 Context로 써야 할수도?
+  // 현재 선택된 세부 페이지값 >> 피드백 결과 페이지를 위해 Context로 써야 할 수도 있음
   const [currentSelectedContent, setCurrentSelectedContent] = useState<string | null>(null);
 
   // API 호출(임시 데이터)
@@ -48,7 +50,7 @@ function FeedbackSidebar() {
           <MdOutlineKeyboardDoubleArrowRight size={24} />
         );
       }}
-      title={<p>포트폴리오 종합 평가</p>}
+      title={<p css={styles.sidebarTitle}>포트폴리오 종합 평가</p>}
     >
       <AccordionList
         currentOpenedTrigger={currentOpenedTrigger}
