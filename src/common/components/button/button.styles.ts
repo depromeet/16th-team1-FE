@@ -19,7 +19,7 @@ export const variants = {
     }
   `,
   outline: css`
-    border: 1px solid #ccc;
+    border: 0.1rem solid #ccc;
     background-color: #fff;
 
     &:hover {

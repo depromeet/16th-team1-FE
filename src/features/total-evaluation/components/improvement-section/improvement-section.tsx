@@ -1,6 +1,6 @@
 import ImprovementText from './improvement-text';
 import ImprovementTitle from './improvement-title';
-import { ImprovementConstant } from '../../constant/evaluation-constant';
+import { ImprovementConstant } from '../../constants/evaluation-constant';
 
 import * as styles from './improvement-section.styles';
 

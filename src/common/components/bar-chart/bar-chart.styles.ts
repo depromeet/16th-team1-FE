@@ -3,7 +3,7 @@ import { css, keyframes } from '@emotion/react';
 export const barChartStyle = css`
   overflow: hidden;
   width: 100%;
-  height: 6px;
+  height: 0.6rem;
   background-color: #ebeef2;
 `;
 

@@ -5,7 +5,7 @@ export const content = (isOpen: boolean) => css`
   position: fixed;
   top: 0;
   left: 0;
-  width: 300px;
+  width: 30rem;
   min-height: 100vh;
   padding: 4rem 1rem 2rem;
   transform: translateX(${isOpen ? '0' : '-100%'});
