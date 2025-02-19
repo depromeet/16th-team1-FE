@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 
-export const singleMenuButton = css`
-  padding-left: 1rem;
+export const AccordionTriggerButton = css`
   border: none;
   background-color: transparent;
 `;

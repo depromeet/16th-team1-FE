@@ -1,51 +1,72 @@
-import { Dispatch, useState } from 'react';
+import { useState } from 'react';
+import { FaPlus } from 'react-icons/fa6';
+import { MdOutlineKeyboardDoubleArrowLeft } from 'react-icons/md';
+import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md';
 
 import { sidebarList } from '../../service/data';
 import { adaptToAccordionFormat } from '../../utils/adapt-accordion-format';
-import AccordionMenu from '../accordion-menu/accordion-menu';
+import AccordionList from '../accordion-list/accordion-list';
+import { AccordionTriggerButton } from '../custom-buttons/accordion-trigger-button';
+import { SingleContentButton } from '../custom-buttons/single-content-button';
 import LeftSlidePanelToggle from '../left-slide-panel-toggle/left-slide-panel-toggle';
-import { MenuTriggerButton } from '../menu-buttons/menu-trigger-button';
-import { SingleMenuButton } from '../menu-buttons/single-menu-button';
 
 import * as styles from './feedback-sidebar.styles';
 
-interface FeedbackSidebarProps {
-  isSidebarOpen: boolean;
-  setIsSidebarOpen: Dispatch<React.SetStateAction<boolean>>;
-}
-function FeedbackSidebar({ isSidebarOpen, setIsSidebarOpen }: FeedbackSidebarProps) {
+function FeedbackSidebar() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [currentOpenedTrigger, setCurrentOpenedTrigger] = useState<string[]>([]);
+
+  // 현재 선택된 세부 페이지값 >> 피드백 결과 페이지를 위해 Context로 써야 할 수도 있음
+  const [currentSelectedContent, setCurrentSelectedContent] = useState<string | null>(null);
+
   // API 호출(임시 데이터)
   const { data: sidebarListData } = sidebarList;
   const adaptedSidebarListData = adaptToAccordionFormat(sidebarListData);
 
-  const [clickedTrigger, setClickedTrigger] = useState<string[]>([]);
-
-  const handleTriggerButton = (menu: string) => {
-    const shallow = [...clickedTrigger];
-    if (shallow.includes(menu)) {
-      shallow.splice(shallow.indexOf(menu), 1);
+  const handleTriggerButton = (triggerTitle: string) => {
+    const shallow = [...currentOpenedTrigger];
+    if (shallow.includes(triggerTitle)) {
+      shallow.splice(shallow.indexOf(triggerTitle), 1);
     } else {
-      shallow.push(menu);
+      shallow.push(triggerTitle);
     }
 
-    setClickedTrigger(shallow);
+    setCurrentOpenedTrigger(shallow);
+  };
+
+  const handleContentButton = (content: string) => {
+    setCurrentSelectedContent(content);
   };
 
   return (
     <LeftSlidePanelToggle
       isSidebarOpen={isSidebarOpen}
       setIsSidebarOpen={setIsSidebarOpen}
-      trigger={<button css={styles.sidebarTrigger}>토글버튼</button>}
-      title={<h2>포트폴리오 종합 평가</h2>}
+      newTaskButton={<FaPlus />}
+      triggerSidebar={(isSidebarOpen) => {
+        return isSidebarOpen ? (
+          <MdOutlineKeyboardDoubleArrowLeft size={24} />
+        ) : (
+          <MdOutlineKeyboardDoubleArrowRight size={24} />
+        );
+      }}
+      title={<p css={styles.sidebarTitle}>포트폴리오 종합 평가</p>}
     >
-      <AccordionMenu
-        clickedTrigger={clickedTrigger}
+      <AccordionList
+        currentOpenedTrigger={currentOpenedTrigger}
+        currentSelectedContent={currentSelectedContent}
         sidebarListData={adaptedSidebarListData}
         type="multiple"
-        renderTrigger={(menu) => (
-          <MenuTriggerButton onClick={() => handleTriggerButton(menu)}>{menu}</MenuTriggerButton>
+        renderTrigger={(triggerTitle) => (
+          <AccordionTriggerButton onClick={() => handleTriggerButton(triggerTitle)}>
+            {triggerTitle}
+          </AccordionTriggerButton>
         )}
-        renderContent={(submenu) => <SingleMenuButton>{submenu}</SingleMenuButton>}
+        renderContent={(content) => (
+          <SingleContentButton onClick={() => handleContentButton(content)}>
+            {content}
+          </SingleContentButton>
+        )}
       />
     </LeftSlidePanelToggle>
   );

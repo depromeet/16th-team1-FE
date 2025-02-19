@@ -1,14 +1,47 @@
 import { css } from '@emotion/react';
 
-export const content = (isOpen: boolean) => css`
+const SIDEBAR_WIDTH = 23.7;
+const SIDEBAR_CLOSED_WIDTH = 4;
+
+export const sidebarTopSection = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 2.4rem;
+`;
+
+export const controlButtons = css`
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+`;
+
+export const container = (isSidebarOpen: boolean) => css`
+  display: flex;
+  flex-direction: column;
+  gap: 8.075rem;
   overflow: auto;
   position: fixed;
   top: 0;
   left: 0;
-  width: 30rem;
-  min-height: 100vh;
-  padding: 4rem 1rem 2rem;
-  transform: translateX(${isOpen ? '0' : '-100%'});
-  transition: transform 0.2s ease-in-out;
+  width: ${SIDEBAR_WIDTH}rem;
+  height: 100dvh;
+  padding-left: 1rem;
+  padding-right: 1.4rem;
+  padding-top: 1.5rem;
+  transform: ${isSidebarOpen
+    ? `translateX(0)`
+    : `translateX(-${SIDEBAR_WIDTH - SIDEBAR_CLOSED_WIDTH}rem)`};
+  transition: transform 0.3s ease;
   background-color: #f6f7f9;
+`;
+
+export const title = css`
+  margin-bottom: 2.4rem;
+`;
+
+export const sidebarPlaceholder = (isOpen: boolean) => css`
+  width: 0;
+  flex: ${isOpen ? `0 0 ${SIDEBAR_WIDTH}rem` : `0 0 ${SIDEBAR_CLOSED_WIDTH}rem`};
+  transition: flex 0.3s ease;
 `;
