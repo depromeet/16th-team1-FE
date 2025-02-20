@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import BarChart from '../components/bar-chart/bar-chart';
+import BarChart from '@/common/components/bar-chart/bar-chart';
 
 const meta = {
   title: 'Components/BarChart',

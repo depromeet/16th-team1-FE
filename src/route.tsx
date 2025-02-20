@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router';
 
-import TotalEvalutionPage from './features/total-evaluation/total-evaluation-page';
-import UploadPage from './features/upload/upload-page';
+import TotalEvalutionPage from '@/features/total-evaluation/total-evaluation-page';
+import UploadPage from '@/features/upload/upload-page';
 
 export const router = createBrowserRouter([
   {

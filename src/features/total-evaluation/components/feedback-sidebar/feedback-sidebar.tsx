@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { FaPlus } from 'react-icons/fa6';
-import { MdOutlineKeyboardDoubleArrowLeft } from 'react-icons/md';
-import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md';
+import {
+  MdOutlineKeyboardDoubleArrowLeft,
+  MdOutlineKeyboardDoubleArrowRight,
+} from 'react-icons/md';
 
-import { sidebarList } from '../../service/data';
-import { adaptToAccordionFormat } from '../../utils/adapt-accordion-format';
-import AccordionList from '../accordion-list/accordion-list';
-import { AccordionTriggerButton } from '../custom-buttons/accordion-trigger-button';
-import { SingleContentButton } from '../custom-buttons/single-content-button';
-import LeftSlidePanelToggle from '../left-slide-panel-toggle/left-slide-panel-toggle';
+import AccordionList from '@/features/total-evaluation/components/accordion-list/accordion-list';
+import { AccordionTriggerButton } from '@/features/total-evaluation/components/custom-buttons/accordion-trigger-button';
+import { SingleContentButton } from '@/features/total-evaluation/components/custom-buttons/single-content-button';
+import LeftSlidePanelToggle from '@/features/total-evaluation/components/left-slide-panel-toggle/left-slide-panel-toggle';
+import { sidebarList } from '@/features/total-evaluation/service/data';
+import { adaptToAccordionFormat } from '@/features/total-evaluation/utils/adapt-accordion-format';
 
 import * as styles from './feedback-sidebar.styles';
 

@@ -1,6 +1,6 @@
-import LogicalError from './logical-error';
-import LogicalImprovement from './logical-improvement';
-import { LOGICAL_LEAP_CONSTANT } from '../../constants/evaluation-constant';
+import LogicalError from '@/features/total-evaluation/components/logical-leap/logical-error';
+import LogicalImprovement from '@/features/total-evaluation/components/logical-leap/logical-improvement';
+import { LOGICAL_LEAP_CONSTANT } from '@/features/total-evaluation/constants/evaluation-constant';
 
 import * as styles from './logical-leap.styles';
 

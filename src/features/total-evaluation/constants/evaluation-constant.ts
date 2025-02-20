@@ -1,4 +1,4 @@
-import { EvaluationCriteria } from '../types/evaluation-types';
+import { EvaluationCriteria } from '@/features/total-evaluation/types/evaluation-types';
 
 export const IMPROVEMENT_CONSTANT = {
   originalText: '기존문장',

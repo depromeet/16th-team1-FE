@@ -2,7 +2,7 @@ import { queryByTestId, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeAll, expect, test } from 'vitest';
 
-import TestComponent from '../components/test-component/test-component';
+import TestComponent from '@/common/components/test-component/test-component';
 
 beforeAll(() => {
   render(<TestComponent />);

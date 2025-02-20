@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import * as Accordion from '@radix-ui/react-accordion';
 
-import SingleAccordionItem from './single-accordion-item';
+import SingleAccordionItem from '@/features/total-evaluation/components/accordion-list/single-accordion-item';
 
 export type SingleSingleAccordionItemType = {
   accordionTrigger: string;

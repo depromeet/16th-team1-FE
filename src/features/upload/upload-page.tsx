@@ -1,4 +1,4 @@
-import FileUpload from './components/file-upload/file-upload';
+import FileUpload from '@/features/upload/components/file-upload/file-upload';
 
 import * as styles from './upload-page.styles';
 

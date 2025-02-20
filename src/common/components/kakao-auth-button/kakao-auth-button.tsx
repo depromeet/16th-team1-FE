@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-import { BaseButton, BaseButtonProps } from '../base-button/base-button';
+import { BaseButton, BaseButtonProps } from '@/common/components/base-button/base-button';
 
 import * as styles from './kakao-auth-button.styles';
 
