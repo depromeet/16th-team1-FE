@@ -1,15 +1,15 @@
-import { evaluationData } from './common/data';
-import EvaluationAnalyze from './components/evaluation-analyze/evaluation-analyze';
-import EvaluationChart from './components/evaluation-chart/evaluation-chart';
-import EvaluationSummary from './components/evaluation-summary/evaluation-summary';
-import EvaluationTable from './components/evaluation-table/evaluation-table';
-import EvaluationTitle from './components/evaluation-title/evaluation-title';
-import FeedbackSidebar from './components/feedback-sidebar/feedback-sidebar';
-import ImprovementSection from './components/improvement-section/improvement-section';
-import ImprovementTitle from './components/improvement-title/improvement-title';
-import LogicalLeap from './components/logical-leap/logical-leap';
-import NestedList from './components/nested-list/nested-list';
-import { EVALUATION_LABEL } from './constants/evaluation-constant';
+import { evaluationData } from '@/features/total-evaluation/common/data';
+import EvaluationAnalyze from '@/features/total-evaluation/components/evaluation-analyze/evaluation-analyze';
+import EvaluationChart from '@/features/total-evaluation/components/evaluation-chart/evaluation-chart';
+import EvaluationSummary from '@/features/total-evaluation/components/evaluation-summary/evaluation-summary';
+import EvaluationTable from '@/features/total-evaluation/components/evaluation-table/evaluation-table';
+import EvaluationTitle from '@/features/total-evaluation/components/evaluation-title/evaluation-title';
+import FeedbackSidebar from '@/features/total-evaluation/components/feedback-sidebar/feedback-sidebar';
+import ImprovementSection from '@/features/total-evaluation/components/improvement-section/improvement-section';
+import ImprovementTitle from '@/features/total-evaluation/components/improvement-title/improvement-title';
+import LogicalLeap from '@/features/total-evaluation/components/logical-leap/logical-leap';
+import NestedList from '@/features/total-evaluation/components/nested-list/nested-list';
+import { EVALUATION_LABEL } from '@/features/total-evaluation/constants/evaluation-constant';
 
 import * as styles from './total-evaluation-page.styles';
 

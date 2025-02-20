@@ -1,4 +1,6 @@
 /// <reference types="vitest" />
+import path from 'path';
+
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import svgr from 'vite-plugin-svgr';
@@ -19,6 +21,15 @@ export default defineConfig({
       },
     }),
   ],
+  resolve: {
+    alias: [
+      { find: '@', replacement: path.resolve(__dirname, 'src') },
+      { find: '@assets', replacement: path.resolve(__dirname, 'src/assets') },
+      { find: '@common', replacement: path.resolve(__dirname, 'src/common') },
+      { find: '@features', replacement: path.resolve(__dirname, 'src/features') },
+    ],
+  },
+
   server: {
     port: 3000,
   },

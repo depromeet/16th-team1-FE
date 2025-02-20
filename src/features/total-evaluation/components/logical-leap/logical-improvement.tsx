@@ -1,13 +1,13 @@
-import GreenPin from '../../../../assets/icons/greenPin.svg?react';
+import GreenPin from '@assets/icons/greenPin.svg?react';
 
 import * as styles from './logical-improvement.styles';
 
-interface LogicalErrorProps {
+interface LogicalImprovementProps {
   label: string;
   improvementText: string;
 }
 
-export default function LogicalError({ label, improvementText }: LogicalErrorProps) {
+export default function LogicalImprovement({ label, improvementText }: LogicalImprovementProps) {
   return (
     <div css={styles.logicalImprovementWrapper}>
       <div css={styles.greenBlock} />

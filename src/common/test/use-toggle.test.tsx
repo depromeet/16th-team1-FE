@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import { expect, test } from 'vitest';
 
-import { useToggle } from '../hooks/use-toggle';
+import { useToggle } from '@/common/hooks/use-toggle';
 
 test('open의 초기값은 false이다.', () => {
   const { result } = renderHook(() => useToggle());

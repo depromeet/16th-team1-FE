@@ -1,4 +1,4 @@
-import RedPin from '../../../../assets/icons/redPin.svg?react';
+import RedPin from '@assets/icons/redPin.svg?react';
 
 import * as styles from './logical-error.styles';
 

@@ -1,5 +1,5 @@
-import ImprovementText from './improvement-text';
-import { IMPROVEMENT_CONSTANT } from '../../constants/evaluation-constant';
+import ImprovementText from '@/features/total-evaluation/components/improvement-section/improvement-text';
+import { IMPROVEMENT_CONSTANT } from '@/features/total-evaluation/constants/evaluation-constant';
 
 import * as styles from './improvement-section.styles';
 

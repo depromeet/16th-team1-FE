@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export const AccordionTriggerButton = css`
+export const accordionTriggerButton = css`
   border: none;
   background-color: transparent;
 `;

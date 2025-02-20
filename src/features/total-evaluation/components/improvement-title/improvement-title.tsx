@@ -1,4 +1,4 @@
-import CheckIcon from '../../../../assets/icons/checkIcon.svg?react';
+import CheckIcon from '@assets/icons/checkIcon.svg?react';
 
 import * as styles from './improvement-title.styles';
 
