@@ -49,6 +49,9 @@ importers:
       react-icons:
         specifier: ^5.5.0
         version: 5.5.0(react@18.3.1)
+      react-router:
+        specifier: ^7.1.5
+        version: 7.1.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
       '@chromatic-com/storybook':
         specifier: ^3.2.4
@@ -2698,6 +2701,12 @@ packages:
         integrity: sha512-r1bzfrm0tomOI8g1SzvCaQHo6Lcv6zu0EA+W2kHrt8dyrHQxGzBBL4kdkzIS+jBMV+EYcMAEAqXqYaLJq5rOZg==,
       }
 
+  '@types/cookie@0.6.0':
+    resolution:
+      {
+        integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==,
+      }
+
   '@types/doctrine@0.0.9':
     resolution:
       {
@@ -3575,6 +3584,13 @@ packages:
       {
         integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==,
       }
+
+  cookie@1.0.2:
+    resolution:
+      {
+        integrity: sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==,
+      }
+    engines: { node: '>=18' }
 
   core-js-compat@3.40.0:
     resolution:
@@ -6124,6 +6140,19 @@ packages:
       '@types/react':
         optional: true
 
+  react-router@7.1.5:
+    resolution:
+      {
+        integrity: sha512-8BUF+hZEU4/z/JD201yK6S+UYhsf58bzYIDq2NS1iGpwxSXDu7F+DeGSkIXMFBuHZB21FSiCzEcUb18cQNdRkA==,
+      }
+    engines: { node: '>=20.0.0' }
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+
   react-style-singleton@2.2.3:
     resolution:
       {
@@ -6373,6 +6402,12 @@ packages:
     resolution:
       {
         integrity: sha512-Saa1xPByTTq2gdeFZYLLo+RFE35NHZkAbqZeWNd3BpzppeVisAqpDjcp8dyf6uIvEqJRd46jemmyA4iFIeVk8g==,
+      }
+
+  set-cookie-parser@2.7.1:
+    resolution:
+      {
+        integrity: sha512-IOc8uWeOZgnb3ptbCURJWNjWUPcO3ZnTTdzsurqERrP6nPyv+paC55vJM0LpOlT2ne+Ix+9+CRG1MNLlyZ4GjQ==,
       }
 
   set-function-length@1.2.2:
@@ -7015,6 +7050,12 @@ packages:
     resolution:
       {
         integrity: sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==,
+      }
+
+  turbo-stream@2.4.0:
+    resolution:
+      {
+        integrity: sha512-FHncC10WpBd2eOmGwpmQsWLDoK4cqsA/UT/GqNoaKOQnT8uzhtCbg3EoUDMvqpOSAI0S26mr0rkjzbOO6S3v1g==,
       }
 
   tween-functions@1.2.0:
@@ -9388,6 +9429,8 @@ snapshots:
     dependencies:
       '@babel/types': 7.26.7
 
+  '@types/cookie@0.6.0': {}
+
   '@types/doctrine@0.0.9': {}
 
   '@types/dompurify@3.2.0':
@@ -9959,6 +10002,8 @@ snapshots:
   convert-source-map@1.9.0: {}
 
   convert-source-map@2.0.0: {}
+
+  cookie@1.0.2: {}
 
   core-js-compat@3.40.0:
     dependencies:
@@ -11525,6 +11570,16 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.18
 
+  react-router@7.1.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      '@types/cookie': 0.6.0
+      cookie: 1.0.2
+      react: 18.3.1
+      set-cookie-parser: 2.7.1
+      turbo-stream: 2.4.0
+    optionalDependencies:
+      react-dom: 18.3.1(react@18.3.1)
+
   react-style-singleton@2.2.3(@types/react@18.3.18)(react@18.3.1):
     dependencies:
       get-nonce: 1.0.1
@@ -11703,6 +11758,8 @@ snapshots:
   serialize-javascript@6.0.2:
     dependencies:
       randombytes: 2.1.0
+
+  set-cookie-parser@2.7.1: {}
 
   set-function-length@1.2.2:
     dependencies:
@@ -12170,6 +12227,8 @@ snapshots:
   tunnel-agent@0.6.0:
     dependencies:
       safe-buffer: 5.2.1
+
+  turbo-stream@2.4.0: {}
 
   tween-functions@1.2.0: {}
 
