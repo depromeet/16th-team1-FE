@@ -16,11 +16,15 @@ export const basicSelectedEffect = (isCurrentTriggerSelected: boolean) => css`
     line-height 0.3s ease-in;
 `;
 
+export const wrapper = css`
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.4rem;
+  border-left: 0.2rem solid lightgray;
+  padding-left: 1rem;
+`;
 export const accordionContent = css`
   overflow: hidden;
-  margin-top: 1.4rem;
-  padding-left: 1.7rem;
-  border-left: 0.2rem solid lightgray;
 
   &[data-state='open'] {
     animation: slide-down 300ms ease-out;

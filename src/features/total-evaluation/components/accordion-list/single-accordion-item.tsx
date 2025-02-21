@@ -34,21 +34,23 @@ function SingleAccordionItem({
       </Accordion.Header>
 
       <Accordion.Content css={styles.accordionContent}>
-        {accordionContents.map(
-          (content, index) =>
-            typeof renderContent === 'function' && (
-              <div
-                css={styles.basicContentEffect(
-                  index,
-                  currentSelectedContent === content,
-                  isSidebarOpen,
-                )}
-                key={content}
-              >
-                {renderContent(content)}
-              </div>
-            ),
-        )}
+        <div css={styles.wrapper}>
+          {accordionContents.map(
+            (content, index) =>
+              typeof renderContent === 'function' && (
+                <div
+                  css={styles.basicContentEffect(
+                    index,
+                    currentSelectedContent === content,
+                    isSidebarOpen,
+                  )}
+                  key={content}
+                >
+                  {renderContent(content)}
+                </div>
+              ),
+          )}
+        </div>
       </Accordion.Content>
     </Accordion.Item>
   );
