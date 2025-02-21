@@ -65,6 +65,10 @@ export const basicContentEffect = (
   animation: fade-in 0.2s forwards;
   animation-delay: ${index * 0.07}s;
 
+  &:hover {
+    background-color: #e4e4e5;
+  }
+
   ${isCurrentContentSelected &&
   isSidebarOpen &&
   css`
