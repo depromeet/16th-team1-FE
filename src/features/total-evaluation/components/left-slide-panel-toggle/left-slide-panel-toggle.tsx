@@ -25,7 +25,7 @@ function LeftSlidePanelToggle({
     <Dialog.Root modal={false} open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
       <div css={styles.container(isSidebarOpen)}>
         <div css={styles.sidebarTopSection}>
-          CRITX
+          CRITIX
           <div css={styles.controlButtons}>
             {newTaskButton}
             <Dialog.Trigger asChild>{triggerSidebar(isSidebarOpen)}</Dialog.Trigger>
