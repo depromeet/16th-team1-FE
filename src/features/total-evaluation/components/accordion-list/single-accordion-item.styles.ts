@@ -14,6 +14,11 @@ export const basicSelectedEffect = (isCurrentTriggerSelected: boolean) => css`
     font-size 0.3s ease-in-out,
     font-weight 0.3s ease-in-out,
     line-height 0.3s ease-in;
+
+  /* Radix의 접근성으로 인한 기본 포커스 스타일 제거 */
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const wrapper = css`
