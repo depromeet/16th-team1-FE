@@ -1,9 +1,5 @@
 import { useState } from 'react';
 import { FaPlus } from 'react-icons/fa6';
-import {
-  MdOutlineKeyboardDoubleArrowLeft,
-  MdOutlineKeyboardDoubleArrowRight,
-} from 'react-icons/md';
 
 import AccordionList from '@/features/total-evaluation/components/accordion-list/accordion-list';
 import { AccordionTriggerButton } from '@/features/total-evaluation/components/custom-buttons/accordion-trigger-button';
@@ -11,6 +7,9 @@ import { SingleContentButton } from '@/features/total-evaluation/components/cust
 import LeftSlidePanelToggle from '@/features/total-evaluation/components/left-slide-panel-toggle/left-slide-panel-toggle';
 import { sidebarList } from '@/features/total-evaluation/service/data';
 import { adaptToAccordionFormat } from '@/features/total-evaluation/utils/adapt-accordion-format';
+
+import { SidebarCloseButton } from '../custom-buttons/sidebar-close-button';
+import { SidebarOpenButton } from '../custom-buttons/sidebar-open-button';
 
 import * as styles from './feedback-sidebar.styles';
 
@@ -46,11 +45,7 @@ function FeedbackSidebar() {
       setIsSidebarOpen={setIsSidebarOpen}
       additionalButton={<FaPlus />}
       triggerSidebar={(isSidebarOpen) => {
-        return isSidebarOpen ? (
-          <MdOutlineKeyboardDoubleArrowLeft size={24} />
-        ) : (
-          <MdOutlineKeyboardDoubleArrowRight size={24} />
-        );
+        return isSidebarOpen ? <SidebarOpenButton /> : <SidebarCloseButton />;
       }}
       title={<p css={styles.sidebarTitle}>포트폴리오 종합 평가</p>}
     >
