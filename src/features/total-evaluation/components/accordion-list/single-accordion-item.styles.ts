@@ -6,7 +6,7 @@ export const container = css`
   line-height: 1.68rem;
 `;
 
-export const selectedEffect = (isCurrentTriggerSelected: boolean) => css`
+export const basicSelectedEffect = (isCurrentTriggerSelected: boolean) => css`
   font-size: ${isCurrentTriggerSelected && '1.6rem'};
   font-weight: ${isCurrentTriggerSelected && 'bolder'};
   line-height: ${isCurrentTriggerSelected && '1.92rem'};

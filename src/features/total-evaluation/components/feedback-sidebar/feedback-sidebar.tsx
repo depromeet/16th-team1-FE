@@ -44,7 +44,7 @@ function FeedbackSidebar() {
     <LeftSlidePanelToggle
       isSidebarOpen={isSidebarOpen}
       setIsSidebarOpen={setIsSidebarOpen}
-      newTaskButton={<FaPlus />}
+      additionalButton={<FaPlus />}
       triggerSidebar={(isSidebarOpen) => {
         return isSidebarOpen ? (
           <MdOutlineKeyboardDoubleArrowLeft size={24} />
