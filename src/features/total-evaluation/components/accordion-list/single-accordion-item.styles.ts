@@ -74,21 +74,17 @@ export const basicContentEffect = (
     background-color: #e4e4e5;
   }
 
-  ${isCurrentContentSelected &&
-  isSidebarOpen &&
-  css`
-    &::after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1; /* 텍스트 뒤로 보내기 */
-      width: 0;
-      height: 100%;
-      content: '';
-      background-color: lightgray;
-      animation: fill-right 0.3s forwards;
-    }
-  `}
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: ${isCurrentContentSelected ? (isSidebarOpen ? '100%' : '0') : '0'};
+    height: 100%;
+    transition: width 0.3s ease;
+    content: '';
+    background-color: lightgray;
+  }
 
   @keyframes fill-right {
     from {
