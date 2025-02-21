@@ -51,13 +51,18 @@ export const accordionContent = css`
   }
 `;
 
-export const basicContentEffect = (index: number, isCurrentContentSelected: boolean) => css`
+export const basicContentEffect = (
+  index: number,
+  isCurrentContentSelected: boolean,
+  isSidebarOpen: boolean,
+) => css`
   transform: translateY(3rem);
   opacity: 0;
   animation: fade-in 0.2s forwards;
   animation-delay: ${index * 0.07}s;
 
   ${isCurrentContentSelected &&
+  isSidebarOpen &&
   css`
     &::after {
       position: absolute;

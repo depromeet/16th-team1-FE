@@ -5,6 +5,7 @@ import * as Accordion from '@radix-ui/react-accordion';
 import * as styles from './single-accordion-item.styles';
 
 interface SingleAccordionItemProps {
+  isSidebarOpen: boolean;
   accordionTrigger: string;
   accordionContents: string[];
   currentOpenedTrigger: string[];
@@ -14,6 +15,7 @@ interface SingleAccordionItemProps {
 }
 
 function SingleAccordionItem({
+  isSidebarOpen,
   accordionTrigger,
   accordionContents,
   renderContent,
@@ -36,7 +38,11 @@ function SingleAccordionItem({
           (content, index) =>
             typeof renderContent === 'function' && (
               <div
-                css={styles.basicContentEffect(index, currentSelectedContent === content)}
+                css={styles.basicContentEffect(
+                  index,
+                  currentSelectedContent === content,
+                  isSidebarOpen,
+                )}
                 key={content}
               >
                 {renderContent(content)}

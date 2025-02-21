@@ -55,6 +55,7 @@ function FeedbackSidebar() {
       title={<p css={styles.sidebarTitle}>포트폴리오 종합 평가</p>}
     >
       <AccordionList
+        isSidebarOpen={isSidebarOpen}
         currentOpenedTrigger={currentOpenedTrigger}
         currentSelectedContent={currentSelectedContent}
         sidebarListData={adaptedSidebarListData}
