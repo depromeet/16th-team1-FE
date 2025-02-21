@@ -10,6 +10,7 @@ export type SingleSingleAccordionItemType = {
 };
 
 interface AccordionListProps {
+  isSidebarOpen: boolean;
   currentOpenedTrigger: string[];
   currentSelectedContent: string | null;
   sidebarListData: SingleSingleAccordionItemType[];
@@ -19,6 +20,7 @@ interface AccordionListProps {
 }
 
 function AccordionList({
+  isSidebarOpen,
   currentOpenedTrigger,
   currentSelectedContent,
   sidebarListData,
@@ -33,6 +35,7 @@ function AccordionList({
           return (
             <SingleAccordionItem
               key={accordionTrigger}
+              isSidebarOpen={isSidebarOpen}
               accordionTrigger={accordionTrigger}
               accordionContents={accordionContents}
               renderContent={renderContent}

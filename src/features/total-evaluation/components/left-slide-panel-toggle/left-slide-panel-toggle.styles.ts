@@ -33,7 +33,7 @@ export const container = (isSidebarOpen: boolean) => css`
     ? `translateX(0)`
     : `translateX(-${SIDEBAR_WIDTH - SIDEBAR_CLOSED_WIDTH}rem)`};
   transition: transform 0.3s ease;
-  background-color: #f6f7f9;
+  background-color: ${isSidebarOpen ? '#f6f7f9' : 'transparent'};
 `;
 
 export const title = css`

@@ -5,6 +5,7 @@ import * as Accordion from '@radix-ui/react-accordion';
 import * as styles from './single-accordion-item.styles';
 
 interface SingleAccordionItemProps {
+  isSidebarOpen: boolean;
   accordionTrigger: string;
   accordionContents: string[];
   currentOpenedTrigger: string[];
@@ -14,6 +15,7 @@ interface SingleAccordionItemProps {
 }
 
 function SingleAccordionItem({
+  isSidebarOpen,
   accordionTrigger,
   accordionContents,
   renderContent,
@@ -26,23 +28,29 @@ function SingleAccordionItem({
   return (
     <Accordion.Item key={accordionTrigger} value={accordionTrigger} css={styles.container}>
       <Accordion.Header>
-        <Accordion.Trigger css={styles.selectedEffect(isCurrentTriggerSelected)} asChild>
+        <Accordion.Trigger css={styles.basicSelectedEffect(isCurrentTriggerSelected)} asChild>
           {typeof renderTrigger === 'function' && renderTrigger(accordionTrigger)}
         </Accordion.Trigger>
       </Accordion.Header>
 
       <Accordion.Content css={styles.accordionContent}>
-        {accordionContents.map(
-          (content, index) =>
-            typeof renderContent === 'function' && (
-              <div
-                css={styles.basicContentEffect(index, currentSelectedContent === content)}
-                key={content}
-              >
-                {renderContent(content)}
-              </div>
-            ),
-        )}
+        <div css={styles.wrapper}>
+          {accordionContents.map(
+            (content, index) =>
+              typeof renderContent === 'function' && (
+                <div
+                  css={styles.basicContentEffect(
+                    index,
+                    currentSelectedContent === content,
+                    isSidebarOpen,
+                  )}
+                  key={content}
+                >
+                  {renderContent(content)}
+                </div>
+              ),
+          )}
+        </div>
       </Accordion.Content>
     </Accordion.Item>
   );

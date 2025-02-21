@@ -6,7 +6,7 @@ export const container = css`
   line-height: 1.68rem;
 `;
 
-export const selectedEffect = (isCurrentTriggerSelected: boolean) => css`
+export const basicSelectedEffect = (isCurrentTriggerSelected: boolean) => css`
   font-size: ${isCurrentTriggerSelected && '1.6rem'};
   font-weight: ${isCurrentTriggerSelected && 'bolder'};
   line-height: ${isCurrentTriggerSelected && '1.92rem'};
@@ -14,13 +14,22 @@ export const selectedEffect = (isCurrentTriggerSelected: boolean) => css`
     font-size 0.3s ease-in-out,
     font-weight 0.3s ease-in-out,
     line-height 0.3s ease-in;
+
+  /* Radix의 접근성으로 인한 기본 포커스 스타일 제거 */
+  &:focus {
+    outline: none;
+  }
 `;
 
+export const wrapper = css`
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.4rem;
+  border-left: 0.2rem solid lightgray;
+  padding-left: 1rem;
+`;
 export const accordionContent = css`
   overflow: hidden;
-  margin-top: 1.4rem;
-  padding-left: 1.7rem;
-  border-left: 0.2rem solid lightgray;
 
   &[data-state='open'] {
     animation: slide-down 300ms ease-out;
@@ -51,26 +60,31 @@ export const accordionContent = css`
   }
 `;
 
-export const basicContentEffect = (index: number, isCurrentContentSelected: boolean) => css`
+export const basicContentEffect = (
+  index: number,
+  isCurrentContentSelected: boolean,
+  isSidebarOpen: boolean,
+) => css`
   transform: translateY(3rem);
   opacity: 0;
   animation: fade-in 0.2s forwards;
   animation-delay: ${index * 0.07}s;
 
-  ${isCurrentContentSelected &&
-  css`
-    &::after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1; /* 텍스트 뒤로 보내기 */
-      width: 0;
-      height: 100%;
-      content: '';
-      background-color: lightgray;
-      animation: fill-right 0.3s forwards;
-    }
-  `}
+  &:hover {
+    background-color: #e4e4e5;
+  }
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: ${isCurrentContentSelected ? (isSidebarOpen ? '100%' : '0') : '0'};
+    height: 100%;
+    transition: width 0.3s ease;
+    content: '';
+    background-color: lightgray;
+  }
 
   @keyframes fill-right {
     from {
