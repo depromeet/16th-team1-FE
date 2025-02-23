@@ -1,12 +1,5 @@
-import { useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
-import {
-  Controller,
-  FieldValues,
-  SubmitErrorHandler,
-  SubmitHandler,
-  useForm,
-} from 'react-hook-form';
+import { Controller, FieldValues, SubmitErrorHandler, useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -24,40 +17,39 @@ const schema = z.object({
     .refine((file) => file?.type?.includes('pdf'), 'PDF 파일을 업로드해주세요.'),
 });
 
-export default function FileUpload({ ...props }) {
+interface FileUploadProps {
+  onSubmit: (data: FieldValues) => unknown;
+}
+
+// 파일 업로드용 컴포넌트
+export default function FileUpload({ onSubmit }: FileUploadProps) {
   const {
     handleSubmit,
     control,
-    watch,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(schema),
     mode: 'onChange',
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    // TODO: PDF 업로드 API 호출
-    console.log(data);
-  };
-
   const onSubmitError: SubmitErrorHandler<FieldValues> = (errors) => {
     console.log('errors', errors);
   };
 
-  const file = watch('file');
-
-  useEffect(() => {
-    if (!file) return;
-
-    handleSubmit(onSubmit, onSubmitError)();
-  }, [file, handleSubmit]);
-
   return (
-    <form css={styles.form}>
+    <form css={styles.form} onSubmit={handleSubmit(onSubmit, onSubmitError)}>
       <Controller
         name="file"
         control={control}
-        render={({ field }) => <Dropzone {...props} onChange={field.onChange} />}
+        render={({ field }) => (
+          <Dropzone
+            onChange={(files) => {
+              field.onChange(files);
+
+              handleSubmit(onSubmit, onSubmitError)();
+            }}
+          />
+        )}
       />
       {errors.file && <div css={styles.errorText}>{errors.file.message?.toString()}</div>}
     </form>
