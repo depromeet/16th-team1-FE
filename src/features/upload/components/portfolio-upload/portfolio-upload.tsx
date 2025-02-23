@@ -11,14 +11,17 @@ export default function PortfolioUpload() {
           const formData = new FormData();
           formData.append('file', file);
 
-          const res = await postPortfolio({
-            file,
-          });
-
-          if (res.url) {
-            // TODO: 업로드 성공 시 액션
-            console.log('success', res);
-          }
+          await postPortfolio(
+            {
+              file,
+            },
+            {
+              onSuccess: (data) => {
+                // TODO: 업로드 성공 시 액션
+                console.log('success', data);
+              },
+            },
+          );
         } catch (error) {
           // TODO: 업로드 실패 시 액션
           console.log('error', error);
