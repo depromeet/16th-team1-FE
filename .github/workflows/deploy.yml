@@ -5,17 +5,14 @@ on:
     branches:
       - main
 
-
 jobs:
   build:
     name: react build & deploy
     runs-on: ubuntu-latest
 
-
     steps:
       - name: checkout the code
         uses: actions/checkout@v3
-      
 
       - name: Get npm cache directory
         id: npm-cache-dir
@@ -29,40 +26,33 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '22'
 
-
       - name: Install pnpm
         run: npm install -g pnpm
-      
 
       - name: Install dependencies
         run: pnpm install
-      
 
       - name: Build the project
         run: pnpm run build
+        env:
+          VITE_API_BASE_URL: ${{ vars.API_BASE_URL }}
 
-  
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
-      
-      
+
       - name: Upload to S3
         run: |
           aws s3 sync ./dist s3://${{ secrets.AWS_BUCKET_NAME }} --region ap-northeast-2
-        
 
-      
       - name: Invalidate CloudFront Cache
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} --paths "/*"
-        
