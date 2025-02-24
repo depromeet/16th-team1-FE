@@ -4,9 +4,9 @@ export const globalStyles = css`
   *,
   *::before,
   *::after {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
 
   body {
@@ -177,8 +177,17 @@ export const globalStyles = css`
 
   html {
     font-size: 62.5%; /* 1rem = 10px */
-    -moz-text-size-adjust: none;
-    -webkit-text-size-adjust: none;
     text-size-adjust: none;
+    font-family:
+      Pretendard,
+      -apple-system,
+      BlinkMacSystemFont,
+      system-ui,
+      Roboto,
+      'Helvetica Neue',
+      'Segoe UI',
+      'Apple SD Gothic Neo',
+      'Malgun Gothic',
+      sans-serif;
   }
 `;
