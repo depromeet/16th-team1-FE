@@ -1,23 +1,18 @@
 import { css } from '@emotion/react';
 
-import { ButtonVariant, ICON_TEXT_GAP, Size, sizes, Usage, variants } from '@/assets/styles/button';
+import { ButtonVariant, Size, sizes, Usage, variants } from '@/assets/styles/button';
 
-export const buttonsStyle = (
-  size: Size,
-  usage: Usage,
-  variant: ButtonVariant,
-  isMultiButton: boolean,
-) => css`
+export const buttonsStyle = (size: Size, usage: Usage, variant: ButtonVariant) => css`
   padding: ${sizes[usage][size].padding};
   background: ${variants[variant].default.background};
   color: ${variants[variant].default.color};
-  font-size: ${usage === 'normal' ? sizes['normal'][size].fontSize : 'inherit'};
+  font-size: ${usage === 'text' ? sizes['text'][size].fontSize : 'inherit'};
   border-radius: ${sizes[usage][size].borderRadius};
 
-  ${isMultiButton && {
+  ${usage === 'multi' && {
     display: 'flex',
     alignItems: 'center',
-    gap: `${ICON_TEXT_GAP}`,
+    gap: sizes['multi'][size].gap,
   }}
 
   &:hover {

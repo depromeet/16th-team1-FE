@@ -9,18 +9,13 @@ export type ButtonProps = TextOnlyProps | TextAndIconProps | IconOnlyProps;
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ size, usage, variant, icon, children, iconPosition, ...props }, ref) => {
-    const isMultiButton = icon !== undefined && usage === 'normal';
-    const content = !isMultiButton && icon ? icon : children;
+    const content = usage !== 'icon' ? children : icon;
 
     return (
-      <BaseButton
-        ref={ref}
-        css={styles.buttonsStyle(size, usage, variant, isMultiButton)}
-        {...props}
-      >
-        {isMultiButton && iconPosition === 'left' && icon}
+      <BaseButton ref={ref} css={styles.buttonsStyle(size, usage, variant)} {...props}>
+        {usage === 'multi' && iconPosition === 'left' && icon}
         {content}
-        {isMultiButton && iconPosition === 'right' && icon}
+        {usage === 'multi' && iconPosition === 'right' && icon}
       </BaseButton>
     );
   },

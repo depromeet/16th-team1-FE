@@ -8,7 +8,7 @@ import { BaseButtonProps } from '@/common/components/base-button/base-button';
 export const ICON_TEXT_GAP = '0.4rem';
 
 export const sizes = {
-  normal: {
+  text: {
     small: {
       padding: '0.7rem 1.6rem',
       fontSize: '1.4rem',
@@ -25,7 +25,7 @@ export const sizes = {
       borderRadius: '0.8rem',
     },
   },
-  iconOnly: {
+  icon: {
     small: {
       padding: '0.8rem',
       borderRadius: '0.8rem',
@@ -37,6 +37,26 @@ export const sizes = {
     large: {
       padding: '1.4rem',
       borderRadius: '0.8rem',
+    },
+  },
+  multi: {
+    small: {
+      padding: '0.7rem 1.6rem',
+      fontSize: '1.4rem',
+      borderRadius: '0.8rem',
+      gap: '0.4rem',
+    },
+    medium: {
+      padding: '1.2rem 2.4rem',
+      fontSize: '1.6rem',
+      borderRadius: '0.8rem',
+      gap: '0.4rem',
+    },
+    large: {
+      padding: '1.6rem 3.2rem',
+      fontSize: '1.6rem',
+      borderRadius: '0.8rem',
+      gap: '0.4rem',
     },
   },
 };
@@ -82,7 +102,7 @@ export const variants = {
 
 // 각 카테고리별 사이즈 키
 export type Usage = keyof typeof sizes;
-export type Size = keyof (typeof sizes)['normal'];
+export type Size = keyof (typeof sizes)['text'];
 export type ButtonVariant = keyof typeof variants;
 
 // 공통 props
@@ -93,7 +113,7 @@ export type CommonProps = {
 
 // 텍스트만 있는 경우
 export type TextOnlyProps = CommonProps & {
-  usage: 'normal';
+  usage: 'text';
   children: ReactNode;
   icon?: never;
   iconPosition?: never;
@@ -101,7 +121,7 @@ export type TextOnlyProps = CommonProps & {
 
 // 텍스트와 아이콘이 모두 있는 경우
 export type TextAndIconProps = CommonProps & {
-  usage: 'normal';
+  usage: 'multi';
   children: ReactNode;
   icon: ReactNode;
   iconPosition: 'left' | 'right';
@@ -109,7 +129,7 @@ export type TextAndIconProps = CommonProps & {
 
 // 아이콘만 있는 경우
 export type IconOnlyProps = CommonProps & {
-  usage: 'iconOnly';
+  usage: 'icon';
   icon: ReactNode;
   children?: never;
   iconPosition?: never;
