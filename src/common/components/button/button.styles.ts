@@ -7,15 +7,20 @@ export const generateCss = (
   size: Size,
   usage: Usage,
   variant: ButtonVariant,
+  isMultiButton: boolean,
 ): ReturnType<typeof css> => {
   const buttonStyle = css`
-    width: ${sizes[usage][size].width};
-    height: ${sizes[usage][size].height};
     padding: ${sizes[usage][size].padding};
     background: ${variants[variant].default.background};
     color: ${variants[variant].default.color};
     font-size: ${usage === 'normal' ? sizes['normal'][size].fontSize : 'inherit'};
     border-radius: ${sizes[usage][size].borderRadius};
+
+    ${isMultiButton && {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '2rem',
+    }}
 
     &:hover {
       background: ${variants[variant].hover.background};

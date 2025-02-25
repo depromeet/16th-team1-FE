@@ -4,22 +4,16 @@
 export const sizes = {
   normal: {
     small: {
-      width: '8.1rem',
-      height: '3.2rem',
       padding: '0.7rem 1.6rem',
       fontSize: '1.4rem',
       borderRadius: '0.8rem',
     },
     medium: {
-      width: '10.4rem',
-      height: '4.4rem',
       padding: '1.2rem 2.4rem',
       fontSize: '1.6rem',
       borderRadius: '0.8rem',
     },
     large: {
-      width: '12rem',
-      height: '5.2rem',
       padding: '1.6rem 3.2rem',
       fontSize: '1.6rem',
       borderRadius: '0.8rem',
@@ -27,20 +21,14 @@ export const sizes = {
   },
   iconOnly: {
     small: {
-      width: '3.2rem',
-      height: '3.2rem',
       padding: '0.8rem',
       borderRadius: '0.8rem',
     },
     medium: {
-      width: '4.4rem',
-      height: '4.4rem',
       padding: '1.2rem',
       borderRadius: '0.8rem',
     },
     large: {
-      width: '5.2rem',
-      height: '5.2rem',
       padding: '1.4rem',
       borderRadius: '0.8rem',
     },

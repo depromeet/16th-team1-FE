@@ -12,10 +12,14 @@ export interface ButtonProps extends BaseButtonProps {
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ size, usage, variant, ...props }, ref) => {
-    const buttonStyle = generateCss(size, usage, variant);
+  ({ size, usage, variant, icon, ...props }, ref) => {
+    const buttonStyle = generateCss(size, usage, variant, icon !== undefined && usage === 'normal');
 
-    return <BaseButton ref={ref} css={buttonStyle} {...props} />;
+    // 텍스트만 >> size, usage, variant
+    // 아이콘만 >> size, usage, variant, icon
+    // 텍스트+아이콘  >> size, usage, variant, icon, position
+
+    return <BaseButton ref={ref} css={buttonStyle} icon={icon} {...props} />;
   },
 );
 
