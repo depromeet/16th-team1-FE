@@ -1,4 +1,4 @@
-import RedPin from '@assets/icons/redPin.svg?react';
+import Icon from '@/common/components/icon/icon';
 
 import * as styles from './logical-error.styles';
 
@@ -14,7 +14,7 @@ export default function LogicalError({ label, logicalErrorList }: LogicalErrorPr
       <div css={styles.logicalErrorTextWrapper}>
         <span css={styles.label}>
           {label}
-          <RedPin />
+          <Icon name="pin" />
         </span>
         <ul>
           {logicalErrorList.map((error) => (
