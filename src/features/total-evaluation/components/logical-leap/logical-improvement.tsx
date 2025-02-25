@@ -1,4 +1,4 @@
-import GreenPin from '@assets/icons/greenPin.svg?react';
+import Icon from '@/common/components/icon/icon';
 
 import * as styles from './logical-improvement.styles';
 
@@ -14,7 +14,7 @@ export default function LogicalImprovement({ label, improvementText }: LogicalIm
       <div css={styles.logicalImprovementTextWrapper}>
         <span css={styles.label}>
           {label}
-          <GreenPin />
+          <Icon name="pin" color="green" />
         </span>
         <p css={styles.improvementText}>{improvementText}</p>
       </div>
