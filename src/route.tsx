@@ -11,13 +11,7 @@ export const router = createBrowserRouter([
     path: '/',
     element: (
       <div>
-        <Button
-          size="large"
-          usage="normal"
-          variant="purlple"
-          icon={<Icon name="pin" width={24} />}
-          iconPosition="right"
-        >
+        <Button size="large" usage="normal" variant="purlple">
           hahaha
         </Button>
 
