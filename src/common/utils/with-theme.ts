@@ -3,7 +3,7 @@ import { css, Theme, useTheme } from '@emotion/react';
 /**
  * theme을 자동으로 주입하는 유틸 함수
  *
- * Emotion의 css 리터럴 템플릿에서는 theme 타입 추론이 되지 않으므로,
+ * Emotion의 css 태그 템플릿에서는 theme 타입 추론이 되지 않으므로,
  * 해당 함수를 통해 theme을 전달하여 타입을 올바르게 추론할 수 있도록 함.
  */
 export const withTheme =
