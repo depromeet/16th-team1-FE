@@ -22,7 +22,13 @@ export const router = createBrowserRouter([
           icon={<Icon name="pin" width={24} />}
         />
 
-        <Button size="large" usage="normal" variant="purlple">
+        <Button
+          size="large"
+          usage="normal"
+          icon={<Icon name="pin" width={24} />}
+          iconPosition="right"
+          variant="purlple"
+        >
           hahaha
         </Button>
       </div>

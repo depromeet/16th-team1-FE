@@ -1,42 +1,37 @@
 import { css } from '@emotion/react';
 
-import { ButtonVariant, Size, sizes, Usage, variants } from '@/assets/styles/button';
+import { ButtonVariant, ICON_TEXT_GAP, Size, sizes, Usage, variants } from '@/assets/styles/button';
 
-/** 전달받은 디자인 시스템의 props로 스타일을 계산하는 유틸함수 */
-export const generateCss = (
+export const buttonsStyle = (
   size: Size,
   usage: Usage,
   variant: ButtonVariant,
   isMultiButton: boolean,
-): ReturnType<typeof css> => {
-  const buttonStyle = css`
-    padding: ${sizes[usage][size].padding};
-    background: ${variants[variant].default.background};
-    color: ${variants[variant].default.color};
-    font-size: ${usage === 'normal' ? sizes['normal'][size].fontSize : 'inherit'};
-    border-radius: ${sizes[usage][size].borderRadius};
+) => css`
+  padding: ${sizes[usage][size].padding};
+  background: ${variants[variant].default.background};
+  color: ${variants[variant].default.color};
+  font-size: ${usage === 'normal' ? sizes['normal'][size].fontSize : 'inherit'};
+  border-radius: ${sizes[usage][size].borderRadius};
 
-    ${isMultiButton && {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '2rem',
-    }}
+  ${isMultiButton && {
+    display: 'flex',
+    alignItems: 'center',
+    gap: `${ICON_TEXT_GAP}`,
+  }}
 
-    &:hover {
-      background: ${variants[variant].hover.background};
-      color: ${variants[variant].hover.color};
-    }
+  &:hover {
+    background: ${variants[variant].hover.background};
+    color: ${variants[variant].hover.color};
+  }
 
-    &:active {
-      background: ${variants[variant].pressed.background};
-      color: ${variants[variant].pressed.color};
-    }
+  &:active {
+    background: ${variants[variant].pressed.background};
+    color: ${variants[variant].pressed.color};
+  }
 
-    &:disabled {
-      background: ${variants[variant].disabled.background};
-      color: ${variants[variant].disabled.color};
-    }
-  `;
-
-  return buttonStyle;
-};
+  &:disabled {
+    background: ${variants[variant].disabled.background};
+    color: ${variants[variant].disabled.color};
+  }
+`;

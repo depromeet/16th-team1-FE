@@ -1,5 +1,11 @@
+import { ReactNode } from 'react';
+
+import { BaseButtonProps } from '@/common/components/base-button/base-button';
+
 // TODO: 색상값 colors.ts에서 가져오기
 // TODO: 폰트 사이즈 수정하기
+
+export const ICON_TEXT_GAP = '0.4rem';
 
 export const sizes = {
   normal: {
@@ -78,3 +84,33 @@ export const variants = {
 export type Usage = keyof typeof sizes;
 export type Size = keyof (typeof sizes)['normal'];
 export type ButtonVariant = keyof typeof variants;
+
+// 공통 props
+export type CommonProps = {
+  size: Size;
+  variant: ButtonVariant;
+} & BaseButtonProps;
+
+// 텍스트만 있는 경우
+export type TextOnlyProps = CommonProps & {
+  usage: 'normal';
+  children: ReactNode;
+  icon?: never;
+  iconPosition?: never;
+};
+
+// 텍스트와 아이콘이 모두 있는 경우
+export type TextAndIconProps = CommonProps & {
+  usage: 'normal';
+  children: ReactNode;
+  icon: ReactNode;
+  iconPosition: 'left' | 'right';
+};
+
+// 아이콘만 있는 경우
+export type IconOnlyProps = CommonProps & {
+  usage: 'iconOnly';
+  icon: ReactNode;
+  children?: never;
+  iconPosition?: never;
+};
