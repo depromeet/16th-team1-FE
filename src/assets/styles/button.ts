@@ -2,26 +2,26 @@ import { ReactNode } from 'react';
 
 import { BaseButtonProps } from '@/common/components/base-button/base-button';
 
-// TODO: 색상값 colors.ts에서 가져오기
-// TODO: 폰트 사이즈 수정하기
+import { colors } from './colors';
 
-export const ICON_TEXT_GAP = '0.4rem';
-
-export const sizes = {
+export const SIZE = {
   text: {
     small: {
       padding: '0.7rem 1.6rem',
       fontSize: '1.4rem',
+      lineHeight: '127%',
       borderRadius: '0.8rem',
     },
     medium: {
       padding: '1.2rem 2.4rem',
       fontSize: '1.6rem',
+      lineHeight: '127%',
       borderRadius: '0.8rem',
     },
     large: {
       padding: '1.6rem 3.2rem',
       fontSize: '1.6rem',
+      lineHeight: '127%',
       borderRadius: '0.8rem',
     },
   },
@@ -41,69 +41,72 @@ export const sizes = {
   },
   multi: {
     small: {
-      padding: '0.7rem 1.6rem',
+      padding: '0.7rem 1.6rem 0.7rem 1.2rem',
       fontSize: '1.4rem',
       borderRadius: '0.8rem',
+      lineHeight: '127%',
       gap: '0.4rem',
     },
     medium: {
-      padding: '1.2rem 2.4rem',
+      padding: '1.2rem 2.4rem 1.2rem 2rem',
       fontSize: '1.6rem',
       borderRadius: '0.8rem',
+      lineHeight: '127%',
       gap: '0.4rem',
     },
     large: {
-      padding: '1.6rem 3.2rem',
+      padding: '1.6rem 3.2rem 1.6rem 2.4rem',
       fontSize: '1.6rem',
       borderRadius: '0.8rem',
+      lineHeight: '127%',
       gap: '0.4rem',
     },
   },
 };
 
-export const variants = {
+export const VARIANTS = {
   purlple: {
     default: {
-      background: '#D7ADFE',
-      color: '#2C2C36',
+      background: colors.PURPLE[300],
+      color: colors.GRAY[950],
     },
     hover: {
-      background: '#E3C6FF',
-      color: '#2C2C36',
+      background: colors.PURPLE[200],
+      color: colors.GRAY[950],
     },
     pressed: {
-      background: '#E3C6FF',
-      color: '#2C2C36',
+      background: colors.PURPLE[400],
+      color: colors.GRAY[950],
     },
     disabled: {
-      background: '#C194EA',
-      color: '#62626D',
+      background: colors.PURPLE[400],
+      color: colors.GRAY[700],
     },
   },
   sora: {
     default: {
-      background: '#AEE8FF',
-      color: '#2C2C36',
+      background: colors.SORA[200],
+      color: colors.GRAY[950],
     },
     hover: {
-      background: '#C8EFFF',
-      color: '#2C2C36',
+      background: colors.SORA[100],
+      color: colors.GRAY[950],
     },
     pressed: {
-      background: '#76BAD5',
-      color: '#2C2C36',
+      background: colors.SORA[400],
+      color: colors.GRAY[950],
     },
     disabled: {
-      background: '#76BAD5',
-      color: '#62626D',
+      background: colors.SORA[400],
+      color: colors.GRAY[700],
     },
   },
 };
 
 // 각 카테고리별 사이즈 키
-export type Usage = keyof typeof sizes;
-export type Size = keyof (typeof sizes)['text'];
-export type ButtonVariant = keyof typeof variants;
+export type Usage = keyof typeof SIZE;
+export type Size = keyof (typeof SIZE)['text'];
+export type ButtonVariant = keyof typeof VARIANTS;
 
 // 공통 props
 export type CommonProps = {
