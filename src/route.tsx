@@ -11,20 +11,41 @@ export const router = createBrowserRouter([
     path: '/',
     element: (
       <div>
-        <Button size="large" usage="text" variant="purlple">
-          hahaha
+        <Button size="medium" usage="text" variant="purlple">
+          purple-L
         </Button>
 
-        <Button size="large" usage="icon" variant="purlple" icon={<Icon name="pin" width={24} />} />
+        <Button size="small" usage="text" variant="sora">
+          sora-S
+        </Button>
+
+        <Button size="large" usage="icon" variant="sora" icon={<Icon name="pin" width={24} />} />
 
         <Button
-          size="large"
+          size="medium"
+          usage="icon"
+          variant="purlple"
+          icon={<Icon name="pin" width={24} />}
+        />
+
+        <Button
+          size="medium"
           usage="multi"
           icon={<Icon name="pin" width={24} />}
           iconPosition="right"
+          variant="sora"
+        >
+          sora-multi-left-M
+        </Button>
+
+        <Button
+          size="small"
+          usage="multi"
+          icon={<Icon name="pin" width={24} />}
+          iconPosition="left"
           variant="purlple"
         >
-          hahaha
+          purlple-multi-left-S
         </Button>
       </div>
     ),

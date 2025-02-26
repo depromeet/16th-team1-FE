@@ -3,68 +3,69 @@ import { ReactNode } from 'react';
 import { BaseButtonProps } from '@/common/components/button/base-button';
 
 import { colors } from './colors';
+import { sizeToken } from './space';
 
-export const SIZE = {
+export const BUTTON_SIZE = {
   text: {
     small: {
-      padding: '0.7rem 1.6rem',
-      fontSize: '1.4rem',
-      lineHeight: '127%',
-      borderRadius: '0.8rem',
+      padding: `${sizeToken.padding['xs_2']} ${sizeToken.padding['sm_2']}`,
+      fontSize: `${sizeToken.fontSize['xs_1']}`,
+      lineHeight: `${sizeToken.lineHeight['xs_1']}`,
+      borderRadius: `${sizeToken.borderRadius['xs_1']}`,
     },
     medium: {
-      padding: '1.2rem 2.4rem',
-      fontSize: '1.6rem',
-      lineHeight: '127%',
-      borderRadius: '0.8rem',
+      padding: `${sizeToken.padding['s_2']} ${sizeToken.padding['md_2']}`,
+      fontSize: `${sizeToken.fontSize['s_1']}`,
+      lineHeight: `${sizeToken.lineHeight['xs_1']}`,
+      borderRadius: `${sizeToken.borderRadius['xs_1']}`,
     },
     large: {
-      padding: '1.6rem 3.2rem',
-      fontSize: '1.6rem',
-      lineHeight: '127%',
-      borderRadius: '0.8rem',
+      padding: `${sizeToken.padding['sm_2']} ${sizeToken.padding['lg_1']}`,
+      fontSize: `${sizeToken.fontSize['s_1']}`,
+      lineHeight: `${sizeToken.lineHeight['xs_1']}`,
+      borderRadius: `${sizeToken.borderRadius['xs_1']}`,
     },
   },
   icon: {
     small: {
-      padding: '0.8rem',
-      borderRadius: '0.8rem',
+      padding: `${sizeToken.padding['s_1']}`,
+      borderRadius: `${sizeToken.borderRadius['xs_1']}`,
     },
     medium: {
-      padding: '1.2rem',
-      borderRadius: '0.8rem',
+      padding: `${sizeToken.padding['s_2']}`,
+      borderRadius: `${sizeToken.borderRadius['xs_1']}`,
     },
     large: {
-      padding: '1.4rem',
-      borderRadius: '0.8rem',
+      padding: `${sizeToken.padding['sm_1']}`,
+      borderRadius: `${sizeToken.borderRadius['xs_1']}`,
     },
   },
   multi: {
     small: {
-      padding: '0.7rem 1.6rem 0.7rem 1.2rem',
-      fontSize: '1.4rem',
-      borderRadius: '0.8rem',
-      lineHeight: '127%',
-      gap: '0.4rem',
+      padding: `${sizeToken.padding['xs_2']} ${sizeToken.padding['sm_2']} ${sizeToken.padding['xs_2']} ${sizeToken.padding['s_2']}`,
+      fontSize: `${sizeToken.fontSize['xs_1']}`,
+      borderRadius: `${sizeToken.borderRadius['xs_1']}`,
+      lineHeight: `${sizeToken.lineHeight['xs_1']}`,
+      gap: `${sizeToken.gap['xs_1']}`,
     },
     medium: {
-      padding: '1.2rem 2.4rem 1.2rem 2rem',
-      fontSize: '1.6rem',
-      borderRadius: '0.8rem',
-      lineHeight: '127%',
-      gap: '0.4rem',
+      padding: `${sizeToken.padding['s_2']} ${sizeToken.padding['md_2']} ${sizeToken.padding['s_2']} ${sizeToken.padding['md_1']}`,
+      fontSize: `${sizeToken.fontSize['s_1']}`,
+      borderRadius: `${sizeToken.borderRadius['xs_1']}`,
+      lineHeight: `${sizeToken.lineHeight['xs_1']}`,
+      gap: `${sizeToken.gap['xs_1']}`,
     },
     large: {
-      padding: '1.6rem 3.2rem 1.6rem 2.4rem',
-      fontSize: '1.6rem',
-      borderRadius: '0.8rem',
-      lineHeight: '127%',
-      gap: '0.4rem',
+      padding: `${sizeToken.padding['sm_2']} ${sizeToken.padding['lg_1']} ${sizeToken.padding['sm_2']} ${sizeToken.padding['md_2']}`,
+      fontSize: `${sizeToken.fontSize['s_1']}`,
+      borderRadius: `${sizeToken.borderRadius['xs_1']}`,
+      lineHeight: `${sizeToken.lineHeight['xs_1']}`,
+      gap: `${sizeToken.gap['xs_1']}`,
     },
   },
 };
 
-export const VARIANTS = {
+export const BUTTON_VARIANTS = {
   purlple: {
     default: {
       background: colors.PURPLE[300],
@@ -104,9 +105,9 @@ export const VARIANTS = {
 };
 
 // 각 카테고리별 사이즈 키
-export type Usage = keyof typeof SIZE;
-export type Size = keyof (typeof SIZE)['text'];
-export type ButtonVariant = keyof typeof VARIANTS;
+export type Usage = keyof typeof BUTTON_SIZE;
+export type Size = keyof (typeof BUTTON_SIZE)['text'];
+export type ButtonVariant = keyof typeof BUTTON_VARIANTS;
 
 // 공통 props
 export type CommonProps = {
