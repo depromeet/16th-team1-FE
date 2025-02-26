@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, forwardRef } from 'react';
 import { MdOutlineKeyboardDoubleArrowLeft } from 'react-icons/md';
 
-import { BaseButton } from '@/common/components/base-button/base-button';
+import { BaseButton } from '@/common/components/button/base-button';
 
 const SidebarOpenButton = forwardRef<HTMLButtonElement, ButtonHTMLAttributes<HTMLButtonElement>>(
   (props, ref) => (

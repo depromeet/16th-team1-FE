@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { BaseButtonProps } from '@/common/components/base-button/base-button';
+import { BaseButtonProps } from '@/common/components/button/base-button';
 
 import { colors } from './colors';
 

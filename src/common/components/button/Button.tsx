@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import { IconOnlyProps, TextAndIconProps, TextOnlyProps } from '@/assets/styles/button';
-import { BaseButton } from '@/common/components/base-button/base-button';
+import { BaseButton } from '@/common/components/button/base-button';
 
 import * as styles from './button.styles';
 

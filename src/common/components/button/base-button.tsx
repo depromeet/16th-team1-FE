@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, forwardRef, ReactNode } from 'react';
+import { ButtonHTMLAttributes, forwardRef } from 'react';
 
 import { Slot } from '@radix-ui/react-slot';
 
