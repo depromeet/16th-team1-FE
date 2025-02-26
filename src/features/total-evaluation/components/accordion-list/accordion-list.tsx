@@ -1,8 +1,8 @@
-import { ReactNode } from 'react';
-
 import * as Accordion from '@radix-ui/react-accordion';
 
 import SingleAccordionItem from '@/features/total-evaluation/components/accordion-list/single-accordion-item';
+
+import { RenderContentType, RenderTriggerType } from '../../types/sidebar-Info-types';
 
 export type SingleSingleAccordionItemType = {
   accordionTrigger: string;
@@ -10,18 +10,13 @@ export type SingleSingleAccordionItemType = {
 };
 
 interface AccordionListProps {
-  isSidebarOpen: boolean;
-  currentSelectedContent: string | null;
   sidebarListData: SingleSingleAccordionItemType[];
   type: 'multiple' | 'single';
-  renderTrigger?: (accordionTrigger: string) => ReactNode;
-  renderContent?: (submenu: string) => ReactNode;
+  renderTrigger?: RenderTriggerType;
+  renderContent?: RenderContentType;
 }
 
 function AccordionList({
-  isSidebarOpen,
-
-  currentSelectedContent,
   sidebarListData,
   type,
   renderTrigger,
@@ -34,12 +29,10 @@ function AccordionList({
           return (
             <SingleAccordionItem
               key={accordionTrigger}
-              isSidebarOpen={isSidebarOpen}
               accordionTrigger={accordionTrigger}
               accordionContents={accordionContents}
               renderContent={renderContent}
               renderTrigger={renderTrigger}
-              currentSelectedContent={currentSelectedContent}
             />
           );
         })}

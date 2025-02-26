@@ -4,10 +4,23 @@ import { BaseButton, BaseButtonProps } from '../../../../common/components/butto
 
 import * as styles from './single-content-button.styles';
 
-/** 고정된 스타일과 로직 사용 */
-const SingleContentButton = forwardRef<HTMLButtonElement, BaseButtonProps>((props, ref) => {
-  return <BaseButton css={styles.singleContentButton} ref={ref} {...props} />;
-});
+interface SingleContentButtonProps extends BaseButtonProps {
+  buttonIndex: number;
+  isSidebarOpen: boolean;
+  isSelected: boolean;
+}
+
+const SingleContentButton = forwardRef<HTMLButtonElement, SingleContentButtonProps>(
+  ({ buttonIndex, isSelected, isSidebarOpen, ...props }, ref) => {
+    return (
+      <BaseButton
+        css={styles.singleContentButton(buttonIndex, isSelected, isSidebarOpen)}
+        ref={ref}
+        {...props}
+      />
+    );
+  },
+);
 SingleContentButton.displayName = 'SingleContentButton';
 
 export { SingleContentButton };

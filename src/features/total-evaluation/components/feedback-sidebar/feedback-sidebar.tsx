@@ -16,7 +16,7 @@ function FeedbackSidebar() {
   const [currentOpenedTrigger, setCurrentOpenedTrigger] = useState<string[]>([]);
 
   // 현재 선택된 세부 페이지값 >> 피드백 결과 페이지를 위해 Context로 써야 할 수도 있음
-  const [currentSelectedContent, setCurrentSelectedContent] = useState<string | null>(null);
+  const [selectedContent, setSelectedContent] = useState<string | null>(null);
 
   // API 호출(임시 데이터)
   const { data: sidebarListData } = sidebarList;
@@ -34,7 +34,7 @@ function FeedbackSidebar() {
   };
 
   const handleContentButton = (content: string) => {
-    setCurrentSelectedContent(content);
+    setSelectedContent(content);
   };
 
   return (
@@ -47,21 +47,26 @@ function FeedbackSidebar() {
       }}
     >
       <AccordionList
-        isSidebarOpen={isSidebarOpen}
-        currentSelectedContent={currentSelectedContent}
         sidebarListData={adaptedSidebarListData}
         type="multiple"
-        renderTrigger={(triggerTitle) => (
+        /** 각 메뉴 트리거 버튼 */
+        renderTrigger={(accordionTrigger) => (
           <AccordionTriggerButton
-            isCurrentTriggerSelected={currentOpenedTrigger.includes(triggerTitle)}
-            onClick={() => handleTriggerButton(triggerTitle)}
+            isCurrentTriggerSelected={currentOpenedTrigger.includes(accordionTrigger)}
+            onClick={() => handleTriggerButton(accordionTrigger)}
           >
-            {triggerTitle}
+            {accordionTrigger}
           </AccordionTriggerButton>
         )}
-        renderContent={(content) => (
-          <SingleContentButton onClick={() => handleContentButton(content)}>
-            {content}
+        /** 각 메뉴가 트리거되면 나타나는 세부 컨텐츠 */
+        renderContent={(currentContent, buttonIndex) => (
+          <SingleContentButton
+            isSidebarOpen={isSidebarOpen}
+            isSelected={selectedContent === currentContent}
+            buttonIndex={buttonIndex}
+            onClick={() => handleContentButton(currentContent)}
+          >
+            {currentContent}
           </SingleContentButton>
         )}
       />
