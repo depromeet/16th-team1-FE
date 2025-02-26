@@ -11,8 +11,6 @@ import { adaptToAccordionFormat } from '@/features/total-evaluation/utils/adapt-
 import { SidebarCloseButton } from '../custom-buttons/sidebar-close-button';
 import { SidebarOpenButton } from '../custom-buttons/sidebar-open-button';
 
-import * as styles from './feedback-sidebar.styles';
-
 function FeedbackSidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [currentOpenedTrigger, setCurrentOpenedTrigger] = useState<string[]>([]);
@@ -47,7 +45,6 @@ function FeedbackSidebar() {
       triggerSidebar={(isSidebarOpen) => {
         return isSidebarOpen ? <SidebarOpenButton /> : <SidebarCloseButton />;
       }}
-      title={<p css={styles.sidebarTitle}>포트폴리오 종합 평가</p>}
     >
       <AccordionList
         isSidebarOpen={isSidebarOpen}
