@@ -1,12 +1,40 @@
 import { forwardRef } from 'react';
 
+import { css } from '@emotion/react';
+
 import { BaseButton, BaseButtonProps } from '@/common/components/button/base-button';
+import Icon from '@/common/components/icon/icon';
 
 import * as styles from './accordion-trigger-button.styles';
 
-const AccordionTriggerButton = forwardRef<HTMLButtonElement, BaseButtonProps>((props, ref) => {
-  return <BaseButton css={styles.accordionTriggerButton} ref={ref} {...props} />;
-});
+interface AccordionTriggerButtonProps extends BaseButtonProps {
+  isCurrentTriggerSelected: boolean;
+}
+
+const AccordionTriggerButton = forwardRef<HTMLButtonElement, AccordionTriggerButtonProps>(
+  ({ isCurrentTriggerSelected, ...props }, ref) => {
+    return (
+      <div css={styles.container}>
+        <Icon
+          name="pin"
+          customStyle={css`
+            opacity: ${isCurrentTriggerSelected ? 1 : 0};
+            width: 0;
+            width: ${isCurrentTriggerSelected && '12px'};
+            transition:
+              opacity 0.3s ease-in-out,
+              width 0.3s ease-in-out;
+          `}
+        />
+        <BaseButton
+          css={styles.accordionTriggerButton(isCurrentTriggerSelected)}
+          ref={ref}
+          {...props}
+        />
+      </div>
+    );
+  },
+);
 AccordionTriggerButton.displayName = 'AccordionTriggerButton';
 
 export { AccordionTriggerButton };

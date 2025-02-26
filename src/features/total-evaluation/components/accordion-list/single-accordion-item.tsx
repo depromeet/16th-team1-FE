@@ -8,7 +8,6 @@ interface SingleAccordionItemProps {
   isSidebarOpen: boolean;
   accordionTrigger: string;
   accordionContents: string[];
-  currentOpenedTrigger: string[];
   currentSelectedContent: string | null;
   renderTrigger?: (accordionTrigger: string) => ReactNode;
   renderContent?: (submenu: string) => ReactNode;
@@ -20,15 +19,12 @@ function SingleAccordionItem({
   accordionContents,
   renderContent,
   renderTrigger,
-  currentOpenedTrigger,
   currentSelectedContent,
 }: SingleAccordionItemProps) {
-  const isCurrentTriggerSelected = currentOpenedTrigger.includes(accordionTrigger);
-
   return (
     <Accordion.Item key={accordionTrigger} value={accordionTrigger} css={styles.container}>
       <Accordion.Header>
-        <Accordion.Trigger css={styles.basicSelectedEffect(isCurrentTriggerSelected)} asChild>
+        <Accordion.Trigger asChild>
           {typeof renderTrigger === 'function' && renderTrigger(accordionTrigger)}
         </Accordion.Trigger>
       </Accordion.Header>

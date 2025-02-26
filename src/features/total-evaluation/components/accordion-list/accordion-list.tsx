@@ -11,7 +11,6 @@ export type SingleSingleAccordionItemType = {
 
 interface AccordionListProps {
   isSidebarOpen: boolean;
-  currentOpenedTrigger: string[];
   currentSelectedContent: string | null;
   sidebarListData: SingleSingleAccordionItemType[];
   type: 'multiple' | 'single';
@@ -21,7 +20,7 @@ interface AccordionListProps {
 
 function AccordionList({
   isSidebarOpen,
-  currentOpenedTrigger,
+
   currentSelectedContent,
   sidebarListData,
   type,
@@ -40,7 +39,6 @@ function AccordionList({
               accordionContents={accordionContents}
               renderContent={renderContent}
               renderTrigger={renderTrigger}
-              currentOpenedTrigger={currentOpenedTrigger}
               currentSelectedContent={currentSelectedContent}
             />
           );

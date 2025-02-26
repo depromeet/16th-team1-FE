@@ -48,12 +48,14 @@ function FeedbackSidebar() {
     >
       <AccordionList
         isSidebarOpen={isSidebarOpen}
-        currentOpenedTrigger={currentOpenedTrigger}
         currentSelectedContent={currentSelectedContent}
         sidebarListData={adaptedSidebarListData}
         type="multiple"
         renderTrigger={(triggerTitle) => (
-          <AccordionTriggerButton onClick={() => handleTriggerButton(triggerTitle)}>
+          <AccordionTriggerButton
+            isCurrentTriggerSelected={currentOpenedTrigger.includes(triggerTitle)}
+            onClick={() => handleTriggerButton(triggerTitle)}
+          >
             {triggerTitle}
           </AccordionTriggerButton>
         )}
