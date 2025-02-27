@@ -14,7 +14,6 @@ export const singleContentButton = (
   padding-left: 0.5rem;
   border: none;
   background-color: transparent;
-  border-radius: 0.7rem;
   transform: translateY(3rem);
   opacity: 0;
   animation: fade-in 0.2s forwards;

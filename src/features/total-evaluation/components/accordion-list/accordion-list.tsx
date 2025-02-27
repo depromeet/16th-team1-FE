@@ -1,38 +1,40 @@
 import * as Accordion from '@radix-ui/react-accordion';
 
-import SingleAccordionItem from '@/features/total-evaluation/components/accordion-list/single-accordion-item';
+import AccordionItem from './accordion-item';
+import {
+  RenderAccordionContentButtonType,
+  RenderAccordionTriggerButtonType,
+} from '../../types/sidebar-Info-types';
 
-import { RenderContentType, RenderTriggerType } from '../../types/sidebar-Info-types';
-
-export type SingleSingleAccordionItemType = {
+export type AccordionItemsType = {
   accordionTrigger: string;
   accordionContents: string[];
 };
 
 interface AccordionListProps {
-  sidebarListData: SingleSingleAccordionItemType[];
+  dataList: AccordionItemsType[];
   type: 'multiple' | 'single';
-  renderTrigger?: RenderTriggerType;
-  renderContent?: RenderContentType;
+  renderTriggerButton?: RenderAccordionTriggerButtonType;
+  renderContentButton?: RenderAccordionContentButtonType;
 }
 
 function AccordionList({
-  sidebarListData,
+  dataList,
   type,
-  renderTrigger,
-  renderContent,
+  renderTriggerButton,
+  renderContentButton,
 }: AccordionListProps) {
   return (
     <div>
       <Accordion.Root type={type}>
-        {sidebarListData.map(({ accordionTrigger, accordionContents }) => {
+        {dataList.map(({ accordionTrigger, accordionContents }) => {
           return (
-            <SingleAccordionItem
+            <AccordionItem
               key={accordionTrigger}
               accordionTrigger={accordionTrigger}
               accordionContents={accordionContents}
-              renderContent={renderContent}
-              renderTrigger={renderTrigger}
+              renderContentButton={renderContentButton}
+              renderTriggerButton={renderTriggerButton}
             />
           );
         })}

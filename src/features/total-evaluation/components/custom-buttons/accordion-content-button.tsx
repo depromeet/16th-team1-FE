@@ -2,15 +2,15 @@ import { forwardRef } from 'react';
 
 import { BaseButton, BaseButtonProps } from '../../../../common/components/button/base-button';
 
-import * as styles from './single-content-button.styles';
+import * as styles from './accordion-content-button.styles';
 
-interface SingleContentButtonProps extends BaseButtonProps {
+interface AccordionContentButtonProps extends BaseButtonProps {
   buttonIndex: number;
   isSidebarOpen: boolean;
   isSelected: boolean;
 }
 
-const SingleContentButton = forwardRef<HTMLButtonElement, SingleContentButtonProps>(
+const AccordionContentButton = forwardRef<HTMLButtonElement, AccordionContentButtonProps>(
   ({ buttonIndex, isSelected, isSidebarOpen, ...props }, ref) => {
     return (
       <BaseButton
@@ -21,6 +21,6 @@ const SingleContentButton = forwardRef<HTMLButtonElement, SingleContentButtonPro
     );
   },
 );
-SingleContentButton.displayName = 'SingleContentButton';
+AccordionContentButton.displayName = 'AccordionContentButton';
 
-export { SingleContentButton };
+export { AccordionContentButton };

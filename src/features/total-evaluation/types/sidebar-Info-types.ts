@@ -8,5 +8,8 @@ export type SidebarListType = {
   feedbackPages: FeedbackPages;
 }[];
 
-export type RenderTriggerType = (accordionTrigger: string) => ReactNode;
-export type RenderContentType = (currentContent: string, buttonIndex: number) => ReactNode;
+export type RenderAccordionTriggerButtonType = (accordionTrigger: string) => ReactNode;
+export type RenderAccordionContentButtonType = (
+  currentContent: string,
+  buttonIndex: number,
+) => ReactNode;

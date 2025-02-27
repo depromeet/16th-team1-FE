@@ -3,11 +3,11 @@ import { FaPlus } from 'react-icons/fa6';
 
 import AccordionList from '@/features/total-evaluation/components/accordion-list/accordion-list';
 import { AccordionTriggerButton } from '@/features/total-evaluation/components/custom-buttons/accordion-trigger-button';
-import { SingleContentButton } from '@/features/total-evaluation/components/custom-buttons/single-content-button';
 import LeftSlidePanelToggle from '@/features/total-evaluation/components/left-slide-panel-toggle/left-slide-panel-toggle';
 import { sidebarList } from '@/features/total-evaluation/service/data';
 import { adaptToAccordionFormat } from '@/features/total-evaluation/utils/adapt-accordion-format';
 
+import { AccordionContentButton } from '../custom-buttons/accordion-content-button';
 import { SidebarCloseButton } from '../custom-buttons/sidebar-close-button';
 import { SidebarOpenButton } from '../custom-buttons/sidebar-open-button';
 
@@ -23,14 +23,11 @@ function FeedbackSidebar() {
   const adaptedSidebarListData = adaptToAccordionFormat(sidebarListData);
 
   const handleTriggerButton = (triggerTitle: string) => {
-    const shallow = [...currentOpenedTrigger];
-    if (shallow.includes(triggerTitle)) {
-      shallow.splice(shallow.indexOf(triggerTitle), 1);
-    } else {
-      shallow.push(triggerTitle);
-    }
-
-    setCurrentOpenedTrigger(shallow);
+    setCurrentOpenedTrigger((prev) =>
+      prev.includes(triggerTitle)
+        ? prev.filter((title) => title !== triggerTitle)
+        : [...prev, triggerTitle],
+    );
   };
 
   const handleContentButton = (content: string) => {
@@ -47,10 +44,10 @@ function FeedbackSidebar() {
       }}
     >
       <AccordionList
-        sidebarListData={adaptedSidebarListData}
+        dataList={adaptedSidebarListData}
         type="multiple"
         /** 각 메뉴 트리거 버튼 */
-        renderTrigger={(accordionTrigger) => (
+        renderTriggerButton={(accordionTrigger) => (
           <AccordionTriggerButton
             isCurrentTriggerSelected={currentOpenedTrigger.includes(accordionTrigger)}
             onClick={() => handleTriggerButton(accordionTrigger)}
@@ -59,15 +56,15 @@ function FeedbackSidebar() {
           </AccordionTriggerButton>
         )}
         /** 각 메뉴가 트리거되면 나타나는 세부 컨텐츠 */
-        renderContent={(currentContent, buttonIndex) => (
-          <SingleContentButton
+        renderContentButton={(currentContent, buttonIndex) => (
+          <AccordionContentButton
             isSidebarOpen={isSidebarOpen}
             isSelected={selectedContent === currentContent}
             buttonIndex={buttonIndex}
             onClick={() => handleContentButton(currentContent)}
           >
             {currentContent}
-          </SingleContentButton>
+          </AccordionContentButton>
         )}
       />
     </LeftSlidePanelToggle>
