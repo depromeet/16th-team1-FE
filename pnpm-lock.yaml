@@ -32,6 +32,9 @@ importers:
       '@radix-ui/react-toast':
         specifier: ^1.2.6
         version: 1.2.6(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@storybook/preview-api':
+        specifier: ^8.6.2
+        version: 8.6.2(storybook@8.5.3(prettier@3.4.2))
       '@tanstack/react-query':
         specifier: ^5.66.7
         version: 5.66.7(react@18.3.1)
@@ -1630,6 +1633,11 @@ packages:
 
   '@storybook/preview-api@8.5.3':
     resolution: {integrity: sha512-dUsuXW+KgDg4tWXOB6dk5j5gwwRUzbPvicHAY9mzbpSVScbWXuE5T/S/9hHlbtfkhFroWQgPx2eB8z3rai+7RQ==}
+    peerDependencies:
+      storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
+
+  '@storybook/preview-api@8.6.2':
+    resolution: {integrity: sha512-hkKmQ9OWlCpS2mHYsuWTbXMfeLx90fiWdUblTBIUQnj8VLhSbNtmeBZdZRkz33uYHFkAqZ3F2nQ9I2iTv8AmwA==}
     peerDependencies:
       storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
 
@@ -6296,6 +6304,10 @@ snapshots:
       storybook: 8.5.3(prettier@3.4.2)
 
   '@storybook/preview-api@8.5.3(storybook@8.5.3(prettier@3.4.2))':
+    dependencies:
+      storybook: 8.5.3(prettier@3.4.2)
+
+  '@storybook/preview-api@8.6.2(storybook@8.5.3(prettier@3.4.2))':
     dependencies:
       storybook: 8.5.3(prettier@3.4.2)
 
