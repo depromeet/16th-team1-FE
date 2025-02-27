@@ -1,7 +1,7 @@
 import { colors } from '@assets/styles/colors';
 import { css, keyframes } from '@emotion/react';
 
-import { ToastType } from './toast';
+import { ToastType } from './toast-config';
 
 const slideUp = keyframes`
   from {
@@ -25,67 +25,156 @@ const slideDown = keyframes`
   }
 `;
 
-const toastStyles: Record<ToastType, { background: string; border: string; text: string }> = {
+const floating = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
+
+const slideLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const slideRight = keyframes`
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+`;
+
+const toastVariants = {
   aiCompleteLarge: {
-    background: `linear-gradient(95deg, rgba(211, 181, 255, 0.1) 0%, rgba(179, 225, 254, 0.1) 100%) padding-box,
-                 linear-gradient(to right bottom, ${colors.PURPLE[300]}, ${colors.SORA[200]}) border-box`,
+    background: `linear-gradient(to right, ${colors.BLACK}, ${colors.BLACK}) padding-box,
+                   linear-gradient(to right bottom, ${colors.PURPLE[300]}, ${colors.SORA[200]}) border-box`,
     border: '0.15rem solid transparent',
-    text: `linear-gradient(270deg, ${colors.SORA[200]}, ${colors.PURPLE[300]})`,
+    textColor: `linear-gradient(270deg, ${colors.SORA[200]}, ${colors.PURPLE[300]})`,
+    padding: '3.2rem 4rem',
+    gap: '1.6rem',
+    fontSize: '2.4rem',
+    isClickable: true,
+    animation: {
+      open: slideUp,
+      close: slideDown,
+      extra: floating,
+    },
+    position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
   },
   aiCompleteSmall: {
-    background: `linear-gradient(to right, ${colors.BLACK}, ${colors.BLACK})`,
-    border: `0.15rem solid ${colors.PURPLE[300]}`,
-    text: `linear-gradient(270deg, ${colors.SORA[200]}, ${colors.PURPLE[300]})`,
+    background: `linear-gradient(to right, ${colors.BLACK}, ${colors.BLACK}) padding-box,
+                   linear-gradient(to right bottom, ${colors.PURPLE[300]}, ${colors.SORA[200]}) border-box`,
+    border: '0.15rem solid transparent',
+    textColor: `linear-gradient(270deg, ${colors.SORA[200]}, ${colors.PURPLE[300]})`,
+    padding: '2.2rem 3rem',
+    gap: '0.7rem',
+    fontSize: '1.658rem',
+    isClickable: false,
+    animation: {
+      open: slideUp,
+      close: slideDown,
+      extra: 'none',
+    },
+    position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
   },
   loginFailure: {
     background: `${colors.BLACK}`,
     border: `0.15rem solid ${colors.RED[500]}`,
-    text: `${colors.RED[500]}`,
+    textColor: `${colors.RED[500]}`,
+    padding: '2.2rem 3rem',
+    gap: '0.7rem',
+    fontSize: '1.658rem',
+    isClickable: false,
+    animation: {
+      open: slideLeft,
+      close: slideRight,
+      extra: 'none',
+    },
+    position: { top: '2rem', right: '2rem' },
   },
   pdfSubmit: {
     background: `${colors.BLACK}`,
     border: `0.15rem solid ${colors.GREEN[500]}`,
-    text: `${colors.GREEN[500]}`,
+    textColor: `${colors.GREEN[500]}`,
+    padding: '2.2rem 3rem',
+    gap: '0.7rem',
+    fontSize: '1.658rem',
+    isClickable: false,
+    animation: {
+      open: slideUp,
+      close: slideDown,
+      extra: 'none',
+    },
+    position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
   },
 };
 
-export const root = (name: ToastType) => css`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: ${name === 'aiCompleteLarge' ? '3.2rem 4rem' : '2.2rem 3rem'};
-  gap: ${name === 'aiCompleteLarge' ? '1.6rem' : '0.7rem'};
-  flex-shrink: 0;
-  border-radius: 69rem;
-  background: ${toastStyles[name].background};
-  border: ${toastStyles[name].border};
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  backdrop-filter: blur(10px);
+export const root = (name: ToastType) => {
+  const { background, border, padding, gap, animation, isClickable } = toastVariants[name];
 
-  &[data-state='open'] {
-    animation: ${slideUp} 300ms ease-out;
-  }
+  return css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: ${padding};
+    gap: ${gap};
+    flex-shrink: 0;
+    border-radius: 69rem;
+    background: ${background};
+    border: ${border};
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    cursor: ${isClickable ? 'pointer' : 'default'};
 
-  &[data-state='closed'] {
-    animation: ${slideDown} 200ms ease-in;
-  }
-`;
+    &[data-state='open'] {
+      animation:
+        ${animation.open} 300ms cubic-bezier(0.4, 0, 0.6, 1) forwards,
+        ${animation.extra} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite 300ms;
+    }
 
-export const title = (name: ToastType) => css`
-  background: ${toastStyles[name].text};
-  color: transparent;
-  font-size: ${name === 'aiCompleteLarge' ? '2.4rem' : '1.658rem'};
-  font-weight: 600;
-  line-height: normal;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: -0.0332rem;
-`;
+    &[data-state='closed'] {
+      animation: ${animation.close} 200ms ease-in;
+    }
+  `;
+};
 
-export const viewport = css`
-  position: fixed;
-  bottom: 10rem;
-  left: 50%;
-  transform: translateX(-50%);
-`;
+export const title = (name: ToastType) => {
+  const { textColor, fontSize } = toastVariants[name];
+
+  return css`
+    background: ${textColor};
+    color: transparent;
+    font-size: ${fontSize};
+    font-weight: 600;
+    line-height: normal;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.0332rem;
+  `;
+};
+
+export const viewport = (name: ToastType) => {
+  const { position } = toastVariants[name];
+
+  return css`
+    position: fixed;
+    ${Object.entries(position)
+      .map(([key, value]) => `${key}: ${value};`)
+      .join('')}
+  `;
+};
