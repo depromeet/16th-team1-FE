@@ -1,14 +1,11 @@
 import { css } from '@emotion/react';
 
 import { iconMap } from './icon-map';
-import iconPalette from './iconPalette.json';
-
-type IconColor = keyof typeof iconPalette;
 
 interface IconProps {
   name: string;
   width?: number;
-  color?: IconColor;
+  color?: string;
   customStyle?: ReturnType<typeof css>;
   onClick?: React.MouseEventHandler<SVGSVGElement>;
 }
@@ -29,7 +26,7 @@ export default function Icon({ name, width, color, customStyle, onClick }: IconP
           cursor: ${onClick ? 'pointer' : 'default'};
 
           path {
-            fill: ${color ? iconPalette[color] : 'currentColor'};
+            fill: ${color !== undefined && color};
           }
         `,
         customStyle,

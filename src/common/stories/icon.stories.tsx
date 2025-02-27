@@ -16,9 +16,8 @@ const meta = {
       description: '아이콘 크기 (width)',
     },
     color: {
-      control: 'select',
-      options: ['red', 'green', 'blue', 'black'],
-      description: '아이콘 색상',
+      control: 'color',
+      description: '아이콘 색상 (HEX 코드)',
     },
     customStyle: {
       control: 'object',
@@ -46,7 +45,7 @@ export const Clickable: Story = {
   args: {
     name: 'pin',
     width: 18,
-    color: 'red',
+    color: '#ff5733',
     customStyle: css`
       transition:
         transform 0.2s ease-in-out,
