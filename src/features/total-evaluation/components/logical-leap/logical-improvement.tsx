@@ -14,7 +14,7 @@ export default function LogicalImprovement({ label, improvementText }: LogicalIm
       <div css={styles.logicalImprovementTextWrapper}>
         <span css={styles.label}>
           {label}
-          <Icon name="pin" color="green" />
+          <Icon name="pin" color="#55C467" />
         </span>
         <p css={styles.improvementText}>{improvementText}</p>
       </div>
