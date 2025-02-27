@@ -20,10 +20,14 @@ const AccordionTriggerButton = forwardRef<HTMLButtonElement, AccordionTriggerBut
           customStyle={css`
             opacity: ${isCurrentTriggerSelected ? 1 : 0};
             width: 0;
-            width: ${isCurrentTriggerSelected && '12px'};
+            width: ${isCurrentTriggerSelected && '14px'};
             transition:
               opacity 0.3s ease-in-out,
               width 0.3s ease-in-out;
+
+            path {
+              fill: ${isCurrentTriggerSelected && '#D7ADFE'};
+            }
           `}
         />
         <BaseButton
