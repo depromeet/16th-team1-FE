@@ -29,7 +29,7 @@ export default function Icon({ name, width, color, customStyle, onClick }: IconP
           cursor: ${onClick ? 'pointer' : 'default'};
 
           path {
-            fill: ${color ? iconPalette[color] : 'currentColor'};
+            fill: ${color !== undefined && iconPalette[color]};
           }
         `,
         customStyle,
