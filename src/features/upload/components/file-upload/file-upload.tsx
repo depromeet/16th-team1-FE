@@ -4,8 +4,6 @@ import { Controller, FieldValues, SubmitErrorHandler, useForm } from 'react-hook
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-import { Button } from '@/common/components/button/Button';
-
 import * as styles from './file-upload.styles';
 
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
@@ -83,10 +81,10 @@ function Dropzone({ onChange }: { onChange?: (...event: unknown[]) => void }) {
         {!isDragActive && <div>{acceptedFiles?.[0]?.name}</div>}
       </div>
 
-      <Button type="button" onClick={open} css={styles.uploadButton}>
+      <button type="button" onClick={open} css={styles.uploadButton}>
         {/* + svg 임시 사용 */}
         <PlugSvg />
-      </Button>
+      </button>
     </div>
   );
 }

@@ -1,78 +1,58 @@
 import { css } from '@emotion/react';
 
-/* 임시 - variant별 스타일 */
-export const variants = {
-  default: css`
-    background-color: transparent;
-    color: black;
+import { ButtonVariant, Size, BUTTON_SIZE, Usage, BUTTON_VARIANTS } from '@/assets/styles/button';
+
+const BUTTON_STYLE_SYSYEM = {
+  // 사이즈 관련 스타일
+  createSizeStyle: (size: Size, usage: Usage) => css`
+    padding: ${BUTTON_SIZE[usage][size].padding};
+    border-radius: ${BUTTON_SIZE[usage][size].borderRadius};
+  `,
+
+  // 버튼 상태 관련 스타일
+  createStateStyles: (variant: ButtonVariant) => css`
+    background-color: ${BUTTON_VARIANTS[variant]['default'].background};
+    color: ${BUTTON_VARIANTS[variant]['default'].color};
 
     &:hover {
-      background-color: #05d;
+      background-color: ${BUTTON_VARIANTS[variant].hover.background};
+      color: ${BUTTON_VARIANTS[variant].hover.color};
     }
-  `,
-  destructive: css`
-    background-color: #f44;
-    color: #fff;
 
-    &:hover {
-      background-color: #d22;
+    &:active {
+      background-color: ${BUTTON_VARIANTS[variant].pressed.background};
+      color: ${BUTTON_VARIANTS[variant].pressed.color};
     }
-  `,
-  outline: css`
-    border: 0.1rem solid #ccc;
-    background-color: #fff;
 
-    &:hover {
-      background-color: #f9f9f9;
+    &:disabled {
+      background-color: ${BUTTON_VARIANTS[variant].disabled.background};
+      color: ${BUTTON_VARIANTS[variant].disabled.color};
     }
   `,
-  secondary: css`
-    background-color: #f5f5f5;
-    color: #333;
 
-    &:hover {
-      background-color: #ebebeb;
-    }
-  `,
-  ghost: css`
-    background-color: transparent;
-    color: #333;
-
-    &:hover {
-      background-color: rgb(0 0 0 / 8%);
-    }
-  `,
-  link: css`
-    background-color: transparent;
-    color: #06f;
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
-    }
-  `,
+  // 용도별 고유 스타일
+  createUsageStyle: (usage: Usage, size: Size) => {
+    const usageStyles = {
+      text: css`
+        font-size: ${BUTTON_SIZE['text'][size].fontSize};
+        line-height: ${BUTTON_SIZE['text'][size].lineHeight};
+      `,
+      icon: css``,
+      multi: css`
+        display: flex;
+        align-items: center;
+        gap: ${BUTTON_SIZE['multi'][size].gap};
+        font-size: ${BUTTON_SIZE['multi'][size].fontSize};
+        line-height: ${BUTTON_SIZE['multi'][size].lineHeight};
+      `,
+    };
+    return usageStyles[usage];
+  },
 };
 
-/* 임시 - ize별 스타일 */
-export const sizes = {
-  default: css`
-    height: 2.25rem;
-    padding: 0.5rem 1rem;
-  `,
-  sm: css`
-    height: 2rem;
-    padding: 0.25rem 0.75rem;
-    font-size: 0.75rem;
-  `,
-  lg: css`
-    height: 2.5rem;
-    padding: 0.75rem 1.25rem;
-    font-size: 1rem;
-  `,
-  icon: css`
-    justify-content: center;
-    width: 2.25rem;
-    height: 2.25rem;
-    padding: 0;
-  `,
-};
+/* 최종 스타일 생성 함수 */
+export const buttonsStyle = (size: Size, usage: Usage, variant: ButtonVariant) => css`
+  ${BUTTON_STYLE_SYSYEM.createSizeStyle(size, usage)};
+  ${BUTTON_STYLE_SYSYEM.createStateStyles(variant)}
+  ${BUTTON_STYLE_SYSYEM.createUsageStyle(usage, size)}
+`;

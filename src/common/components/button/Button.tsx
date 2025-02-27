@@ -1,24 +1,26 @@
 import { forwardRef } from 'react';
 
-import { BaseButton, BaseButtonProps } from '@/common/components/base-button/base-button';
+import { IconOnlyProps, TextAndIconProps, TextOnlyProps } from '@/assets/styles/button';
+import { BaseButton } from '@/common/components/button/base-button';
 
 import * as styles from './button.styles';
 
-/** TODO: 디자인 시스템에 따라 추가 및 세분화 예정 */
-export type ButtonVariant = 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
-export type ButtonSize = 'default' | 'sm' | 'lg' | 'icon';
-
-/** 디자인 시스템을 따르는 버튼 */
-export interface ButtonProps extends BaseButtonProps {
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-}
+export type ButtonProps = TextOnlyProps | TextAndIconProps | IconOnlyProps;
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = 'default', size = 'default', ...props }, ref) => {
-    return <BaseButton css={[styles.sizes[size], styles.variants[variant]]} ref={ref} {...props} />;
+  ({ size, usage, variant, icon, children, iconPosition, ...props }, ref) => {
+    const content = usage !== 'icon' ? children : icon;
+
+    return (
+      <BaseButton ref={ref} css={styles.buttonsStyle(size, usage, variant)} {...props}>
+        {usage === 'multi' && iconPosition === 'left' && icon}
+        {content}
+        {usage === 'multi' && iconPosition === 'right' && icon}
+      </BaseButton>
+    );
   },
 );
+
 Button.displayName = 'Button';
 
 export { Button };
