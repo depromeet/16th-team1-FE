@@ -1,7 +1,6 @@
 import { Dispatch, ReactNode } from 'react';
 
 import * as Dialog from '@radix-ui/react-dialog';
-import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 import * as styles from './left-slide-panel-toggle.styles';
 
@@ -11,6 +10,7 @@ interface SidebarProps {
   setIsSidebarOpen: Dispatch<React.SetStateAction<boolean>>;
   triggerSidebar: (isSidebarOpen: boolean) => ReactNode;
   additionalButton?: ReactNode;
+  icon: ReactNode;
 }
 
 function LeftSlidePanelToggle({
@@ -19,12 +19,13 @@ function LeftSlidePanelToggle({
   setIsSidebarOpen,
   triggerSidebar,
   additionalButton,
+  icon,
 }: SidebarProps) {
   return (
     <Dialog.Root modal={false} open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
       <div css={styles.container(isSidebarOpen)}>
         <div css={styles.sidebarTopSection}>
-          CRITIX
+          {icon}
           <div css={styles.controlButtons}>
             {additionalButton}
             <Dialog.Trigger asChild>{triggerSidebar(isSidebarOpen)}</Dialog.Trigger>
@@ -36,11 +37,7 @@ function LeftSlidePanelToggle({
           onPointerDownOutside={(e) => e.preventDefault()}
           forceMount // display: none 방지
         >
-          <Dialog.Description aria-describedby={undefined} />
-
-          <VisuallyHidden asChild>
-            <Dialog.Title>피드백 사이드바</Dialog.Title>
-          </VisuallyHidden>
+          <Dialog.Description>side-bar</Dialog.Description>
 
           {children}
         </Dialog.Content>
