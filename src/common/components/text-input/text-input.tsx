@@ -1,12 +1,14 @@
+import { ChangeEvent, TextareaHTMLAttributes } from 'react';
+
 import * as styles from './text-input.styles';
 
 /** text-input 컴포넌트의 상태 (ex. error, success, warning, ..) */
 export type TextInputStatusType = 'error';
 
-interface TextInputProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface TextInputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   // 기본 값
   value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 
   // UI 관련
   placeholder?: string;
