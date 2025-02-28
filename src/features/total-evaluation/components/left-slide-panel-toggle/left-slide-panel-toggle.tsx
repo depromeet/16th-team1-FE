@@ -29,7 +29,9 @@ function LeftSlidePanelToggle({
           {icon}
           <div css={styles.controlButtons}>
             {additionalButton}
-            <Dialog.Trigger asChild>{triggerSidebar(isSidebarOpen)}</Dialog.Trigger>
+            <Dialog.Trigger asChild>
+              <div css={styles.title(isSidebarOpen)}>{triggerSidebar(isSidebarOpen)}</div>
+            </Dialog.Trigger>
           </div>
         </div>
 

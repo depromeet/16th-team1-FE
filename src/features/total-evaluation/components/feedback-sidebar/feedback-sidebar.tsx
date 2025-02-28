@@ -1,6 +1,9 @@
 import { useContext, useState } from 'react';
 import { FaPlus } from 'react-icons/fa6';
 
+import { css, useTheme } from '@emotion/react';
+
+import Icon from '@/common/components/icon/icon';
 import AccordionList from '@/features/total-evaluation/components/accordion-list/accordion-list';
 import { AccordionTriggerButton } from '@/features/total-evaluation/components/custom-buttons/accordion-trigger-button';
 import LeftSlidePanelToggle from '@/features/total-evaluation/components/left-slide-panel-toggle/left-slide-panel-toggle';
@@ -17,7 +20,7 @@ function FeedbackSidebar() {
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
   const { selectedPage, setSelectedPage } = useContext(SelectedPageContext);
   const [currentOpenedTrigger, setCurrentOpenedTrigger] = useState<string[]>([]);
-
+  const theme = useTheme();
   // API 호출(임시 데이터)
   const { data: sidebarListData } = sidebarList;
 
@@ -38,7 +41,16 @@ function FeedbackSidebar() {
       isSidebarOpen={isSidebarOpen}
       setIsSidebarOpen={setIsSidebarOpen}
       additionalButton={<FaPlus />}
-      icon={'CRITIX'}
+      icon={
+        <Icon
+          name="logo-full"
+          customStyle={css`
+            path {
+              fill: ${theme.colors.SORA[200]};
+            }
+          `}
+        />
+      }
       triggerSidebar={(isSidebarOpen) => {
         return isSidebarOpen ? <SidebarCloseButton /> : <SidebarOpenButton />;
       }}

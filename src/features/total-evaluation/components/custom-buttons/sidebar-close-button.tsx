@@ -6,7 +6,7 @@ import { BaseButton } from '@/common/components/button/base-button';
 const SidebarCloseButton = forwardRef<HTMLButtonElement, ButtonHTMLAttributes<HTMLButtonElement>>(
   (props, ref) => (
     <BaseButton {...props} ref={ref}>
-      <MdOutlineKeyboardDoubleArrowLeft size={24} />
+      <MdOutlineKeyboardDoubleArrowLeft size={30} />
     </BaseButton>
   ),
 );

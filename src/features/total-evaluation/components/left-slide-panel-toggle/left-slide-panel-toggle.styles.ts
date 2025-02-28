@@ -30,9 +30,7 @@ export const container = withTheme(
     left: 0;
     width: ${SIDEBAR_WIDTH}rem;
     height: 100dvh;
-    padding-left: 1rem;
-    padding-right: 1.4rem;
-    padding-top: 1.5rem;
+    padding: 2rem;
     transform: ${isSidebarOpen
       ? `translateX(0)`
       : `translateX(-${SIDEBAR_WIDTH - SIDEBAR_CLOSED_WIDTH}rem)`};
@@ -57,8 +55,11 @@ export const container = withTheme(
   `,
 );
 
-export const title = css`
-  margin-bottom: 2.4rem;
+export const title = (isSidebarOpen: boolean) => css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: ${isSidebarOpen ? `translateX(0)` : `translateX(${1.5}rem)`};
 `;
 
 export const sidebarPlaceholder = (isOpen: boolean) => css`

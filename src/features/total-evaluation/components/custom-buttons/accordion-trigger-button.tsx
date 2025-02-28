@@ -16,7 +16,7 @@ const AccordionTriggerButton = forwardRef<HTMLButtonElement, AccordionTriggerBut
     return (
       <div css={styles.container}>
         <Icon
-          name="pin"
+          name="sidebar-menu-icon"
           customStyle={css`
             opacity: ${isCurrentTriggerSelected ? 1 : 0};
             width: 0;
