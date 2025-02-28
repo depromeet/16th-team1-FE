@@ -6,6 +6,13 @@ export const container = css`
   line-height: 1.68rem;
 `;
 
+export const wrapper = css`
+  margin-top: 1.4rem;
+  border-left: 0.2rem solid lightgray;
+  margin-left: 1.8rem;
+  padding-left: 1rem;
+`;
+
 export const content = css`
   display: flex;
 
@@ -16,12 +23,6 @@ export const content = css`
   &[data-orientation='vertical'] {
     flex-direction: column;
   }
-`;
-
-export const layout = css`
-  margin-top: 1.4rem;
-  border-left: 0.2rem solid lightgray;
-  padding-left: 1rem;
 `;
 
 export const defaultAnimation = css`

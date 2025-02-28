@@ -1,6 +1,7 @@
 import { Dispatch, ReactNode } from 'react';
 
 import * as Dialog from '@radix-ui/react-dialog';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 import * as styles from './left-slide-panel-toggle.styles';
 
@@ -37,7 +38,11 @@ function LeftSlidePanelToggle({
           onPointerDownOutside={(e) => e.preventDefault()}
           forceMount // display: none 방지
         >
-          <Dialog.Description>side-bar</Dialog.Description>
+          <Dialog.Description aria-describedby={undefined} />
+
+          <VisuallyHidden asChild>
+            <Dialog.Title>피드백 사이드바</Dialog.Title>
+          </VisuallyHidden>
 
           {children}
         </Dialog.Content>

@@ -36,8 +36,24 @@ export const container = withTheme(
     transform: ${isSidebarOpen
       ? `translateX(0)`
       : `translateX(-${SIDEBAR_WIDTH - SIDEBAR_CLOSED_WIDTH}rem)`};
-    transition: transform 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      background-color 0.3s ease;
     background-color: ${isSidebarOpen ? theme.colors.BLACK : 'transparent'};
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: black;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #555;
+      border-radius: 10px;
+    }
   `,
 );
 

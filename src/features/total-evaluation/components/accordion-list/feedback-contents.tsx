@@ -1,5 +1,3 @@
-import { Fragment } from 'react';
-
 import * as Accordion from '@radix-ui/react-accordion';
 
 import {
@@ -33,12 +31,14 @@ function FeedbackContents({
         </Accordion.Trigger>
       </Accordion.Header>
 
-      <Accordion.Content css={[styles.content, styles.layout, styles.defaultAnimation]}>
-        {feedbackPages.map((page, buttonIndex) => (
-          <Fragment key={page}>
-            {typeof renderContentButton === 'function' && renderContentButton(page, buttonIndex)}
-          </Fragment>
-        ))}
+      <Accordion.Content css={[styles.content, styles.defaultAnimation]}>
+        <div css={styles.wrapper}>
+          {feedbackPages.map((page, buttonIndex) => (
+            <div key={page}>
+              {typeof renderContentButton === 'function' && renderContentButton(page, buttonIndex)}
+            </div>
+          ))}
+        </div>
       </Accordion.Content>
     </Accordion.Item>
   ));

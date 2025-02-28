@@ -40,7 +40,7 @@ function FeedbackSidebar() {
       additionalButton={<FaPlus />}
       icon={'CRITIX'}
       triggerSidebar={(isSidebarOpen) => {
-        return isSidebarOpen ? <SidebarOpenButton /> : <SidebarCloseButton />;
+        return isSidebarOpen ? <SidebarCloseButton /> : <SidebarOpenButton />;
       }}
     >
       <AccordionList type="multiple" orientation="vertical">
