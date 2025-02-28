@@ -7,6 +7,7 @@ import LeftSlidePanelToggle from '@/features/total-evaluation/components/left-sl
 import { sidebarList } from '@/features/total-evaluation/service/data';
 import { adaptToAccordionFormat } from '@/features/total-evaluation/utils/adapt-accordion-format';
 
+import FeedbackContents from '../accordion-list/feedback-contents';
 import { AccordionContentButton } from '../custom-buttons/accordion-content-button';
 import { SidebarCloseButton } from '../custom-buttons/sidebar-close-button';
 import { SidebarOpenButton } from '../custom-buttons/sidebar-open-button';
@@ -43,31 +44,31 @@ function FeedbackSidebar() {
         return isSidebarOpen ? <SidebarOpenButton /> : <SidebarCloseButton />;
       }}
     >
-      <AccordionList
-        dataList={adaptedSidebarListData}
-        type="multiple"
-        orientation="vertical"
-        /** 각 메뉴 트리거 버튼 */
-        renderTriggerButton={(accordionTrigger) => (
-          <AccordionTriggerButton
-            isCurrentTriggerSelected={currentOpenedTrigger.includes(accordionTrigger)}
-            onClick={() => handleTriggerButton(accordionTrigger)}
-          >
-            {accordionTrigger}
-          </AccordionTriggerButton>
-        )}
-        /** 각 메뉴가 트리거되면 나타나는 세부 컨텐츠 */
-        renderContentButton={(currentContent, buttonIndex) => (
-          <AccordionContentButton
-            isSidebarOpen={isSidebarOpen}
-            isSelected={selectedContent === currentContent}
-            buttonIndex={buttonIndex}
-            onClick={() => handleContentButton(currentContent)}
-          >
-            {currentContent}
-          </AccordionContentButton>
-        )}
-      />
+      <AccordionList type="multiple" orientation="vertical">
+        <FeedbackContents
+          dataList={sidebarListData}
+          /** 각 메뉴 트리거 버튼 */
+          renderTriggerButton={(accordionTrigger) => (
+            <AccordionTriggerButton
+              isCurrentTriggerSelected={currentOpenedTrigger.includes(accordionTrigger)}
+              onClick={() => handleTriggerButton(accordionTrigger)}
+            >
+              {accordionTrigger}
+            </AccordionTriggerButton>
+          )}
+          /** 각 메뉴가 트리거되면 나타나는 세부 컨텐츠 */
+          renderContentButton={(currentContent, buttonIndex) => (
+            <AccordionContentButton
+              isSidebarOpen={isSidebarOpen}
+              isSelected={selectedContent === currentContent}
+              buttonIndex={buttonIndex}
+              onClick={() => handleContentButton(currentContent)}
+            >
+              {currentContent}
+            </AccordionContentButton>
+          )}
+        />
+      </AccordionList>
     </LeftSlidePanelToggle>
   );
 }

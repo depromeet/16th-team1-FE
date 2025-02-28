@@ -1,10 +1,6 @@
-import * as Accordion from '@radix-ui/react-accordion';
+import { ReactNode } from 'react';
 
-import AccordionItem from './accordion-item';
-import {
-  RenderAccordionContentButtonType,
-  RenderAccordionTriggerButtonType,
-} from '../../types/sidebar-Info-types';
+import * as Accordion from '@radix-ui/react-accordion';
 
 export type AccordionItemsType = {
   accordionTrigger: string;
@@ -12,33 +8,15 @@ export type AccordionItemsType = {
 };
 
 interface AccordionListProps {
-  dataList: AccordionItemsType[];
   type: 'multiple' | 'single';
   orientation: 'vertical' | 'horizontal';
-  renderTriggerButton?: RenderAccordionTriggerButtonType;
-  renderContentButton?: RenderAccordionContentButtonType;
+  children: ReactNode;
 }
 
-function AccordionList({
-  dataList,
-  type,
-  renderTriggerButton,
-  renderContentButton,
-  orientation,
-}: AccordionListProps) {
+function AccordionList({ type, orientation, children }: AccordionListProps) {
   return (
     <Accordion.Root type={type} orientation={orientation}>
-      {dataList.map(({ accordionTrigger, accordionContents }) => {
-        return (
-          <AccordionItem
-            key={accordionTrigger}
-            accordionTrigger={accordionTrigger}
-            accordionContents={accordionContents}
-            renderContentButton={renderContentButton}
-            renderTriggerButton={renderTriggerButton}
-          />
-        );
-      })}
+      {children}
     </Accordion.Root>
   );
 }
