@@ -46,6 +46,7 @@ function FeedbackSidebar() {
       <AccordionList
         dataList={adaptedSidebarListData}
         type="multiple"
+        orientation="vertical"
         /** 각 메뉴 트리거 버튼 */
         renderTriggerButton={(accordionTrigger) => (
           <AccordionTriggerButton

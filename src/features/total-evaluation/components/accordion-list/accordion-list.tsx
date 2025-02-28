@@ -14,6 +14,7 @@ export type AccordionItemsType = {
 interface AccordionListProps {
   dataList: AccordionItemsType[];
   type: 'multiple' | 'single';
+  orientation: 'vertical' | 'horizontal';
   renderTriggerButton?: RenderAccordionTriggerButtonType;
   renderContentButton?: RenderAccordionContentButtonType;
 }
@@ -23,23 +24,22 @@ function AccordionList({
   type,
   renderTriggerButton,
   renderContentButton,
+  orientation,
 }: AccordionListProps) {
   return (
-    <div>
-      <Accordion.Root type={type}>
-        {dataList.map(({ accordionTrigger, accordionContents }) => {
-          return (
-            <AccordionItem
-              key={accordionTrigger}
-              accordionTrigger={accordionTrigger}
-              accordionContents={accordionContents}
-              renderContentButton={renderContentButton}
-              renderTriggerButton={renderTriggerButton}
-            />
-          );
-        })}
-      </Accordion.Root>
-    </div>
+    <Accordion.Root type={type} orientation={orientation}>
+      {dataList.map(({ accordionTrigger, accordionContents }) => {
+        return (
+          <AccordionItem
+            key={accordionTrigger}
+            accordionTrigger={accordionTrigger}
+            accordionContents={accordionContents}
+            renderContentButton={renderContentButton}
+            renderTriggerButton={renderTriggerButton}
+          />
+        );
+      })}
+    </Accordion.Root>
   );
 }
 export default AccordionList;

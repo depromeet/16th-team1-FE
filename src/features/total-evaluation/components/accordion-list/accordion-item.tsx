@@ -21,21 +21,19 @@ function AccordionItem({
   renderTriggerButton,
 }: AccordionItemProps) {
   return (
-    <Accordion.Item key={accordionTrigger} value={accordionTrigger} css={styles.container}>
+    <Accordion.Item value={accordionTrigger} css={styles.container}>
       <Accordion.Header>
         <Accordion.Trigger asChild>
           {typeof renderTriggerButton === 'function' && renderTriggerButton(accordionTrigger)}
         </Accordion.Trigger>
       </Accordion.Header>
 
-      <Accordion.Content css={styles.accordionContent}>
-        <div css={styles.wrapper}>
-          {accordionContents.map(
-            (currentContent, buttonIndex) =>
-              typeof renderContentButton === 'function' &&
-              renderContentButton(currentContent, buttonIndex),
-          )}
-        </div>
+      <Accordion.Content css={[styles.content, styles.additionalStyle, styles.defaultAnimation]}>
+        {accordionContents.map(
+          (currentContent, buttonIndex) =>
+            typeof renderContentButton === 'function' &&
+            renderContentButton(currentContent, buttonIndex),
+        )}
       </Accordion.Content>
     </Accordion.Item>
   );

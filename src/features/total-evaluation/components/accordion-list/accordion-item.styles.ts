@@ -6,14 +6,25 @@ export const container = css`
   line-height: 1.68rem;
 `;
 
-export const wrapper = css`
+export const content = css`
   display: flex;
-  flex-direction: column;
+
+  &[data-orientation='horizontal'] {
+    flex-direction: row;
+  }
+
+  &[data-orientation='vertical'] {
+    flex-direction: column;
+  }
+`;
+
+export const additionalStyle = css`
   margin-top: 1.4rem;
   border-left: 0.2rem solid lightgray;
   padding-left: 1rem;
 `;
-export const accordionContent = css`
+
+export const defaultAnimation = css`
   overflow: hidden;
 
   &[data-state='open'] {
@@ -26,21 +37,21 @@ export const accordionContent = css`
 
   @keyframes slide-down {
     from {
-      height: 0;
+      max-height: 0;
     }
 
     to {
-      height: var(--radix-accordion-content-height);
+      max-height: var(--radix-accordion-content-height);
     }
   }
 
   @keyframes slide-up {
     from {
-      height: var(--radix-accordion-content-height);
+      max-height: var(--radix-accordion-content-height);
     }
 
     to {
-      height: 0;
+      max-height: 0;
     }
   }
 `;
