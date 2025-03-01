@@ -5,7 +5,7 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 import * as styles from './left-slide-panel-toggle.styles';
 
-interface SidebarProps {
+export interface LeftSlidePanelToggleProps {
   children: ReactNode;
   isSidebarOpen: boolean;
   setIsSidebarOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -23,7 +23,7 @@ function LeftSlidePanelToggle({
   closeButton,
   additionalButton,
   icon,
-}: SidebarProps) {
+}: LeftSlidePanelToggleProps) {
   return (
     <Dialog.Root modal={false} open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
       <div css={styles.container(isSidebarOpen)}>
