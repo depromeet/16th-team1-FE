@@ -1,39 +1,25 @@
 import { css } from '@emotion/react';
 
+import { withTheme } from '@/common/utils/with-theme';
+
 export const improvementTextWrapper = css`
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.8rem;
-`;
-
-export const label = css`
-  color: #979aa1;
-  font-size: 1.4rem;
-  font-weight: 500;
-  line-height: 2.1rem;
-  letter-spacing: 0.014rem;
-`;
-
-export const improvementTextContent = css`
-  display: flex;
-  gap: 1.2rem;
   align-items: center;
-  line-height: 2.4rem;
-`;
-
-export const colorBlock = (label: string) => css`
-  min-width: 0.2rem;
-  background-color: ${label === '기존문장' ? '#ff6c6c' : '#4caf50'};
-  flex-grow: 1;
+  gap: 2rem;
   align-self: stretch;
 `;
 
-export const text = css`
-  padding-top: 0.3rem;
-  color: #4d5159;
-  font-size: 1.6rem;
-  font-weight: 500;
-  line-height: 2.4rem;
-  letter-spacing: 0.016rem;
-`;
+export const label = (label: string) =>
+  withTheme(
+    (theme) => css`
+      ${theme.fonts.SUBTITLE.SUB3_SB};
+      color: ${label === '기존 문장' ? `${theme.colors.RED[400]}` : `${theme.colors.GREEN[400]}`};
+    `,
+  );
+
+export const text = withTheme(
+  (theme) => css`
+    ${theme.fonts.BODY.BODY2_M};
+    color: ${theme.colors.GRAY[300]};
+  `,
+);
