@@ -2,25 +2,24 @@ import { css } from '@emotion/react';
 
 import { withTheme } from '@/common/utils/with-theme';
 
-export const singleContentButton = withTheme(
+export const pageLocationButton = withTheme(
   (theme, buttonIndex: number, isCurrentContentSelected: boolean, isSidebarOpen: boolean) => css`
     display: flex;
     justify-content: flex-start;
     width: 100%;
     height: 100%;
+    padding: 0.8rem 1rem;
     border: none;
     color: ${theme.colors.GRAY[200]};
     transform: translateY(3rem);
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
-    padding-left: 0.5rem;
     background-color: transparent;
     opacity: 0;
     animation: fade-in 0.2s forwards;
     animation-delay: ${buttonIndex * 0.07}s;
 
     &:hover {
-      background-color: #25252e;
+      background-color: #18171d;
+      border-radius: 0.8rem;
     }
 
     &::after {
@@ -33,6 +32,7 @@ export const singleContentButton = withTheme(
       transition: width 0.3s ease;
       content: '';
       background-color: #3f3f4e;
+      border-radius: 0.8rem;
     }
 
     @keyframes fill-right {

@@ -1,28 +1,19 @@
 import { css } from '@emotion/react';
 
 export const container = css`
-  margin-bottom: 2.4rem;
+  margin-bottom: 0.8rem;
   font-size: 1.4rem;
   line-height: 1.68rem;
 `;
 
 export const wrapper = css`
-  margin-top: 1.4rem;
+  margin-top: 0.4rem;
   border-left: 0.2rem solid lightgray;
-  margin-left: 1.8rem;
+  margin-left: 2rem;
   padding-left: 1rem;
-`;
-
-export const content = css`
   display: flex;
-
-  &[data-orientation='horizontal'] {
-    flex-direction: row;
-  }
-
-  &[data-orientation='vertical'] {
-    flex-direction: column;
-  }
+  flex-direction: column;
+  gap: 0.8rem;
 `;
 
 export const defaultAnimation = css`

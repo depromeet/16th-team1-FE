@@ -15,7 +15,6 @@ export const sidebarTopSection = css`
 
 export const controlButtons = css`
   display: flex;
-  gap: 0.4rem;
   align-items: center;
 `;
 
@@ -25,14 +24,14 @@ export const container = withTheme(
 
     display: flex;
     flex-direction: column;
-    gap: 8.075rem;
+    gap: 4.8rem;
     overflow: auto;
     position: fixed;
     top: 0;
     left: 0;
     width: ${SIDEBAR_WIDTH}rem;
     height: 100dvh;
-    padding: 2rem;
+    padding: 1.2rem;
     transform: ${isSidebarOpen ? `translateX(0)` : `translateX(-${SIDEBAR_WIDTH}rem)`};
     transition:
       transform 0.3s ease,

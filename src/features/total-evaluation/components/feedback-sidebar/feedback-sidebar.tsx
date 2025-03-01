@@ -1,18 +1,18 @@
 import { useContext, useState } from 'react';
-import { FaPlus } from 'react-icons/fa6';
 
 import { css, useTheme } from '@emotion/react';
 
 import Icon from '@/common/components/icon/icon';
 import AccordionList from '@/features/total-evaluation/components/accordion-list/accordion-list';
-import { AccordionTriggerButton } from '@/features/total-evaluation/components/custom-buttons/accordion-trigger-button';
 import LeftSlidePanelToggle from '@/features/total-evaluation/components/left-slide-panel-toggle/left-slide-panel-toggle';
 import { sidebarList } from '@/features/total-evaluation/service/data';
 
 import FeedbackContents from '../accordion-list/feedback-contents';
 import { SelectedPageContext } from '../context/selected-page/selected-page-context';
 import { SidebarContext } from '../context/sidebar/sidebar-context';
-import { AccordionContentButton } from '../custom-buttons/accordion-content-button';
+import AddButton from '../custom-buttons/add-button';
+import { PageLocationButton } from '../custom-buttons/page-location-button';
+import { ProjectTitleButton } from '../custom-buttons/project-title-button';
 import { SidebarCloseButton } from '../custom-buttons/sidebar-close-button';
 import { SidebarOpenButton } from '../custom-buttons/sidebar-open-button';
 
@@ -40,7 +40,7 @@ function FeedbackSidebar() {
     <LeftSlidePanelToggle
       isSidebarOpen={isSidebarOpen}
       setIsSidebarOpen={setIsSidebarOpen}
-      additionalButton={<FaPlus />}
+      additionalButton={<AddButton />}
       icon={
         <Icon
           name="logo-full"
@@ -49,33 +49,34 @@ function FeedbackSidebar() {
               fill: ${theme.colors.SORA[200]};
             }
           `}
+          width={99.429}
         />
       }
-      triggerButton={<SidebarCloseButton />}
-      closeButton={<SidebarOpenButton onClick={() => setIsSidebarOpen((prev) => !prev)} />}
+      openButton={<SidebarOpenButton onClick={() => setIsSidebarOpen((prev) => !prev)} />}
+      closeButton={<SidebarCloseButton />}
     >
       <AccordionList type="multiple" orientation="vertical">
         <FeedbackContents
           dataList={sidebarListData}
           /** 각 메뉴 트리거 버튼 */
           renderTriggerButton={(accordionTrigger) => (
-            <AccordionTriggerButton
+            <ProjectTitleButton
               isCurrentTriggerSelected={currentOpenedTrigger.includes(accordionTrigger)}
               onClick={() => handleTriggerButton(accordionTrigger)}
             >
               {accordionTrigger}
-            </AccordionTriggerButton>
+            </ProjectTitleButton>
           )}
           /** 각 메뉴가 트리거되면 나타나는 세부 컨텐츠 */
           renderContentButton={(page, buttonIndex) => (
-            <AccordionContentButton
+            <PageLocationButton
               isSidebarOpen={isSidebarOpen}
               isSelected={selectedPage === page}
               buttonIndex={buttonIndex}
               onClick={() => handleContentButton(page)}
             >
               {page}
-            </AccordionContentButton>
+            </PageLocationButton>
           )}
         />
       </AccordionList>

@@ -31,7 +31,7 @@ function FeedbackContents({
         </Accordion.Trigger>
       </Accordion.Header>
 
-      <Accordion.Content css={[styles.content, styles.defaultAnimation]}>
+      <Accordion.Content css={styles.defaultAnimation}>
         <div css={styles.wrapper}>
           {feedbackPages.map((page, buttonIndex) => (
             <div key={page}>

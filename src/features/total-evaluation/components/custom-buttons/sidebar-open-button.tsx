@@ -3,10 +3,17 @@ import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md';
 
 import { BaseButton } from '@/common/components/button/base-button';
 
+import * as styles from './sidebar-control-button.styles';
+
 const SidebarOpenButton = forwardRef<HTMLButtonElement, ButtonHTMLAttributes<HTMLButtonElement>>(
   (props, ref) => (
-    <BaseButton {...props} ref={ref}>
-      <MdOutlineKeyboardDoubleArrowRight size={30} color="black" />
+    <BaseButton
+      css={styles.controlButtonCommonStyle}
+      style={{ backgroundColor: 'transparent' }}
+      {...props}
+      ref={ref}
+    >
+      <MdOutlineKeyboardDoubleArrowRight size={24} color="black" />
     </BaseButton>
   ),
 );
