@@ -9,7 +9,8 @@ interface SidebarProps {
   children: ReactNode;
   isSidebarOpen: boolean;
   setIsSidebarOpen: Dispatch<React.SetStateAction<boolean>>;
-  triggerSidebar: (isSidebarOpen: boolean) => ReactNode;
+  triggerButton: ReactNode;
+  closeButton: ReactNode;
   additionalButton?: ReactNode;
   icon: ReactNode;
 }
@@ -18,7 +19,8 @@ function LeftSlidePanelToggle({
   children,
   isSidebarOpen,
   setIsSidebarOpen,
-  triggerSidebar,
+  triggerButton,
+  closeButton,
   additionalButton,
   icon,
 }: SidebarProps) {
@@ -29,9 +31,7 @@ function LeftSlidePanelToggle({
           {icon}
           <div css={styles.controlButtons}>
             {additionalButton}
-            <Dialog.Trigger asChild>
-              <div css={styles.title(isSidebarOpen)}>{triggerSidebar(isSidebarOpen)}</div>
-            </Dialog.Trigger>
+            <Dialog.Trigger asChild>{triggerButton}</Dialog.Trigger>
           </div>
         </div>
 
@@ -49,7 +49,7 @@ function LeftSlidePanelToggle({
           {children}
         </Dialog.Content>
       </div>
-      <div css={styles.sidebarPlaceholder(isSidebarOpen)} />
+      <div css={styles.sidebarPlaceholder(isSidebarOpen)}>{closeButton}</div>
     </Dialog.Root>
   );
 }

@@ -51,9 +51,8 @@ function FeedbackSidebar() {
           `}
         />
       }
-      triggerSidebar={(isSidebarOpen) => {
-        return isSidebarOpen ? <SidebarCloseButton /> : <SidebarOpenButton />;
-      }}
+      triggerButton={<SidebarCloseButton />}
+      closeButton={<SidebarOpenButton onClick={() => setIsSidebarOpen((prev) => !prev)} />}
     >
       <AccordionList type="multiple" orientation="vertical">
         <FeedbackContents
