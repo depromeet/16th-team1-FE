@@ -1,40 +1,41 @@
 import { css } from '@emotion/react';
 
+import { withTheme } from '@/common/utils/with-theme';
+
 export const logicalErrorWrapper = css`
   display: flex;
-  gap: 1.4rem;
+  gap: 1.2rem;
   margin-bottom: 2rem;
 `;
 
-export const redBlock = css`
-  min-width: 0.2rem;
-  background-color: #ff6c6c;
-  align-self: stretch;
-`;
+export const redBlock = withTheme(
+  (theme) => css`
+    min-width: 0.2rem;
+    background-color: ${theme.colors.RED[400]};
+    align-self: stretch;
+  `,
+);
 
 export const logicalErrorTextWrapper = css`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  padding-top: 0.3rem;
 `;
 
-export const label = css`
-  display: inline-flex;
-  align-items: center;
-  color: #ff6c6c;
-  font-size: 1.4rem;
-  font-weight: 500;
-  line-height: 2.1rem;
-  letter-spacing: 0.014rem;
-`;
+export const label = withTheme(
+  (theme) => css`
+    display: inline-flex;
+    align-items: center;
+    ${theme.fonts.SUBTITLE.SUB3_SB};
+    color: ${theme.colors.RED[400]};
+  `,
+);
 
-export const errorItem = css`
-  color: #74767d;
-  font-size: 1.6rem;
-  font-weight: 500;
-  line-height: 2.88rem;
-  list-style: disc;
-  list-style-position: inside;
-  letter-spacing: 0.016rem;
-`;
+export const errorItem = withTheme(
+  (theme) => css`
+    ${theme.fonts.BODY.BODY2_M};
+    color: ${theme.colors.GRAY[300]};
+    list-style: disc;
+    list-style-position: inside;
+  `,
+);

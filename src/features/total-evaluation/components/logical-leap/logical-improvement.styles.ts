@@ -1,37 +1,38 @@
 import { css } from '@emotion/react';
 
+import { withTheme } from '../../../../common/utils/with-theme';
+
 export const logicalImprovementWrapper = css`
   display: flex;
-  gap: 1.4rem;
+  gap: 1.2rem;
 `;
 
-export const greenBlock = css`
-  min-width: 0.2rem;
-  background-color: #55c467;
-  align-self: stretch;
-`;
+export const greenBlock = withTheme(
+  (theme) => css`
+    min-width: 0.2rem;
+    background-color: ${theme.colors.GREEN[400]};
+    align-self: stretch;
+  `,
+);
 
 export const logicalImprovementTextWrapper = css`
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-  padding-top: 0.3rem;
+  gap: 0.5rem;
 `;
 
-export const label = css`
-  display: inline-flex;
-  align-items: center;
-  color: #55c467;
-  font-size: 1.4rem;
-  font-weight: 500;
-  line-height: 2.1rem;
-  letter-spacing: 0.014rem;
-`;
+export const label = withTheme(
+  (theme) => css`
+    display: inline-flex;
+    align-items: center;
+    ${theme.fonts.SUBTITLE.SUB3_SB};
+    color: ${theme.colors.GREEN[400]};
+  `,
+);
 
-export const improvementText = css`
-  color: #000;
-  font-size: 1.6rem;
-  font-weight: 600;
-  line-height: 2.4rem;
-  letter-spacing: 0.016rem;
-`;
+export const improvementText = withTheme(
+  (theme) => css`
+    ${theme.fonts.SUBTITLE.SUB3_SB};
+    color: ${theme.colors.GRAY[300]};
+  `,
+);
