@@ -21,6 +21,8 @@ export const controlButtons = css`
 
 export const container = withTheme(
   (theme, isSidebarOpen: boolean) => css`
+    --sidebar-bg: ${isSidebarOpen ? theme.colors.BLACK : 'transparent'};
+
     display: flex;
     flex-direction: column;
     gap: 8.075rem;
@@ -35,7 +37,7 @@ export const container = withTheme(
     transition:
       transform 0.3s ease,
       background-color 0.3s ease;
-    background-color: ${isSidebarOpen ? theme.colors.BLACK : 'transparent'};
+    background-color: var(--sidebar-bg);
 
     &::-webkit-scrollbar {
       width: 10px;
@@ -43,11 +45,11 @@ export const container = withTheme(
     }
 
     &::-webkit-scrollbar-track {
-      background: black;
+      background-color: var(--sidebar-bg);
     }
 
     &::-webkit-scrollbar-thumb {
-      background: #555;
+      background-color: ${isSidebarOpen ? '#555' : 'transparent'};
       border-radius: 10px;
     }
   `,
