@@ -14,8 +14,8 @@ type EvalutationDataType = {
 
 interface AccordionItemProps {
   dataList: EvalutationDataType[];
-  renderTriggerButton?: RenderAccordionTriggerButtonType;
-  renderContentButton?: RenderAccordionContentButtonType;
+  renderTriggerButton: RenderAccordionTriggerButtonType;
+  renderContentButton: RenderAccordionContentButtonType;
 }
 
 function FeedbackContents({
@@ -26,17 +26,13 @@ function FeedbackContents({
   return dataList.map(({ projectTitle, feedbackPages }) => (
     <Accordion.Item key={projectTitle} value={projectTitle} css={styles.container}>
       <Accordion.Header>
-        <Accordion.Trigger asChild>
-          {typeof renderTriggerButton === 'function' && renderTriggerButton(projectTitle)}
-        </Accordion.Trigger>
+        <Accordion.Trigger asChild>{renderTriggerButton(projectTitle)}</Accordion.Trigger>
       </Accordion.Header>
 
       <Accordion.Content css={styles.defaultAnimation}>
         <div css={styles.wrapper}>
           {feedbackPages.map((page, buttonIndex) => (
-            <div key={page}>
-              {typeof renderContentButton === 'function' && renderContentButton(page, buttonIndex)}
-            </div>
+            <div key={page}>{renderContentButton(page, buttonIndex)}</div>
           ))}
         </div>
       </Accordion.Content>
