@@ -8,3 +8,10 @@ export const controlButtonCommonStyle = css`
     background-color: #18171d;
   }
 `;
+
+export const openButton = css`
+  position: fixed;
+  top: 1.2rem;
+  left: 1.2rem;
+  background-color: transparent;
+`;

@@ -49,7 +49,7 @@ function LeftSlidePanelToggle({
           {children}
         </Dialog.Content>
       </div>
-      <div css={styles.sidebarPlaceholder(isSidebarOpen)}>{openButton}</div>
+      <div css={styles.sidebarPlaceholder(isSidebarOpen)}>{!isSidebarOpen && openButton}</div>
     </Dialog.Root>
   );
 }

@@ -63,7 +63,6 @@ export const title = (isSidebarOpen: boolean) => css`
 
 export const sidebarPlaceholder = (isOpen: boolean) => css`
   width: 0;
-  padding: 1.2rem 2rem 2rem 1rem;
   transition: flex 0.3s ease;
   flex: ${isOpen ? `0 0 ${SIDEBAR_WIDTH}rem` : `0 0 ${SIDEBAR_CLOSED_WIDTH}rem`};
 `;

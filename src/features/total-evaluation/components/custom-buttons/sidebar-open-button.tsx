@@ -11,12 +11,7 @@ const SidebarOpenButton = forwardRef<HTMLButtonElement, ButtonHTMLAttributes<HTM
   (props, ref) => {
     const theme = useTheme();
     return (
-      <BaseButton
-        css={styles.controlButtonCommonStyle}
-        style={{ backgroundColor: 'transparent' }}
-        {...props}
-        ref={ref}
-      >
+      <BaseButton css={[styles.controlButtonCommonStyle, styles.openButton]} {...props} ref={ref}>
         <MdOutlineKeyboardDoubleArrowRight size={24} color={theme.colors.GRAY[700]} />
       </BaseButton>
     );
