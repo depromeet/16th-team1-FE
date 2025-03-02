@@ -1,8 +1,8 @@
 import { EvaluationCriteria } from '@/features/total-evaluation/types/evaluation-types';
 
 export const IMPROVEMENT_CONSTANT = {
-  originalText: '기존문장',
-  revisedText: '수정',
+  originalText: '기존 문장',
+  revisedText: '수정 문장',
 } as const;
 
 export const LOGICAL_LEAP_CONSTANT = {

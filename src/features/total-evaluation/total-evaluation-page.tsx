@@ -48,12 +48,12 @@ export default function TotalEvalutionPage() {
           <EvaluationAnalyze analysisItems={solutions} />
         </section>
 
-        <section css={styles.evaluationSection('1rem')}>
+        <section css={styles.evaluationSection('1.6rem')}>
           <ImprovementTitle improvementTitle={improvementData.title} />
           <ImprovementSection improvementData={improvementData} />
         </section>
 
-        <section css={styles.evaluationSection('3.2rem')}>
+        <section css={styles.evaluationSection('2.4rem')}>
           <ImprovementTitle improvementTitle={logicalLeaps.title} />
           <LogicalLeap logicalLeapData={logicalLeaps} />
         </section>

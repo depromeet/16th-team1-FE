@@ -1,14 +1,15 @@
 import { css } from '@emotion/react';
 
+import { withTheme } from '@/common/utils/with-theme';
+
 export const logicalLeapWrapper = css`
-  margin-left: 2.7rem;
+  margin-left: 2.4rem;
 `;
 
-export const logicalLeapDescription = css`
-  color: #4e5159;
-  margin-bottom: 1.6rem;
-  font-size: 1.8rem;
-  font-weight: 700;
-  line-height: 2.7rem;
-  letter-spacing: 0.018rem;
-`;
+export const logicalLeapDescription = withTheme(
+  (theme) => css`
+    ${theme.fonts.SUBTITLE.SUB2_B};
+    color: ${theme.colors.GRAY[200]};
+    margin-bottom: 1.6rem;
+  `,
+);

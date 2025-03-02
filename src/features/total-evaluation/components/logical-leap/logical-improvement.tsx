@@ -1,3 +1,5 @@
+import { colors } from '@assets/styles/colors';
+
 import Icon from '@/common/components/icon/icon';
 
 import * as styles from './logical-improvement.styles';
@@ -14,7 +16,7 @@ export default function LogicalImprovement({ label, improvementText }: LogicalIm
       <div css={styles.logicalImprovementTextWrapper}>
         <span css={styles.label}>
           {label}
-          <Icon name="pin" color="#55C467" />
+          <Icon name="pin" color={colors.GREEN[400]} />
         </span>
         <p css={styles.improvementText}>{improvementText}</p>
       </div>

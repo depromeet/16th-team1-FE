@@ -1,16 +1,16 @@
 import { css } from '@emotion/react';
 
+import { withTheme } from '@/common/utils/with-theme';
+
 export const improvementTitleWrapper = css`
   display: flex;
   gap: 0.8rem;
   align-items: center;
 `;
 
-export const improvementTitle = css`
-  color: #4a5468;
-  padding-top: 0.3rem;
-  font-size: 2.4rem;
-  font-weight: 700;
-  line-height: 3.6rem;
-  letter-spacing: 0.024rem;
-`;
+export const improvementTitle = withTheme(
+  (theme) => css`
+    ${theme.fonts.HEADLINE.HEAD4};
+    color: ${theme.colors.GRAY[200]};
+  `,
+);
