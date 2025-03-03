@@ -12,22 +12,6 @@ export const container = css`
   padding: 0 3.2rem;
 `;
 
-export const logo = css`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 11.7rem;
-  height: 6.5rem;
-  color: #969696;
-  font-size: 2.4rem;
-  font-weight: 600;
-  text-align: center;
-  background-color: #d9d9d9;
-  border-radius: 2.4rem;
-  font-style: normal;
-  letter-spacing: -0.048rem;
-`;
-
 export const title = withTheme(
   (theme) => css`
     margin-bottom: 5rem;
