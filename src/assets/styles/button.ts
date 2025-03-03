@@ -26,17 +26,23 @@ export const BUTTON_SIZE = {
   },
   multi: {
     small: {
-      padding: `${sizeToken.padding['xs_3']} ${sizeToken.padding['s_2']} ${sizeToken.padding['xs_3']} ${sizeToken.padding['sm_2']}`,
+      paddingTop: `${sizeToken.padding['xs_3']}`,
+      paddingBottom: `${sizeToken.padding['xs_3']}`,
+      width: '9.5rem',
       borderRadius: `${sizeToken.borderRadius['xs_1']}`,
       gap: `${sizeToken.gap['xs_1']}`,
     },
     medium: {
-      padding: `${sizeToken.padding['s_2']} ${sizeToken.padding['md_1']} ${sizeToken.padding['s_2']} ${sizeToken.padding['md_3']}`,
+      paddingTop: `${sizeToken.padding['s_2']}`,
+      paddingBottom: `${sizeToken.padding['s_2']}`,
+      width: '12.2rem',
       borderRadius: `${sizeToken.borderRadius['xs_2']}`,
       gap: `${sizeToken.gap['xs_1']}`,
     },
     large: {
-      padding: `${sizeToken.padding['sm_1']} ${sizeToken.padding['md_3']} ${sizeToken.padding['sm_1']} ${sizeToken.padding['lg_2']}`,
+      paddingTop: `${sizeToken.padding['sm_1']}`,
+      paddingBottom: `${sizeToken.padding['sm_1']}`,
+      width: '14.3rem',
       borderRadius: `${sizeToken.borderRadius['xs_2']}`,
       gap: `${sizeToken.gap['xs_1']}`,
     },
