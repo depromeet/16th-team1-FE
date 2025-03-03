@@ -40,16 +40,16 @@ export default function TotalEvalutionPage() {
             <section css={styles.evaluationSection('3.2rem')}>
               <EvaluationTitle
                 title={EVALUATION_LABEL['positives']}
-                icon={<Icon name="smile" />}
-                color={theme.colors.GRAY[50]}
+                icon={<Icon name="smile" color={theme.colors.SORA[400]} />}
+                color={theme.colors.SORA[400]}
               />
               <NestedList listItems={positives} gap={3.2} />
             </section>
             <section css={styles.evaluationSection('3.2rem')}>
               <EvaluationTitle
                 title={EVALUATION_LABEL['negatives']}
-                icon={<Icon name="sad" />}
-                color={theme.colors.GRAY[50]}
+                icon={<Icon name="sad" color="#D6AA59" />}
+                color="#D6AA59"
               />
               <NestedList listItems={negatives} gap={3.2} />
             </section>
