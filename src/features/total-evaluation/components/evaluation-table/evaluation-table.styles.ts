@@ -1,42 +1,46 @@
 import { css } from '@emotion/react';
 
+import { withTheme } from '@/common/utils/with-theme';
+
 export const evaluationTableWrapper = css`
   display: flex;
   flex-direction: column;
   gap: 2rem;
 `;
 
-export const tableRow = css`
-  display: flex;
-  gap: 5.2rem;
-  align-items: flex-start;
-  padding-bottom: 2rem;
-  border-bottom: 0.1rem solid #eceef2;
-`;
+export const tableRow = withTheme(
+  (theme) => css`
+    display: flex;
+    gap: 5rem;
+    align-items: flex-start;
+    padding-bottom: 2rem;
+    border-bottom: 0.1rem solid ${theme.colors.GRAY[900]};
+  `,
+);
 
-export const label = css`
-  width: 10.2rem;
-  color: #4a5468;
-  font-size: 1.6rem;
-  font-weight: 600;
-  line-height: 150%;
-  white-space: nowrap;
-  font-style: normal;
-  letter-spacing: 0.016rem;
-`;
+export const label = withTheme(
+  (theme) => css`
+    width: 10.2rem;
+    color: ${theme.colors.GRAY[300]};
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 150%;
+    white-space: nowrap;
+    font-style: normal;
+    letter-spacing: 0.016rem;
+  `,
+);
 
-export const detailText = css`
-  margin: 0;
-  color: #73767d;
-  font-size: 1.6rem;
-  font-weight: 500;
-  line-height: 170%;
-  font-style: normal;
-  letter-spacing: 0.016rem;
-`;
+export const detailText = withTheme(
+  (theme) => css`
+    margin: 0;
+    ${theme.fonts.BODY.BODY2_M}
+    color: ${theme.colors.GRAY[300]};
+  `,
+);
 
 export const score = css`
-  color: #000;
+  color: #aee8ff;
   font-size: 3rem;
   font-style: normal;
   font-weight: 400;

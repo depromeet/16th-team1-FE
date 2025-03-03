@@ -1,13 +1,13 @@
 import { css } from '@emotion/react';
 
-export const evaluationTitle = css`
-  display: flex;
-  align-items: center;
-  color: #38393e;
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 150%;
-  gap: 0.8rem;
-  font-style: normal;
-  letter-spacing: 0.025rem;
-`;
+import { withTheme } from '@/common/utils/with-theme';
+
+export const evaluationTitle = withTheme(
+  (theme, color?: string) => css`
+    display: flex;
+    gap: 0.2rem;
+    align-items: center;
+    ${theme.fonts.HEADLINE.HEAD3}
+    color: ${color ? color : '#fff'};
+  `,
+);

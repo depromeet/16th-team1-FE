@@ -6,7 +6,7 @@ interface BarChartProps {
 
 export default function BarChart({ value }: BarChartProps) {
   return (
-    <div css={styles.barChartStyle}>
+    <div css={styles.barChartStyle()}>
       <div css={styles.barChartBar(value)} />
     </div>
   );

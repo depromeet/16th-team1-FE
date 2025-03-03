@@ -1,5 +1,7 @@
 import { css } from '@emotion/react';
 
+import { withTheme } from '@/common/utils/with-theme';
+
 export const evaluationChart = css`
   display: flex;
   gap: 3rem;
@@ -20,13 +22,12 @@ export const evaluationItem = css`
   gap: 0.4rem;
 `;
 
-export const criteria = css`
-  color: #969aa2;
-  font-size: 1.4rem;
-  font-weight: 500;
-  line-height: 2.1rem;
-  letter-spacing: 1%;
-`;
+export const criteria = withTheme(
+  (theme) => css`
+    ${theme.fonts.CAPTION.CAPTION1_M}
+    color: #83828a;
+  `,
+);
 
 export const evaluationGrade = css`
   width: 16rem;
