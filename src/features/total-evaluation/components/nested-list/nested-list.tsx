@@ -6,7 +6,7 @@ interface NestedListProps {
 
 interface NestedListItem {
   title: string;
-  description?: string[];
+  content?: string[];
 }
 
 export default function NestedList({ listItems }: NestedListProps) {
@@ -16,9 +16,9 @@ export default function NestedList({ listItems }: NestedListProps) {
         {listItems.map((item) => (
           <li key={item.title} css={styles.orderListText}>
             {item.title}
-            {item.description && (
+            {item.content && (
               <ul>
-                {item.description.map((desc, idx) => (
+                {item.content.map((desc, idx) => (
                   <li key={idx} css={styles.unorderListText}>
                     {desc}
                   </li>

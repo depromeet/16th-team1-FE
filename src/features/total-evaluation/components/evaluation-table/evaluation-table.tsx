@@ -12,10 +12,10 @@ export default function EvaluationTable({ evaluationItems }: EvaluationTableProp
 
   return (
     <div css={styles.evaluationTableWrapper}>
-      {evaluationData.map(({ criteria, label, score, text }) => (
+      {evaluationData.map(({ criteria, label, score, review }) => (
         <div key={criteria} css={styles.tableRow}>
           <label css={styles.label}>{label}</label>
-          <p css={styles.detailText}>{text}</p>
+          <p css={styles.detailText}>{review}</p>
           <b css={styles.score}> {score}</b>
         </div>
       ))}

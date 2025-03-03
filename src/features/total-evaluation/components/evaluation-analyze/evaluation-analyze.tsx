@@ -7,7 +7,7 @@ interface EvaluationAnalyzeProps {
 
 interface AnalysisItemType {
   title: string;
-  description: string;
+  content: string;
 }
 
 export default function EvaluationAnalyze({ analysisItems }: EvaluationAnalyzeProps) {
@@ -18,7 +18,7 @@ export default function EvaluationAnalyze({ analysisItems }: EvaluationAnalyzePr
           <span css={styles.highlightBox}>
             <p css={styles.titleText}>{item.title}</p>
           </span>
-          <p css={styles.descriptionText}>{item.description}</p>
+          <p css={styles.descriptionText}>{item.content}</p>
         </div>
       ))}
     </div>
