@@ -1,24 +1,25 @@
 import * as styles from './nested-list.style';
 
 interface NestedListProps {
+  gap?: number;
   listItems: NestedListItem[];
 }
 
-interface NestedListItem {
+export interface NestedListItem {
   title: string;
-  description?: string[];
+  content?: string[];
 }
 
-export default function NestedList({ listItems }: NestedListProps) {
+export default function NestedList({ gap, listItems }: NestedListProps) {
   return (
     <div css={styles.nestedList}>
-      <ol css={styles.nestedListItem}>
+      <ol css={styles.orderedList(gap)}>
         {listItems.map((item) => (
           <li key={item.title} css={styles.orderListText}>
             {item.title}
-            {item.description && (
-              <ul>
-                {item.description.map((desc, idx) => (
+            {item.content && (
+              <ul css={styles.unorderedList}>
+                {item.content.map((desc, idx) => (
                   <li key={idx} css={styles.unorderListText}>
                     {desc}
                   </li>

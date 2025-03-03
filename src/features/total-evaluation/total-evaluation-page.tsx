@@ -1,8 +1,6 @@
+import { theme } from '@/assets/styles/theme';
+import Icon from '@/common/components/icon/icon';
 import { evaluationData } from '@/features/total-evaluation/common/data';
-import EvaluationAnalyze from '@/features/total-evaluation/components/evaluation-analyze/evaluation-analyze';
-import EvaluationChart from '@/features/total-evaluation/components/evaluation-chart/evaluation-chart';
-import EvaluationSummary from '@/features/total-evaluation/components/evaluation-summary/evaluation-summary';
-import EvaluationTable from '@/features/total-evaluation/components/evaluation-table/evaluation-table';
 import EvaluationTitle from '@/features/total-evaluation/components/evaluation-title/evaluation-title';
 import FeedbackSidebar from '@/features/total-evaluation/components/feedback-sidebar/feedback-sidebar';
 import ImprovementSection from '@/features/total-evaluation/components/improvement-section/improvement-section';
@@ -13,21 +11,12 @@ import { EVALUATION_LABEL } from '@/features/total-evaluation/constants/evaluati
 
 import SelectedPageProvider from './components/context/selected-page/selected-page-provider';
 import SidebarProvider from './components/context/sidebar/sidebar-provider';
+import OverallEvaluation from './components/overall-evaluation/overall-evaluation';
 
 import * as styles from './total-evaluation-page.styles';
 
 export default function TotalEvalutionPage() {
-  const {
-    evaluationSummary,
-    overallEvaluationGrade,
-    evaluationItems,
-    strengths,
-    solutions,
-    improvementData,
-    positives,
-    negatives,
-    logicalLeaps,
-  } = evaluationData;
+  const { improvementData, positives, negatives, logicalLeaps } = evaluationData;
 
   return (
     <SidebarProvider>
@@ -36,22 +25,7 @@ export default function TotalEvalutionPage() {
           <FeedbackSidebar />
 
           <div css={styles.totalEvaluationSection}>
-            <EvaluationSummary evaluationSummary={evaluationSummary} />
-            <EvaluationChart
-              overallEvaluationGrade={overallEvaluationGrade}
-              evaluationItems={evaluationItems}
-            />
-            <EvaluationTable evaluationItems={evaluationItems} />
-
-            <section css={styles.evaluationSection('2.2rem')}>
-              <EvaluationTitle title={EVALUATION_LABEL['strengths']} icon={<span>🔥</span>} />
-              <EvaluationAnalyze analysisItems={strengths} />
-            </section>
-
-            <section css={styles.evaluationSection('2.2rem')}>
-              <EvaluationTitle title={EVALUATION_LABEL['solutions']} icon={<span>👀</span>} />
-              <EvaluationAnalyze analysisItems={solutions} />
-            </section>
+            <OverallEvaluation />
 
             <section css={styles.evaluationSection('1.6rem')}>
               <ImprovementTitle improvementTitle={improvementData.title} />
@@ -64,12 +38,20 @@ export default function TotalEvalutionPage() {
             </section>
 
             <section css={styles.evaluationSection('3.2rem')}>
-              <EvaluationTitle title={EVALUATION_LABEL['positives']} icon={<span>🔥</span>} />
-              <NestedList listItems={positives} />
+              <EvaluationTitle
+                title={EVALUATION_LABEL['positives']}
+                icon={<Icon name="smile" color={theme.colors.SORA[400]} />}
+                color={theme.colors.SORA[400]}
+              />
+              <NestedList listItems={positives} gap={3.2} />
             </section>
             <section css={styles.evaluationSection('3.2rem')}>
-              <EvaluationTitle title={EVALUATION_LABEL['negatives']} icon={<span>🔥</span>} />
-              <NestedList listItems={negatives} />
+              <EvaluationTitle
+                title={EVALUATION_LABEL['negatives']}
+                icon={<Icon name="sad" color="#D6AA59" />}
+                color="#D6AA59"
+              />
+              <NestedList listItems={negatives} gap={3.2} />
             </section>
           </div>
         </div>

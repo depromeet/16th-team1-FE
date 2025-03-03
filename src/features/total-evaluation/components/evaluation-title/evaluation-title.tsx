@@ -6,11 +6,12 @@ import * as styles from './evaluation-title.styles';
 interface EvaluationTitleProps {
   title: string;
   icon?: ReactNode;
+  color?: string;
 }
 
-export default function EvaluationTitle({ title, icon }: EvaluationTitleProps) {
+export default function EvaluationTitle({ title, icon, color }: EvaluationTitleProps) {
   return (
-    <h2 css={styles.evaluationTitle}>
+    <h2 css={styles.evaluationTitle(color)}>
       {title}
       {icon && icon}
     </h2>
