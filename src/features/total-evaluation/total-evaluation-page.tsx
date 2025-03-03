@@ -11,6 +11,9 @@ import LogicalLeap from '@/features/total-evaluation/components/logical-leap/log
 import NestedList from '@/features/total-evaluation/components/nested-list/nested-list';
 import { EVALUATION_LABEL } from '@/features/total-evaluation/constants/evaluation-constant';
 
+import SelectedPageProvider from './components/context/selected-page/selected-page-provider';
+import SidebarProvider from './components/context/sidebar/sidebar-provider';
+
 import * as styles from './total-evaluation-page.styles';
 
 export default function TotalEvalutionPage() {
@@ -27,46 +30,50 @@ export default function TotalEvalutionPage() {
   } = evaluationData;
 
   return (
-    <div css={styles.container}>
-      <FeedbackSidebar />
+    <SidebarProvider>
+      <SelectedPageProvider>
+        <div css={styles.container}>
+          <FeedbackSidebar />
 
-      <div css={styles.totalEvaluationSection}>
-        <EvaluationSummary evaluationSummary={evaluationSummary} />
-        <EvaluationChart
-          overallEvaluationGrade={overallEvaluationGrade}
-          evaluationItems={evaluationItems}
-        />
-        <EvaluationTable evaluationItems={evaluationItems} />
+          <div css={styles.totalEvaluationSection}>
+            <EvaluationSummary evaluationSummary={evaluationSummary} />
+            <EvaluationChart
+              overallEvaluationGrade={overallEvaluationGrade}
+              evaluationItems={evaluationItems}
+            />
+            <EvaluationTable evaluationItems={evaluationItems} />
 
-        <section css={styles.evaluationSection('2.2rem')}>
-          <EvaluationTitle title={EVALUATION_LABEL['strengths']} icon={<span>🔥</span>} />
-          <EvaluationAnalyze analysisItems={strengths} />
-        </section>
+            <section css={styles.evaluationSection('2.2rem')}>
+              <EvaluationTitle title={EVALUATION_LABEL['strengths']} icon={<span>🔥</span>} />
+              <EvaluationAnalyze analysisItems={strengths} />
+            </section>
 
-        <section css={styles.evaluationSection('2.2rem')}>
-          <EvaluationTitle title={EVALUATION_LABEL['solutions']} icon={<span>👀</span>} />
-          <EvaluationAnalyze analysisItems={solutions} />
-        </section>
+            <section css={styles.evaluationSection('2.2rem')}>
+              <EvaluationTitle title={EVALUATION_LABEL['solutions']} icon={<span>👀</span>} />
+              <EvaluationAnalyze analysisItems={solutions} />
+            </section>
 
-        <section css={styles.evaluationSection('1.6rem')}>
-          <ImprovementTitle improvementTitle={improvementData.title} />
-          <ImprovementSection improvementData={improvementData} />
-        </section>
+            <section css={styles.evaluationSection('1.6rem')}>
+              <ImprovementTitle improvementTitle={improvementData.title} />
+              <ImprovementSection improvementData={improvementData} />
+            </section>
 
-        <section css={styles.evaluationSection('2.4rem')}>
-          <ImprovementTitle improvementTitle={logicalLeaps.title} />
-          <LogicalLeap logicalLeapData={logicalLeaps} />
-        </section>
+            <section css={styles.evaluationSection('2.4rem')}>
+              <ImprovementTitle improvementTitle={logicalLeaps.title} />
+              <LogicalLeap logicalLeapData={logicalLeaps} />
+            </section>
 
-        <section css={styles.evaluationSection('3.2rem')}>
-          <EvaluationTitle title={EVALUATION_LABEL['positives']} icon={<span>🔥</span>} />
-          <NestedList listItems={positives} />
-        </section>
-        <section css={styles.evaluationSection('3.2rem')}>
-          <EvaluationTitle title={EVALUATION_LABEL['negatives']} icon={<span>🔥</span>} />
-          <NestedList listItems={negatives} />
-        </section>
-      </div>
-    </div>
+            <section css={styles.evaluationSection('3.2rem')}>
+              <EvaluationTitle title={EVALUATION_LABEL['positives']} icon={<span>🔥</span>} />
+              <NestedList listItems={positives} />
+            </section>
+            <section css={styles.evaluationSection('3.2rem')}>
+              <EvaluationTitle title={EVALUATION_LABEL['negatives']} icon={<span>🔥</span>} />
+              <NestedList listItems={negatives} />
+            </section>
+          </div>
+        </div>
+      </SelectedPageProvider>
+    </SidebarProvider>
   );
 }
