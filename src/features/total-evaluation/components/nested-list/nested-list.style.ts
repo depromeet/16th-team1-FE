@@ -5,21 +5,14 @@ import { withTheme } from '@/common/utils/with-theme';
 export const nestedList = css`
   display: flex;
   flex-direction: column;
-  gap: 4rem;
   border-bottom: 0.1rem solid #2f2f2f;
   padding-bottom: 5rem;
 `;
 
-export const nestedListItem = css`
+export const orderedList = (gap?: number) => css`
   display: flex;
   flex-direction: column;
-  gap: 4rem;
-`;
-
-export const orderedList = css`
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
+  gap: ${gap ? `${gap}rem` : '4rem'};
 `;
 
 export const unorderedList = css`
