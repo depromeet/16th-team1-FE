@@ -1,3 +1,4 @@
+import Icon from '@/common/components/icon/icon';
 import { evaluationData } from '@/features/total-evaluation/common/data';
 import EvaluationTitle from '@/features/total-evaluation/components/evaluation-title/evaluation-title';
 import FeedbackSidebar from '@/features/total-evaluation/components/feedback-sidebar/feedback-sidebar';
@@ -32,12 +33,12 @@ export default function TotalEvalutionPage() {
         </section>
 
         <section css={styles.evaluationSection('3.2rem')}>
-          <EvaluationTitle title={EVALUATION_LABEL['positives']} icon={<span>🔥</span>} />
-          <NestedList listItems={positives} />
+          <EvaluationTitle title={EVALUATION_LABEL['positives']} icon={<Icon name="smile" />} />
+          <NestedList listItems={positives} gap={3.2} />
         </section>
         <section css={styles.evaluationSection('3.2rem')}>
-          <EvaluationTitle title={EVALUATION_LABEL['negatives']} icon={<span>🔥</span>} />
-          <NestedList listItems={negatives} />
+          <EvaluationTitle title={EVALUATION_LABEL['negatives']} icon={<Icon name="sad" />} />
+          <NestedList listItems={negatives} gap={3.2} />
         </section>
       </div>
     </div>

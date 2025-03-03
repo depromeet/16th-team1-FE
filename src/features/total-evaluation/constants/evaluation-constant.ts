@@ -22,6 +22,6 @@ export const CRITERIA_LABEL: Record<EvaluationCriteria, string> = {
 export const EVALUATION_LABEL: Record<string, string> = {
   strengths: '강점 분석',
   improvements: '개선할 점 및 해결방안',
-  positives: '이런 점이 좋아요',
-  negatives: '이런 점이 아쉬워요',
+  positives: '이런 부분이 좋아요',
+  negatives: '이런 부분이 아쉬워요',
 };
