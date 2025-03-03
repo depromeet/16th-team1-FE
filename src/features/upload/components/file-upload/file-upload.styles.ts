@@ -1,19 +1,24 @@
 import { css } from '@emotion/react';
 
+import { withTheme } from '@/common/utils/with-theme';
+
 export const form = css`
   position: relative;
 `;
 
 export const container = css`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 1.8rem;
   position: relative;
-  width: 88.9rem;
-  height: 10.5rem;
-  border: 1px solid #ccc;
-  border-radius: 2rem;
-  background-color: #efefef;
+  width: 100%;
+  padding: min(5rem, 3dvh) min(22rem, 15dvw);
+  border: 1px dashed #18171d;
+  border-radius: 2.4rem;
+  background:
+    linear-gradient(#1c1c1f 0 0) padding-box,
+    linear-gradient(45deg, #afe7ff, #e1c6fe) border-box;
 `;
 
 export const preview = css`
@@ -24,6 +29,25 @@ export const preview = css`
   line-height: normal;
   letter-spacing: -0.48px;
 `;
+
+export const description = withTheme(
+  (theme) => css`
+    ${theme.fonts.SUBTITLE.SUB1_SB}
+    color: ${theme.colors.GRAY[300]};
+    text-align: center;
+
+    & > p {
+      white-space: nowrap;
+      @media screen and (max-width: 400px) {
+        white-space: normal;
+      }
+    }
+
+    & > p > strong {
+      color: ${theme.colors.SORA[200]};
+    }
+  `,
+);
 
 export const uploadButton = css`
   position: absolute;

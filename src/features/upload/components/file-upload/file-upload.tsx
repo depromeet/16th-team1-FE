@@ -4,6 +4,10 @@ import { Controller, FieldValues, SubmitErrorHandler, useForm } from 'react-hook
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
+import Icon from '@/common/components/icon/icon';
+
+import FileUploadButton from './file-upload-button';
+
 import * as styles from './file-upload.styles';
 
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
@@ -50,7 +54,7 @@ export default function FileUpload({ onSubmit }: FileUploadProps) {
         name="file"
         control={control}
         render={({ field }) => (
-          <div {...getRootProps()}>
+          <div {...getRootProps({ css: styles.container })}>
             <input
               {...getInputProps({
                 accept: 'application/pdf',
@@ -63,21 +67,26 @@ export default function FileUpload({ onSubmit }: FileUploadProps) {
                 },
               })}
             />
+            <Icon name="add-document" width={50} />
 
-            <div>
+            <div css={styles.description}>
               {isDragActive ? (
                 <p>파일 업로드하기</p>
               ) : (
-                acceptedFiles.length === 0 && <p>포트폴리오 PDF 업로드하기</p>
+                acceptedFiles.length === 0 && (
+                  <p>
+                    <strong>PDF를 업로드해주세요.</strong>
+                    <wbr /> 최대 50mb까지 가능해요.
+                  </p>
+                )
               )}
 
               {!isDragActive && <div>{acceptedFiles?.[0]?.name}</div>}
             </div>
 
-            <button type="button" onClick={open}>
-              {/* + svg 임시 사용 */}
-              <PlugSvg />
-            </button>
+            <FileUploadButton type="button" onClick={open}>
+              PDF 업로드하기
+            </FileUploadButton>
           </div>
         )}
       />
