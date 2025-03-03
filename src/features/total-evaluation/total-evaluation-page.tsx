@@ -8,6 +8,8 @@ import LogicalLeap from '@/features/total-evaluation/components/logical-leap/log
 import NestedList from '@/features/total-evaluation/components/nested-list/nested-list';
 import { EVALUATION_LABEL } from '@/features/total-evaluation/constants/evaluation-constant';
 
+import SelectedPageProvider from './components/context/selected-page/selected-page-provider';
+import SidebarProvider from './components/context/sidebar/sidebar-provider';
 import OverallEvaluation from './components/overall-evaluation/overall-evaluation';
 
 import * as styles from './total-evaluation-page.styles';
@@ -16,31 +18,35 @@ export default function TotalEvalutionPage() {
   const { improvementData, positives, negatives, logicalLeaps } = evaluationData;
 
   return (
-    <div css={styles.container}>
-      <FeedbackSidebar />
+    <SidebarProvider>
+      <SelectedPageProvider>
+        <div css={styles.container}>
+          <FeedbackSidebar />
 
-      <div css={styles.totalEvaluationSection}>
-        <OverallEvaluation />
+          <div css={styles.totalEvaluationSection}>
+            <OverallEvaluation />
 
-        <section css={styles.evaluationSection('1.6rem')}>
-          <ImprovementTitle improvementTitle={improvementData.title} />
-          <ImprovementSection improvementData={improvementData} />
-        </section>
+            <section css={styles.evaluationSection('1.6rem')}>
+              <ImprovementTitle improvementTitle={improvementData.title} />
+              <ImprovementSection improvementData={improvementData} />
+            </section>
 
-        <section css={styles.evaluationSection('2.4rem')}>
-          <ImprovementTitle improvementTitle={logicalLeaps.title} />
-          <LogicalLeap logicalLeapData={logicalLeaps} />
-        </section>
+            <section css={styles.evaluationSection('2.4rem')}>
+              <ImprovementTitle improvementTitle={logicalLeaps.title} />
+              <LogicalLeap logicalLeapData={logicalLeaps} />
+            </section>
 
-        <section css={styles.evaluationSection('3.2rem')}>
-          <EvaluationTitle title={EVALUATION_LABEL['positives']} icon={<Icon name="smile" />} />
-          <NestedList listItems={positives} gap={3.2} />
-        </section>
-        <section css={styles.evaluationSection('3.2rem')}>
-          <EvaluationTitle title={EVALUATION_LABEL['negatives']} icon={<Icon name="sad" />} />
-          <NestedList listItems={negatives} gap={3.2} />
-        </section>
-      </div>
-    </div>
+            <section css={styles.evaluationSection('3.2rem')}>
+              <EvaluationTitle title={EVALUATION_LABEL['positives']} icon={<Icon name="smile" />} />
+              <NestedList listItems={positives} gap={3.2} />
+            </section>
+            <section css={styles.evaluationSection('3.2rem')}>
+              <EvaluationTitle title={EVALUATION_LABEL['negatives']} icon={<Icon name="sad" />} />
+              <NestedList listItems={negatives} gap={3.2} />
+            </section>
+          </div>
+        </div>
+      </SelectedPageProvider>
+    </SidebarProvider>
   );
 }
