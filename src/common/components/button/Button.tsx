@@ -1,11 +1,11 @@
 import { forwardRef } from 'react';
 
-import { IconOnlyProps, TextAndIconProps, TextOnlyProps } from '@/assets/styles/button';
+import { IconProps, MultiProps, TextProps } from '@/assets/styles/button';
 import { BaseButton } from '@/common/components/button/base-button';
 
 import * as styles from './button.styles';
 
-export type ButtonProps = TextOnlyProps | TextAndIconProps | IconOnlyProps;
+export type ButtonProps = TextProps | MultiProps | IconProps;
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ size, usage, variant, icon, children, iconPosition, ...props }, ref) => {
