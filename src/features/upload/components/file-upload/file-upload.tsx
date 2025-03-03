@@ -25,9 +25,19 @@ export default function FileUpload({ onSubmit }: FileUploadProps) {
     handleSubmit,
     control,
     formState: { errors },
+    setValue,
   } = useForm({
     resolver: zodResolver(schema),
     mode: 'onChange',
+  });
+
+  const { acceptedFiles, getInputProps, getRootProps, isDragActive, open } = useDropzone({
+    noClick: true,
+    onDrop: (files) => {
+      setValue('file', files[0]);
+
+      handleSubmit(onSubmit, onSubmitError)();
+    },
   });
 
   const onSubmitError: SubmitErrorHandler<FieldValues> = (errors) => {
@@ -35,57 +45,44 @@ export default function FileUpload({ onSubmit }: FileUploadProps) {
   };
 
   return (
-    <form css={styles.form} onSubmit={handleSubmit(onSubmit, onSubmitError)}>
+    <form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
       <Controller
         name="file"
         control={control}
         render={({ field }) => (
-          <Dropzone
-            onChange={(files) => {
-              field.onChange(files);
+          <div {...getRootProps()}>
+            <input
+              {...getInputProps({
+                accept: 'application/pdf',
+                onChange: (e) => {
+                  const { files } = e.target;
 
-              handleSubmit(onSubmit, onSubmitError)();
-            }}
-          />
+                  field.onChange(files?.[0]);
+
+                  handleSubmit(onSubmit, onSubmitError)();
+                },
+              })}
+            />
+
+            <div>
+              {isDragActive ? (
+                <p>파일 업로드하기</p>
+              ) : (
+                acceptedFiles.length === 0 && <p>포트폴리오 PDF 업로드하기</p>
+              )}
+
+              {!isDragActive && <div>{acceptedFiles?.[0]?.name}</div>}
+            </div>
+
+            <button type="button" onClick={open}>
+              {/* + svg 임시 사용 */}
+              <PlugSvg />
+            </button>
+          </div>
         )}
       />
       {errors.file && <div css={styles.errorText}>{errors.file.message?.toString()}</div>}
     </form>
-  );
-}
-FileUpload.displayName = 'FileUpload';
-
-function Dropzone({ onChange }: { onChange?: (...event: unknown[]) => void }) {
-  const { acceptedFiles, getInputProps, getRootProps, isDragActive, open } = useDropzone({
-    noClick: true,
-    onDrop: (files) => {
-      onChange?.(files[0]);
-    },
-  });
-
-  return (
-    <div {...getRootProps()} css={styles.container}>
-      <input
-        {...getInputProps({
-          accept: 'application/pdf',
-        })}
-      />
-
-      <div css={styles.preview}>
-        {isDragActive ? (
-          <p>파일 업로드하기</p>
-        ) : (
-          acceptedFiles.length === 0 && <p>포트폴리오 PDF 업로드하기</p>
-        )}
-
-        {!isDragActive && <div>{acceptedFiles?.[0]?.name}</div>}
-      </div>
-
-      <button type="button" onClick={open} css={styles.uploadButton}>
-        {/* + svg 임시 사용 */}
-        <PlugSvg />
-      </button>
-    </div>
   );
 }
 
