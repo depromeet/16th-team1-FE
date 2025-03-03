@@ -1,3 +1,4 @@
+import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import { evaluationData } from '@/features/total-evaluation/common/data';
 import EvaluationTitle from '@/features/total-evaluation/components/evaluation-title/evaluation-title';
@@ -37,11 +38,19 @@ export default function TotalEvalutionPage() {
             </section>
 
             <section css={styles.evaluationSection('3.2rem')}>
-              <EvaluationTitle title={EVALUATION_LABEL['positives']} icon={<Icon name="smile" />} />
+              <EvaluationTitle
+                title={EVALUATION_LABEL['positives']}
+                icon={<Icon name="smile" />}
+                color={theme.colors.GRAY[50]}
+              />
               <NestedList listItems={positives} gap={3.2} />
             </section>
             <section css={styles.evaluationSection('3.2rem')}>
-              <EvaluationTitle title={EVALUATION_LABEL['negatives']} icon={<Icon name="sad" />} />
+              <EvaluationTitle
+                title={EVALUATION_LABEL['negatives']}
+                icon={<Icon name="sad" />}
+                color={theme.colors.GRAY[50]}
+              />
               <NestedList listItems={negatives} gap={3.2} />
             </section>
           </div>
