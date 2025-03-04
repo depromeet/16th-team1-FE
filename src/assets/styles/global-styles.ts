@@ -1,6 +1,12 @@
+import GeneralSans from '@assets/fonts/GeneralSans-Variable.woff2';
 import { css } from '@emotion/react';
 
 export const globalStyles = css`
+  @font-face {
+    font-family: 'GeneralSans';
+    src: url(${GeneralSans}) format('woff2');
+  }
+
   *,
   *::before,
   *::after {

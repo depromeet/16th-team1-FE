@@ -13,8 +13,13 @@ export const FAQWrapper = css`
 
 export const title = withTheme(
   (theme) => css`
-    ${theme.fonts.HEADLINE.HEAD1}
     color: ${theme.colors.GRAY[10]};
+    font-family: GeneralSans;
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 118%;
+    letter-spacing: -0.08rem;
   `,
 );
 
