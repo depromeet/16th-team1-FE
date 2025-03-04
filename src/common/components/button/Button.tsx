@@ -13,6 +13,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <BaseButton
+        type="button"
         ref={ref}
         css={styles.buttonsStyle(size, usage, variant)}
         data-icon-position={iconPosition}
