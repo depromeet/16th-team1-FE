@@ -7,6 +7,8 @@ export const FAQWrapper = css`
   flex-direction: column;
   gap: 4rem;
   align-items: center;
+  max-width: 77.4rem;
+  margin: auto;
 `;
 
 export const title = withTheme(
@@ -20,14 +22,14 @@ export const accordionRoot = css`
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
-  width: 77.4rem;
+  width: 100%;
 `;
 
 export const accordionItem = css`
   display: flex;
+  padding: 2.4rem 2.8rem;
   flex-direction: column;
   gap: 2.4rem;
-  padding: 2.4rem 2.8rem;
 
   &[data-state='open'] {
     border-radius: 1rem;
@@ -43,6 +45,7 @@ export const accordionTrigger = withTheme(
   (theme) => css`
     display: flex;
     align-items: center;
+    gap: 6.6rem;
     justify-content: space-between;
     width: 100%;
     background-color: inherit;
