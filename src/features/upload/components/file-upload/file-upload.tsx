@@ -4,9 +4,8 @@ import { Controller, FieldValues, SubmitErrorHandler, useForm } from 'react-hook
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
+import { Button } from '@/common/components/button/Button';
 import Icon from '@/common/components/icon/icon';
-
-import FileUploadButton from './file-upload-button';
 
 import * as styles from './file-upload.styles';
 
@@ -84,9 +83,9 @@ export default function FileUpload({ onSubmit }: FileUploadProps) {
               {!isDragActive && <div>{acceptedFiles?.[0]?.name}</div>}
             </div>
 
-            <FileUploadButton type="button" onClick={open}>
+            <Button size="xxLarge" variant="primary" usage="text" onClick={open}>
               PDF 업로드하기
-            </FileUploadButton>
+            </Button>
             {errors.file && <p css={styles.errorText}>{errors.file.message?.toString()}</p>}
           </div>
         )}
