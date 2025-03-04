@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import * as Accordion from '@radix-ui/react-accordion';
 
 import Icon from '@/common/components/icon/icon';
@@ -17,7 +18,12 @@ export default function FAQ() {
               <Accordion.Trigger css={styles.accordionTrigger}>
                 {question}{' '}
                 <div css={styles.icon}>
-                  <Icon name="leftArrow" />
+                  <Icon
+                    name="leftArrow"
+                    customStyle={css`
+                      cursor: pointer;
+                    `}
+                  />
                 </div>
               </Accordion.Trigger>
             </Accordion.Header>
