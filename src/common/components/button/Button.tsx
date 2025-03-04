@@ -12,7 +12,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const content = usage !== 'icon' ? children : icon;
 
     return (
-      <BaseButton ref={ref} css={styles.buttonsStyle(size, usage, variant)} {...props}>
+      <BaseButton
+        ref={ref}
+        css={styles.buttonsStyle(size, usage, variant)}
+        data-icon-position={iconPosition}
+        {...props}
+      >
         {usage === 'multi' && iconPosition === 'left' && icon}
         {content}
         {usage === 'multi' && iconPosition === 'right' && icon}

@@ -19,11 +19,20 @@ const BUTTON_STYLE_SYSYEM = {
       `,
       multi: (size: SizeKey) => {
         return css`
-          padding-top: ${BUTTON_SIZE.multi[size as RestSize].paddingTop};
-          padding-bottom: ${BUTTON_SIZE.multi[size as RestSize].paddingBottom};
-          width: ${BUTTON_SIZE.multi[size as RestSize].width};
+          padding-top: ${BUTTON_SIZE.multi[size as RestSize].paddingY};
+          padding-bottom: ${BUTTON_SIZE.multi[size as RestSize].paddingY};
           border-radius: ${BUTTON_SIZE.multi[size as RestSize].borderRadius};
           gap: ${BUTTON_SIZE.multi[size as RestSize].gap};
+
+          &[data-icon-position='left'] {
+            padding-left: ${BUTTON_SIZE.multi[size as RestSize].paddingIconSide};
+            padding-right: ${BUTTON_SIZE.multi[size as RestSize].paddingTextSide};
+          }
+
+          &[data-icon-position='right'] {
+            padding-left: ${BUTTON_SIZE.multi[size as RestSize].paddingTextSide};
+            padding-right: ${BUTTON_SIZE.multi[size as RestSize].paddingIconSide};
+          }
         `;
       },
       icon: (size: SizeKey) => css`
@@ -49,7 +58,7 @@ const BUTTON_STYLE_SYSYEM = {
         line-height: ${BUTTON_FONTS.multi[size as RestSize].lineHeight};
       `,
 
-      icon: (size: SizeKey) => css``,
+      icon: () => css``,
     };
     return fontStyles[usage](size);
   },
