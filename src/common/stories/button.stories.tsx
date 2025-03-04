@@ -15,7 +15,7 @@ const meta: Meta<typeof Button> = {
     variant: {
       description: '버튼의 색상 테마를 결정합니다.',
       control: { type: 'radio' },
-      options: ['purlple', 'sora'],
+      options: ['primary', 'secondary', 'text', 'icon'],
     },
     usage: {
       table: { disable: true },
@@ -27,30 +27,39 @@ export default meta;
 
 type Story = StoryObj<typeof Button>;
 
-export const TextButton: Story = {
+export const TextSmallButton: Story = {
   args: {
-    variant: 'sora',
-    children: 'hello',
+    variant: 'primary',
+    children: 'text-small-primary',
     usage: 'text',
     size: 'small',
   },
 };
-export const IconButton: Story = {
+
+export const TextXXLargeButton: Story = {
   args: {
-    variant: 'sora',
+    variant: 'primary',
+    children: 'text-XXLarge-primary',
+    usage: 'text',
+    size: 'xxLarge',
+  },
+};
+export const IconMediumButton: Story = {
+  args: {
+    variant: 'icon',
     usage: 'icon',
-    size: 'small',
+    size: 'medium',
     icon: <Icon name="pin" width={24} />,
   },
 };
 
-export const MultiButton: Story = {
+export const MultiLeftLargeButton: Story = {
   args: {
-    variant: 'purlple',
-    children: 'hello',
+    variant: 'secondary',
+    children: 'multi-large-secondary-left',
     usage: 'multi',
     iconPosition: 'left',
-    size: 'small',
+    size: 'large',
     icon: <Icon name="pin" width={24} />,
   },
   argTypes: {

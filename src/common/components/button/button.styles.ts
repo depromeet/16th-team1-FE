@@ -1,18 +1,71 @@
 import { css } from '@emotion/react';
 
-import { ButtonVariant, Size, BUTTON_SIZE, Usage, BUTTON_VARIANTS } from '@/assets/styles/button';
+import {
+  BUTTON_FONTS,
+  BUTTON_SIZE,
+  BUTTON_VARIANTS,
+  RestSize,
+  SizeKey,
+  Usage,
+  VariantKey,
+} from '@/assets/styles/button';
 
 const BUTTON_STYLE_SYSYEM = {
-  // 사이즈 관련 스타일
-  createSizeStyle: (size: Size, usage: Usage) => css`
-    padding: ${BUTTON_SIZE[usage][size].padding};
-    border-radius: ${BUTTON_SIZE[usage][size].borderRadius};
-  `,
+  createSizeStyle: (size: SizeKey, usage: Usage) => {
+    const sizeStyles = {
+      text: (size: SizeKey) => css`
+        padding: ${BUTTON_SIZE.text[size].padding};
+        border-radius: ${BUTTON_SIZE.text[size].borderRadius};
+      `,
+      multi: (size: SizeKey) => {
+        return css`
+          padding-top: ${BUTTON_SIZE.multi[size as RestSize].paddingY};
+          padding-bottom: ${BUTTON_SIZE.multi[size as RestSize].paddingY};
+          border-radius: ${BUTTON_SIZE.multi[size as RestSize].borderRadius};
+          gap: ${BUTTON_SIZE.multi[size as RestSize].gap};
 
-  // 버튼 상태 관련 스타일
-  createStateStyles: (variant: ButtonVariant) => css`
-    background-color: ${BUTTON_VARIANTS[variant]['default'].background};
-    color: ${BUTTON_VARIANTS[variant]['default'].color};
+          &[data-icon-position='left'] {
+            padding-left: ${BUTTON_SIZE.multi[size as RestSize].paddingIconSide};
+            padding-right: ${BUTTON_SIZE.multi[size as RestSize].paddingTextSide};
+          }
+
+          &[data-icon-position='right'] {
+            padding-left: ${BUTTON_SIZE.multi[size as RestSize].paddingTextSide};
+            padding-right: ${BUTTON_SIZE.multi[size as RestSize].paddingIconSide};
+          }
+        `;
+      },
+      icon: (size: SizeKey) => css`
+        padding: ${BUTTON_SIZE.icon[size as RestSize].padding};
+        border-radius: ${BUTTON_SIZE.icon[size as RestSize].borderRadius};
+      `,
+    };
+
+    return sizeStyles[usage](size);
+  },
+
+  createFontStyle: (size: SizeKey, usage: Usage) => {
+    const fontStyles = {
+      text: (size: SizeKey) => css`
+        font-size: ${BUTTON_FONTS.text[size].fontSize};
+        font-weight: ${BUTTON_FONTS.text[size].fontWeight};
+        line-height: ${BUTTON_FONTS.text[size].lineHeight};
+      `,
+
+      multi: (size: SizeKey) => css`
+        font-size: ${BUTTON_FONTS.multi[size as RestSize].fontSize};
+        font-weight: ${BUTTON_FONTS.multi[size as RestSize].fontWeight};
+        line-height: ${BUTTON_FONTS.multi[size as RestSize].lineHeight};
+      `,
+
+      icon: () => css``,
+    };
+    return fontStyles[usage](size);
+  },
+
+  createStateStyles: (variant: keyof typeof BUTTON_VARIANTS) => css`
+    background-color: ${BUTTON_VARIANTS[variant].default.background};
+    color: ${BUTTON_VARIANTS[variant].default.color};
 
     &:hover {
       background-color: ${BUTTON_VARIANTS[variant].hover.background};
@@ -30,29 +83,24 @@ const BUTTON_STYLE_SYSYEM = {
     }
   `,
 
-  // 용도별 고유 스타일
-  createUsageStyle: (usage: Usage, size: Size) => {
-    const usageStyles = {
-      text: css`
-        font-size: ${BUTTON_SIZE['text'][size].fontSize};
-        line-height: ${BUTTON_SIZE['text'][size].lineHeight};
-      `,
-      icon: css``,
+  createAdditionalStyle: (usage: Usage) => {
+    const additionalStyle: Record<Usage, ReturnType<typeof css>> = {
+      text: css``,
       multi: css`
         display: flex;
         align-items: center;
-        gap: ${BUTTON_SIZE['multi'][size].gap};
-        font-size: ${BUTTON_SIZE['multi'][size].fontSize};
-        line-height: ${BUTTON_SIZE['multi'][size].lineHeight};
       `,
+      icon: css``,
     };
-    return usageStyles[usage];
+
+    return additionalStyle[usage];
   },
 };
 
-/* 최종 스타일 생성 함수 */
-export const buttonsStyle = (size: Size, usage: Usage, variant: ButtonVariant) => css`
+/* 최종 스타일 생성 */
+export const buttonsStyle = (size: SizeKey, usage: Usage, variant: VariantKey) => css`
   ${BUTTON_STYLE_SYSYEM.createSizeStyle(size, usage)};
-  ${BUTTON_STYLE_SYSYEM.createStateStyles(variant)}
-  ${BUTTON_STYLE_SYSYEM.createUsageStyle(usage, size)}
+  ${BUTTON_STYLE_SYSYEM.createFontStyle(size, usage)};
+  ${BUTTON_STYLE_SYSYEM.createStateStyles(variant)};
+  ${BUTTON_STYLE_SYSYEM.createAdditionalStyle(usage)};
 `;

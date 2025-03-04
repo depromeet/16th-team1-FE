@@ -13,7 +13,7 @@ export interface BaseButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>
 const BaseButton = forwardRef<HTMLButtonElement, BaseButtonProps>(({ asChild, ...props }, ref) => {
   const Comp = asChild ? Slot : 'button';
 
-  return <Comp css={styles.button} ref={ref} {...props}></Comp>;
+  return <Comp css={styles.button} ref={ref} {...props} />;
 });
 BaseButton.displayName = 'BaseButton';
 
