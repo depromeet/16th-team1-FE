@@ -87,10 +87,10 @@ export default function FileUpload({ onSubmit }: FileUploadProps) {
             <FileUploadButton type="button" onClick={open}>
               PDF 업로드하기
             </FileUploadButton>
+            {errors.file && <p css={styles.errorText}>{errors.file.message?.toString()}</p>}
           </div>
         )}
       />
-      {errors.file && <div css={styles.errorText}>{errors.file.message?.toString()}</div>}
     </form>
   );
 }
