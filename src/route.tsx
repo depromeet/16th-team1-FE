@@ -1,16 +1,13 @@
 import { createBrowserRouter } from 'react-router';
 
+import LandingPage from '@/features/landing/landing-page';
 import TotalEvalutionPage from '@/features/total-evaluation/total-evaluation-page';
 import UploadPage from '@/features/upload/upload-page';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <div>
-        <h1>메인 페이지</h1>
-      </div>
-    ),
+    element: <LandingPage />,
   },
   {
     path: '/upload',
