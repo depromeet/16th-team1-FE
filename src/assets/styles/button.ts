@@ -145,15 +145,15 @@ export const BUTTON_VARIANTS = {
   text: {
     default: {
       background: 'transparent',
-      color: '#D5D5D5',
+      color: colors.GRAY[200],
     },
     hover: {
       background: colors.GRAY[990],
-      color: colors.GRAY[100],
+      color: colors.GRAY[300],
     },
     pressed: {
       background: '#111117',
-      color: colors.GRAY[300],
+      color: colors.GRAY[500],
     },
     disabled: {
       background: 'transparent',
@@ -163,15 +163,15 @@ export const BUTTON_VARIANTS = {
   icon: {
     default: {
       background: 'transparent',
-      color: '#D5D5D5',
+      color: colors.GRAY[200],
     },
     hover: {
       background: colors.GRAY[990],
-      color: colors.GRAY[100],
+      color: colors.GRAY[300],
     },
     pressed: {
       background: '#111117',
-      color: colors.GRAY[300],
+      color: colors.GRAY[500],
     },
     disabled: {
       background: 'transparent',

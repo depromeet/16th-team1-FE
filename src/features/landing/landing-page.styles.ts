@@ -8,6 +8,6 @@ export const landingPage = withTheme(
     min-height: 100vh;
     height: 100%;
     margin: auto;
-    background-color: ${theme.colors.BLACK};
+    background-color: ${theme.colors.GRAY[1000]};
   `,
 );

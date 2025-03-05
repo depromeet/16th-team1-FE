@@ -20,7 +20,7 @@ export const controlButtons = css`
 
 export const container = withTheme(
   (theme, isSidebarOpen: boolean) => css`
-    --sidebar-bg: ${isSidebarOpen ? theme.colors.BLACK : 'transparent'};
+    --sidebar-bg: ${isSidebarOpen ? theme.colors.GRAY[1000] : 'transparent'};
 
     display: flex;
     flex-direction: column;

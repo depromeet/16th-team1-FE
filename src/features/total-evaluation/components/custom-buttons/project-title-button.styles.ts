@@ -11,7 +11,7 @@ export const projectTitleButton = withTheme(
     justify-content: flex-start;
     width: 100%;
     padding: 0.8rem;
-    color: ${isCurrentTriggerSelected ? theme.colors.SORA[200] : theme.colors.GRAY[200]};
+    color: ${isCurrentTriggerSelected ? theme.colors.SORA[200] : theme.colors.GRAY[400]};
     font-size: ${isCurrentTriggerSelected && '1.6rem'};
     font-weight: ${isCurrentTriggerSelected && 'bolder'};
     line-height: ${isCurrentTriggerSelected && '1.92rem'};
@@ -23,7 +23,7 @@ export const projectTitleButton = withTheme(
     gap: 0.2rem;
 
     &:hover {
-      background-color: #18171d;
+      background-color: ${theme.colors.GRAY.bg};
     }
 
     /* Radix의 접근성으로 인한 기본 포커스 스타일 제거 */
