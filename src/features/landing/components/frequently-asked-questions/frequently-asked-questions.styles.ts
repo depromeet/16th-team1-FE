@@ -5,7 +5,7 @@ import { withTheme } from '@/common/utils/with-theme';
 export const FAQWrapper = css`
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 7.2rem;
   align-items: center;
   max-width: 77.4rem;
   margin: auto;
@@ -13,8 +13,13 @@ export const FAQWrapper = css`
 
 export const title = withTheme(
   (theme) => css`
-    ${theme.fonts.HEADLINE.HEAD1}
     color: ${theme.colors.GRAY[10]};
+    font-family: GeneralSans;
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 118%;
+    letter-spacing: -0.08rem;
   `,
 );
 
@@ -59,17 +64,25 @@ export const accordionTrigger = withTheme(
   `,
 );
 
-export const icon = css`
-  transition: transform 0.2s ease-in-out;
+export const icon = withTheme(
+  (theme) => css`
+    transition: transform 0.2s ease-in-out;
 
-  [data-state='open'] & {
-    transform: rotate(270deg); /* 열릴 때 V 모양 */
-  }
+    [data-state='open'] & {
+      transform: rotate(270deg); /* 열릴 때 V 모양 */
+      path {
+        fill: ${theme.colors.GRAY[10]};
+      }
+    }
 
-  [data-state='closed'] & {
-    transform: rotate(180deg); /* 닫힐 때 > 모양 */
-  }
-`;
+    [data-state='closed'] & {
+      transform: rotate(180deg); /* 닫힐 때 > 모양 */
+      path {
+        fill: ${theme.colors.GRAY[200]};
+      }
+    }
+  `,
+);
 
 export const accordionContent = withTheme(
   (theme) => css`
