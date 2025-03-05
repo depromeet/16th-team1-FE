@@ -16,11 +16,10 @@ const ProjectTitleButton = forwardRef<HTMLButtonElement, ProjectTitleButtonProps
   ({ isCurrentTriggerSelected, children, ...props }, ref) => (
     <BaseButton css={styles.projectTitleButton(isCurrentTriggerSelected)} ref={ref} {...props}>
       <Icon
-        name="sidebar-menu-icon"
+        name="ico_spark"
         customStyle={css`
           opacity: ${isCurrentTriggerSelected ? 1 : 0};
-          width: 0;
-          width: ${isCurrentTriggerSelected && '14px'};
+          width: ${!isCurrentTriggerSelected && '0'};
           transition:
             opacity 0.3s ease-in-out,
             width 0.3s ease-in-out;

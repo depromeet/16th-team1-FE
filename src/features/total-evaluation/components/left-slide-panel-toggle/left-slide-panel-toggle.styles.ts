@@ -11,6 +11,7 @@ export const sidebarTopSection = css`
   justify-content: space-between;
   color: white;
   font-size: 2.4rem;
+  padding-left: 0.8rem;
 `;
 
 export const controlButtons = css`

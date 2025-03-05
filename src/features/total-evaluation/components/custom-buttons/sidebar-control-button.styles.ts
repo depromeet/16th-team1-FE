@@ -12,6 +12,7 @@ export const controlButtonCommonStyle = css`
 export const openButton = css`
   position: fixed;
   top: 1.2rem;
-  left: 1.2rem;
+  left: 1rem;
   background-color: transparent;
+  cursor: pointer;
 `;

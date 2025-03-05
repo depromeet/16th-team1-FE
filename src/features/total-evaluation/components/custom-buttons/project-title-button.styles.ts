@@ -11,10 +11,8 @@ export const projectTitleButton = withTheme(
     justify-content: flex-start;
     width: 100%;
     padding: 0.8rem;
-    color: ${isCurrentTriggerSelected ? theme.colors.SORA[200] : theme.colors.GRAY[400]};
-    font-size: ${isCurrentTriggerSelected && '1.6rem'};
-    font-weight: ${isCurrentTriggerSelected && 'bolder'};
-    line-height: ${isCurrentTriggerSelected && '1.92rem'};
+    ${isCurrentTriggerSelected ? theme.fonts.SUBTITLE.SUB3_SB : theme.fonts.CAPTION.CAPTION1_M}
+    color: ${isCurrentTriggerSelected ? theme.colors.SORA[200] : theme.colors.GRAY[200]};
     transition:
       font-size 0.3s ease-in-out,
       color 0.3s ease-in-out,
@@ -24,6 +22,7 @@ export const projectTitleButton = withTheme(
 
     &:hover {
       background-color: ${theme.colors.GRAY.bg};
+      border-radius: 0.8rem;
     }
 
     /* Radix의 접근성으로 인한 기본 포커스 스타일 제거 */

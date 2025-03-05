@@ -10,7 +10,8 @@ export const pageLocationButton = withTheme(
     height: 100%;
     padding: 0.8rem 1rem;
     border: none;
-    color: ${theme.colors.GRAY[100]};
+    ${theme.fonts.CAPTION.CAPTION1_M}
+    color: ${theme.colors.GRAY[50]};
     transform: translateY(3rem);
     background-color: transparent;
     opacity: 0;
