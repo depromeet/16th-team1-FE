@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 
 export const globalStyles = css`
   @font-face {
-    font-family: 'GeneralSans';
+    font-family: GeneralSans;
     src: url(${GeneralSans}) format('woff2');
   }
 

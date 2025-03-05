@@ -13,8 +13,8 @@ export const FAQWrapper = css`
 
 export const title = withTheme(
   (theme) => css`
-    color: ${theme.colors.GRAY[10]};
-    font-family: GeneralSans;
+    color: ${theme.colors.GRAY[50]};
+    font-family: GeneralSans, sans-serif;
     font-size: 4rem;
     font-style: normal;
     font-weight: 600;
@@ -30,17 +30,19 @@ export const accordionRoot = css`
   width: 100%;
 `;
 
-export const accordionItem = css`
-  display: flex;
-  padding: 2.4rem 2.8rem;
-  flex-direction: column;
-  gap: 2.4rem;
+export const accordionItem = withTheme(
+  (theme) => css`
+    display: flex;
+    padding: 2.4rem 2.8rem;
+    flex-direction: column;
+    gap: 2.4rem;
 
-  &[data-state='open'] {
-    border-radius: 1rem;
-    background-color: #18171d;
-  }
-`;
+    &[data-state='open'] {
+      border-radius: 1rem;
+      background-color: ${theme.colors.GRAY.bg};
+    }
+  `,
+);
 
 export const accordionHeader = css`
   cursor: pointer;
@@ -56,10 +58,10 @@ export const accordionTrigger = withTheme(
     background-color: inherit;
     border: none;
     ${theme.fonts.HEADLINE.HEAD3}
-    color: ${theme.colors.GRAY[100]};
+    color: ${theme.colors.GRAY[300]};
 
     &[data-state='open'] {
-      color: ${theme.colors.GRAY[10]};
+      color: ${theme.colors.GRAY[100]};
     }
   `,
 );
@@ -71,14 +73,14 @@ export const icon = withTheme(
     [data-state='open'] & {
       transform: rotate(270deg); /* 열릴 때 V 모양 */
       path {
-        fill: ${theme.colors.GRAY[10]};
+        fill: ${theme.colors.GRAY[100]};
       }
     }
 
     [data-state='closed'] & {
       transform: rotate(180deg); /* 닫힐 때 > 모양 */
       path {
-        fill: ${theme.colors.GRAY[200]};
+        fill: ${theme.colors.GRAY[400]};
       }
     }
   `,
@@ -87,6 +89,6 @@ export const icon = withTheme(
 export const accordionContent = withTheme(
   (theme) => css`
     ${theme.fonts.BODY.BODY2_M}
-    color: ${theme.colors.GRAY[200]};
+    color: ${theme.colors.GRAY[400]};
   `,
 );

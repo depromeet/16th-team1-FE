@@ -61,7 +61,7 @@ const slideRight = keyframes`
 
 const toastVariants = {
   aiCompleteLarge: {
-    background: `linear-gradient(to right, ${colors.BLACK}, ${colors.BLACK}) padding-box,
+    background: `linear-gradient(to right, ${colors.GRAY[1000]}, ${colors.GRAY[1000]}) padding-box,
                    linear-gradient(to right bottom, ${colors.PURPLE[300]}, ${colors.SORA[200]}) border-box`,
     border: '0.15rem solid transparent',
     textColor: `linear-gradient(270deg, ${colors.SORA[200]}, ${colors.PURPLE[300]})`,
@@ -77,7 +77,7 @@ const toastVariants = {
     position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
   },
   aiCompleteSmall: {
-    background: `linear-gradient(to right, ${colors.BLACK}, ${colors.BLACK}) padding-box,
+    background: `linear-gradient(to right, ${colors.GRAY[1000]}, ${colors.GRAY[1000]}) padding-box,
                    linear-gradient(to right bottom, ${colors.PURPLE[300]}, ${colors.SORA[200]}) border-box`,
     border: '0.15rem solid transparent',
     textColor: `linear-gradient(270deg, ${colors.SORA[200]}, ${colors.PURPLE[300]})`,
@@ -93,7 +93,7 @@ const toastVariants = {
     position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
   },
   loginFailure: {
-    background: `${colors.BLACK}`,
+    background: `${colors.GRAY[1000]}`,
     border: `0.15rem solid ${colors.RED[500]}`,
     textColor: `${colors.RED[500]}`,
     padding: '2.2rem 3rem',
@@ -108,7 +108,7 @@ const toastVariants = {
     position: { top: '2rem', right: '2rem' },
   },
   pdfSubmit: {
-    background: `${colors.BLACK}`,
+    background: `${colors.GRAY[1000]}`,
     border: `0.15rem solid ${colors.GREEN[500]}`,
     textColor: `${colors.GREEN[500]}`,
     padding: '2.2rem 3rem',
