@@ -4,6 +4,8 @@ import LandingPage from '@/features/landing/landing-page';
 import TotalEvalutionPage from '@/features/total-evaluation/total-evaluation-page';
 import UploadPage from '@/features/upload/upload-page';
 
+import LoginPage from './features/login/login-page';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -12,6 +14,10 @@ export const router = createBrowserRouter([
   {
     path: '/upload',
     element: <UploadPage />,
+  },
+  {
+    path: '/auth',
+    element: <LoginPage />,
   },
   {
     path: '/total-evaluation',

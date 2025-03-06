@@ -26,14 +26,14 @@ function LeftSlidePanelToggle({
 }: LeftSlidePanelToggleProps) {
   return (
     <Dialog.Root modal={false} open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
-      <div css={styles.container(isSidebarOpen)}>
-        <div css={styles.sidebarTopSection}>
+      <aside css={styles.container(isSidebarOpen)} aria-hidden={!isSidebarOpen}>
+        <header css={styles.sidebarTopSection}>
           {icon}
-          <div css={styles.controlButtons}>
+          <nav css={styles.controlButtons}>
             {additionalButton}
             <Dialog.Trigger asChild>{closeButton}</Dialog.Trigger>
-          </div>
-        </div>
+          </nav>
+        </header>
 
         <Dialog.Content
           onInteractOutside={(e) => e.preventDefault()}
@@ -48,8 +48,10 @@ function LeftSlidePanelToggle({
 
           {children}
         </Dialog.Content>
-      </div>
-      <div css={styles.sidebarPlaceholder(isSidebarOpen)}>{!isSidebarOpen && openButton}</div>
+      </aside>
+      <section css={styles.sidebarPlaceholder(isSidebarOpen)} aria-hidden={isSidebarOpen}>
+        {!isSidebarOpen && openButton}
+      </section>
     </Dialog.Root>
   );
 }

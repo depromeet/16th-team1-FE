@@ -30,11 +30,13 @@ function FeedbackContents({
       </Accordion.Header>
 
       <Accordion.Content css={styles.defaultAnimation}>
-        <div css={styles.wrapper}>
+        <ul css={styles.wrapper} aria-label={`${projectTitle} 피드백 페이지 목록`}>
           {feedbackPages.map((page, buttonIndex) => (
-            <div key={page}>{renderContentButton(page, buttonIndex)}</div>
+            <li key={page} role="listitem">
+              {renderContentButton(page, buttonIndex)}
+            </li>
           ))}
-        </div>
+        </ul>
       </Accordion.Content>
     </Accordion.Item>
   ));
