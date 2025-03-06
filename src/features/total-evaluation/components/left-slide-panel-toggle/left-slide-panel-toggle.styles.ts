@@ -2,13 +2,14 @@ import { css } from '@emotion/react';
 
 import { withTheme } from '@/common/utils/with-theme';
 
-const SIDEBAR_WIDTH = 23.7;
-const SIDEBAR_CLOSED_WIDTH = 4;
+const SIDEBAR_WIDTH = 26.4;
+const SIDEBAR_CLOSED_WIDTH = 6;
 
 export const sidebarTopSection = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 24rem;
   color: white;
   font-size: 2.4rem;
   padding-left: 0.8rem;

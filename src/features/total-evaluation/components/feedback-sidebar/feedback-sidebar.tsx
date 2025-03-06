@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 
-import { useTheme } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 
 import Icon from '@/common/components/icon/icon';
 import AccordionList from '@/features/total-evaluation/components/accordion-list/accordion-list';
