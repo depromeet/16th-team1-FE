@@ -36,6 +36,7 @@ export const errorItem = withTheme(
     ${theme.fonts.BODY.BODY2_M};
     color: ${theme.colors.GRAY[300]};
     list-style: disc;
-    list-style-position: inside;
+    list-style-position: outside;
+    margin-left: 2.5rem;
   `,
 );
