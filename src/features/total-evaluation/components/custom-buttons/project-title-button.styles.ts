@@ -12,12 +12,13 @@ export const projectTitleButton = withTheme(
     width: 100%;
     padding: 0.8rem;
     ${isCurrentTriggerSelected ? theme.fonts.SUBTITLE.SUB3_SB : theme.fonts.CAPTION.CAPTION1_M}
-    color: ${isCurrentTriggerSelected ? theme.colors.SORA[200] : theme.colors.GRAY[200]};
-    transition:
+    color: ${isCurrentTriggerSelected ? theme.colors.SORA[200] : theme.colors.GRAY[400]};
+
+    /* transition:
       font-size 0.3s ease-in-out,
       color 0.3s ease-in-out,
       font-weight 0.3s ease-in-out,
-      line-height 0.3s ease-in;
+      line-height 0.3s ease-in; */
     gap: 0.2rem;
 
     &:hover {

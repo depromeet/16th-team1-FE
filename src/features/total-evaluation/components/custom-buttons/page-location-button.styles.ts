@@ -11,15 +11,17 @@ export const pageLocationButton = withTheme(
     padding: 0.8rem 1rem;
     border: none;
     ${theme.fonts.CAPTION.CAPTION1_M}
-    color: ${theme.colors.GRAY[50]};
-    transform: translateY(3rem);
+    color: ${theme.colors.GRAY[100]};
+
+    /* transform: translateY(3rem); */
+
     background-color: transparent;
     opacity: 0;
     animation: fade-in 0.2s forwards;
-    animation-delay: ${buttonIndex * 0.07}s;
+    animation-delay: ${buttonIndex * 0.03}s;
 
     &:hover {
-      background-color: #18171d;
+      background-color: ${theme.colors.GRAY.bg};
       border-radius: 0.8rem;
     }
 
