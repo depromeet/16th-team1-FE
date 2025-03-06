@@ -1,9 +1,9 @@
 import { ButtonHTMLAttributes, forwardRef } from 'react';
-import { MdOutlineKeyboardDoubleArrowLeft } from 'react-icons/md';
 
-import { useTheme } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 
 import { BaseButton } from '@/common/components/button/base-button';
+import Icon from '@/common/components/icon/icon';
 
 import * as styles from './sidebar-control-button.styles';
 
@@ -12,7 +12,13 @@ const SidebarCloseButton = forwardRef<HTMLButtonElement, ButtonHTMLAttributes<HT
     const theme = useTheme();
     return (
       <BaseButton css={styles.controlButtonCommonStyle} {...props} ref={ref}>
-        <MdOutlineKeyboardDoubleArrowLeft size={24} color={theme.colors.GRAY[700]} />
+        <Icon
+          name="ico_leftarrow2"
+          color={theme.colors.GRAY[700]}
+          customStyle={css`
+            cursor: pointer;
+          `}
+        />
       </BaseButton>
     );
   },

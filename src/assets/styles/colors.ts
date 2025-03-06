@@ -71,6 +71,6 @@ export const colors = {
   GRADIENT: {
     '300': 'linear-gradient(137deg, #E1C6FE 0%, #AFE7FF 100%)',
   },
-};
+} as const;
 
 export type ColorsTypes = typeof colors;

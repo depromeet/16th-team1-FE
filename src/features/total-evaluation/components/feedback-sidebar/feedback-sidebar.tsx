@@ -41,7 +41,7 @@ function FeedbackSidebar() {
       isSidebarOpen={isSidebarOpen}
       setIsSidebarOpen={setIsSidebarOpen}
       additionalButton={<AddButton />}
-      icon={<Icon name="logo-full" color={theme.colors.SORA[200]} width={99.429} />}
+      icon={<Icon name="logo-full" color={theme.colors.SORA[200]} />}
       openButton={<SidebarOpenButton onClick={() => setIsSidebarOpen((prev) => !prev)} />}
       closeButton={<SidebarCloseButton />}
     >

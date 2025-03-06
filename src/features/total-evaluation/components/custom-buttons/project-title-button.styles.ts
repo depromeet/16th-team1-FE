@@ -11,19 +11,19 @@ export const projectTitleButton = withTheme(
     justify-content: flex-start;
     width: 100%;
     padding: 0.8rem;
+    ${isCurrentTriggerSelected ? theme.fonts.SUBTITLE.SUB3_SB : theme.fonts.CAPTION.CAPTION1_M}
     color: ${isCurrentTriggerSelected ? theme.colors.SORA[200] : theme.colors.GRAY[400]};
-    font-size: ${isCurrentTriggerSelected && '1.6rem'};
-    font-weight: ${isCurrentTriggerSelected && 'bolder'};
-    line-height: ${isCurrentTriggerSelected && '1.92rem'};
-    transition:
+
+    /* transition:
       font-size 0.3s ease-in-out,
       color 0.3s ease-in-out,
       font-weight 0.3s ease-in-out,
-      line-height 0.3s ease-in;
+      line-height 0.3s ease-in; */
     gap: 0.2rem;
 
     &:hover {
       background-color: ${theme.colors.GRAY.bg};
+      border-radius: 0.8rem;
     }
 
     /* Radix의 접근성으로 인한 기본 포커스 스타일 제거 */
