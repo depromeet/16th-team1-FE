@@ -1,33 +1,39 @@
 import { css } from '@emotion/react';
 
-export const container = (
+type containerStyleFnType = (
   isSidebarOpen: boolean,
-  width: number,
-  height: 'all' | number,
-  gap: number,
-  padding: number,
-  duration: number,
-  easing: string,
-  backgroundColor: string,
-) => css`
-  --sidebar-bg: ${isSidebarOpen ? backgroundColor : 'transparent'};
-  --sidebar-translate: ${isSidebarOpen ? `translateX(0)` : `translateX(-${width}rem)`};
-  --sidebar-height: ${height === 'all' ? '100dvh' : height};
+  size: {
+    width: number;
+    height: 'all' | number;
+    gap: number;
+    padding: number;
+  },
+  animation: {
+    duration: number;
+    easing: string;
+  },
+  variant: { backgroundColor: string },
+) => ReturnType<typeof css>;
+
+export const container: containerStyleFnType = (isSidebarOpen, size, animation, variant) => css`
+  --sidebar-bg: ${isSidebarOpen ? variant.backgroundColor : 'transparent'};
+  --sidebar-translate: ${isSidebarOpen ? `translateX(0)` : `translateX(-${size.width}rem)`};
+  --sidebar-height: ${size.height === 'all' ? '100dvh' : size.height};
 
   display: flex;
   flex-direction: column;
-  gap: ${gap}rem;
+  gap: ${size.gap}rem;
   overflow: auto;
   position: fixed;
   top: 0;
   left: 0;
-  width: ${width}rem;
+  width: ${size.width}rem;
   height: var(--sidebar-height);
-  padding: ${padding}rem;
+  padding: ${size.padding}rem;
   transform: var(--sidebar-translate);
   transition:
-    transform ${duration}ms ${easing},
-    background-color ${duration}ms ${easing};
+    transform ${animation.duration}ms ${animation.easing},
+    background-color ${animation.duration}ms ${animation.easing};
   background-color: var(--sidebar-bg);
 
   &::-webkit-scrollbar {
@@ -45,8 +51,12 @@ export const container = (
   }
 `;
 
-export const sidebarPlaceholder = (isOpen: boolean, width: number, closedWidth: number) => css`
+type sidebarPlaceholderStyleFnType = (
+  isOpen: boolean,
+  size: { width: number; closedWidth: number },
+) => ReturnType<typeof css>;
+export const sidebarPlaceholder: sidebarPlaceholderStyleFnType = (isOpen, size) => css`
   width: 0;
   transition: flex 0.3s ease;
-  flex: ${isOpen ? `0 0 ${width}rem` : `0 0 ${closedWidth}rem`};
+  flex: ${isOpen ? `0 0 ${size.width}rem` : `0 0 ${size.closedWidth}rem`};
 `;
