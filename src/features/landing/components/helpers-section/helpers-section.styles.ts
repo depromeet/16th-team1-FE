@@ -8,6 +8,27 @@ export const sectionWrapper = css`
   gap: 4rem;
 `;
 
+export const titleWrapper = css`
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  align-items: center;
+`;
+
+export const sectionBadge = withTheme(
+  (theme, color: string) => css`
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: fit-content;
+    border-radius: 10rem;
+    padding: ${theme.sizeToken.padding.sm_2} ${theme.sizeToken.padding.md_1};
+    ${theme.fonts.SUBTITLE.SUB2_B}
+    color: ${color};
+    background-color: #1a2024;
+  `,
+);
+
 export const sectionTitle = withTheme(
   (theme) => css`
     ${theme.fonts.HEADLINE.HEAD2}
