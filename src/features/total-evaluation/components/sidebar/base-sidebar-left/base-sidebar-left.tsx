@@ -27,7 +27,7 @@ interface LeftSidebarContainerProps {
   children: ReactNode;
   isSidebarOpen: boolean;
 
-  /* 만약 디자인 테마가 정해져 있다면 size,animation,variant는 별도의 테마 값으로 분리해서 받는게 좋아보입니다 */
+  /* 만약 디자인 테마가 정해져 있다면 (버튼 컴포넌트와 마찬가지로)size,animation,variant는 별도의 테마 객체를 만들어서 사용 */
   size?: {
     width: number;
     height: 'all' | number;
@@ -66,16 +66,7 @@ function LeftSidebarContainer({
 }: LeftSidebarContainerProps) {
   return (
     <aside
-      css={styles.container(
-        isSidebarOpen,
-        size.width,
-        size.height,
-        size.gap,
-        size.padding,
-        animation.duration,
-        animation.easing,
-        variant.backgroundColor,
-      )}
+      css={styles.container(isSidebarOpen, size, animation, variant)}
       aria-hidden={!isSidebarOpen}
       role="region"
       aria-label={ariaLabel}
@@ -93,6 +84,7 @@ function LeftSidebarTrigger({ content }: LeftSidebarTriggerProps) {
   return <Dialog.Trigger asChild>{content}</Dialog.Trigger>;
 }
 
+/** 사이드바 컨텐트 영역. Dialog의 기본 모달 렌더링 기능을 제거하며 접근성 관련한 내용을 정의 */
 interface LeftSidebarContentProps {
   children: ReactNode;
 }
@@ -118,11 +110,12 @@ function LeftSidebarContent({ children }: LeftSidebarContentProps) {
 interface PlaceHolderContentProps {
   isSidebarOpen: boolean;
 
-  /* 만약 디자인 테마가 정해져 있다면 size는 별도의 테마 값으로 분리해서 받는게 좋아보입니다 */
+  /* 만약 디자인 테마가 정해져 있다면 (버튼 컴포넌트와 마찬가지로)size는 별도의 테마 객체를 만들어서 사용 */
   size?: {
     width: number;
     closedWidth: number;
   };
+
   content: ReactNode;
 }
 function PlaceHolderContent({
@@ -134,10 +127,7 @@ function PlaceHolderContent({
   content,
 }: PlaceHolderContentProps) {
   return (
-    <section
-      css={styles.sidebarPlaceholder(isSidebarOpen, size.width, size.closedWidth)}
-      aria-hidden={isSidebarOpen}
-    >
+    <section css={styles.sidebarPlaceholder(isSidebarOpen, size)} aria-hidden={isSidebarOpen}>
       {!isSidebarOpen && content}
     </section>
   );
@@ -149,13 +139,13 @@ function PlaceHolderContent({
    *   <LeftSidebar>
    *     <LeftSidebar.Container>
    *
-   *      {Header는 외부에서 별도로 정의}
-   *      <LeftSidebar.Content />
+   *       <LeftSidebar.Trigger />
+   *       <LeftSidebar.Content />
    *
    *     </LeftSidebar.Container>
    *
    *     <LeftSidebar.PlaceHolder />
-   *   </LeftSidebar>s
+   *   </LeftSidebar>
    */
 }
 export const LeftSidebar = Object.assign(LeftSidebarRoot, {

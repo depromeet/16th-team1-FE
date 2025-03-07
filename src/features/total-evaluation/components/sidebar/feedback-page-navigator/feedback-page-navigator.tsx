@@ -19,7 +19,7 @@ function FeedbackPageNavigator({ children }: LeftSlidePanelToggleProps) {
   return (
     <LeftSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen}>
       <LeftSidebar.Container isSidebarOpen={isSidebarOpen} ariaLabel="sidebar">
-        {/* Header */}
+        {/* Trigger */}
         <ControlButtons />
 
         {/* Contents */}
