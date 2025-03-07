@@ -41,3 +41,20 @@ export const questionData = [
     author: '취업준비생 김00님',
   },
 ];
+
+export const stepData = [
+  {
+    step: '01',
+    text: '내 포트폴리오를\nPDF로 업로드하면,',
+    image: './images/step-card-01.png',
+    aspectRatio: 618.0 / 262.94,
+    width: 618,
+  },
+  {
+    step: '02',
+    text: 'AI가 세부 항목까지\n구체적으로 피드백해줘요',
+    image: './images/step-card-02.png',
+    aspectRatio: 616.0 / 309.34,
+    width: 616,
+  },
+];

@@ -16,10 +16,11 @@ export const sectionTitle = withTheme(
   `,
 );
 
-export const questionCardsWrapper = css`
+export const contentWrapper = (direction?: 'row' | 'column') => css`
   display: flex;
+  flex-flow: ${direction ? direction : 'row'} wrap;
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  flex-wrap: wrap;
+  max-width: 103rem;
 `;
