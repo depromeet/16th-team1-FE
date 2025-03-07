@@ -1,8 +1,5 @@
 import { useContext, useState } from 'react';
 
-import { useTheme } from '@emotion/react';
-
-import Icon from '@/common/components/icon/icon';
 import AccordionList from '@/features/total-evaluation/components/accordion-list/accordion-list';
 import LeftSlidePanelToggle from '@/features/total-evaluation/components/left-slide-panel-toggle/left-slide-panel-toggle';
 import { sidebarList } from '@/features/total-evaluation/service/data';
@@ -10,17 +7,14 @@ import { sidebarList } from '@/features/total-evaluation/service/data';
 import FeedbackContents from '../accordion-list/feedback-contents';
 import { SelectedPageContext } from '../context/selected-page/selected-page-context';
 import { SidebarContext } from '../context/sidebar/sidebar-context';
-import AddButton from '../custom-buttons/add-button';
 import { PageLocationButton } from '../custom-buttons/page-location-button';
 import { ProjectTitleButton } from '../custom-buttons/project-title-button';
-import { SidebarCloseButton } from '../custom-buttons/sidebar-close-button';
-import { SidebarOpenButton } from '../custom-buttons/sidebar-open-button';
 
 function FeedbackSidebar() {
-  const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
+  const { isSidebarOpen } = useContext(SidebarContext);
   const { selectedPage, setSelectedPage } = useContext(SelectedPageContext);
   const [currentOpenedTrigger, setCurrentOpenedTrigger] = useState<string[]>([]);
-  const theme = useTheme();
+
   // API 호출(임시 데이터)
   const { data: sidebarListData } = sidebarList;
 
@@ -37,14 +31,7 @@ function FeedbackSidebar() {
   };
 
   return (
-    <LeftSlidePanelToggle
-      isSidebarOpen={isSidebarOpen}
-      setIsSidebarOpen={setIsSidebarOpen}
-      additionalButton={<AddButton />}
-      icon={<Icon name="logo-full" color={theme.colors.SORA[200]} />}
-      openButton={<SidebarOpenButton onClick={() => setIsSidebarOpen((prev) => !prev)} />}
-      closeButton={<SidebarCloseButton />}
-    >
+    <LeftSlidePanelToggle>
       <AccordionList type="multiple" orientation="vertical">
         <FeedbackContents
           dataList={sidebarListData}

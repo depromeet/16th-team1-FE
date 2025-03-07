@@ -1,58 +1,37 @@
-import { Dispatch, ReactNode } from 'react';
+import { ReactNode, useContext } from 'react';
 
-import * as Dialog from '@radix-ui/react-dialog';
-import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
-
-import * as styles from './left-slide-panel-toggle.styles';
+import FeedbackSidebarHeader from './feedback-sidebar-header';
+import { LeftSidebar } from '../base-sidebar-left/base-sidebar-left';
+import { SidebarContext } from '../context/sidebar/sidebar-context';
+import { SidebarOpenButton } from '../custom-buttons/sidebar-open-button';
 
 export interface LeftSlidePanelToggleProps {
   children: ReactNode;
-  isSidebarOpen: boolean;
-  setIsSidebarOpen: Dispatch<React.SetStateAction<boolean>>;
-  openButton: ReactNode;
-  closeButton: ReactNode;
-  additionalButton?: ReactNode;
-  icon: ReactNode;
 }
 
-function LeftSlidePanelToggle({
-  children,
-  isSidebarOpen,
-  setIsSidebarOpen,
-  openButton,
-  closeButton,
-  additionalButton,
-  icon,
-}: LeftSlidePanelToggleProps) {
+/**
+ * - Sidebar는 재사용 대상.
+ * - LeftSlidePanelToggle은 도메인 별로 Sidebar를 호출해서 소비하는 컴포넌트
+ */
+function LeftSlidePanelToggle({ children }: LeftSlidePanelToggleProps) {
+  const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
+
   return (
-    <Dialog.Root modal={false} open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
-      <aside css={styles.container(isSidebarOpen)} aria-hidden={!isSidebarOpen}>
-        <header css={styles.sidebarTopSection}>
-          {icon}
-          <nav css={styles.controlButtons}>
-            {additionalButton}
-            <Dialog.Trigger asChild>{closeButton}</Dialog.Trigger>
-          </nav>
-        </header>
+    <LeftSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen}>
+      <LeftSidebar.Container isSidebarOpen={isSidebarOpen} ariaLabel="sidebar">
+        {/* Header */}
+        <FeedbackSidebarHeader />
 
-        <Dialog.Content
-          onInteractOutside={(e) => e.preventDefault()}
-          onPointerDownOutside={(e) => e.preventDefault()}
-          forceMount // display: none 방지
-        >
-          <Dialog.Description aria-describedby={undefined} />
+        {/* Contents */}
+        <LeftSidebar.Content>{children}</LeftSidebar.Content>
+      </LeftSidebar.Container>
 
-          <VisuallyHidden asChild>
-            <Dialog.Title>피드백 사이드바</Dialog.Title>
-          </VisuallyHidden>
-
-          {children}
-        </Dialog.Content>
-      </aside>
-      <section css={styles.sidebarPlaceholder(isSidebarOpen)} aria-hidden={isSidebarOpen}>
-        {!isSidebarOpen && openButton}
-      </section>
-    </Dialog.Root>
+      {/* PlaceHolder */}
+      <LeftSidebar.PlaceHolder
+        isSidebarOpen={isSidebarOpen}
+        content={<SidebarOpenButton onClick={() => setIsSidebarOpen((prev) => !prev)} />}
+      />
+    </LeftSidebar>
   );
 }
 
