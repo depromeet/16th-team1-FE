@@ -1,26 +1,26 @@
 import { ReactNode, useContext } from 'react';
 
-import FeedbackSidebarHeader from './feedback-sidebar-header';
+import ControlButtons from './control-buttons';
+import { SidebarContext } from '../../context/sidebar/sidebar-context';
+import { SidebarOpenButton } from '../../custom-buttons/sidebar-open-button';
 import { LeftSidebar } from '../base-sidebar-left/base-sidebar-left';
-import { SidebarContext } from '../context/sidebar/sidebar-context';
-import { SidebarOpenButton } from '../custom-buttons/sidebar-open-button';
 
 export interface LeftSlidePanelToggleProps {
   children: ReactNode;
 }
 
 /**
- * - Sidebar는 재사용 대상.
- * - LeftSlidePanelToggle은 도메인 별로 Sidebar를 호출해서 소비하는 컴포넌트
+ * - LeftSidebar는 왼쪽에 발생하는 사이드바에 대한 재사용 대상.
+ * - FeedbackPageNavigator은 도메인 별로 Sidebar를 호출해서 소비하는 컴포넌트
  */
-function LeftSlidePanelToggle({ children }: LeftSlidePanelToggleProps) {
+function FeedbackPageNavigator({ children }: LeftSlidePanelToggleProps) {
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
 
   return (
     <LeftSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen}>
       <LeftSidebar.Container isSidebarOpen={isSidebarOpen} ariaLabel="sidebar">
         {/* Header */}
-        <FeedbackSidebarHeader />
+        <ControlButtons />
 
         {/* Contents */}
         <LeftSidebar.Content>{children}</LeftSidebar.Content>
@@ -35,4 +35,4 @@ function LeftSlidePanelToggle({ children }: LeftSlidePanelToggleProps) {
   );
 }
 
-export default LeftSlidePanelToggle;
+export default FeedbackPageNavigator;

@@ -30,6 +30,7 @@ interface LeftSidebarContainerProps {
   /* 만약 디자인 테마가 정해져 있다면 size,animation,variant는 별도의 테마 값으로 분리해서 받는게 좋아보입니다 */
   size?: {
     width: number;
+    height: 'all' | number;
     gap: number;
     padding: number;
   };
@@ -50,6 +51,7 @@ function LeftSidebarContainer({
   isSidebarOpen,
   size = {
     width: 26.4,
+    height: 'all',
     gap: 4.8,
     padding: 1.2,
   },
@@ -67,6 +69,7 @@ function LeftSidebarContainer({
       css={styles.container(
         isSidebarOpen,
         size.width,
+        size.height,
         size.gap,
         size.padding,
         animation.duration,

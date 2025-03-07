@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 
 import AccordionList from '@/features/total-evaluation/components/accordion-list/accordion-list';
-import LeftSlidePanelToggle from '@/features/total-evaluation/components/left-slide-panel-toggle/left-slide-panel-toggle';
 import { sidebarList } from '@/features/total-evaluation/service/data';
 
 import FeedbackContents from '../accordion-list/feedback-contents';
@@ -9,6 +8,7 @@ import { SelectedPageContext } from '../context/selected-page/selected-page-cont
 import { SidebarContext } from '../context/sidebar/sidebar-context';
 import { PageLocationButton } from '../custom-buttons/page-location-button';
 import { ProjectTitleButton } from '../custom-buttons/project-title-button';
+import FeedbackPageNavigator from '../sidebar/feedback-page-navigator/feedback-page-navigator';
 
 function FeedbackSidebar() {
   const { isSidebarOpen } = useContext(SidebarContext);
@@ -31,7 +31,7 @@ function FeedbackSidebar() {
   };
 
   return (
-    <LeftSlidePanelToggle>
+    <FeedbackPageNavigator>
       <AccordionList type="multiple" orientation="vertical">
         <FeedbackContents
           dataList={sidebarListData}
@@ -57,7 +57,7 @@ function FeedbackSidebar() {
           )}
         />
       </AccordionList>
-    </LeftSlidePanelToggle>
+    </FeedbackPageNavigator>
   );
 }
 

@@ -2,13 +2,13 @@ import { useTheme } from '@emotion/react';
 
 import Icon from '@/common/components/icon/icon';
 
+import AddButton from '../../custom-buttons/add-button';
+import { SidebarCloseButton } from '../../custom-buttons/sidebar-close-button';
 import { LeftSidebar } from '../base-sidebar-left/base-sidebar-left';
-import AddButton from '../custom-buttons/add-button';
-import { SidebarCloseButton } from '../custom-buttons/sidebar-close-button';
 
-import * as styles from './feedback-sidebar-header.styles';
+import * as styles from './control-buttons.styles';
 
-function FeedbackSidebarHeader() {
+function ControlButtons() {
   const theme = useTheme();
   return (
     <header css={styles.container}>
@@ -21,4 +21,4 @@ function FeedbackSidebarHeader() {
   );
 }
 
-export default FeedbackSidebarHeader;
+export default ControlButtons;

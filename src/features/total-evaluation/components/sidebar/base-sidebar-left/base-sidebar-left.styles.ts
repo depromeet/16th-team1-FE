@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 export const container = (
   isSidebarOpen: boolean,
   width: number,
+  height: 'all' | number,
   gap: number,
   padding: number,
   duration: number,
@@ -11,6 +12,7 @@ export const container = (
 ) => css`
   --sidebar-bg: ${isSidebarOpen ? backgroundColor : 'transparent'};
   --sidebar-translate: ${isSidebarOpen ? `translateX(0)` : `translateX(-${width}rem)`};
+  --sidebar-height: ${height === 'all' ? '100dvh' : height};
 
   display: flex;
   flex-direction: column;
@@ -20,7 +22,7 @@ export const container = (
   top: 0;
   left: 0;
   width: ${width}rem;
-  height: 100dvh;
+  height: var(--sidebar-height);
   padding: ${padding}rem;
   transform: var(--sidebar-translate);
   transition:
