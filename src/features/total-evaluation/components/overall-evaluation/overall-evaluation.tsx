@@ -47,7 +47,7 @@ export default function OverallEvaluation({ overallEvaluation }: OverallEvaluati
   return (
     <div css={styles.overallEvaluationWrapper}>
       <section css={styles.summaryWrapper}>
-        <SummaryTitle title="포트폴리오 전체 평가" />
+        <SummaryTitle title="포트폴리오 종합 평가" />
 
         <div css={styles.flexColumn}>
           <EvaluationSummary evaluationSummary={summary} />
