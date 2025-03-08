@@ -2,9 +2,9 @@ import { css, useTheme } from '@emotion/react';
 
 import { Button } from '@/common/components/button/Button';
 
-import * as styles from './navigation-buttons.styles';
+import * as styles from './landing-page-header-buttons.styles';
 
-function NavigationButtons() {
+function LandingPageHeaderButtons() {
   const theme = useTheme();
   return (
     <div css={styles.container}>
@@ -42,4 +42,4 @@ function NavigationButtons() {
   );
 }
 
-export default NavigationButtons;
+export default LandingPageHeaderButtons;

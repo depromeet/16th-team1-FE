@@ -3,8 +3,8 @@ import { css } from '@emotion/react';
 export const container = css`
   display: flex;
   align-items: center;
-  height: 6.4rem;
-  padding: 1.1rem 2rem;
+  min-height: 5.4rem;
+  padding: 1rem;
   background-color: transparent;
 `;
 
