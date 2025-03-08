@@ -14,16 +14,14 @@ export const container = withTheme(
   `,
 );
 
-export const content = withTheme(
-  (theme) => css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 65.3rem;
-    height: 30.1rem;
-    gap: 6rem;
-  `,
-);
+export const content = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 65.3rem;
+  height: 30.1rem;
+  gap: 6rem;
+`;
 
 export const descriptioinWrapper = css`
   display: flex;
