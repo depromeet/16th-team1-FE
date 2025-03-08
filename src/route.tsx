@@ -2,12 +2,12 @@ import { ReactNode } from 'react';
 import { createBrowserRouter } from 'react-router';
 
 import LandingPage from '@/features/landing/landing-page';
-import TotalEvaluationPage from '@/features/total-evaluation/total-evaluation-page';
 import UploadPage from '@/features/upload/upload-page';
 
 import CommonLayout from './common/components/layout/common-layout';
 import { PAGE_URL, PageUrlType } from './common/constants/path';
 import LoginPage from './features/login/login-page';
+import TotalEvaluationPage from './features/total-evaluation/total-evaluation-page';
 
 // 인증 관련 컴포넌트 (미리 정의되어 있어야 함)
 
@@ -44,7 +44,7 @@ const RouterInfo: RouterInfoType[] = [
   {
     path: PAGE_URL.TotalEvaluation,
     withAuthorization: true,
-    element: <TotalEvalutionPage />,
+    element: <TotalEvaluationPage />,
     label: '피드백 결과 페이지',
     isHeader: true,
   },
