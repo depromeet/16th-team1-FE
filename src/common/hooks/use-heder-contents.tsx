@@ -1,12 +1,12 @@
 import Icon from '../components/icon/icon';
-import LandingPageHeaderButtons from '../components/layout/header-buttons/landing-page-header-buttons';
-import TotalEvalutationHeaderButtons from '../components/layout/header-buttons/total-evaluation-header-buttons';
+import LandingMiddleButtons from '../components/layout/header-buttons/landing-middle-buttons';
+import TotalEvalutationLeftButtons from '../components/layout/header-buttons/total-evaluation-left-buttons';
 import { PageLabelKey } from '../constants/path';
 
 export const useHederContents = (pageLabel: PageLabelKey) => {
   if (pageLabel === 'TotalEvaluation') {
     return {
-      left: <TotalEvalutationHeaderButtons />,
+      left: <TotalEvalutationLeftButtons />,
       middle: <Icon name="fix" />,
       right: <Icon name="fix" />,
     };
@@ -14,7 +14,7 @@ export const useHederContents = (pageLabel: PageLabelKey) => {
   if (pageLabel === 'Landing') {
     return {
       left: <Icon name="logo-full-header-navigation" />,
-      middle: <LandingPageHeaderButtons />,
+      middle: <LandingMiddleButtons />,
       right: <Icon name="fix" />,
     };
   }

@@ -5,9 +5,9 @@ import { SidebarOpenButton } from '@/features/total-evaluation/components/custom
 
 import Icon from '../../icon/icon';
 
-import * as styles from './total-evaluation-header-buttons.styles';
+import * as styles from './total-evaluation-left-buttons.styles';
 
-function TotalEvalutationHeaderButtons() {
+function TotalEvalutationLeftButtons() {
   const { setIsSidebarOpen } = useContext(SidebarContext);
   return (
     <div css={styles.container}>
@@ -17,4 +17,4 @@ function TotalEvalutationHeaderButtons() {
   );
 }
 
-export default TotalEvalutationHeaderButtons;
+export default TotalEvalutationLeftButtons;
