@@ -7,6 +7,7 @@ export const FAQWrapper = css`
   flex-direction: column;
   gap: 7.2rem;
   align-items: center;
+  width: 77.4rem;
   max-width: 77.4rem;
   margin: auto;
 `;

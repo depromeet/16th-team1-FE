@@ -16,7 +16,7 @@ export default function StepCard({ step, text, image, aspectRatio, width }: Step
         <p css={styles.stepExplainText}>{text}</p>
       </div>
       <div>
-        <img css={styles.image(aspectRatio)} src={image} width={width} alt={`${step}: ${text}`} />
+        <img css={styles.image(aspectRatio, width)} src={image} alt={`${step}: ${text}`} />
       </div>
     </div>
   );
