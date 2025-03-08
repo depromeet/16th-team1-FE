@@ -4,6 +4,8 @@ import { questionData, stepData } from '@/features/landing/common/data';
 import QuestionCard from '@/features/landing/components/helpers-section/question-card';
 import StepCard from '@/features/landing/components/helpers-section/step-card';
 
+import DetailImprovement from './detail-improvement';
+
 import * as styles from './helpers-section.styles';
 
 export default function HelpersSection() {
@@ -78,6 +80,7 @@ export default function HelpersSection() {
             피드백 해드려요
           </h2>
         </div>
+        <DetailImprovement />
       </section>
     </>
   );
