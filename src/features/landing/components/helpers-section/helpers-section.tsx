@@ -5,6 +5,7 @@ import QuestionCard from '@/features/landing/components/helpers-section/question
 import StepCard from '@/features/landing/components/helpers-section/step-card';
 
 import DetailImprovement from './detail-improvement';
+import TotalEvaluationGrid from './total-evaluation-grid';
 
 import * as styles from './helpers-section.styles';
 
@@ -57,6 +58,9 @@ export default function HelpersSection() {
             <br />
             정량적으로 평가해드려요
           </h2>
+        </div>
+        <div css={styles.contentWrapper('column')}>
+          <TotalEvaluationGrid />
         </div>
       </section>
 
