@@ -11,6 +11,7 @@ import EvaluationSummary from '../evaluation-summary/evaluation-summary';
 import EvaluationTable from '../evaluation-table/evaluation-table';
 import EvaluationTitle from '../evaluation-title/evaluation-title';
 import NestedList, { NestedListItem } from '../nested-list/nested-list';
+import SummaryTitle from '../summary-title/summary-title';
 
 import * as styles from './overall-evaluation.styles';
 
@@ -46,9 +47,7 @@ export default function OverallEvaluation({ overallEvaluation }: OverallEvaluati
   return (
     <div css={styles.overallEvaluationWrapper}>
       <section css={styles.summaryWrapper}>
-        <h2 css={styles.summaryTitle}>
-          포트폴리오 전체 평가 <Icon name="pin" width={21} color={theme.colors.GRAY[300]} />
-        </h2>
+        <SummaryTitle title="포트폴리오 전체 평가" />
 
         <div css={styles.flexColumn}>
           <EvaluationSummary evaluationSummary={summary} />
