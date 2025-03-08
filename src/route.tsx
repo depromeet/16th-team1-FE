@@ -4,6 +4,7 @@ import { createBrowserRouter } from 'react-router';
 import LandingPage from '@/features/landing/landing-page';
 import UploadPage from '@/features/upload/upload-page';
 
+import Authorization from './common/components/auth/Authorization';
 import CommonLayout from './common/components/layout/common-layout';
 import { PAGE_URL, PageUrlType } from './common/constants/path';
 import LoginPage from './features/login/login-page';
@@ -52,7 +53,11 @@ const RouterInfo: RouterInfoType[] = [
 
 export const router = createBrowserRouter(
   RouterInfo.map((routerInfo) => {
-    const WrappedElement = routerInfo.withAuthorization ? routerInfo.element : routerInfo.element;
+    const WrappedElement = routerInfo.withAuthorization ? (
+      <Authorization> {routerInfo.element}</Authorization>
+    ) : (
+      routerInfo.element
+    );
 
     return {
       path: routerInfo.path,
