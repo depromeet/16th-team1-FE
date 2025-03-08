@@ -5,7 +5,7 @@ import * as styles from './google-auth-button.styles';
 
 function GoogleAuthButton() {
   const handleLoginButtonClick = () => {
-    window.location.href = `${import.meta.env.VITE_API_BASE_URL}/oauth2/authorization/google`;
+    window.location.href = `${import.meta.env.VITE_API_AUTH_BASE_URL}/oauth2/authorization/google`;
   };
   return (
     <BaseButton onClick={handleLoginButtonClick}>
