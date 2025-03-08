@@ -12,6 +12,11 @@ interface BaseModalProps {
 
 interface ModalContentProps {
   children: ReactNode;
+  width?: string;
+  height?: string;
+  padding?: string;
+  backgroundColor?: string;
+  gap?: string;
 }
 
 function BaseModal({ open, onOpenChange, children }: BaseModalProps) {
@@ -23,11 +28,16 @@ function BaseModal({ open, onOpenChange, children }: BaseModalProps) {
   );
 }
 
-function ModalRoot({ children }: ModalContentProps) {
+function ModalRoot({ children, width, height, padding, backgroundColor, gap }: ModalContentProps) {
   return (
     <Dialog.Portal>
       <Dialog.Overlay css={styles.modalOverlay} />
-      {children}
+      <Dialog.Content
+        css={styles.modalContent({ width, height, padding, backgroundColor, gap })}
+        aria-describedby={undefined}
+      >
+        {children}
+      </Dialog.Content>
     </Dialog.Portal>
   );
 }
@@ -36,12 +46,10 @@ const Trigger = Dialog.Trigger;
 const Close = Dialog.Close;
 const Title = Dialog.Title;
 const Description = Dialog.Description;
-const content = Dialog.Content;
 
 const Modal = Object.assign(BaseModal, {
   Button: Trigger,
   Close: Close,
-  Content: content,
   Title: Title,
   Description: Description,
   Root: ModalRoot,
