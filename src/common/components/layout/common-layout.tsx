@@ -9,14 +9,14 @@ import * as styles from './common-layout.styles';
 
 interface CommonLayoutProps {
   isHeader: boolean;
-  usage: PageUrlType;
+  pageUrl: PageUrlType;
 }
 
-function CommonLayout({ isHeader, usage }: CommonLayoutProps) {
-  const { left, middle, right } = generateHeaderContents(usage);
+function CommonLayout({ isHeader, pageUrl }: CommonLayoutProps) {
+  const { left, middle, right } = generateHeaderContents(pageUrl);
 
   return (
-    <div css={styles.container(usage)}>
+    <div css={styles.container(pageUrl)}>
       {isHeader && <HeaderNavigationLayout left={left} middle={middle} right={right} />}
       <Outlet />
     </div>

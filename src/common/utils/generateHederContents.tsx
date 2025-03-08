@@ -3,10 +3,10 @@ import NavigationButtons from '@/features/landing/components/navigation-buttons/
 import Icon from '../components/icon/icon';
 import { PageUrlType } from '../constants/path';
 
-export const generateHeaderContents = (usage: PageUrlType) => {
-  const left = usage !== 'total-evaluation' && <Icon name="logo-header" />;
-  const middle = usage === '/' && <NavigationButtons />;
-  const right = usage === '/' ? <Icon name="fix" /> : <Icon name="fix" />;
+export const generateHeaderContents = (pageUrl: PageUrlType) => {
+  const left = pageUrl !== 'total-evaluation' && <Icon name="logo-header" />;
+  const middle = pageUrl === '/' && <NavigationButtons />;
+  const right = pageUrl === '/' ? <Icon name="fix" /> : <Icon name="fix" />;
 
   return { left, middle, right };
 };

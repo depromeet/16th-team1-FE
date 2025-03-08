@@ -56,7 +56,7 @@ export const router = createBrowserRouter(
 
     return {
       path: routerInfo.path,
-      element: <CommonLayout isHeader={routerInfo.isHeader} usage={routerInfo.path} />,
+      element: <CommonLayout isHeader={routerInfo.isHeader} pageUrl={routerInfo.path} />,
       children: [
         {
           index: true,
