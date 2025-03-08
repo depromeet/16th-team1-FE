@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
 
 import { theme } from '@/assets/styles/theme';
-import { PageUrlType } from '@/common/constants/path';
+import { PageLabelKey } from '@/common/constants/path';
 
-export const container = (pageUrl: PageUrlType) => css`
-  --background-bg: ${pageUrl === '/' ? theme.colors.GRAY[1000] : theme.colors.GRAY.bg};
+export const container = (pageLabel: PageLabelKey) => css`
+  --background-bg: ${pageLabel === 'Landing' ? theme.colors.GRAY[1000] : theme.colors.GRAY.bg};
 
   overflow-y: auto;
   overscroll-behavior-y: contain;

@@ -5,4 +5,4 @@ export enum PAGE_URL {
   Login = 'login',
 }
 
-export type PageUrlType = (typeof PAGE_URL)[keyof typeof PAGE_URL];
+export type PageLabelKey = keyof typeof PAGE_URL;
