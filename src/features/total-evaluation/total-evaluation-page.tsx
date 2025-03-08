@@ -29,33 +29,29 @@ export default function TotalEvaluationPage() {
   }
 
   return (
-    <SidebarProvider>
-      <SelectedPageProvider>
-        <div css={styles.container}>
-          <FeedbackSidebar />
+    <div css={styles.container}>
+      <FeedbackSidebar />
 
-          <div css={styles.totalEvaluationSection}>
-            <OverallEvaluation
-              overallEvaluation={data?.result.overallEvaluation as OverallEvaluationType}
-            />
+      <div css={styles.totalEvaluationSection}>
+        <OverallEvaluation
+          overallEvaluation={data?.result.overallEvaluation as OverallEvaluationType}
+        />
 
-            {data?.result?.projectEvaluation?.map((project) => (
-              <ProjectEvaluation key={project.projectName} projectEvaluation={project} />
-            ))}
+        {data?.result?.projectEvaluation?.map((project) => (
+          <ProjectEvaluation key={project.projectName} projectEvaluation={project} />
+        ))}
 
-            {/* TODO: 장표별 상세 평가 완료 후 제거 */}
-            <section css={styles.evaluationSection('1.6rem')}>
-              <ImprovementTitle improvementTitle={improvementData.title} />
-              <ImprovementSection improvementData={improvementData} />
-            </section>
+        {/* TODO: 장표별 상세 평가 완료 후 제거 */}
+        <section css={styles.evaluationSection('1.6rem')}>
+          <ImprovementTitle improvementTitle={improvementData.title} />
+          <ImprovementSection improvementData={improvementData} />
+        </section>
 
-            <section css={styles.evaluationSection('2.4rem')}>
-              <ImprovementTitle improvementTitle={logicalLeaps.title} />
-              <LogicalLeap logicalLeapData={logicalLeaps} />
-            </section>
-          </div>
-        </div>
-      </SelectedPageProvider>
-    </SidebarProvider>
+        <section css={styles.evaluationSection('2.4rem')}>
+          <ImprovementTitle improvementTitle={logicalLeaps.title} />
+          <LogicalLeap logicalLeapData={logicalLeaps} />
+        </section>
+      </div>
+    </div>
   );
 }
