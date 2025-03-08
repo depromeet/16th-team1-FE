@@ -201,7 +201,7 @@ export type TextProps = BaseButtonProps & {
   usage: 'text';
   size: TextSize;
   children: ReactNode;
-  icon?: never;
+  iconName?: never;
   iconPosition?: never;
   variant: TextVariant;
 };
@@ -211,7 +211,7 @@ export type MultiProps = BaseButtonProps & {
   usage: 'multi';
   size: RestSize;
   children: ReactNode;
-  icon: ReactNode;
+  iconName: string;
   iconPosition: 'left' | 'right';
   variant: RestVariant;
 };
@@ -220,7 +220,7 @@ export type MultiProps = BaseButtonProps & {
 export type IconProps = BaseButtonProps & {
   usage: 'icon';
   size: RestSize;
-  icon: ReactNode;
+  iconName: string;
   children?: never;
   iconPosition?: never;
   variant: IconVariant;

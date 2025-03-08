@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import { Button } from '../components/button/Button';
-import Icon from '../components/icon/icon';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
@@ -49,7 +48,7 @@ export const IconMediumButton: Story = {
     variant: 'icon',
     usage: 'icon',
     size: 'medium',
-    icon: <Icon name="pin" width={24} />,
+    iconName: 'pin',
   },
 };
 
@@ -60,7 +59,7 @@ export const MultiLeftLargeButton: Story = {
     usage: 'multi',
     iconPosition: 'left',
     size: 'large',
-    icon: <Icon name="pin" width={24} />,
+    iconName: 'pin',
   },
   argTypes: {
     iconPosition: {
