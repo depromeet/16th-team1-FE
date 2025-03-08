@@ -8,17 +8,15 @@ import * as styles from './landing-page.styles';
 
 export default function LandingPage() {
   return (
-    <div>
-      <div css={styles.landingPage}>
-        <div css={styles.flexColumn(10)}>
-          <RoutingStartSection />
-          <img src={totalEvaluationImage} css={styles.image} alt="total evalution image" />
-        </div>
-        <div css={styles.flexColumn(22)}>
-          <HelpersSection />
-          <FAQ />
-          <RoutingBottomSection />
-        </div>
+    <div css={styles.landingPage}>
+      <div css={styles.flexColumn(10)}>
+        <RoutingStartSection />
+        <img src={totalEvaluationImage} css={styles.image} alt="total evalution image" />
+      </div>
+      <div css={styles.flexColumn(22)}>
+        <HelpersSection />
+        <FAQ />
+        <RoutingBottomSection />
       </div>
     </div>
   );
