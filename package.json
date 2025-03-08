@@ -37,6 +37,7 @@
     "@radix-ui/react-visually-hidden": "^1.1.2",
     "@storybook/preview-api": "^8.6.2",
     "@tanstack/react-query": "^5.66.7",
+    "@tanstack/react-query-devtools": "^5.67.2",
     "axios": "^1.7.9",
     "dompurify": "^3.2.4",
     "path": "^0.12.7",
