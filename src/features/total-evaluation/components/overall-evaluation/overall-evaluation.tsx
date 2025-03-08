@@ -14,12 +14,34 @@ import NestedList, { NestedListItem } from '../nested-list/nested-list';
 
 import * as styles from './overall-evaluation.styles';
 
+export type GradeType = 'A' | 'B' | 'C' | 'D';
+
 interface OverallEvaluationProps {
   overallEvaluation: OverallEvaluationType;
 }
 
 export default function OverallEvaluation({ overallEvaluation }: OverallEvaluationProps) {
   const { summary, strengths, improvements, ...evaluationItems } = overallEvaluation;
+
+  const GRADE_THRESHOLDS: { threshold: number; grade: GradeType }[] = [
+    { threshold: 65, grade: 'D' },
+    { threshold: 75, grade: 'C' },
+    { threshold: 85, grade: 'B' },
+  ];
+
+  const getOverallGrade = () => {
+    const scores = Object.values(evaluationItems).map((item) => item.score);
+    const evaluationItemCount = scores.length;
+
+    const totalSum = scores.reduce((acc, curr) => acc + curr, 0);
+    const average = Math.round(totalSum / evaluationItemCount);
+
+    for (const { threshold, grade } of GRADE_THRESHOLDS) {
+      if (average < threshold) return grade;
+    }
+
+    return 'A';
+  };
 
   return (
     <div css={styles.overallEvaluationWrapper}>
@@ -31,7 +53,10 @@ export default function OverallEvaluation({ overallEvaluation }: OverallEvaluati
         <div css={styles.flexColumn}>
           <EvaluationSummary evaluationSummary={summary} />
           <Spacing size={4.8} />
-          <EvaluationChart overallEvaluationGrade={'A'} evaluationItems={evaluationItems} />
+          <EvaluationChart
+            overallEvaluationGrade={getOverallGrade()}
+            evaluationItems={evaluationItems}
+          />
           <Spacing size={6} />
           <EvaluationTable evaluationItems={evaluationItems} />
         </div>
