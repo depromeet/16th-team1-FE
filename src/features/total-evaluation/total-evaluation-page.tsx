@@ -15,7 +15,7 @@ import OverallEvaluation from './components/overall-evaluation/overall-evaluatio
 
 import * as styles from './total-evaluation-page.styles';
 
-export default function TotalEvalutionPage() {
+export default function TotalEvaluationPage() {
   const { improvementData, positives, negatives, logicalLeaps } = evaluationData;
 
   return (

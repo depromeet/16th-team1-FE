@@ -35,7 +35,10 @@ export const stepExplainText = withTheme(
   `,
 );
 
-export const image = (aspectRatio: number) => css`
+export const image = (aspectRatio: number, width: number) => css`
   aspect-ratio: ${aspectRatio};
   object-fit: cover;
+  width: 100%;
+  max-width: ${width}rem;
+  height: auto;
 `;
