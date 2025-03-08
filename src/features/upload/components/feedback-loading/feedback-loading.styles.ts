@@ -41,7 +41,7 @@ export const floating = css`
     }
 
     50% {
-      transform: translateY(-5px);
+      transform: translateY(-0.5rem);
     }
 
     100% {
