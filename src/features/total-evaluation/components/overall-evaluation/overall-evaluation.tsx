@@ -4,8 +4,8 @@ import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import Spacing from '@/common/components/spacing/spacing';
 
-import { overallEvaluationData } from '../../common/data';
 import { EVALUATION_LABEL } from '../../constants/evaluation-constant';
+import { OverallEvaluationType } from '../../services/use-get-portfolio-feedback';
 import EvaluationChart from '../evaluation-chart/evaluation-chart';
 import EvaluationSummary from '../evaluation-summary/evaluation-summary';
 import EvaluationTable from '../evaluation-table/evaluation-table';
@@ -14,10 +14,12 @@ import NestedList, { NestedListItem } from '../nested-list/nested-list';
 
 import * as styles from './overall-evaluation.styles';
 
-export default function OverallEvaluation() {
-  const { overallEvaluation, strengths, improvements } = overallEvaluationData;
+interface OverallEvaluationProps {
+  overallEvaluation: OverallEvaluationType;
+}
 
-  const { summary, overallEvaluationGrade, ...evaluationItems } = overallEvaluation;
+export default function OverallEvaluation({ overallEvaluation }: OverallEvaluationProps) {
+  const { summary, strengths, improvements, ...evaluationItems } = overallEvaluation;
 
   return (
     <div css={styles.overallEvaluationWrapper}>
@@ -29,10 +31,7 @@ export default function OverallEvaluation() {
         <div css={styles.flexColumn}>
           <EvaluationSummary evaluationSummary={summary} />
           <Spacing size={4.8} />
-          <EvaluationChart
-            overallEvaluationGrade={overallEvaluationGrade}
-            evaluationItems={evaluationItems}
-          />
+          <EvaluationChart overallEvaluationGrade={'A'} evaluationItems={evaluationItems} />
           <Spacing size={6} />
           <EvaluationTable evaluationItems={evaluationItems} />
         </div>

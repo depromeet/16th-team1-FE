@@ -1,3 +1,5 @@
+import { useParams } from 'react-router';
+
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import { evaluationData } from '@/features/total-evaluation/common/data';
@@ -12,11 +14,23 @@ import { EVALUATION_LABEL } from '@/features/total-evaluation/constants/evaluati
 import SelectedPageProvider from './components/context/selected-page/selected-page-provider';
 import SidebarProvider from './components/context/sidebar/sidebar-provider';
 import OverallEvaluation from './components/overall-evaluation/overall-evaluation';
+import {
+  OverallEvaluationType,
+  useGetPortfolioFeedback,
+} from './services/use-get-portfolio-feedback';
 
 import * as styles from './total-evaluation-page.styles';
 
 export default function TotalEvaluationPage() {
+  const { feedbackId } = useParams();
+
+  const { data, isLoading } = useGetPortfolioFeedback({ feedbackId: feedbackId as string });
+
   const { improvementData, positives, negatives, logicalLeaps } = evaluationData;
+
+  if (isLoading) {
+    return <div>로딩</div>;
+  }
 
   return (
     <SidebarProvider>
@@ -25,7 +39,9 @@ export default function TotalEvaluationPage() {
           <FeedbackSidebar />
 
           <div css={styles.totalEvaluationSection}>
-            <OverallEvaluation />
+            <OverallEvaluation
+              overallEvaluation={data?.result.overallEvaluation as OverallEvaluationType}
+            />
 
             <section css={styles.evaluationSection('1.6rem')}>
               <ImprovementTitle improvementTitle={improvementData.title} />

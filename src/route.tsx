@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: '/total-evaluation',
+    path: '/total-evaluation/:feedbackId',
     element: <TotalEvaluationPage />,
   },
 ]);
