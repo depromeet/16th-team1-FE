@@ -18,10 +18,11 @@ const ProjectTitleButton = forwardRef<HTMLButtonElement, ProjectTitleButtonProps
     return (
       <BaseButton css={styles.projectTitleButton(isCurrentTriggerSelected)} ref={ref} {...props}>
         <Icon
-          name="ico_spark"
+          name="spark"
+          width={24}
+          color={theme.colors.PURPLE[300]}
           customStyle={css`
             width: ${!isCurrentTriggerSelected && '0'};
-            color: ${theme.colors.PURPLE[300]};
             transition:
               opacity 0.3s ease-in-out,
               width 0.3s ease-in-out;
