@@ -5,8 +5,6 @@ import { withTheme } from '@/common/utils/with-theme';
 export const nestedList = css`
   display: flex;
   flex-direction: column;
-  border-bottom: 0.1rem solid #2f2f2f;
-  padding-bottom: 5rem;
 `;
 
 export const orderedList = (gap?: number) => css`

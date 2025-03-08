@@ -9,6 +9,8 @@ type FeedbackContentType =
   | 'LOGICAL_LEAP'
   | 'REDUNDANCY_OR_CLARITY';
 
+export type ProjectProcessType = 'GOOD' | 'SOSO' | 'BAD';
+
 interface OverallContentType {
   score: number;
   review: string;
@@ -43,8 +45,9 @@ interface FeedbackPerPageType {
 
 export interface ProjectEvaluationType {
   projectName: string;
-  process: boolean[];
+  process: ProjectProcessType[];
   processReview: string;
+  imageUrl: string;
   positiveFeedback: ListContentType[];
   negativeFeedback: ListContentType[];
   feedbackPerPage: FeedbackPerPageType[];
@@ -66,7 +69,7 @@ interface UseGetPortfolioFeedbackResponse {
     portfolioId: string;
     overallEvaluation: OverallEvaluationType;
     additionalChat: AdditionalChatType[];
-    projectEvaluation: ProjectEvaluationType;
+    projectEvaluation: ProjectEvaluationType[];
   };
 }
 
