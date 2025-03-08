@@ -12,7 +12,7 @@ function ControlButtons() {
   const theme = useTheme();
   return (
     <header css={styles.container}>
-      <Icon name="logo-full-sidebar" color={theme.colors.SORA[200]} />
+      <Icon name="logo-full-header-navigation" color={theme.colors.SORA[200]} />
       <nav css={styles.controlButtons}>
         <AddButton />
         <LeftSidebar.Trigger content={<SidebarCloseButton />} />
