@@ -61,7 +61,7 @@ export const totalDescriptionWrapper = css`
 export const date = withTheme(
   (theme) => css`
     ${theme.fonts.BODY.BODY2_M};
-    color: ${theme.colors.GRAY[400]};
+    color: ${theme.colors.GRAY[600]};
     padding-right: 0.8rem;
   `,
 );
