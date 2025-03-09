@@ -14,9 +14,7 @@ export default function LandingPage() {
         <img src={totalEvaluationImage} css={styles.image} alt="total evalution image" />
       </div>
       <div css={styles.flexColumn(22)}>
-        <div id="features-section">
-          <HelpersSection />
-        </div>
+        <HelpersSection />
         <div id="help-section">
           <FAQ />
         </div>
