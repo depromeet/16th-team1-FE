@@ -92,7 +92,7 @@ export const date = withTheme(
   (theme) => css`
     display: flex;
     align-items: center;
-    width: 72px;
+    width: 7.2rem;
     height: 100%;
     ${theme.fonts.BODY.BODY3_R};
     color: ${theme.colors.GRAY[400]};
