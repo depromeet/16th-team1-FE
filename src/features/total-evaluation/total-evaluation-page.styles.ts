@@ -11,7 +11,6 @@ export const totalEvaluationSection = css`
   display: flex;
   width: 82rem;
   margin: auto;
-  padding: 2rem;
   flex-direction: column;
   gap: 20rem;
 `;
