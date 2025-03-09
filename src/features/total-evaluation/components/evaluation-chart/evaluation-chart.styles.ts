@@ -28,15 +28,3 @@ export const criteria = withTheme(
     color: #83828a;
   `,
 );
-
-export const evaluationGrade = css`
-  width: 16rem;
-  height: 16rem;
-  border: 0.2rem solid #4d5159;
-  color: #37393e;
-  font-size: 13.642rem;
-  font-weight: 400;
-  text-align: center;
-  line-height: 15.47rem;
-  background-color: #ebeef2;
-`;

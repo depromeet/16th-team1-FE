@@ -1,11 +1,14 @@
+import Icon from '@/common/components/icon/icon';
+
 import BarChart from '../../../../common/components/bar-chart/bar-chart';
 import { EvaluationItemsType } from '../../types/evaluation-types';
 import { getEvaluationData } from '../../utils/get-evaluation-data';
+import { GradeType } from '../overall-evaluation/overall-evaluation';
 
 import * as styles from './evaluation-chart.styles';
 
 interface EvaluationChartProps {
-  overallEvaluationGrade: string;
+  overallEvaluationGrade: GradeType;
   evaluationItems: EvaluationItemsType;
 }
 
@@ -25,7 +28,7 @@ export default function EvaluationChart({
           </div>
         ))}
       </div>
-      <div css={styles.evaluationGrade}>{overallEvaluationGrade}</div>
+      <Icon name={`grade_${overallEvaluationGrade}`} />
     </div>
   );
 }

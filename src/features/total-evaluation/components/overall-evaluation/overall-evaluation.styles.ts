@@ -1,7 +1,5 @@
 import { css } from '@emotion/react';
 
-import { withTheme } from '@/common/utils/with-theme';
-
 export const overallEvaluationWrapper = css`
   display: flex;
   flex-direction: column;
@@ -14,19 +12,9 @@ export const summaryWrapper = css`
   gap: 1.6rem;
 `;
 
-export const summaryTitle = withTheme(
-  (theme) => css`
-    display: flex;
-    align-items: center;
-    ${theme.fonts.CAPTION.CAPTION1_SB}
-    color: ${theme.colors.GRAY[300]};
-  `,
-);
-
 export const analysisWrapper = css`
   display: flex;
   flex-direction: column;
-  gap: 5rem;
 `;
 
 export const flexColumn = css`

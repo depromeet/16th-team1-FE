@@ -1,5 +1,7 @@
 import { EvaluationCriteria } from '@/features/total-evaluation/types/evaluation-types';
 
+import { FeedbackContentType } from '../services/use-get-portfolio-feedback';
+
 export const IMPROVEMENT_CONSTANT = {
   originalText: '기존 문장',
   revisedText: '수정 문장',
@@ -24,4 +26,13 @@ export const EVALUATION_LABEL: Record<string, string> = {
   improvements: '개선할 점 및 해결방안',
   positives: '이런 부분이 좋아요',
   negatives: '이런 부분이 아쉬워요',
+};
+
+/** 장표별 상세 평가 항목에 해당하는 라벨 */
+export const FEEDBACK_PER_PAGE_CONTENT_TYPE: Record<FeedbackContentType, string> = {
+  TRANSLATION_OR_AWKWARD: '번역체/어색한 표현',
+  LENGTH_OR_READABILITY: '문장이 길거나 가독성이 떨어지는 표현 수정',
+  READABILITY_IMPROVEMENT: '가독성 개선',
+  LOGICAL_LEAP: '논리적 비약',
+  REDUNDANCY_OR_CLARITY: '불필요한 반복 및 의미 명확화',
 };

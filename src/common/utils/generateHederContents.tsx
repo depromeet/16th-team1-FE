@@ -4,7 +4,9 @@ import Icon from '../components/icon/icon';
 import { PageUrlType } from '../constants/path';
 
 export const generateHeaderContents = (pageUrl: PageUrlType) => {
-  const left = pageUrl !== 'total-evaluation' && <Icon name="logo-full-header-navigation" />;
+  const left = pageUrl !== 'total-evaluation/:feedbackId' && (
+    <Icon name="logo-full-header-navigation" />
+  );
   const middle = pageUrl === '/' && <NavigationButtons />;
   const right = pageUrl === '/' ? <Icon name="fix" /> : <Icon name="fix" />;
 
