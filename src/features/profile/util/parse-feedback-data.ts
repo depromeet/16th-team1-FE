@@ -12,15 +12,15 @@ export const parseFeedbackData = (feedbackData: FeedbackItem[]): GroupedFeedback
   const result: GroupedFeedback = {};
 
   feedbackData.forEach((item) => {
-    const yearAndMonth = parseYearAndMonth(item.date);
-    const day = parseDay(item.date);
+    const year = parseYear(item.date);
+    const monthAndDay = parseMonthAndDay(item.date);
 
-    if (!result[yearAndMonth]) {
-      result[yearAndMonth] = [];
+    if (!result[year]) {
+      result[year] = [];
     }
 
-    result[yearAndMonth].push({
-      date: day,
+    result[year].push({
+      date: monthAndDay,
       title: item.title,
       feedbackId: item.feedbackId,
     });
@@ -29,14 +29,15 @@ export const parseFeedbackData = (feedbackData: FeedbackItem[]): GroupedFeedback
   return result;
 };
 
-const parseYearAndMonth = (dateData: string): string => {
+const parseYear = (dateData: string): string => {
   const date = new Date(dateData);
   const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  return `${year}.${month}`;
+  return `${year}년`;
 };
 
-const parseDay = (dateData: string): string => {
+const parseMonthAndDay = (dateData: string): string => {
   const date = new Date(dateData);
-  return date.getDate().toString();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${month}. ${day}.`;
 };
