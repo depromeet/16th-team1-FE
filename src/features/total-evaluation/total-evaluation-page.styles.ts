@@ -13,11 +13,22 @@ export const totalEvaluationSection = css`
   margin: auto;
   padding: 2rem;
   flex-direction: column;
-  gap: 5rem;
+  gap: 20rem;
 `;
 
 export const evaluationSection = (gap: string) => css`
   display: flex;
   flex-direction: column;
   gap: ${gap};
+`;
+
+export const hr = css`
+  height: 0.1rem;
+  margin: 5rem 0;
+  background-color: #2f2f2f;
+  border: none;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 `;

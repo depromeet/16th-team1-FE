@@ -68,12 +68,14 @@ export default function OverallEvaluation({ overallEvaluation }: OverallEvaluati
           color={theme.colors.SORA[400]}
           listItems={strengths}
         />
+        <hr css={commonStyles.hr} />
         <EvaluationSection
           titleKey="improvements"
           iconName="fix"
           color="#D6AA59"
           listItems={improvements}
         />
+        <hr css={commonStyles.hr} />
       </div>
     </div>
   );

@@ -15,7 +15,6 @@ export const summaryWrapper = css`
 export const analysisWrapper = css`
   display: flex;
   flex-direction: column;
-  gap: 5rem;
 `;
 
 export const flexColumn = css`

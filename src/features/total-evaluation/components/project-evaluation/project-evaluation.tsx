@@ -1,3 +1,5 @@
+import * as commonStyles from '@features/total-evaluation/total-evaluation-page.styles';
+
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import Spacing from '@/common/components/spacing/spacing';
@@ -54,7 +56,7 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
           <p css={styles.processReviewContent}>{processReview}</p>
         </div>
 
-        <hr css={styles.hr} />
+        <hr css={commonStyles.hr} />
         <section css={styles.evaluationSection('3.2rem')}>
           <EvaluationTitle
             title={EVALUATION_LABEL['positives']}
@@ -64,7 +66,7 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
           <NestedList listItems={positiveFeedback} gap={3.2} />
         </section>
 
-        <hr css={styles.hr} />
+        <hr css={commonStyles.hr} />
         <section css={styles.evaluationSection('3.2rem')}>
           <EvaluationTitle
             title={EVALUATION_LABEL['negatives']}
@@ -74,7 +76,7 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
           <NestedList listItems={negativeFeedback} gap={3.2} />
         </section>
 
-        <hr css={styles.hr} />
+        <hr css={commonStyles.hr} />
       </section>
     </div>
   );

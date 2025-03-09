@@ -52,17 +52,6 @@ export const processReviewContent = withTheme(
   `,
 );
 
-export const hr = css`
-  height: 0.1rem;
-  margin: 5rem 0;
-  background-color: #2f2f2f;
-  border: none;
-
-  &:last-of-type {
-    margin-bottom: 0;
-  }
-`;
-
 export const projectProcessItems = css`
   display: flex;
   align-items: center;
