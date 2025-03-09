@@ -4,12 +4,18 @@ import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import Spacing from '@/common/components/spacing/spacing';
 
-import { EVALUATION_LABEL } from '../../constants/evaluation-constant';
 import {
+  EVALUATION_LABEL,
+  FEEDBACK_PER_PAGE_CONTENT_TYPE,
+} from '../../constants/evaluation-constant';
+import {
+  FeedbackPerPageType,
   ProjectEvaluationType,
   ProjectProcessType,
 } from '../../services/use-get-portfolio-feedback';
 import EvaluationTitle from '../evaluation-title/evaluation-title';
+import ImprovementSection from '../improvement-section/improvement-section';
+import ImprovementTitle from '../improvement-title/improvement-title';
 import NestedList from '../nested-list/nested-list';
 import SummaryTitle from '../summary-title/summary-title';
 
@@ -31,11 +37,19 @@ const getProcessIcon = (process: ProjectProcessType) => {
 };
 
 export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluationProps) {
-  const { projectName, positiveFeedback, negativeFeedback, imageUrl, processReview, process } =
-    projectEvaluation;
+  const {
+    projectName,
+    positiveFeedback,
+    negativeFeedback,
+    imageUrl,
+    processReview,
+    process,
+    feedbackPerPage,
+  } = projectEvaluation;
 
   return (
     <div css={styles.projectEvaluationWrapper}>
+      {/* 프로젝트 평가 */}
       <section css={styles.flexColumn}>
         <SummaryTitle title="프로젝트 평가" />
         <Spacing size={1.6} />
@@ -78,6 +92,27 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
 
         <hr css={commonStyles.hr} />
       </section>
+
+      {/* 장표별 평가 */}
+      <section css={styles.feedbackPerPageWrapper}>
+        <div css={styles.flexColumn}>
+          <SummaryTitle title="장표별 상세 평가" />
+          <Spacing size={1.6} />
+          <h3
+            css={styles.projectName}
+          >{`페이지별로 수정이 필요한 부분 ${feedbackPerPage.length}가지를 찾았어요`}</h3>
+        </div>
+
+        <div css={styles.feedbackPerPageItems}>
+          {feedbackPerPage.map((feedbackData) => (
+            <FeedbackPerPageItem
+              key={feedbackData.pageNumber}
+              projectName={projectName}
+              feedbackData={feedbackData}
+            />
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
@@ -95,6 +130,38 @@ function ProjectProcessItem({ process, category }: ProjectProcessItemProps) {
         <Icon name={name} />
       </div>
       <span css={styles.processCategory}>{category}</span>
+    </div>
+  );
+}
+
+interface FeedbackPerPageItemProps {
+  projectName: string;
+  feedbackData: FeedbackPerPageType;
+}
+
+function FeedbackPerPageItem({ projectName, feedbackData }: FeedbackPerPageItemProps) {
+  const { pageNumber, imageUrl, contents } = feedbackData;
+
+  return (
+    <div css={styles.feedbackPerPageItem}>
+      <div css={styles.feedbackPageImageContainer}>
+        <span css={styles.pageNumber}>{`${pageNumber}p`}</span>
+        <img css={styles.feedbackPageImage} src={imageUrl} alt={`${projectName}-${pageNumber}`} />
+      </div>
+
+      <div css={styles.feedbackPerPageContentWrapper}>
+        {contents.map((content) => (
+          <div key={content.type} css={styles.feedbackPerPageContent}>
+            <ImprovementTitle improvementTitle={FEEDBACK_PER_PAGE_CONTENT_TYPE[content.type]} />
+            <ImprovementSection
+              improvementData={{
+                originalText: content.beforeEdit,
+                revisedText: content.afterEdit,
+              }}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { axiosInstance } from '@/common/services/service-config';
 
-type FeedbackContentType =
+export type FeedbackContentType =
   | 'TRANSLATION_OR_AWKWARD'
   | 'LENGTH_OR_READABILITY'
   | 'READABILITY_IMPROVEMENT'
@@ -31,7 +31,7 @@ export interface OverallEvaluationType {
   improvements: ListContentType[];
 }
 
-interface FeedbackPerPageType {
+export interface FeedbackPerPageType {
   pageNumber: string;
   contents: [
     {

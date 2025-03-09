@@ -92,3 +92,63 @@ export const processCategory = withTheme(
     color: ${theme.colors.GRAY[300]};
   `,
 );
+
+export const feedbackPerPageWrapper = css`
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+`;
+
+export const feedbackPerPageItems = css`
+  display: flex;
+  flex-direction: column;
+  gap: 10rem;
+`;
+
+export const feedbackPerPageItem = css`
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+`;
+
+export const feedbackPageImageContainer = withTheme(
+  (theme) => css`
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 2.4rem 0;
+    border-radius: 1.2rem;
+    background-color: ${theme.colors.GRAY[700]};
+  `,
+);
+
+export const pageNumber = withTheme(
+  (theme) => css`
+    position: absolute;
+    left: 2.7rem;
+    ${theme.fonts.CAPTION.CAPTION1_M};
+    color: ${theme.colors.GRAY[50]};
+  `,
+);
+
+export const feedbackPageImage = withTheme(
+  (theme) => css`
+    width: 56.5rem;
+    height: 31.8rem;
+    border: 0.2rem solid ${theme.colors.GRAY[200]};
+    flex-shrink: 0;
+    aspect-ratio: 565/318;
+  `,
+);
+
+export const feedbackPerPageContentWrapper = css`
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+`;
+
+export const feedbackPerPageContent = css`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;

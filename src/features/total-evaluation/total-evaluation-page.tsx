@@ -43,6 +43,7 @@ export default function TotalEvaluationPage() {
               <ProjectEvaluation key={project.projectName} projectEvaluation={project} />
             ))}
 
+            {/* TODO: 장표별 상세 평가 완료 후 제거 */}
             <section css={styles.evaluationSection('1.6rem')}>
               <ImprovementTitle improvementTitle={improvementData.title} />
               <ImprovementSection improvementData={improvementData} />
