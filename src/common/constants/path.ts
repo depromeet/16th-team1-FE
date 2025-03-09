@@ -1,8 +1,8 @@
 export enum PAGE_URL {
   Landing = '/',
   Upload = 'upload',
-  TotalEvaluation = 'total-evaluation/:feedbackId',
+  TotalEvaluation = 'total-evaluation',
   Login = 'login',
 }
 
-export type PageUrlType = (typeof PAGE_URL)[keyof typeof PAGE_URL];
+export type PageLabelKey = keyof typeof PAGE_URL;

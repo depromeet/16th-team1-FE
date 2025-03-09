@@ -2,7 +2,6 @@ import { ReactNode, useContext } from 'react';
 
 import ControlButtons from './control-buttons';
 import { SidebarContext } from '../../context/sidebar/sidebar-context';
-import { SidebarOpenButton } from '../../custom-buttons/sidebar-open-button';
 import { LeftSidebar } from '../base-sidebar-left/base-sidebar-left';
 
 export interface LeftSlidePanelToggleProps {
@@ -27,10 +26,7 @@ function FeedbackPageNavigator({ children }: LeftSlidePanelToggleProps) {
       </LeftSidebar.Container>
 
       {/* PlaceHolder */}
-      <LeftSidebar.PlaceHolder
-        isSidebarOpen={isSidebarOpen}
-        content={<SidebarOpenButton onClick={() => setIsSidebarOpen((prev) => !prev)} />}
-      />
+      <LeftSidebar.PlaceHolder isSidebarOpen={isSidebarOpen} />
     </LeftSidebar>
   );
 }

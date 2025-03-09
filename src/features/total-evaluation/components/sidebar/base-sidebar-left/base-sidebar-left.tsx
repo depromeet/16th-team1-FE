@@ -116,20 +116,17 @@ interface PlaceHolderContentProps {
     closedWidth: number;
   };
 
-  content: ReactNode;
+  content?: ReactNode;
 }
 function PlaceHolderContent({
   isSidebarOpen,
   size = {
     width: 26.4,
-    closedWidth: 6,
+    closedWidth: 0,
   },
-  content,
 }: PlaceHolderContentProps) {
   return (
-    <section css={styles.sidebarPlaceholder(isSidebarOpen, size)} aria-hidden={isSidebarOpen}>
-      {!isSidebarOpen && content}
-    </section>
+    <section css={styles.sidebarPlaceholder(isSidebarOpen, size)} aria-hidden={isSidebarOpen} />
   );
 }
 

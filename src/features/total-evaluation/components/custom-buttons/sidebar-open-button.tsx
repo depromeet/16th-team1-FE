@@ -11,7 +11,7 @@ const SidebarOpenButton = forwardRef<HTMLButtonElement, ButtonHTMLAttributes<HTM
   (props, ref) => {
     const theme = useTheme();
     return (
-      <BaseButton css={[styles.controlButtonCommonStyle, styles.openButton]} {...props} ref={ref}>
+      <BaseButton css={styles.controlButtonCommonStyle} {...props} ref={ref}>
         <Icon
           name="ico_rightarrow2"
           color={theme.colors.GRAY[700]}
