@@ -6,8 +6,6 @@ import ImprovementSection from '@/features/total-evaluation/components/improveme
 import ImprovementTitle from '@/features/total-evaluation/components/improvement-title/improvement-title';
 import LogicalLeap from '@/features/total-evaluation/components/logical-leap/logical-leap';
 
-import SelectedPageProvider from './components/context/selected-page/selected-page-provider';
-import SidebarProvider from './components/context/sidebar/sidebar-provider';
 import OverallEvaluation from './components/overall-evaluation/overall-evaluation';
 import ProjectEvaluation from './components/project-evaluation/project-evaluation';
 import {
