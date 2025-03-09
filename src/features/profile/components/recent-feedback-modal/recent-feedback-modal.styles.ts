@@ -2,31 +2,52 @@ import { css } from '@emotion/react';
 
 import { withTheme } from '@/common/utils/with-theme';
 
+// scrollbar 스타일 적용
+export const scrollbar = css`
+  ::-webkit-scrollbar {
+    width: 0.4rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(0 0 0 / 30%);
+  }
+`;
+
 export const modalHeader = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
   align-self: stretch;
-  padding: 4rem 4rem 1.6rem;
 `;
 
 export const title = withTheme(
   (theme) => css`
-    ${theme.fonts.SUBTITLE.SUB2_SB}
-    color: ${theme.colors.GRAY[400]};
+    padding: 0 1rem;
+    ${theme.fonts.SUBTITLE.SUB3_SB}
+    color: ${theme.colors.GRAY[200]};
   `,
 );
+
+export const closeIconWrapper = css`
+  display: flex;
+  align-items: center;
+  margin: 0.8rem 1rem;
+`;
 
 export const modalDescription = css`
   display: flex;
   align-items: flex-start;
-  position: relative;
   z-index: 1;
-  padding: 2.4rem 4rem 2.8rem;
   overflow-y: auto;
   flex-direction: column;
   gap: 2.4rem;
   align-self: stretch;
+  padding-right: 0.4rem;
+  ${scrollbar}
 `;
 
 export const dataWrapper = css`
@@ -34,42 +55,55 @@ export const dataWrapper = css`
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
-  gap: 1.4rem;
+  gap: 0.8rem;
 `;
 
-export const yearAndMonth = withTheme(
+export const yearWrapper = withTheme(
   (theme) => css`
+    padding: 0 1rem 0.2rem;
     ${theme.fonts.SUBTITLE.SUB3_B}
-    color: ${theme.colors.GRAY[200]};
+    color: ${theme.colors.GRAY[300]};
   `,
 );
 
 export const feedbackGap = css`
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  align-self: stretch;
 `;
 
-export const totalDescriptionWrapper = css`
-  display: flex;
-  align-items: flex-start;
-  padding: 0.8rem;
-  align-self: stretch;
-  gap: 4rem;
-`;
+export const totalDescriptionWrapper = withTheme(
+  (theme) => css`
+    display: flex;
+    align-items: flex-start;
+    padding: 0.6rem 1rem;
+    gap: 0.8rem;
+    align-self: stretch;
+    border-radius: 0.8rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${theme.colors.GRAY[900]};
+    }
+  `,
+);
 
 export const date = withTheme(
   (theme) => css`
-    ${theme.fonts.BODY.BODY2_M};
-    color: ${theme.colors.GRAY[600]};
-    padding-right: 0.8rem;
+    display: flex;
+    align-items: center;
+    width: 7.2rem;
+    height: 100%;
+    ${theme.fonts.BODY.BODY3_R};
+    color: ${theme.colors.GRAY[400]};
   `,
 );
 
 export const descriptionWrapper = css`
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.7rem;
+  align-self: stretch;
 `;
 
 export const description = withTheme(
@@ -90,16 +124,11 @@ export const shadow = (isShow: boolean) => css`
   transition: opacity 0.2s ease;
   border-radius: 2.4rem;
   opacity: ${isShow ? 1 : 0};
+  pointer-events: none;
 `;
 
-export const scrollbar = css`
-  ::-webkit-scrollbar {
-    z-index: 999;
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: rgb(0 0 0 / 30%);
-    border-radius: 4px;
-  }
+export const bottomWrapper = css`
+  height: 0.01rem;
+  flex-shrink: 0;
+  margin-top: -2.4rem;
 `;
