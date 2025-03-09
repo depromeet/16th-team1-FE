@@ -1,7 +1,7 @@
 export enum PAGE_URL {
   Landing = '/',
   Upload = 'upload',
-  TotalEvaluation = 'total-evaluation/:feedbackId',
+  TotalEvaluation = 'total-evaluation',
   Login = 'login',
 }
 

@@ -20,18 +20,18 @@ interface RouterInfoType {
 
 const RouterInfo: RouterInfoType[] = [
   {
-    path: PAGE_URL.Login,
-    withAuthorization: false,
-    element: <LoginPage />,
-    label: 'Login',
-    isHeader: false,
-  },
-  {
     path: PAGE_URL.Landing,
     withAuthorization: false,
     element: <LandingPage />,
     label: 'Landing',
     isHeader: true,
+  },
+  {
+    path: PAGE_URL.Login,
+    withAuthorization: false,
+    element: <LoginPage />,
+    label: 'Login',
+    isHeader: false,
   },
   {
     path: PAGE_URL.Upload,
@@ -41,7 +41,7 @@ const RouterInfo: RouterInfoType[] = [
     isHeader: true,
   },
   {
-    path: PAGE_URL.TotalEvaluation,
+    path: `${PAGE_URL.TotalEvaluation}/:feedbackId`,
     withAuthorization: true,
     element: <TotalEvaluationPage />,
     label: 'TotalEvaluation',
