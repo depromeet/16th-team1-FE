@@ -6,6 +6,14 @@ import * as styles from './landing-middle-buttons.styles';
 
 function LandingMiddleButtons() {
   const theme = useTheme();
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div css={styles.container}>
       <Button
@@ -15,6 +23,7 @@ function LandingMiddleButtons() {
         css={css`
           color: ${theme.colors.GRAY[500]};
         `}
+        onClick={() => scrollToSection('start-section')}
       >
         Start
       </Button>
@@ -25,6 +34,7 @@ function LandingMiddleButtons() {
         css={css`
           color: ${theme.colors.GRAY[500]};
         `}
+        onClick={() => scrollToSection('features-section')}
       >
         Features
       </Button>
@@ -35,6 +45,7 @@ function LandingMiddleButtons() {
         css={css`
           color: ${theme.colors.GRAY[500]};
         `}
+        onClick={() => scrollToSection('help-section')}
       >
         Help
       </Button>
