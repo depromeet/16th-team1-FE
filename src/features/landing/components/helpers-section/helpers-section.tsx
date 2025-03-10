@@ -12,7 +12,7 @@ import * as styles from './helpers-section.styles';
 export default function HelpersSection() {
   return (
     <>
-      <section css={styles.sectionWrapper}>
+      <section css={styles.sectionWrapper} id="features-section">
         <h2 css={styles.sectionTitle}>
           포트폴리오 제작하면서
           <br />
