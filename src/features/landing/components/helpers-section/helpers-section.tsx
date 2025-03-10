@@ -5,6 +5,7 @@ import QuestionCard from '@/features/landing/components/helpers-section/question
 import StepCard from '@/features/landing/components/helpers-section/step-card';
 
 import DetailImprovement from './detail-improvement';
+import ProjectsWrapper from './projects-wrapper';
 import TotalEvaluationGrid from './total-evaluation-grid';
 
 import * as styles from './helpers-section.styles';
@@ -73,6 +74,7 @@ export default function HelpersSection() {
             단계별로 확인해요
           </h2>
         </div>
+        <ProjectsWrapper />
       </section>
 
       <section css={styles.sectionWrapper}>

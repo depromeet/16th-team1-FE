@@ -94,3 +94,34 @@ export const detailImprovementData = [
     revisedText: '직원용 노트북 화면에서도 사용할 수 있도록 반응형 웹을 고려해 제작했습니다.',
   },
 ];
+
+export const projectsData = [
+  {
+    image: './images/project-01.png',
+    feedbackType: '문제정의',
+    process: 'SOSO',
+    feedbackDescription:
+      '문제 정의가 포함되어 있지만, 근거가 부족해요. 데이터를 활용해 설득력을 높일 필요가 있어요.',
+  },
+  {
+    image: './images/project-02.png',
+    feedbackType: '가설',
+    process: 'GOOD',
+    feedbackDescription:
+      '가설이 명확하고 설득력 있어요. 문제와 자연스럽게 연결돼서 이해하기 쉬워요.',
+  },
+  {
+    image: './images/project-03.png',
+    feedbackType: '결과',
+    process: 'GOOD',
+    feedbackDescription:
+      '데이터를 기반으로 기존 가설을 검증한 결과가 돋보여요. 실제 사용자 반응까지 포함돼 있어서 결과의 신뢰도가 높아요.',
+  },
+  {
+    image: './images/project-04.png',
+    feedbackType: '회고',
+    process: 'BAD',
+    feedbackDescription:
+      '프로젝트 마무리에 대한 정리가 아쉬워요. 프로젝트 과정에서 겪은 시행착오나 배운 점이 정리되면 좋겠어요.',
+  },
+];
