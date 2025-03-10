@@ -81,7 +81,7 @@ export default function ProjectsWrapper() {
 
   return (
     <div css={styles.projectContainer}>
-      <div ref={container} className="test" css={styles.projectScrollContainer}>
+      <div ref={container} id="projects-container" css={styles.projectScrollContainer}>
         <Swiper slidesPerView={1} onSwiper={(swiper) => (swiperRef.current = swiper)}>
           {projectsData.map((project, index) => (
             <SwiperSlide key={index}>
