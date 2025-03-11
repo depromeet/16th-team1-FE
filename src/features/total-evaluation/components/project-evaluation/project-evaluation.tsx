@@ -57,19 +57,16 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
         <Spacing size={2.4} />
         <img src={imageUrl} css={styles.projectImage} />
         <Spacing size={3.2} />
-
         <div css={styles.projectProcessItems}>
           {PROCESS_CATEGORIES.map((category, idx) => (
             <ProjectProcessItem key={category} category={category} process={process[idx]} />
           ))}
         </div>
-
         <Spacing size={2.9} />
         <div css={styles.processReviewWrapper}>
           <span css={styles.processReviewTitle}>프로세스 평가</span>
           <p css={styles.processReviewContent}>{processReview}</p>
         </div>
-
         <hr css={commonStyles.hr} />
         <section css={styles.evaluationSection('3.2rem')}>
           <EvaluationTitle
@@ -79,7 +76,6 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
           />
           <NestedList listItems={positiveFeedback} gap={3.2} />
         </section>
-
         <hr css={commonStyles.hr} />
         <section css={styles.evaluationSection('3.2rem')}>
           <EvaluationTitle
@@ -89,7 +85,6 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
           />
           <NestedList listItems={negativeFeedback} gap={3.2} />
         </section>
-
         <hr css={commonStyles.hr} />
       </section>
 
@@ -144,11 +139,10 @@ function FeedbackPerPageItem({ projectName, feedbackData }: FeedbackPerPageItemP
 
   return (
     <div css={styles.feedbackPerPageItem}>
-      <div css={styles.feedbackPageImageContainer}>
+      <div css={styles.feedbackPageImageContainer} id={`feedback-${pageNumber}`}>
         <span css={styles.pageNumber}>{`${pageNumber}p`}</span>
         <img css={styles.feedbackPageImage} src={imageUrl} alt={`${projectName}-${pageNumber}`} />
       </div>
-
       <div css={styles.feedbackPerPageContentWrapper}>
         {contents.map((content) => (
           <div key={content.type} css={styles.feedbackPerPageContent}>

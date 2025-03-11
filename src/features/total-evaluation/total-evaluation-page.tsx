@@ -19,6 +19,7 @@ export default function TotalEvaluationPage() {
   const { feedbackId } = useParams();
 
   const { data, isLoading } = useGetPortfolioFeedback({ feedbackId: feedbackId as string });
+  console.log(data);
 
   const { improvementData, logicalLeaps } = evaluationData;
 
@@ -28,7 +29,10 @@ export default function TotalEvaluationPage() {
 
   return (
     <div css={styles.container}>
-      <FeedbackSidebar />
+      {/* TODO: Suspense적용 후, 조건부 렌더링 제거 예정 */}
+      {data?.result.projectEvaluation && (
+        <FeedbackSidebar projectEvaluation={data?.result.projectEvaluation} />
+      )}
 
       <div css={styles.totalEvaluationSection}>
         <OverallEvaluation
