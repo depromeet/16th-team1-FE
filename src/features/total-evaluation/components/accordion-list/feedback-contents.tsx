@@ -19,23 +19,43 @@ function FeedbackContents({
   renderContentButton,
   renderTriggerButton,
 }: AccordionItemProps) {
-  return dataList.map(({ projectName, feedbackPerPage }) => (
-    <Accordion.Item key={projectName} value={projectName} css={styles.container}>
-      <Accordion.Header>
-        <Accordion.Trigger asChild>{renderTriggerButton(projectName)}</Accordion.Trigger>
-      </Accordion.Header>
-
-      <Accordion.Content css={styles.defaultAnimation}>
-        <ul css={styles.wrapper} aria-label={`${projectName} 피드백 페이지 목록`}>
-          {feedbackPerPage.map(({ pageNumber }, index) => (
-            <li key={pageNumber} role="listitem">
-              {renderContentButton(pageNumber, index)}
-            </li>
-          ))}
-        </ul>
-      </Accordion.Content>
-    </Accordion.Item>
-  ));
+  return (
+    <>
+      {dataList.map(({ projectName, feedbackPerPage }) => (
+        <Accordion.Item key={projectName} value={projectName} css={styles.container}>
+          <Accordion.Header>
+            <Accordion.Trigger asChild>{renderTriggerButton(projectName)}</Accordion.Trigger>
+          </Accordion.Header>
+          <Accordion.Content css={styles.defaultAnimation}>
+            <ul css={styles.wrapper} aria-label={`${projectName} 피드백 페이지 목록`}>
+              {renderFeedbackList(projectName, feedbackPerPage, renderContentButton)}
+            </ul>
+          </Accordion.Content>
+        </Accordion.Item>
+      ))}
+    </>
+  );
 }
 
 export default FeedbackContents;
+
+function renderFeedbackList(
+  projectName: string,
+  feedbackPerPage: ProjectEvaluationType['feedbackPerPage'],
+  renderContentButton: RenderAccordionContentButtonType,
+) {
+  if (projectName === '포트폴리오 종합 평가') {
+    return <li role="listitem">{renderContentButton('종합 평가 요약', 0)}</li>;
+  }
+
+  return (
+    <>
+      <li role="listitem">{renderContentButton('프로세스 평가', 0)}</li>
+      {feedbackPerPage.map(({ pageNumber }, index) => (
+        <li key={pageNumber} role="listitem">
+          {renderContentButton(`${pageNumber}P`, index + 1)}
+        </li>
+      ))}
+    </>
+  );
+}

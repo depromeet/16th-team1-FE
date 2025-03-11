@@ -63,7 +63,7 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
           ))}
         </div>
         <Spacing size={2.9} />
-        <div css={styles.processReviewWrapper}>
+        <div css={styles.processReviewWrapper} id="feedback-프로세스 평가">
           <span css={styles.processReviewTitle}>프로세스 평가</span>
           <p css={styles.processReviewContent}>{processReview}</p>
         </div>
@@ -139,7 +139,7 @@ function FeedbackPerPageItem({ projectName, feedbackData }: FeedbackPerPageItemP
 
   return (
     <div css={styles.feedbackPerPageItem}>
-      <div css={styles.feedbackPageImageContainer} id={`feedback-${pageNumber}`}>
+      <div css={styles.feedbackPageImageContainer} id={`feedback-${pageNumber}P`}>
         <span css={styles.pageNumber}>{`${pageNumber}p`}</span>
         <img css={styles.feedbackPageImage} src={imageUrl} alt={`${projectName}-${pageNumber}`} />
       </div>

@@ -19,7 +19,6 @@ export default function TotalEvaluationPage() {
   const { feedbackId } = useParams();
 
   const { data, isLoading } = useGetPortfolioFeedback({ feedbackId: feedbackId as string });
-  console.log(data);
 
   const { improvementData, logicalLeaps } = evaluationData;
 
