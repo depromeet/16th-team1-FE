@@ -2,6 +2,7 @@
 import path from 'path';
 
 import { defineConfig } from 'vite';
+import mkcert from 'vite-plugin-mkcert';
 import { VitePWA } from 'vite-plugin-pwa';
 import svgr from 'vite-plugin-svgr';
 
@@ -20,6 +21,7 @@ export default defineConfig({
         lang: 'ko',
       },
     }),
+    mkcert(),
   ],
   resolve: {
     alias: [
@@ -32,15 +34,16 @@ export default defineConfig({
 
   server: {
     port: 3000,
+    host: 'critix.kr',
     proxy: {
-      '/oauth2': {
-        target: 'http://dev.critix.kr',
+      '/api': {
+        target: 'http://211.188.53.83:8080',
         changeOrigin: true,
         secure: false,
-        //  cookieDomainRewrite: 'localhost',
       },
     },
   },
+
   test: {
     coverage: {
       provider: 'v8',
