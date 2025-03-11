@@ -21,6 +21,7 @@ function FeedbackContents({
 }: AccordionItemProps) {
   return (
     <>
+      {/* 특별 케이스: 포트폴리오 종합 평가 */}
       <Accordion.Item
         key="포트폴리오 종합 평가"
         value="포트폴리오 종합 평가"
@@ -31,7 +32,6 @@ function FeedbackContents({
             {renderTriggerButton('포트폴리오 종합 평가')}
           </Accordion.Trigger>
         </Accordion.Header>
-
         <Accordion.Content css={styles.defaultAnimation}>
           <ul css={styles.wrapper} aria-label="포트폴리오 종합 평가">
             <li role="listitem">{renderContentButton('overallEvaluation', '종합 평가 요약', 0)}</li>
@@ -39,12 +39,12 @@ function FeedbackContents({
         </Accordion.Content>
       </Accordion.Item>
 
+      {/* 일반 항목들 */}
       {dataList.map(({ projectName, feedbackPerPage }) => (
         <Accordion.Item key={projectName} value={projectName} css={styles.container}>
           <Accordion.Header>
             <Accordion.Trigger asChild>{renderTriggerButton(projectName)}</Accordion.Trigger>
           </Accordion.Header>
-
           <Accordion.Content css={styles.defaultAnimation}>
             <ul css={styles.wrapper} aria-label={`${projectName} 피드백 페이지 목록`}>
               <li role="listitem">
