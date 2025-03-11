@@ -6,9 +6,6 @@ import { PageLabelKey } from '@/common/constants/path';
 export const container = (pageLabel: PageLabelKey) => css`
   --background-bg: ${pageLabel === 'Landing' ? theme.colors.GRAY[1000] : theme.colors.GRAY.bg};
 
-  overflow-y: auto;
-  overscroll-behavior-y: contain;
-
   /* 가상 요소를 사용해 전체 배경을 지정 */
   &::before {
     position: fixed;
