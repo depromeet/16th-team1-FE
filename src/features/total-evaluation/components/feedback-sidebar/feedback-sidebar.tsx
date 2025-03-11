@@ -4,6 +4,7 @@ import { scrollToSection } from '@/common/utils/scroll-to-section';
 import AccordionList from '@/features/total-evaluation/components/accordion-list/accordion-list';
 
 import { ProjectEvaluationType } from '../../services/use-get-portfolio-feedback';
+import { LocationButtonType } from '../../types/sidebar-Info-types';
 import FeedbackContents from '../accordion-list/feedback-contents';
 import { SelectedPageContext } from '../context/selected-page/selected-page-context';
 import { SidebarContext } from '../context/sidebar/sidebar-context';
@@ -44,7 +45,6 @@ function FeedbackSidebar({ projectEvaluation }: FeedbackSidebarProps) {
   const { selectedPage, setSelectedPage } = useContext(SelectedPageContext);
   const [currentOpenedTrigger, setCurrentOpenedTrigger] = useState<string[]>([]);
 
-  console.log(selectedPage);
   const combinedProjectEvaluation = useMemo(() => {
     return [OVERALL_EVALUATION, ...projectEvaluation];
   }, [projectEvaluation]);
@@ -56,6 +56,8 @@ function FeedbackSidebar({ projectEvaluation }: FeedbackSidebarProps) {
         : [...prev, triggerTitle],
     );
   };
+
+  console.log(selectedPage);
 
   const handleContentButton = (page: string) => {
     setSelectedPage(page);
@@ -77,14 +79,14 @@ function FeedbackSidebar({ projectEvaluation }: FeedbackSidebarProps) {
             </ProjectTitleButton>
           )}
           /** 각 메뉴가 트리거되면 나타나는 세부 컨텐츠 */
-          renderContentButton={(page, buttonIndex) => (
+          renderContentButton={(type, value, buttonIndex) => (
             <PageLocationButton
               isSidebarOpen={isSidebarOpen}
-              isSelected={selectedPage === page}
+              isSelected={selectedPage === value}
               buttonIndex={buttonIndex}
-              onClick={() => handleContentButton(page)}
+              onClick={() => handleContentButton(value)}
             >
-              {page}
+              {loactionButtonFormat(type, value)}
             </PageLocationButton>
           )}
         />
@@ -94,3 +96,15 @@ function FeedbackSidebar({ projectEvaluation }: FeedbackSidebarProps) {
 }
 
 export default FeedbackSidebar;
+
+const loactionButtonFormat = (type: LocationButtonType, value: string) => {
+  if (type === 'overallEvaluation') {
+    return value;
+  }
+  if (type === 'processEvaluation') {
+    return `프로세스 평가`;
+  }
+  if (type === 'singlePage') {
+    return `${value}P`;
+  }
+};
