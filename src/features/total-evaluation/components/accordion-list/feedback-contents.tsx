@@ -1,5 +1,6 @@
 import * as Accordion from '@radix-ui/react-accordion';
 
+import { ProjectEvaluationType } from '../../services/use-get-portfolio-feedback';
 import {
   RenderAccordionContentButtonType,
   RenderAccordionTriggerButtonType,
@@ -7,13 +8,8 @@ import {
 
 import * as styles from './feedback-contents.styles';
 
-type EvalutationDataType = {
-  projectTitle: string;
-  feedbackPages: string[];
-};
-
 interface AccordionItemProps {
-  dataList: EvalutationDataType[];
+  dataList: ProjectEvaluationType[];
   renderTriggerButton: RenderAccordionTriggerButtonType;
   renderContentButton: RenderAccordionContentButtonType;
 }
@@ -23,23 +19,48 @@ function FeedbackContents({
   renderContentButton,
   renderTriggerButton,
 }: AccordionItemProps) {
-  return dataList.map(({ projectTitle, feedbackPages }) => (
-    <Accordion.Item key={projectTitle} value={projectTitle} css={styles.container}>
-      <Accordion.Header>
-        <Accordion.Trigger asChild>{renderTriggerButton(projectTitle)}</Accordion.Trigger>
-      </Accordion.Header>
+  return (
+    <>
+      {/* 특별 케이스: 포트폴리오 종합 평가 */}
+      <Accordion.Item
+        key="포트폴리오 종합 평가"
+        value="포트폴리오 종합 평가"
+        css={styles.container}
+      >
+        <Accordion.Header>
+          <Accordion.Trigger asChild>
+            {renderTriggerButton('포트폴리오 종합 평가')}
+          </Accordion.Trigger>
+        </Accordion.Header>
+        <Accordion.Content css={styles.defaultAnimation}>
+          <ul css={styles.wrapper} aria-label="포트폴리오 종합 평가">
+            <li role="listitem">{renderContentButton('overallEvaluation', '종합 평가 요약', 0)}</li>
+          </ul>
+        </Accordion.Content>
+      </Accordion.Item>
 
-      <Accordion.Content css={styles.defaultAnimation}>
-        <ul css={styles.wrapper} aria-label={`${projectTitle} 피드백 페이지 목록`}>
-          {feedbackPages.map((page, buttonIndex) => (
-            <li key={page} role="listitem">
-              {renderContentButton(page, buttonIndex)}
-            </li>
-          ))}
-        </ul>
-      </Accordion.Content>
-    </Accordion.Item>
-  ));
+      {/* 일반 항목들 */}
+      {dataList.map(({ projectName, feedbackPerPage }) => (
+        <Accordion.Item key={projectName} value={projectName} css={styles.container}>
+          <Accordion.Header>
+            <Accordion.Trigger asChild>{renderTriggerButton(projectName)}</Accordion.Trigger>
+          </Accordion.Header>
+          <Accordion.Content css={styles.defaultAnimation}>
+            <ul css={styles.wrapper} aria-label={`${projectName} 피드백 페이지 목록`}>
+              <li role="listitem">
+                {renderContentButton('projectEvaluation', `${projectName}-프로젝트 평가`, 0)}
+              </li>
+              {feedbackPerPage.map(({ pageNumber: locationInfo }, index) => (
+                <li key={locationInfo} role="listitem">
+                  {renderContentButton('singlePage', locationInfo, index + 1)}
+                </li>
+              ))}
+            </ul>
+          </Accordion.Content>
+        </Accordion.Item>
+      ))}
+    </>
+  );
 }
 
 export default FeedbackContents;
