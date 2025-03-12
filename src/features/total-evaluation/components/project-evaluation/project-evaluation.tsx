@@ -48,7 +48,7 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
   } = projectEvaluation;
 
   return (
-    <div css={styles.projectEvaluationWrapper}>
+    <div css={styles.projectEvaluationWrapper} id={`feedback-${projectName}-프로젝트 평가`}>
       {/* 프로젝트 평가 */}
       <section css={styles.flexColumn}>
         <SummaryTitle title="프로젝트 평가" />
@@ -63,7 +63,7 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
           ))}
         </div>
         <Spacing size={2.9} />
-        <div css={styles.processReviewWrapper} id={`feedback-${projectName}-프로세스 평가`}>
+        <div css={styles.processReviewWrapper}>
           <span css={styles.processReviewTitle}>프로세스 평가</span>
           <p css={styles.processReviewContent}>{processReview}</p>
         </div>

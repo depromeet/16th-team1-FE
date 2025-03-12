@@ -48,7 +48,7 @@ function FeedbackContents({
           <Accordion.Content css={styles.defaultAnimation}>
             <ul css={styles.wrapper} aria-label={`${projectName} 피드백 페이지 목록`}>
               <li role="listitem">
-                {renderContentButton('processEvaluation', `${projectName}-프로세스 평가`, 0)}
+                {renderContentButton('projectEvaluation', `${projectName}-프로젝트 평가`, 0)}
               </li>
               {feedbackPerPage.map(({ pageNumber: locationInfo }, index) => (
                 <li key={locationInfo} role="listitem">

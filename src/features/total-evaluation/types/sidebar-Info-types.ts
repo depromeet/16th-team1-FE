@@ -10,7 +10,7 @@ export type SidebarListType = {
 
 export type RenderAccordionTriggerButtonType = (accordionTrigger: string) => ReactNode;
 
-export type LocationButtonType = 'overallEvaluation' | 'singlePage' | 'processEvaluation';
+export type LocationButtonType = 'overallEvaluation' | 'singlePage' | 'projectEvaluation';
 export type RenderAccordionContentButtonType = (
   type: LocationButtonType,
   currentContent: string,

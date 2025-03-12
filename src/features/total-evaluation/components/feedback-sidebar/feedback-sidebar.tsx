@@ -71,8 +71,8 @@ const buttonFormatByButtonType = (type: LocationButtonType, value: string) => {
   if (type === 'overallEvaluation') {
     return value;
   }
-  if (type === 'processEvaluation') {
-    return `프로세스 평가`;
+  if (type === 'projectEvaluation') {
+    return `프로젝트 평가`;
   }
   if (type === 'singlePage') {
     return `${value}P`;
