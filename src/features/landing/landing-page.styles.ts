@@ -22,10 +22,6 @@ export const flexColumn = (gap: number) => css`
   flex-direction: column;
   gap: ${gap}rem;
   width: 100%;
-
-  @media (width <= 37.5rem) {
-    gap: 10rem;
-  }
 `;
 
 export const image = css`

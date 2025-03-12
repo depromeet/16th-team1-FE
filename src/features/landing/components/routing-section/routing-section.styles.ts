@@ -54,22 +54,3 @@ export const explainText = withTheme(
     }
   `,
 );
-
-export const routingButton = withTheme(
-  (theme) => css`
-    ${theme.fonts.SUBTITLE.SUB2_B}
-    padding: 2.1rem 3.1rem;
-    border-radius: 5rem;
-    background-color: ${theme.colors.SORA[200]};
-
-    &:hover {
-      background-color: ${theme.colors.SORA[100]};
-      color: ${theme.colors.GRAY[950]};
-    }
-
-    &:active {
-      background-color: ${theme.colors.SORA[400]};
-      color: ${theme.colors.GRAY[950]};
-    }
-  `,
-);
