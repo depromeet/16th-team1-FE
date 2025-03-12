@@ -19,6 +19,10 @@ export const BUTTON_SIZE = {
       padding: `${sizeToken.padding['sm_2']} ${sizeToken.padding['lg_2']}`,
       borderRadius: `${sizeToken.borderRadius['xs_2']}`,
     },
+    xLarge: {
+      padding: `${sizeToken.padding['sm_1']} ${sizeToken.padding['md_1']}`,
+      borderRadius: `${sizeToken.borderRadius['lg_1']}`,
+    },
     xxLarge: {
       padding: `${sizeToken.padding['md_2']} ${sizeToken.padding['lg_1']}`,
       borderRadius: `${sizeToken.borderRadius['lg_1']}`,
@@ -79,6 +83,11 @@ export const BUTTON_FONTS = {
       fontSize: `${sizeToken.fontSize['s_2']}`,
       fontWeight: `${sizeToken.fontWeight['xs_1']}`,
       lineHeight: `${sizeToken.lineHeight['s_1']}`,
+    },
+    xLarge: {
+      fontSize: `${sizeToken.fontSize['xs_1']}`,
+      fontWeight: `${sizeToken.fontWeight['xs_1']}`,
+      lineHeight: `${sizeToken.lineHeight['xs_2']}`,
     },
     xxLarge: {
       fontSize: `${sizeToken.fontSize['sm_1']}`,
@@ -187,7 +196,7 @@ export type Usage = keyof typeof BUTTON_SIZE;
 // 2. 사이즈(+폰트에도 사용)
 export type SizeKey = keyof (typeof BUTTON_SIZE)['text'];
 export type TextSize = SizeKey;
-export type RestSize = Exclude<SizeKey, 'xxLarge'>;
+export type RestSize = Exclude<SizeKey, 'xLarge' | 'xxLarge'>;
 
 // 3. 색상 테마
 export type VariantKey = keyof typeof BUTTON_VARIANTS;
