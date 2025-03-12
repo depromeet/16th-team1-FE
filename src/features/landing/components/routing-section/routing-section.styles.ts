@@ -26,11 +26,20 @@ export const mainText = withTheme(
       font-family: GeneralSans, sans-serif;
       font-style: normal;
       letter-spacing: -0.148rem;
+
+      @media (width <= 37.5rem) {
+        font-size: 4rem;
+        letter-spacing: -0.08rem;
+      }
     `}
 
     ${type === 'bottom' &&
     css`
       ${theme.fonts.HEADLINE.HEAD2}
+
+      @media (width <= 37.5rem) {
+        ${theme.fonts.HEADLINE.HEAD6}
+      }
     `}
   `,
 );
@@ -38,7 +47,11 @@ export const mainText = withTheme(
 export const explainText = withTheme(
   (theme) => css`
     ${theme.fonts.HEADLINE.HEAD5}
-    color: ${theme.colors.GRAY[200]};
+    color: ${theme.colors.GRAY[200]} !important;
+
+    @media (width <= 37.5rem) {
+      ${theme.fonts.BODY.BODY2_M}
+    }
   `,
 );
 
