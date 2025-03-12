@@ -21,6 +21,10 @@ export const titleWrapper = css`
   flex-direction: column;
   gap: 2.4rem;
   align-items: center;
+
+  @media (width <= 37.5rem) {
+    gap: 1.2rem;
+  }
 `;
 
 export const sectionBadge = withTheme(
@@ -32,8 +36,14 @@ export const sectionBadge = withTheme(
     border-radius: 10rem;
     padding: ${theme.sizeToken.padding.sm_2} ${theme.sizeToken.padding.md_1};
     ${theme.fonts.SUBTITLE.SUB2_B}
-    color: ${color};
+    color: ${color} !important;
     background-color: #1a2024;
+
+    @media (width <= 37.5rem) {
+      gap: 0.2rem;
+      padding: 1rem 1.8rem 1rem 1.4rem;
+      ${theme.fonts.SUBTITLE.SUB5_SB}
+    }
   `,
 );
 
