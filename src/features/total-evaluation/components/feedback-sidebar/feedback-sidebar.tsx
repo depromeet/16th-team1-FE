@@ -75,6 +75,6 @@ const buttonFormatByButtonType = (type: LocationButtonType, value: string) => {
     return `프로젝트 평가`;
   }
   if (type === 'singlePage') {
-    return `${value}P`;
+    return `${value}p`;
   }
 };
