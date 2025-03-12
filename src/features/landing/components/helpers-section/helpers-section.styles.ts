@@ -6,6 +6,14 @@ export const sectionWrapper = css`
   display: flex;
   flex-direction: column;
   gap: 4rem;
+
+  @media (width < 111rem) {
+    padding: 2.4rem;
+  }
+
+  @media (width <= 37.5rem) {
+    padding: 2rem;
+  }
 `;
 
 export const titleWrapper = css`
@@ -32,8 +40,12 @@ export const sectionBadge = withTheme(
 export const sectionTitle = withTheme(
   (theme) => css`
     ${theme.fonts.HEADLINE.HEAD2}
-    color: ${theme.colors.GRAY[100]};
+    color: ${theme.colors.GRAY[100]} !important;
     text-align: center;
+
+    @media (width <= 37.5rem) {
+      ${theme.fonts.HEADLINE.HEAD6}
+    }
   `,
 );
 
@@ -44,4 +56,12 @@ export const contentWrapper = (direction?: 'row' | 'column') => css`
   justify-content: center;
   gap: 2rem;
   max-width: 103rem;
+
+  @media (width < 111rem) {
+    flex-direction: column;
+  }
+
+  @media (width <= 37.5rem) {
+    gap: 1.6rem;
+  }
 `;

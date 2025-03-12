@@ -10,17 +10,28 @@ export const FAQWrapper = css`
   width: 77.4rem;
   max-width: 77.4rem;
   margin: auto;
+
+  @media (width < 111rem) {
+    width: 100%;
+  }
+
+  @media (width < 111rem) {
+    padding: 0 2.4rem;
+  }
+
+  @media (width <= 37.5rem) {
+    padding: 0 2rem;
+  }
 `;
 
 export const title = withTheme(
   (theme) => css`
-    color: ${theme.colors.GRAY[50]};
-    font-family: GeneralSans, sans-serif;
-    font-size: 4rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 118%;
-    letter-spacing: -0.08rem;
+    ${theme.fonts.HEADLINE.HEAD1}
+    color: ${theme.colors.GRAY[100]} !important;
+
+    @media (width <= 37.5rem) {
+      ${theme.fonts.HEADLINE.HEAD6}
+    }
   `,
 );
 
@@ -29,6 +40,10 @@ export const accordionRoot = css`
   flex-direction: column;
   gap: 2.4rem;
   width: 100%;
+
+  @media (width <= 37.5rem) {
+    gap: 1.6rem;
+  }
 `;
 
 export const accordionItem = withTheme(
@@ -41,6 +56,11 @@ export const accordionItem = withTheme(
     &[data-state='open'] {
       border-radius: 1rem;
       background-color: ${theme.colors.GRAY.bg};
+    }
+
+    @media (width <= 37.5rem) {
+      padding: 1.6rem;
+      gap: 1.6rem;
     }
   `,
 );
@@ -58,11 +78,16 @@ export const accordionTrigger = withTheme(
     width: 100%;
     background-color: inherit;
     border: none;
-    ${theme.fonts.HEADLINE.HEAD3}
-    color: ${theme.colors.GRAY[300]};
+    ${theme.fonts.HEADLINE.HEAD4}
+    color: ${theme.colors.GRAY[300]} !important;
+    text-align: left;
 
     &[data-state='open'] {
-      color: ${theme.colors.GRAY[100]};
+      color: ${theme.colors.GRAY[100]} !important;
+    }
+
+    @media (width <= 37.5rem) {
+      ${theme.fonts.SUBTITLE.SUB2_B}
     }
   `,
 );
@@ -91,5 +116,13 @@ export const accordionContent = withTheme(
   (theme) => css`
     ${theme.fonts.BODY.BODY2_M}
     color: ${theme.colors.GRAY[400]};
+
+    @media (width <= 37.5rem) {
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 170%;
+      letter-spacing: -0.015rem;
+    }
   `,
 );
