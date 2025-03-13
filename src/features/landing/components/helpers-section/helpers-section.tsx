@@ -1,5 +1,6 @@
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
+import useDeviceType from '@/common/hooks/use-device-type';
 import { questionData, stepData } from '@/features/landing/common/data';
 import QuestionCard from '@/features/landing/components/helpers-section/question-card';
 import StepCard from '@/features/landing/components/helpers-section/step-card';
@@ -11,6 +12,8 @@ import TotalEvaluationGrid from './total-evaluation-grid';
 import * as styles from './helpers-section.styles';
 
 export default function HelpersSection() {
+  const { isDesktop } = useDeviceType();
+
   return (
     <>
       <section css={styles.sectionWrapper} id="features-section">
@@ -19,7 +22,7 @@ export default function HelpersSection() {
           <br />
           이런 경험 없으셨나요?
         </h2>
-        <div css={styles.contentWrapper()}>
+        <div css={styles.contentWrapper(isDesktop ? 'row' : 'column')}>
           {questionData.map(({ question, description, author }) => (
             <QuestionCard
               key={question}

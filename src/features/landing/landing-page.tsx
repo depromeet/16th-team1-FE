@@ -16,7 +16,7 @@ export default function LandingPage() {
         <RoutingStartSection />
         <img src="./images/total-evaluation.png" css={styles.image} alt="total evalution image" />
       </div>
-      <div css={styles.flexColumn(22)}>
+      <div css={styles.flexColumn(isMobile ? 16 : 22)}>
         <HelpersSection />
         <div id="help-section">
           <FAQ />

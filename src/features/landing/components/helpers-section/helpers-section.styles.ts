@@ -69,9 +69,10 @@ export const sectionTitle = withTheme(
 export const contentWrapper = withTheme(
   (theme, direction?: 'row' | 'column') => css`
     display: flex;
-    flex-direction: ${direction ? direction : 'row'};
     align-items: center;
     justify-content: center;
+    width: 100%;
+    flex-direction: ${direction ? direction : 'row'};
     gap: 2rem;
     max-width: 103rem;
 

@@ -6,6 +6,7 @@ export const landingPage = withTheme(
   (theme) => css`
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
     margin: auto;
@@ -20,6 +21,7 @@ export const landingPage = withTheme(
 export const flexColumn = (gap: number) => css`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: ${gap}rem;
   width: 100%;
 `;
