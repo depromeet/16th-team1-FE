@@ -2,10 +2,13 @@ import { css } from '@emotion/react';
 
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
+import useDeviceType from '@/common/hooks/use-device-type';
 
 import * as styles from './total-evaluation-grid.styles';
 
 export default function TotalEvaluationGrid() {
+  const { isMobile } = useDeviceType();
+
   return (
     <div css={styles.container}>
       <div css={styles.firstLine}>
@@ -42,7 +45,7 @@ export default function TotalEvaluationGrid() {
       </div>
       <div css={styles.secondLine}>
         <div css={styles.item}>
-          <Icon name="thumb-up-mono" color="#BEFFAE" />
+          <Icon name="thumb-up-mono" color="#BEFFAE" width={isMobile ? 20 : 28} />
           <h3 css={styles.title}>
             <strong
               css={css`
@@ -61,7 +64,7 @@ export default function TotalEvaluationGrid() {
           </ul>
         </div>
         <div css={styles.item}>
-          <Icon name="exclamation-circle-mono" color="#FF7568" />
+          <Icon name="exclamation-circle-mono" color="#FF7568" width={isMobile ? 20 : 28} />
           <h3 css={styles.title}>
             <strong
               css={css`
