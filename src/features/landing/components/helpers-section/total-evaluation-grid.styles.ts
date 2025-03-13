@@ -30,7 +30,7 @@ export const firstLine = css`
     border: 0 solid rgb(213 178 255 / 15%);
   }
 
-  ${mediaQueries.tablet} {
+  ${mediaQueries.mobileAndTablet} {
     flex-direction: column;
 
     & > div:nth-child(1) {
