@@ -14,64 +14,60 @@ export const container = css`
   }
 `;
 
-export const firstLine = withTheme(
-  (theme) => css`
-    display: flex;
-    gap: 2rem;
+export const firstLine = css`
+  display: flex;
+  gap: 2rem;
+
+  & > div:nth-child(1) {
+    flex-basis: 38.7rem;
+    background: rgb(174 232 255 / 3%);
+    border: 0 solid rgb(174 232 255 / 15%);
+  }
+
+  & > div:nth-child(2) {
+    flex: 1;
+    background: rgb(215 176 255 / 3%);
+    border: 0 solid rgb(213 178 255 / 15%);
+  }
+
+  ${mediaQueries.tablet} {
+    flex-direction: column;
 
     & > div:nth-child(1) {
-      flex-basis: 38.7rem;
-      background: rgb(174 232 255 / 3%);
-      border: 0 solid rgb(174 232 255 / 15%);
+      flex: 1;
     }
 
     & > div:nth-child(2) {
       flex: 1;
-      background: rgb(215 176 255 / 3%);
-      border: 0 solid rgb(213 178 255 / 15%);
     }
+  }
 
-    ${mediaQueries.tablet} {
-      flex-direction: column;
+  ${mediaQueries.mobile} {
+    gap: 1.6rem;
+  }
+`;
 
-      & > div:nth-child(1) {
-        flex: 1;
-      }
+export const secondLine = css`
+  display: flex;
+  gap: 2rem;
 
-      & > div:nth-child(2) {
-        flex: 1;
-      }
-    }
+  & > div:nth-child(1) {
+    background: rgb(58 255 10 / 4%);
+    border: 0 solid #24242b;
+    flex: 1;
+  }
 
-    ${mediaQueries.mobile} {
-      gap: 1.6rem;
-    }
-  `,
-);
+  & > div:nth-child(2) {
+    background: rgb(255 117 104 / 3%);
+    border: 0 solid #24242b;
+    flex: 1;
+  }
 
-export const secondLine = withTheme(
-  (theme) => css`
-    display: flex;
-    gap: 2rem;
-
-    & > div:nth-child(1) {
-      background: rgb(58 255 10 / 4%);
-      border: 0 solid #24242b;
-      flex: 1;
-    }
-
-    & > div:nth-child(2) {
-      background: rgb(255 117 104 / 3%);
-      border: 0 solid #24242b;
-      flex: 1;
-    }
-
-    ${mediaQueries.mobile} {
-      flex-direction: column;
-      gap: 1.6rem;
-    }
-  `,
-);
+  ${mediaQueries.mobile} {
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+`;
 
 export const item = css`
   position: relative;
