@@ -1,19 +1,18 @@
 import { css } from '@emotion/react';
 
+import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
-export const container = withTheme(
-  (theme) => css`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 2rem;
+export const container = css`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
 
-    @media (width <= ${theme.deviceWidth.mobile}) {
-      gap: 1.6rem;
-    }
-  `,
-);
+  ${mediaQueries.mobile} {
+    gap: 1.6rem;
+  }
+`;
 
 export const firstLine = withTheme(
   (theme) => css`
@@ -32,7 +31,7 @@ export const firstLine = withTheme(
       border: 0 solid rgb(213 178 255 / 15%);
     }
 
-    @media (width <= ${theme.deviceWidth.tablet}) {
+    ${mediaQueries.tablet} {
       flex-direction: column;
 
       & > div:nth-child(1) {
@@ -44,7 +43,7 @@ export const firstLine = withTheme(
       }
     }
 
-    @media (width <= ${theme.deviceWidth.mobile}) {
+    ${mediaQueries.mobile} {
       gap: 1.6rem;
     }
   `,
@@ -67,25 +66,23 @@ export const secondLine = withTheme(
       flex: 1;
     }
 
-    @media (width <= ${theme.deviceWidth.mobile}) {
+    ${mediaQueries.mobile} {
       flex-direction: column;
       gap: 1.6rem;
     }
   `,
 );
 
-export const item = withTheme(
-  (theme) => css`
-    position: relative;
-    padding: 3.4rem 4rem;
-    border-radius: 3.2rem;
+export const item = css`
+  position: relative;
+  padding: 3.4rem 4rem;
+  border-radius: 3.2rem;
 
-    @media (width <= ${theme.deviceWidth.mobile}) {
-      padding: 2rem 2.4rem;
-      border-radius: 1.6rem;
-    }
-  `,
-);
+  ${mediaQueries.mobile} {
+    padding: 2rem 2.4rem;
+    border-radius: 1.6rem;
+  }
+`;
 
 export const title = withTheme(
   (theme) => css`
@@ -94,7 +91,7 @@ export const title = withTheme(
     white-space: normal;
     margin-top: 0.8rem;
 
-    @media (width <= ${theme.deviceWidth.mobile}) {
+    ${mediaQueries.mobile} {
       ${theme.fonts.SUBTITLE.SUB2_B};
     }
   `,
@@ -130,7 +127,7 @@ export const list = withTheme(
       }
     }
 
-    @media (width <= ${theme.deviceWidth.mobile}) {
+    ${mediaQueries.mobile} {
       & > li {
         ${theme.fonts.SUBTITLE.SUB5_SB};
         &:not(:first-of-type) {

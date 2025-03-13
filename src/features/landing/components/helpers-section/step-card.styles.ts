@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 
+import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const stepCard = css`
@@ -25,7 +26,7 @@ export const stepText = withTheme(
     ${theme.fonts.SUBTITLE.SUB2_SB}
     color: ${theme.colors.PURPLE[300]} !important;
 
-    @media (width <= ${theme.deviceWidth.mobile}) {
+    ${mediaQueries.mobile} {
       ${theme.fonts.SUBTITLE.SUB5_SB}
     }
   `,
@@ -37,11 +38,11 @@ export const stepExplainText = withTheme(
     color: ${theme.colors.GRAY[200]} !important;
     white-space: pre-line;
 
-    @media (width < ${theme.deviceWidth.desktop}) {
+    ${mediaQueries.mobileAndTablet} {
       ${theme.fonts.HEADLINE.HEAD4}
     }
 
-    @media (width <= ${theme.deviceWidth.mobile}) {
+    ${mediaQueries.mobile} {
       ${theme.fonts.SUBTITLE.SUB2_B}
     }
   `,
