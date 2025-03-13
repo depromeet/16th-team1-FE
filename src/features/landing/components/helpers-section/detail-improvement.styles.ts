@@ -90,8 +90,75 @@ export const image = withTheme(
   `,
 );
 
-export const improvementTextWrapper = css`
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-`;
+export const improvementTextWrapper = withTheme(
+  (theme) => css`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @media (width <= ${theme.deviceWidth.mobile}) {
+      gap: 1.2rem;
+    }
+  `,
+);
+
+export const improvementTitleWrapper = withTheme(
+  (theme) => css`
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    ${theme.fonts.HEADLINE.HEAD4};
+    color: ${theme.colors.GRAY[200]} !important;
+
+    @media (width <= ${theme.deviceWidth.mobile}) {
+      gap: 0.4rem;
+      ${theme.fonts.SUBTITLE.SUB3_SB};
+    }
+  `,
+);
+
+export const improvementSection = withTheme(
+  (theme) => css`
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    @media (width <= ${theme.deviceWidth.mobile}) {
+      gap: 0.8rem;
+    }
+  `,
+);
+
+export const improvementDetailTextWrapper = withTheme(
+  (theme) => css`
+    display: flex;
+    gap: 2rem;
+
+    @media (width <= ${theme.deviceWidth.mobile}) {
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+  `,
+);
+
+export const improvementCategory = withTheme(
+  (theme, color: string) => css`
+    ${theme.fonts.SUBTITLE.SUB3_SB}
+    color: ${color} !important;
+
+    @media (width <= ${theme.deviceWidth.mobile}) {
+      ${theme.fonts.SUBTITLE.SUB5_M}
+    }
+  `,
+);
+
+export const detailText = withTheme(
+  (theme) => css`
+    ${theme.fonts.BODY.BODY2_M}
+    color: ${theme.colors.GRAY[300]} !important;
+
+    @media (width <= ${theme.deviceWidth.mobile}) {
+      ${theme.fonts.BODY.BODY3_R}
+    }
+  `,
+);
