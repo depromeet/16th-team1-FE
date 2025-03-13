@@ -2,50 +2,54 @@ import { css } from '@emotion/react';
 
 import { withTheme } from '@/common/utils/with-theme';
 
-export const FAQWrapper = css`
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
-  align-items: center;
-  width: 77.4rem;
-  max-width: 77.4rem;
-  margin: auto;
+export const FAQWrapper = withTheme(
+  (theme) => css`
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    align-items: center;
+    width: 77.4rem;
+    max-width: 77.4rem;
+    margin: auto;
 
-  @media (width < 111rem) {
-    width: 100%;
-  }
+    @media (width < ${theme.deviceWidth.desktop}) {
+      width: 100%;
+    }
 
-  @media (width < 111rem) {
-    padding: 0 2.4rem;
-  }
+    @media (width < ${theme.deviceWidth.desktop}) {
+      padding: 0 2.4rem;
+    }
 
-  @media (width <= 37.5rem) {
-    padding: 0 2rem;
-    gap: 3.2rem;
-  }
-`;
+    @media (width <= ${theme.deviceWidth.mobile}) {
+      padding: 0 2rem;
+      gap: 3.2rem;
+    }
+  `,
+);
 
 export const title = withTheme(
   (theme) => css`
     ${theme.fonts.HEADLINE.HEAD1}
     color: ${theme.colors.GRAY[100]} !important;
 
-    @media (width <= 37.5rem) {
+    @media (width <= ${theme.deviceWidth.mobile}) {
       ${theme.fonts.HEADLINE.HEAD6}
     }
   `,
 );
 
-export const accordionRoot = css`
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem;
-  width: 100%;
+export const accordionRoot = withTheme(
+  (theme) => css`
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    width: 100%;
 
-  @media (width <= 37.5rem) {
-    gap: 1.6rem;
-  }
-`;
+    @media (width <= ${theme.deviceWidth.mobile}) {
+      gap: 1.6rem;
+    }
+  `,
+);
 
 export const accordionItem = withTheme(
   (theme) => css`
@@ -59,7 +63,7 @@ export const accordionItem = withTheme(
       background-color: ${theme.colors.GRAY.bg};
     }
 
-    @media (width <= 37.5rem) {
+    @media (width <= ${theme.deviceWidth.mobile}) {
       padding: 1.8rem 2rem;
       gap: 1.6rem;
     }
@@ -87,7 +91,7 @@ export const accordionTrigger = withTheme(
       color: ${theme.colors.GRAY[100]} !important;
     }
 
-    @media (width <= 37.5rem) {
+    @media (width <= ${theme.deviceWidth.mobile}) {
       ${theme.fonts.SUBTITLE.SUB2_B}
     }
   `,
@@ -118,7 +122,7 @@ export const accordionContent = withTheme(
     ${theme.fonts.BODY.BODY2_M}
     color: ${theme.colors.GRAY[400]};
 
-    @media (width <= 37.5rem) {
+    @media (width <= ${theme.deviceWidth.mobile}) {
       font-size: 1.5rem;
       font-style: normal;
       font-weight: 400;

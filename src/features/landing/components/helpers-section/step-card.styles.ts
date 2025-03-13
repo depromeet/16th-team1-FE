@@ -23,15 +23,27 @@ export const stepTextWrapper = css`
 export const stepText = withTheme(
   (theme) => css`
     ${theme.fonts.SUBTITLE.SUB2_SB}
-    color: ${theme.colors.PURPLE[300]};
+    color: ${theme.colors.PURPLE[300]} !important;
+
+    @media (width <= ${theme.deviceWidth.mobile}) {
+      ${theme.fonts.SUBTITLE.SUB5_SB}
+    }
   `,
 );
 
 export const stepExplainText = withTheme(
   (theme) => css`
     ${theme.fonts.HEADLINE.HEAD3}
-    color: ${theme.colors.GRAY[200]};
+    color: ${theme.colors.GRAY[200]} !important;
     white-space: pre-line;
+
+    @media (width < ${theme.deviceWidth.desktop}) {
+      ${theme.fonts.HEADLINE.HEAD4}
+    }
+
+    @media (width <= ${theme.deviceWidth.mobile}) {
+      ${theme.fonts.SUBTITLE.SUB2_B}
+    }
   `,
 );
 
