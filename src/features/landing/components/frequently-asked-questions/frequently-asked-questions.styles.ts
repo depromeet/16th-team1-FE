@@ -5,7 +5,7 @@ import { withTheme } from '@/common/utils/with-theme';
 export const FAQWrapper = css`
   display: flex;
   flex-direction: column;
-  gap: 7.2rem;
+  gap: 4rem;
   align-items: center;
   width: 77.4rem;
   max-width: 77.4rem;
@@ -21,6 +21,7 @@ export const FAQWrapper = css`
 
   @media (width <= 37.5rem) {
     padding: 0 2rem;
+    gap: 3.2rem;
   }
 `;
 
@@ -59,7 +60,7 @@ export const accordionItem = withTheme(
     }
 
     @media (width <= 37.5rem) {
-      padding: 1.6rem;
+      padding: 1.8rem 2rem;
       gap: 1.6rem;
     }
   `,
