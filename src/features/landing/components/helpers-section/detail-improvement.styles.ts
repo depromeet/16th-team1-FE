@@ -120,6 +120,7 @@ export const improvementSection = css`
 
 export const improvementDetailTextWrapper = css`
   display: flex;
+  align-items: baseline;
   gap: 2rem;
 
   ${mediaQueries.mobile} {
@@ -132,6 +133,7 @@ export const improvementCategory = withTheme(
   (theme, color: string) => css`
     ${theme.fonts.SUBTITLE.SUB3_SB}
     color: ${color} !important;
+    white-space: nowrap;
 
     ${mediaQueries.mobile} {
       ${theme.fonts.SUBTITLE.SUB5_M}
