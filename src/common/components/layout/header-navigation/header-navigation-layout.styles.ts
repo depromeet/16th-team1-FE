@@ -4,11 +4,18 @@ import { PageLabelKey } from '@/common/constants/path';
 
 export const container = (pageLabel: PageLabelKey) => css`
   --header-padding: ${pageLabel === 'Landing' ? `1.1rem 2rem` : `1rem`};
+  --blur: ${pageLabel === 'Landing' ? `1.2rem` : `0`};
 
   display: flex;
   align-items: center;
-  min-height: 5.4rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
   padding: var(--header-padding);
+  min-height: 5.4rem;
+  backdrop-filter: blur(var(--blur));
   background-color: transparent;
 `;
 
