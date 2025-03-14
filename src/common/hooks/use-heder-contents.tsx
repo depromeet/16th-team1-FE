@@ -1,17 +1,17 @@
 import Icon from '../components/icon/icon';
 import AuthProfile from '../components/layout/header-buttons/auth-profile';
 import HeaderLogo from '../components/layout/header-buttons/header-logo';
-import LandingMiddleButtons from '../components/layout/header-buttons/landing/landing-middle-buttons';
-import LandingRightButtons from '../components/layout/header-buttons/landing/landing-right-buttons';
-import TotalEvalutationLeftButtons from '../components/layout/header-buttons/total-evaluation/total-evaluation-left-buttons';
+import LandingAuthButtons from '../components/layout/header-buttons/landing/landing-auth-buttons';
+import LandingScrollSectionButtons from '../components/layout/header-buttons/landing/landing-scroll-section-buttons';
+import TotalEvalutationSidebarButtons from '../components/layout/header-buttons/total-evaluation/total-evaluation-sidebar-buttons';
 import { PageLabelKey } from '../constants/path';
 
 export const useHederContents = (pageLabel: PageLabelKey) => {
   if (pageLabel === 'Landing') {
     return {
       left: <HeaderLogo />,
-      middle: <LandingMiddleButtons />,
-      right: <LandingRightButtons />,
+      middle: <LandingScrollSectionButtons />,
+      right: <LandingAuthButtons />,
     };
   }
   if (pageLabel === 'Upload') {
@@ -23,7 +23,7 @@ export const useHederContents = (pageLabel: PageLabelKey) => {
   }
   if (pageLabel === 'TotalEvaluation') {
     return {
-      left: <TotalEvalutationLeftButtons />,
+      left: <TotalEvalutationSidebarButtons />,
       middle: <Icon name="fix" />,
       right: <Icon name="fix" />,
     };

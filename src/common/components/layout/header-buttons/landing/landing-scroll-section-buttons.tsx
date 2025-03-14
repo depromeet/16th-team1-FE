@@ -5,11 +5,11 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { Button } from '@/common/components/button/Button';
 import { scrollToSection } from '@/common/utils/scroll-to-section';
 
-import * as styles from './landing-middle-buttons.styles';
+import * as styles from './landing-scroll-section-buttons.styles';
 
 gsap.registerPlugin(ScrollToPlugin);
 
-function LandingMiddleButtons() {
+function LandingScrollSectionButtons() {
   const theme = useTheme();
 
   return (
@@ -51,4 +51,4 @@ function LandingMiddleButtons() {
   );
 }
 
-export default LandingMiddleButtons;
+export default LandingScrollSectionButtons;

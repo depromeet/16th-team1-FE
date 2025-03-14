@@ -2,9 +2,9 @@ import { css } from '@emotion/react';
 
 import { Button } from '@/common/components/button/Button';
 
-import * as styles from './landing-right-buttons.styles';
+import * as styles from './landing-auth-buttons.styles';
 
-function LandingRightButtons() {
+function LandingAuthButtons() {
   return (
     <div css={styles.container}>
       <Button
@@ -33,4 +33,4 @@ function LandingRightButtons() {
   );
 }
 
-export default LandingRightButtons;
+export default LandingAuthButtons;
