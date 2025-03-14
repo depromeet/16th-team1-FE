@@ -3,7 +3,7 @@ import gsap from 'gsap';
 
 import { HEADER_PLACEHOLER_HEIGHT_REM } from '../components/layout/header-navigation/header-navigation-layout.styles';
 
-export const scrollToSection = (id: string, offset?: number) => {
+export const scrollToSection = (id: string) => {
   const element = document.getElementById(id);
 
   if (!element) return;

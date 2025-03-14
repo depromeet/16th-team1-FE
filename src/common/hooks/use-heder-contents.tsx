@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 
-import Icon from '../components/icon/icon';
 import AuthProfile from '../components/layout/header-buttons/auth-profile';
 import HeaderLogo from '../components/layout/header-buttons/header-logo';
 import LandingAuthButtons from '../components/layout/header-buttons/landing/landing-auth-buttons';
