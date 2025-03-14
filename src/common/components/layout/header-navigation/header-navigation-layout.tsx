@@ -13,11 +13,14 @@ interface HeaderNavigationLayoutProps {
 
 function HeaderNavigationLayout({ left, middle, right, pageLabel }: HeaderNavigationLayoutProps) {
   return (
-    <div css={styles.container(pageLabel)}>
-      <div css={styles.leftSection}>{left}</div>
-      <div css={styles.middleSection}>{middle}</div>
-      <div css={styles.rightSection}>{right}</div>
-    </div>
+    <>
+      <div css={styles.container(pageLabel)}>
+        <div css={styles.leftSection}>{left}</div>
+        <div css={styles.middleSection}>{middle}</div>
+        <div css={styles.rightSection}>{right}</div>
+      </div>
+      {pageLabel === 'TotalEvaluation' && <div css={styles.placeHolder} />}
+    </>
   );
 }
 

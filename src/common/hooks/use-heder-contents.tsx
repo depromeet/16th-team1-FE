@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import Icon from '../components/icon/icon';
 import AuthProfile from '../components/layout/header-buttons/auth-profile';
 import HeaderLogo from '../components/layout/header-buttons/header-logo';
@@ -6,40 +8,38 @@ import LandingScrollSectionButtons from '../components/layout/header-buttons/lan
 import TotalEvalutationSidebarButtons from '../components/layout/header-buttons/total-evaluation/total-evaluation-sidebar-buttons';
 import { PageLabelKey } from '../constants/path';
 
+// 템플릿 리터럴
+type ContentType = {
+  [key in PageLabelKey]: {
+    left: ReactNode;
+    middle: ReactNode;
+    right: ReactNode;
+  };
+};
+
 export const useHederContents = (pageLabel: PageLabelKey) => {
-  if (pageLabel === 'Landing') {
-    return {
+  const content: ContentType = {
+    Landing: {
       left: <HeaderLogo />,
       middle: <LandingScrollSectionButtons />,
       right: <LandingAuthButtons />,
-    };
-  }
-  if (pageLabel === 'Upload') {
-    return {
+    },
+    Upload: {
       left: <HeaderLogo />,
-      middle: <></>,
+      middle: null,
       right: <AuthProfile />,
-    };
-  }
-  if (pageLabel === 'TotalEvaluation') {
-    return {
+    },
+    TotalEvaluation: {
       left: <TotalEvalutationSidebarButtons />,
       middle: <Icon name="fix" />,
-      right: <Icon name="fix" />,
-    };
-  }
-
-  if (pageLabel === 'Login') {
-    return {
-      left: <Icon name="logo-full-header-navigation" />,
-      middle: <Icon name="fix" />,
-      right: <Icon name="fix" />,
-    };
-  }
-
-  return {
-    left: null,
-    middle: null,
-    right: null,
+      right: <AuthProfile />,
+    },
+    Login: {
+      left: null,
+      middle: null,
+      right: null,
+    },
   };
+
+  return content[pageLabel];
 };
