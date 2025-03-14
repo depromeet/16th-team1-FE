@@ -4,14 +4,14 @@ import { PageLabelKey } from '@/common/constants/path';
 
 import * as styles from './header-navigation-layout.styles';
 
-interface HeaderNavigationLayoutProps {
+interface HeaderNavigationProps {
   left?: ReactNode;
   middle?: ReactNode;
   right?: ReactNode;
   pageLabel: PageLabelKey;
 }
 
-function HeaderNavigationLayout({ left, middle, right, pageLabel }: HeaderNavigationLayoutProps) {
+function HeaderNavigation({ left, middle, right, pageLabel }: HeaderNavigationProps) {
   return (
     <>
       <div css={styles.container(pageLabel)}>
@@ -24,4 +24,4 @@ function HeaderNavigationLayout({ left, middle, right, pageLabel }: HeaderNaviga
   );
 }
 
-export default HeaderNavigationLayout;
+export default HeaderNavigation;

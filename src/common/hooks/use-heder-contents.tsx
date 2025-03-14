@@ -5,7 +5,7 @@ import AuthProfile from '../components/layout/header-buttons/auth-profile';
 import HeaderLogo from '../components/layout/header-buttons/header-logo';
 import LandingAuthButtons from '../components/layout/header-buttons/landing/landing-auth-buttons';
 import LandingScrollSectionButtons from '../components/layout/header-buttons/landing/landing-scroll-section-buttons';
-import TotalEvalutationSidebarAuth from '../components/layout/header-buttons/total-evaluation/total-evaluation-sidebar-auth';
+import TotalEvalutationAuth from '../components/layout/header-buttons/total-evaluation/total-evaluation-auth';
 import TotalEvalutationSidebarButtons from '../components/layout/header-buttons/total-evaluation/total-evaluation-sidebar-buttons';
 import { PageLabelKey } from '../constants/path';
 
@@ -33,7 +33,7 @@ export const useHederContents = (pageLabel: PageLabelKey) => {
     TotalEvaluation: {
       left: <TotalEvalutationSidebarButtons />,
       middle: <Icon name="fix" />,
-      right: <TotalEvalutationSidebarAuth />,
+      right: <TotalEvalutationAuth />,
     },
     Login: {
       left: null,

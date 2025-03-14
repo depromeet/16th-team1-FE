@@ -3,7 +3,7 @@ import { Outlet } from 'react-router';
 import { PageLabelKey } from '@/common/constants/path';
 import { useHederContents } from '@/common/hooks/use-heder-contents';
 
-import HeaderNavigationLayout from './header-navigation/header-navigation-layout';
+import HeaderNavigation from './header-navigation/header-navigation-layout';
 
 import * as styles from './common-layout.styles';
 
@@ -18,7 +18,7 @@ function CommonLayout({ isHeader, pageLabel }: CommonLayoutProps) {
   return (
     <div css={styles.container(pageLabel)}>
       {isHeader && (
-        <HeaderNavigationLayout left={left} middle={middle} right={right} pageLabel={pageLabel} />
+        <HeaderNavigation left={left} middle={middle} right={right} pageLabel={pageLabel} />
       )}
       <Outlet />
     </div>
