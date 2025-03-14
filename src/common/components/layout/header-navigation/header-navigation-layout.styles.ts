@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 import { PageLabelKey } from '@/common/constants/path';
 
-export const HEADER_NAV_HEIGHT_REM = 6;
+export const HEADER_PLACEHOLER_HEIGHT_REM = 6;
 
 export const container = (pageLabel: PageLabelKey) => css`
   --header-padding: ${pageLabel === 'Landing' ? `1.1rem 2rem` : `1rem`};
@@ -16,7 +16,6 @@ export const container = (pageLabel: PageLabelKey) => css`
   z-index: 1;
   width: 100%;
   padding: var(--header-padding);
-  min-height: 5.4rem;
   backdrop-filter: blur(var(--blur));
   background-color: transparent;
 `;
@@ -27,16 +26,17 @@ export const leftSection = css`
 `;
 
 export const middleSection = css`
-  flex: 1;
   display: flex;
   justify-content: center;
+  flex: 1;
 `;
 
 export const rightSection = css`
   display: flex;
   justify-content: flex-end;
+  height: 100%;
 `;
 
 export const placeHolder = css`
-  height: ${HEADER_NAV_HEIGHT_REM}rem;
+  height: ${HEADER_PLACEHOLER_HEIGHT_REM}rem;
 `;

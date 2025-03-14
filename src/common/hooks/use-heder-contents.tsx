@@ -7,6 +7,7 @@ import LandingAuthButtons from '../components/layout/header-buttons/landing/land
 import LandingScrollSectionButtons from '../components/layout/header-buttons/landing/landing-scroll-section-buttons';
 import TotalEvalutationAuth from '../components/layout/header-buttons/total-evaluation/total-evaluation-auth';
 import TotalEvalutationSidebarButtons from '../components/layout/header-buttons/total-evaluation/total-evaluation-sidebar-buttons';
+import TotalEvalutationUserInfo from '../components/layout/header-buttons/total-evaluation/total-evaluation-user-info';
 import { PageLabelKey } from '../constants/path';
 
 // 템플릿 리터럴
@@ -32,7 +33,7 @@ export const useHederContents = (pageLabel: PageLabelKey) => {
     },
     TotalEvaluation: {
       left: <TotalEvalutationSidebarButtons />,
-      middle: <Icon name="fix" />,
+      middle: <TotalEvalutationUserInfo />,
       right: <TotalEvalutationAuth />,
     },
     Login: {
