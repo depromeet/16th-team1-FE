@@ -2,6 +2,8 @@ import { css } from '@emotion/react';
 
 import { PageLabelKey } from '@/common/constants/path';
 
+export const HEADER_NAV_HEIGHT_REM = 6;
+
 export const container = (pageLabel: PageLabelKey) => css`
   --header-padding: ${pageLabel === 'Landing' ? `1.1rem 2rem` : `1rem`};
   --blur: ${pageLabel === 'Landing' || pageLabel === 'TotalEvaluation' ? `1.2rem` : `0`};
@@ -36,5 +38,5 @@ export const rightSection = css`
 `;
 
 export const placeHolder = css`
-  height: 6rem;
+  height: ${HEADER_NAV_HEIGHT_REM}rem;
 `;

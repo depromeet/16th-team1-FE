@@ -1,7 +1,9 @@
 /** id가 지정된 요소로 스크롤하는 유틸 함수 */
 import gsap from 'gsap';
 
-export const scrollToSection = (id: string) => {
+import { HEADER_NAV_HEIGHT_REM } from '../components/layout/header-navigation/header-navigation-layout.styles';
+
+export const scrollToSection = (id: string, offset?: number) => {
   const element = document.getElementById(id);
 
   if (!element) return;
@@ -13,6 +15,14 @@ export const scrollToSection = (id: string) => {
       duration: 1,
       scrollTo: {
         y: element.offsetTop + (projectsContainer?.clientWidth || 0) * 4,
+      },
+    });
+  }
+  if (id.startsWith('feedback-')) {
+    gsap.to(window, {
+      duration: 0.5,
+      scrollTo: {
+        y: element.offsetTop - HEADER_NAV_HEIGHT_REM * 10,
       },
     });
   } else {
