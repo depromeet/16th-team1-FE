@@ -1,3 +1,15 @@
+import improvement01 from '@assets/images/improvement-01.png';
+import improvement02 from '@assets/images/improvement-02.png';
+import improvement03 from '@assets/images/improvement-03.png';
+import improvement04 from '@assets/images/improvement-04.png';
+import improvement05 from '@assets/images/improvement-05.png';
+import project01 from '@assets/images/project-01.png';
+import project02 from '@assets/images/project-02.png';
+import project03 from '@assets/images/project-03.png';
+import project04 from '@assets/images/project-04.png';
+import stepCard01 from '@assets/images/step-card-01.png';
+import stepCard02 from '@assets/images/step-card-02.png';
+
 export const faqData = [
   {
     question: '포트폴리오가 유출될 위험은 없나요?',
@@ -49,14 +61,14 @@ export const stepData = [
   {
     step: '01',
     text: '내 포트폴리오를\nPDF로 업로드하면,',
-    image: './images/step-card-01.png',
+    image: stepCard01,
     aspectRatio: 618.0 / 262.94,
     width: 61.8,
   },
   {
     step: '02',
     text: 'AI가 세부 항목까지\n구체적으로 피드백해줘요',
-    image: './images/step-card-02.png',
+    image: stepCard02,
     aspectRatio: 616.0 / 309.34,
     width: 61.6,
   },
@@ -66,25 +78,25 @@ export const detailImprovementData = [
   {
     title: '번역체 표현 수정',
     cardTitle: '번역체/어색한 표현',
-    image: './images/improvement-01.png',
+    image: improvement01,
     originalText: '문제에 예민하지 않은 경우가 많으며, 직접적인 불만을 표출하는 경우도 있음',
     revisedText: '문제에 크게 신경 쓰지 않는 경우도 있지만, 직접적으로 불만을 제기하는 손님도 있음',
   },
   {
     title: '가독성 개선',
-    image: './images/improvement-02.png',
+    image: improvement02,
     originalText: '쿠폰 적립 시간이 지연되자, 해삭 서비스에 대한 불만이 접수되기 시작',
     revisedText: '쿠폰 적립이 지연되면서 서비스 불만 접수가 증가',
   },
   {
     title: '불필요한 반복 제거',
-    image: './images/improvement-03.png',
+    image: improvement03,
     originalText: '회원 정보, 쿠폰 적립, 회원 삭제, 회원 정보 수정, 쿠폰 사용',
     revisedText: '회원 관리(등록, 수정, 삭제), 쿠폰 관리(적립, 사용)',
   },
   {
     title: '논리적 비약 보완',
-    image: './images/improvement-04.png',
+    image: improvement04,
     originalText:
       '기존 적립 과정과 유사한 디지털 쿠폰"이라는 표현은 디지털 환경에서 사용자가 오프라인 쿠폰과 동일한 경험을 하도록 설계했다는 의미로 보이지만, 디지털 시스템이 오프라인보다 효율적이어야 한다는 점을 고려하면 다소 모순적일 수 있음.',
     revisedText:
@@ -92,7 +104,7 @@ export const detailImprovementData = [
   },
   {
     title: '맞춤법 수정',
-    image: './images/improvement-05.png',
+    image: improvement05,
     originalText: "직원용 노트북 ‘화면서도' 사용할 수 있도록 ‘반은형' 웹을 고려해 제작했습니다",
     revisedText: '직원용 노트북 화면에서도 사용할 수 있도록 반응형 웹을 고려해 제작했습니다.',
   },
@@ -100,28 +112,28 @@ export const detailImprovementData = [
 
 export const projectsData = [
   {
-    image: './images/project-01.png',
+    image: project01,
     feedbackType: '문제정의',
     process: 'SOSO',
     feedbackDescription:
       '문제 정의가 포함되어 있지만, 근거가 부족해요. 데이터를 활용해 설득력을 높일 필요가 있어요.',
   },
   {
-    image: './images/project-02.png',
+    image: project02,
     feedbackType: '가설',
     process: 'GOOD',
     feedbackDescription:
       '가설이 명확하고 설득력 있어요. 문제와 자연스럽게 연결돼서 이해하기 쉬워요.',
   },
   {
-    image: './images/project-03.png',
+    image: project03,
     feedbackType: '결과',
     process: 'GOOD',
     feedbackDescription:
       '데이터를 기반으로 기존 가설을 검증한 결과가 돋보여요. 실제 사용자 반응까지 포함돼 있어서 결과의 신뢰도가 높아요.',
   },
   {
-    image: './images/project-04.png',
+    image: project04,
     feedbackType: '회고',
     process: 'BAD',
     feedbackDescription:
