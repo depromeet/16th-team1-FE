@@ -15,8 +15,13 @@ interface CommonLayoutProps {
 function CommonLayout({ isHeader, pageLabel }: CommonLayoutProps) {
   const deviceState = useDeviceType();
   return (
-    <div css={styles.container(pageLabel, deviceState.isDesktop)}>
-      {isHeader && <HeaderNavigation pageLabel={pageLabel} />}
+    <div css={styles.container(pageLabel)}>
+      {isHeader && (
+        <>
+          {!deviceState.isDesktop && <div css={styles.mobileTopPlaceholder} />}
+          <HeaderNavigation pageLabel={pageLabel} />
+        </>
+      )}
       <Outlet />
     </div>
   );
