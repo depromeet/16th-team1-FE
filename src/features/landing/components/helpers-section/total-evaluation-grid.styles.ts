@@ -102,6 +102,10 @@ export const firstItem = css`
 export const secondItem = css`
   ${item}
   padding-bottom: 0;
+
+  ${mediaQueries.tablet} {
+    padding-right: 0;
+  }
 `;
 
 export const titleWrapper = css`
@@ -209,6 +213,7 @@ export const chartExample = css`
 
   ${mediaQueries.tablet} {
     float: right;
+    max-width: 49.5rem;
   }
 
   ${mediaQueries.mobile} {
