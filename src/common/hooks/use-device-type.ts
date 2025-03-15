@@ -14,9 +14,9 @@ export default function useDeviceType() {
   });
 
   const handleResize = () => {
-    const isMobile = window.innerWidth <= 375;
-    const isTablet = window.innerWidth > 375 && window.innerWidth <= 768;
-    const isDesktop = window.innerWidth > 768;
+    const isMobile = window.innerWidth <= 767;
+    const isTablet = window.innerWidth > 767 && window.innerWidth <= 1009;
+    const isDesktop = window.innerWidth > 1009;
 
     setDeviceState({ isMobile, isTablet, isDesktop });
   };
