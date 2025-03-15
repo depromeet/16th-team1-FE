@@ -9,7 +9,6 @@ import TotalEvalutationSidebarButtons from '../components/layout/header-buttons/
 import TotalEvalutationUserInfo from '../components/layout/header-buttons/total-evaluation/total-evaluation-user-info';
 import { PageLabelKey } from '../constants/path';
 
-// 템플릿 리터럴
 type ContentType = {
   [key in PageLabelKey]: {
     left: ReactNode;

@@ -4,14 +4,15 @@ import { PageLabelKey } from '@/common/constants/path';
 
 export const HEADER_PLACEHOLER_HEIGHT_REM = 6;
 
-export const container = (pageLabel: PageLabelKey) => css`
+export const container = (pageLabel: PageLabelKey, isDesktop: boolean) => css`
   --header-padding: ${pageLabel === 'Landing' ? `1.1rem 2rem` : `1rem`};
   --blur: ${pageLabel === 'Landing' || pageLabel === 'TotalEvaluation' ? `1.2rem` : `0`};
+  --fixed-top: ${isDesktop ? '0' : '4rem'};
 
   display: flex;
   align-items: center;
   position: fixed;
-  top: 0;
+  top: var(--fixed-top);
   left: 0;
   z-index: 1;
   width: 100%;

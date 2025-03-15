@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router';
 
 import { PageLabelKey } from '@/common/constants/path';
-import { useHederContents } from '@/common/hooks/use-heder-contents';
+import useDeviceType from '@/common/hooks/use-device-type';
 
 import HeaderNavigation from './header-navigation/header-navigation-layout';
 
@@ -13,13 +13,10 @@ interface CommonLayoutProps {
 }
 
 function CommonLayout({ isHeader, pageLabel }: CommonLayoutProps) {
-  const { left, middle, right } = useHederContents(pageLabel);
-
+  const deviceState = useDeviceType();
   return (
-    <div css={styles.container(pageLabel)}>
-      {isHeader && (
-        <HeaderNavigation left={left} middle={middle} right={right} pageLabel={pageLabel} />
-      )}
+    <div css={styles.container(pageLabel, deviceState.isDesktop)}>
+      {isHeader && <HeaderNavigation pageLabel={pageLabel} />}
       <Outlet />
     </div>
   );
