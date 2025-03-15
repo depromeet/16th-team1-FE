@@ -5,6 +5,15 @@ import { withTheme } from '@/common/utils/with-theme';
 
 export const container = css`
   position: relative;
+  margin: 0 auto;
+
+  ${mediaQueries.tablet} {
+    width: calc(100% - 4.8rem);
+  }
+
+  ${mediaQueries.mobile} {
+    width: calc(100% - 4rem);
+  }
 `;
 
 export const imageContainer = css`
