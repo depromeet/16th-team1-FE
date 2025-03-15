@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 
+import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const questionCard = withTheme(
@@ -14,30 +15,28 @@ export const questionCard = withTheme(
     border-radius: 3.2rem;
     background-color: ${theme.colors.GRAY.bg};
 
-    @media (width < ${theme.deviceWidth.desktop}) {
+    ${mediaQueries.mobileAndTablet} {
       width: 100%;
       height: auto;
       gap: 4rem;
       max-width: initial;
     }
 
-    @media (width <= ${theme.deviceWidth.mobile}) {
+    ${mediaQueries.mobile} {
       padding: 2rem 2.4rem;
     }
   `,
 );
 
-export const textWrapper = withTheme(
-  (theme) => css`
-    display: flex;
-    flex-direction: column;
-    gap: 2.8rem;
+export const textWrapper = css`
+  display: flex;
+  flex-direction: column;
+  gap: 2.8rem;
 
-    @media (width < ${theme.deviceWidth.desktop}) {
-      gap: 1.6rem;
-    }
-  `,
-);
+  ${mediaQueries.mobileAndTablet} {
+    gap: 1.6rem;
+  }
+`;
 
 export const question = withTheme(
   (theme) => css`
@@ -45,7 +44,7 @@ export const question = withTheme(
     color: ${theme.colors.SORA[200]} !important;
     white-space: pre-line;
 
-    @media (width <= ${theme.deviceWidth.mobile}) {
+    ${mediaQueries.mobile} {
       ${theme.fonts.SUBTITLE.SUB2_B}
     }
   `,
@@ -57,7 +56,7 @@ export const description = withTheme(
     color: ${theme.colors.GRAY[300]} !important;
     white-space: pre-line;
 
-    @media (width <= ${theme.deviceWidth.mobile}) {
+    ${mediaQueries.mobile} {
       ${theme.fonts.BODY.BODY2_R}
     }
   `,
@@ -68,7 +67,7 @@ export const author = withTheme(
     ${theme.fonts.SUBTITLE.SUB1_SB}
     color: ${theme.colors.GRAY[900]} !important;
 
-    @media (width <= ${theme.deviceWidth.mobile}) {
+    ${mediaQueries.mobile} {
       ${theme.fonts.SUBTITLE.SUB3_SB}
     }
   `,

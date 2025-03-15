@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 
+import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
 type RoutingSectionPositionType = 'start' | 'bottom';
@@ -27,7 +28,7 @@ export const mainText = withTheme(
       font-style: normal;
       letter-spacing: -0.148rem;
 
-      @media (width <= 37.5rem) {
+      ${mediaQueries.mobile} {
         font-size: 4rem;
         letter-spacing: -0.08rem;
       }
@@ -37,7 +38,7 @@ export const mainText = withTheme(
     css`
       ${theme.fonts.HEADLINE.HEAD2}
 
-      @media (width <= 37.5rem) {
+      ${mediaQueries.mobile} {
         ${theme.fonts.HEADLINE.HEAD6}
       }
     `}
@@ -49,7 +50,7 @@ export const explainText = withTheme(
     ${theme.fonts.HEADLINE.HEAD5}
     color: ${theme.colors.GRAY[200]} !important;
 
-    @media (width <= 37.5rem) {
+    ${mediaQueries.mobile} {
       ${theme.fonts.BODY.BODY2_M}
     }
   `,
