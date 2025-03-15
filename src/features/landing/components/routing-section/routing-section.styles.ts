@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 
+import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
 type RoutingSectionPositionType = 'start' | 'bottom';
@@ -26,11 +27,20 @@ export const mainText = withTheme(
       font-family: GeneralSans, sans-serif;
       font-style: normal;
       letter-spacing: -0.148rem;
+
+      ${mediaQueries.mobile} {
+        font-size: 4rem;
+        letter-spacing: -0.08rem;
+      }
     `}
 
     ${type === 'bottom' &&
     css`
       ${theme.fonts.HEADLINE.HEAD2}
+
+      ${mediaQueries.mobile} {
+        ${theme.fonts.HEADLINE.HEAD6}
+      }
     `}
   `,
 );
@@ -38,25 +48,10 @@ export const mainText = withTheme(
 export const explainText = withTheme(
   (theme) => css`
     ${theme.fonts.HEADLINE.HEAD5}
-    color: ${theme.colors.GRAY[200]};
-  `,
-);
+    color: ${theme.colors.GRAY[200]} !important;
 
-export const routingButton = withTheme(
-  (theme) => css`
-    ${theme.fonts.SUBTITLE.SUB2_B}
-    padding: 2.1rem 3.1rem;
-    border-radius: 5rem;
-    background-color: ${theme.colors.SORA[200]};
-
-    &:hover {
-      background-color: ${theme.colors.SORA[100]};
-      color: ${theme.colors.GRAY[950]};
-    }
-
-    &:active {
-      background-color: ${theme.colors.SORA[400]};
-      color: ${theme.colors.GRAY[950]};
+    ${mediaQueries.mobile} {
+      ${theme.fonts.BODY.BODY2_M}
     }
   `,
 );

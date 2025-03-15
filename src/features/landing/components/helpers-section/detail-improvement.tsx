@@ -1,13 +1,16 @@
 import { useState, useMemo, useCallback } from 'react';
 
-import ImprovementSection from '@/features/total-evaluation/components/improvement-section/improvement-section';
-import ImprovementTitle from '@/features/total-evaluation/components/improvement-title/improvement-title';
+import { theme } from '@/assets/styles/theme';
+import Icon from '@/common/components/icon/icon';
+import useDeviceType from '@/common/hooks/use-device-type';
 
 import { detailImprovementData } from '../../common/data';
 
 import * as styles from './detail-improvement.styles';
 
 export default function DetailImprovement() {
+  const { isMobile } = useDeviceType();
+
   const [currentImprovementKey, setCurrentImprovementKey] = useState(
     detailImprovementData[0].title,
   );
@@ -45,15 +48,20 @@ export default function DetailImprovement() {
               alt={`${currentImprovementData.title} image`}
             />
             <div css={styles.improvementTextWrapper}>
-              <ImprovementTitle
-                improvementTitle={currentImprovementData.cardTitle ?? currentImprovementData.title}
-              />
-              <ImprovementSection
-                improvementData={{
-                  originalText: currentImprovementData.originalText,
-                  revisedText: currentImprovementData.revisedText,
-                }}
-              />
+              <div css={styles.improvementTitleWrapper}>
+                <Icon name="checkIcon" color={theme.colors.GRAY[200]} width={isMobile ? 20 : 28} />
+                <span>{currentImprovementData.cardTitle ?? currentImprovementData.title}</span>
+              </div>
+              <div css={styles.improvementSection}>
+                <div css={styles.improvementDetailTextWrapper}>
+                  <span css={styles.improvementCategory(theme.colors.RED[400])}>기존 문장</span>
+                  <p css={styles.detailText}>{currentImprovementData.originalText}</p>
+                </div>
+                <div css={styles.improvementDetailTextWrapper}>
+                  <span css={styles.improvementCategory(theme.colors.GREEN[400])}>수정 문장</span>
+                  <p css={styles.detailText}>{currentImprovementData.revisedText}</p>
+                </div>
+              </div>
             </div>
           </>
         )}

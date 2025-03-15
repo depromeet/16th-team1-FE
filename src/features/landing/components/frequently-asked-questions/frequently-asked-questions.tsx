@@ -10,7 +10,7 @@ import * as styles from './frequently-asked-questions.styles';
 export default function FAQ() {
   return (
     <div css={styles.FAQWrapper}>
-      <p css={styles.title}>FAQ</p>
+      <p css={styles.title}>자주 묻는 질문</p>
       <Accordion.Root type="multiple" css={styles.accordionRoot}>
         {faqData.map(({ question, answer }) => (
           <Accordion.Item key={question} value={question} css={styles.accordionItem}>

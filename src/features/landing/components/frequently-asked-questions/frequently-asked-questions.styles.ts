@@ -1,26 +1,39 @@
 import { css } from '@emotion/react';
 
+import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const FAQWrapper = css`
   display: flex;
   flex-direction: column;
-  gap: 7.2rem;
+  gap: 4rem;
   align-items: center;
   width: 77.4rem;
   max-width: 77.4rem;
   margin: auto;
+
+  ${mediaQueries.mobileAndTablet} {
+    width: 100%;
+  }
+
+  ${mediaQueries.tablet} {
+    padding: 0 2.4rem;
+  }
+
+  ${mediaQueries.mobile} {
+    padding: 0 2rem;
+    gap: 3.2rem;
+  }
 `;
 
 export const title = withTheme(
   (theme) => css`
-    color: ${theme.colors.GRAY[50]};
-    font-family: GeneralSans, sans-serif;
-    font-size: 4rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 118%;
-    letter-spacing: -0.08rem;
+    ${theme.fonts.HEADLINE.HEAD1}
+    color: ${theme.colors.GRAY[100]} !important;
+
+    ${mediaQueries.mobile} {
+      ${theme.fonts.HEADLINE.HEAD6}
+    }
   `,
 );
 
@@ -29,6 +42,10 @@ export const accordionRoot = css`
   flex-direction: column;
   gap: 2.4rem;
   width: 100%;
+
+  ${mediaQueries.mobile} {
+    gap: 1.6rem;
+  }
 `;
 
 export const accordionItem = withTheme(
@@ -41,6 +58,11 @@ export const accordionItem = withTheme(
     &[data-state='open'] {
       border-radius: 1rem;
       background-color: ${theme.colors.GRAY.bg};
+    }
+
+    ${mediaQueries.mobile} {
+      padding: 1.8rem 2rem;
+      gap: 1.6rem;
     }
   `,
 );
@@ -58,11 +80,16 @@ export const accordionTrigger = withTheme(
     width: 100%;
     background-color: inherit;
     border: none;
-    ${theme.fonts.HEADLINE.HEAD3}
-    color: ${theme.colors.GRAY[300]};
+    ${theme.fonts.HEADLINE.HEAD4}
+    color: ${theme.colors.GRAY[300]} !important;
+    text-align: left;
 
     &[data-state='open'] {
-      color: ${theme.colors.GRAY[100]};
+      color: ${theme.colors.GRAY[100]} !important;
+    }
+
+    ${mediaQueries.mobile} {
+      ${theme.fonts.SUBTITLE.SUB2_B}
     }
   `,
 );
@@ -91,5 +118,13 @@ export const accordionContent = withTheme(
   (theme) => css`
     ${theme.fonts.BODY.BODY2_M}
     color: ${theme.colors.GRAY[400]};
+
+    ${mediaQueries.mobile} {
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 170%;
+      letter-spacing: -0.015rem;
+    }
   `,
 );

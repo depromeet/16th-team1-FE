@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 
+import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const container = css`
@@ -7,6 +8,10 @@ export const container = css`
   flex-direction: column;
   width: 100%;
   gap: 2rem;
+
+  ${mediaQueries.mobile} {
+    gap: 1.6rem;
+  }
 `;
 
 export const firstLine = css`
@@ -23,6 +28,22 @@ export const firstLine = css`
     flex: 1;
     background: rgb(215 176 255 / 3%);
     border: 0 solid rgb(213 178 255 / 15%);
+  }
+
+  ${mediaQueries.mobileAndTablet} {
+    flex-direction: column;
+
+    & > div:nth-child(1) {
+      flex: 1;
+    }
+
+    & > div:nth-child(2) {
+      flex: 1;
+    }
+  }
+
+  ${mediaQueries.mobile} {
+    gap: 1.6rem;
   }
 `;
 
@@ -41,20 +62,34 @@ export const secondLine = css`
     border: 0 solid #24242b;
     flex: 1;
   }
+
+  ${mediaQueries.mobile} {
+    flex-direction: column;
+    gap: 1.6rem;
+  }
 `;
 
 export const item = css`
   position: relative;
   padding: 3.4rem 4rem;
   border-radius: 3.2rem;
+
+  ${mediaQueries.mobile} {
+    padding: 2rem 2.4rem;
+    border-radius: 1.6rem;
+  }
 `;
 
 export const title = withTheme(
   (theme) => css`
     ${theme.fonts.HEADLINE.HEAD4};
-    color: ${theme.colors.GRAY[200]};
+    color: ${theme.colors.GRAY[200]} !important;
     white-space: normal;
     margin-top: 0.8rem;
+
+    ${mediaQueries.mobile} {
+      ${theme.fonts.SUBTITLE.SUB2_B};
+    }
   `,
 );
 
@@ -70,9 +105,9 @@ export const list = withTheme(
     & > li {
       display: flex;
       align-items: center;
-      gap: 1.6rem;
+      gap: 2rem;
       ${theme.fonts.SUBTITLE.SUB2_SB};
-      color: #fff;
+      color: #fff !important;
 
       &:not(:first-of-type) {
         margin-top: 3.2rem;
@@ -85,6 +120,15 @@ export const list = withTheme(
         width: 0.2rem;
         height: 2.5rem;
         background-color: ${listColor};
+      }
+    }
+
+    ${mediaQueries.mobile} {
+      & > li {
+        ${theme.fonts.SUBTITLE.SUB5_SB};
+        &:not(:first-of-type) {
+          margin-top: 1.6rem;
+        }
       }
     }
   `,

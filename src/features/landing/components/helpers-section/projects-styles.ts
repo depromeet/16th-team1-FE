@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 
+import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const container = css`
@@ -15,7 +16,7 @@ export const imageWrapper = css`
   position: relative;
   width: 100%;
   max-width: 83.7rem;
-  height: 46.9rem;
+  height: auto;
   margin: 0 auto;
   border-radius: 2rem;
   background-color: gray;
@@ -43,11 +44,16 @@ export const description = withTheme(
     gap: 1rem;
     border-radius: 1.6rem;
     backdrop-filter: blur(5rem);
-    color: #fff;
+    color: #fff !important;
     text-align: center;
     transform: translateX(-50%);
     white-space: pre-wrap;
     word-break: keep-all;
+
+    ${mediaQueries.mobile} {
+      padding: 1.2rem 2rem;
+      ${theme.fonts.BODY.BODY4_M}
+    }
   `,
 );
 
@@ -79,7 +85,11 @@ export const feedbackType = withTheme(
     left: 50%;
     margin-top: 5.128rem;
     ${theme.fonts.SUBTITLE.SUB1_SB};
-    color: #fff;
+    color: ${theme.colors.GRAY[300]} !important;
     transform: translateX(-50%);
+
+    ${mediaQueries.mobile} {
+      ${theme.fonts.SUBTITLE.SUB5_SB};
+    }
   `,
 );

@@ -1,4 +1,5 @@
 import Icon from '@/common/components/icon/icon';
+import useDeviceType from '@/common/hooks/use-device-type';
 
 import * as styles from './projects-styles';
 import { PROCESS_COLOR } from '../../constants/colors';
@@ -16,6 +17,8 @@ export default function Projects({
   feedbackDescription,
   process,
 }: ProjectsProps) {
+  const { isMobile } = useDeviceType();
+
   return (
     <div css={styles.container}>
       <div css={styles.imageContainer}>
@@ -26,9 +29,9 @@ export default function Projects({
       </div>
       <div css={styles.process}>
         <div css={styles.iconWrapper(PROCESS_COLOR[process])}>
-          {process === 'GOOD' && <Icon name="check" width={31} />}
-          {process === 'SOSO' && <Icon name="triangle" width={31} />}
-          {process === 'BAD' && <Icon name="ico-x" />}
+          {process === 'GOOD' && <Icon name="check" width={isMobile ? 32 : 56} />}
+          {process === 'SOSO' && <Icon name="triangle" width={isMobile ? 32 : 56} />}
+          {process === 'BAD' && <Icon name="ico-x" width={isMobile ? 32 : 56} />}
         </div>
         <span css={styles.feedbackType}>{feedbackType}</span>
         <HorizontalSvg />
