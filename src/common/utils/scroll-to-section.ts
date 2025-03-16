@@ -17,8 +17,7 @@ export const scrollToSection = (id: string) => {
         y: element.offsetTop + (projectsContainer?.clientWidth || 0) * 4,
       },
     });
-  }
-  if (id.startsWith('feedback-')) {
+  } else if (id.startsWith('feedback-') || id.endsWith('-section')) {
     gsap.to(window, {
       duration: 0.5,
       scrollTo: {
