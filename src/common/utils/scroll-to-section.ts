@@ -3,10 +3,13 @@ import gsap from 'gsap';
 
 import { HEADER_PLACEHOLER_HEIGHT_REM } from '../components/layout/header-navigation/header-navigation-layout.styles';
 
+const HEADER_PLACEHOLER_HEIGHT_PX = HEADER_PLACEHOLER_HEIGHT_REM * 10;
+
 export const scrollToSection = (id: string) => {
   const element = document.getElementById(id);
-
   if (!element) return;
+
+  const elementOffsetTop = element.offsetTop - HEADER_PLACEHOLER_HEIGHT_PX;
 
   if (id === 'help-section') {
     const projectsContainer = document.getElementById('projects-container');
@@ -14,14 +17,14 @@ export const scrollToSection = (id: string) => {
     gsap.to(window, {
       duration: 1,
       scrollTo: {
-        y: element.offsetTop + (projectsContainer?.clientWidth || 0) * 4,
+        y: elementOffsetTop + (projectsContainer?.clientWidth || 0) * 4,
       },
     });
   } else if (id.startsWith('feedback-') || id.endsWith('-section')) {
     gsap.to(window, {
       duration: 0.5,
       scrollTo: {
-        y: element.offsetTop - HEADER_PLACEHOLER_HEIGHT_REM * 10,
+        y: elementOffsetTop,
       },
     });
   } else {
