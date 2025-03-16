@@ -8,17 +8,17 @@ export const form = css`
 
 export const container = css`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1.8rem;
   position: relative;
   width: 100%;
   padding: min(5rem, 3dvh) min(22rem, 15dvw);
-  border: 1px dashed #18171d;
-  border-radius: 2.4rem;
   background:
     linear-gradient(#1c1c1f 0 0) padding-box,
     linear-gradient(45deg, #afe7ff, #e1c6fe) border-box;
+  border: 1px dashed #18171d;
+  flex-direction: column;
+  gap: 1.8rem;
+  border-radius: 2.4rem;
 `;
 
 export const preview = css`
@@ -38,7 +38,8 @@ export const description = withTheme(
 
     & > p {
       white-space: nowrap;
-      @media screen and (max-width: 400px) {
+
+      @media screen and (width <= 400px) {
         white-space: normal;
       }
     }
