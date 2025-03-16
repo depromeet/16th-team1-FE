@@ -1,12 +1,14 @@
 import { css } from '@emotion/react';
 
 import Icon from '@/common/components/icon/icon';
+import { useAuth } from '@/common/hooks/use-auth';
 
 import GoogleAuthButton from './components/custom-buttons/google-auth-button';
 
 import * as styles from './login-page.styles';
 
 function LoginPage() {
+  useAuth();
   return (
     <div css={styles.container}>
       <div css={styles.content}>
