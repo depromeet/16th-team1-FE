@@ -135,7 +135,8 @@ export const feedbackPageImage = withTheme(
   (theme) => css`
     width: 56.5rem;
     height: 31.8rem;
-    border: 0.2rem solid ${theme.colors.GRAY[200]};
+    border: 0.1rem solid ${theme.colors.GRAY[200]};
+    border-radius: 1.5rem;
     flex-shrink: 0;
     aspect-ratio: 565/318;
   `,
@@ -152,3 +153,34 @@ export const feedbackPerPageContent = css`
   flex-direction: column;
   gap: 2rem;
 `;
+
+export const improvementSection = css`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6rem;
+`;
+
+export const oneLineSummaryWrapper = css`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+  align-self: stretch;
+`;
+
+export const oneLineSummaryTitle = withTheme(
+  (theme) => css`
+    align-self: stretch;
+    ${theme.fonts.SUBTITLE.SUB2_B};
+    color: ${theme.colors.GRAY[200]};
+  `,
+);
+
+export const oneLineSummaryDescription = withTheme(
+  (theme) => css`
+    align-self: stretch;
+    ${theme.fonts.HEADLINE.HEAD4};
+    color: ${theme.colors.GRAY[200]};
+  `,
+);
