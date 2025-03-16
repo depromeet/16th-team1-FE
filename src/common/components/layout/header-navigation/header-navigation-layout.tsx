@@ -10,10 +10,10 @@ interface HeaderNavigationProps {
 
 function HeaderNavigation({ pageLabel }: HeaderNavigationProps) {
   const { left, middle, right } = useHederContents(pageLabel);
-  const deviceState = useDeviceType();
+  const { isMobile } = useDeviceType();
   return (
     <>
-      <div css={styles.container(pageLabel, deviceState.isMobile)}>
+      <div css={styles.container(pageLabel, isMobile)}>
         <div css={styles.leftSection}>{left}</div>
         <div css={styles.middleSection}>{middle}</div>
         <div css={styles.rightSection}>{right}</div>
