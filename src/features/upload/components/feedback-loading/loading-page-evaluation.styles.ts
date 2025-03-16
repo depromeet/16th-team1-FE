@@ -6,12 +6,19 @@ import { withTheme } from '@/common/utils/with-theme';
 export const contentWrapper = css`
   display: flex;
   justify-content: center;
-  width: 100%;
+
+  /* width: 100%; */
   gap: 4rem;
   align-self: stretch;
 
+  ${mediaQueries.tablet} {
+    max-width: 90rem;
+  }
+
   ${mediaQueries.mobileAndTablet} {
+    width: 100%;
     flex-direction: column;
+    align-self: center;
     gap: 1.6rem;
   }
 `;
@@ -27,13 +34,14 @@ export const optionWrapper = css`
   ${mediaQueries.tablet} {
     display: flex;
     align-items: flex-start;
-    align-self: stretch;
-    justify-content: space-between;
+    align-self: center;
+    gap: 0.8rem;
   }
 
   ${mediaQueries.mobile} {
     display: flex;
-    justify-content: space-between;
+    align-items: safe center;
+    justify-content: safe center;
     white-space: nowrap;
     gap: 0.8rem;
     overflow-x: auto;

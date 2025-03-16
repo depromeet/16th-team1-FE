@@ -1,4 +1,4 @@
-import useBreakpoint from '@/common/hooks/use-break-point';
+import useDeviceType from '@/common/hooks/use-device-type';
 
 import LoadingEvaluationBottom from './loading-evaluation-bottom';
 import loadingTotalEvaluationSmall from '../../../../../public/images/loading-total-evaluation-small.png';
@@ -7,13 +7,16 @@ import loadingTotalEvaluation from '../../../../../public/images/loading-total-e
 import * as styles from './loading-total-evaluation.styles';
 
 export default function LoadingTotalEvaluation() {
-  const breakpoint = useBreakpoint();
-  const imgUrl = breakpoint === 'mobile' ? loadingTotalEvaluationSmall : loadingTotalEvaluation;
+  const { isMobile } = useDeviceType();
 
   return (
     <div css={styles.Wrapper}>
       <main css={styles.mainWrapper}>
-        <img src={imgUrl} css={styles.image} alt="loading total evaluation image" />
+        <img
+          src={isMobile ? loadingTotalEvaluationSmall : loadingTotalEvaluation}
+          css={styles.image}
+          alt="loading total evaluation image"
+        />
       </main>
       <section css={styles.bottomWrapper}>
         <LoadingEvaluationBottom type="strength" />
