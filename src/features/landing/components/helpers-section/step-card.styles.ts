@@ -3,25 +3,29 @@ import { css } from '@emotion/react';
 import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
-export const stepCard = withTheme(
-  (theme) => css`
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 100%;
-    min-height: 36.5rem;
-    padding: 3.4rem 0 0 4rem;
-    border-radius: 3.2rem;
-    background-color: #141418;
-    gap: 7.5rem;
+export const stepCard = (inView: boolean, delay: number) => css`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 36.5rem;
+  padding: 3.4rem 0 0 4rem;
+  border-radius: 3.2rem;
+  background-color: #141418;
+  gap: 7.5rem;
 
-    @media (width <= ${theme.deviceWidth.mobile}) {
-      gap: 2.4rem;
-      min-height: fit-content;
-      padding: 2rem 0 2rem 2.4rem;
-    }
-  `,
-);
+  ${mediaQueries.mobile} {
+    gap: 2.4rem;
+    min-height: fit-content;
+    padding: 2rem 0 2rem 2.4rem;
+  }
+
+  opacity: ${inView ? 1 : 0};
+  transform: translateY(${inView ? '0' : '2rem'});
+  transition:
+    opacity 0.6s ease-out ${delay}s,
+    transform 0.6s ease-out ${delay}s;
+`;
 
 export const stepTextWrapper = css`
   display: flex;

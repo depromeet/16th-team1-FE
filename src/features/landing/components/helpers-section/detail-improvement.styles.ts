@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
-export const detailImprovementWrapper = css`
+export const detailImprovementWrapper = (inView: boolean) => css`
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -16,13 +16,23 @@ export const detailImprovementWrapper = css`
     gap: 1.6rem;
     align-items: center;
   }
+
+  opacity: ${inView ? 1 : 0};
+  transform: translateY(${inView ? '0' : '2rem'});
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+  transition-delay: ${inView ? '0.5s' : '0s'};
 `;
 
 export const improvementItemWrapper = css`
   display: flex;
+  width: 100%;
+  width: 27rem;
+  margin: 0 auto;
+  place-content: safe center safe center;
   flex-direction: column;
   gap: 1.2rem;
-  width: 27rem;
   min-width: 27rem;
 
   ${mediaQueries.mobileAndTablet} {
@@ -68,7 +78,11 @@ export const improvementContentWrapper = css`
   flex: 1;
   background-color: #16161a;
 
+  ${mediaQueries.mobileAndTablet} {
+    max-width: inherit;
+  }
   ${mediaQueries.mobile} {
+    width: 100%;
     padding: 0;
     gap: 2.4rem;
     background-color: transparent;

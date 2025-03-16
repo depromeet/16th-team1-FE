@@ -1,4 +1,5 @@
 import { useState, useMemo, useCallback } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
@@ -9,6 +10,11 @@ import { detailImprovementData } from '../../common/data';
 import * as styles from './detail-improvement.styles';
 
 export default function DetailImprovement() {
+  const { ref: detailImprovementRef, inView: detailImprovementInView } = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
+
   const { isMobile } = useDeviceType();
 
   const [currentImprovementKey, setCurrentImprovementKey] = useState(
@@ -25,7 +31,7 @@ export default function DetailImprovement() {
   }, []);
 
   return (
-    <div css={styles.detailImprovementWrapper}>
+    <div ref={detailImprovementRef} css={styles.detailImprovementWrapper(detailImprovementInView)}>
       <ul css={styles.improvementItemWrapper}>
         {detailImprovementData.map(({ title }) => (
           <li
