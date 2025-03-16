@@ -62,8 +62,8 @@ export const stepData = [
     step: '01',
     text: '내 포트폴리오를\nPDF로 업로드하면,',
     image: stepCard01,
-    aspectRatio: 618.0 / 262.94,
-    width: 61.8,
+    aspectRatio: 704.0 / 299.53,
+    width: 70.4,
   },
   {
     step: '02',
