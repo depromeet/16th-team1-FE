@@ -15,6 +15,3 @@ export const container = (pageLabel: PageLabelKey) => css`
     background-color: var(--background-bg);
   }
 `;
-export const mobileTopPlaceholder = css`
-  margin-top: 4rem;
-`;

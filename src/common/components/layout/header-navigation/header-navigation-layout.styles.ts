@@ -33,7 +33,7 @@ export const container = (pageLabel: PageLabelKey, isMobile: boolean) => css`
 
   display: flex;
   align-items: center;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1;
