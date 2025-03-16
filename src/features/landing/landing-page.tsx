@@ -1,5 +1,6 @@
 import { useInView } from 'react-intersection-observer';
 
+import totalEvaluation from '@/assets/images/total-evaluation.png';
 import useDeviceType from '@/common/hooks/use-device-type';
 
 import FAQ from './components/frequently-asked-questions/frequently-asked-questions';
@@ -21,7 +22,7 @@ export default function LandingPage() {
         <RoutingStartSection />
         <img
           ref={ref}
-          src="./images/total-evaluation.png"
+          src={totalEvaluation}
           css={styles.image(inView)}
           alt="total evalution image"
         />

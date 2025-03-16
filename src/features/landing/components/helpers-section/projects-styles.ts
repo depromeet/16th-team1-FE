@@ -5,6 +5,15 @@ import { withTheme } from '@/common/utils/with-theme';
 
 export const container = css`
   position: relative;
+  margin: 0 auto;
+
+  ${mediaQueries.tablet} {
+    width: calc(100% - 4.8rem);
+  }
+
+  ${mediaQueries.mobile} {
+    width: calc(100% - 4rem);
+  }
 `;
 
 export const imageContainer = css`
@@ -37,7 +46,8 @@ export const description = withTheme(
     position: absolute;
     bottom: -2.8rem;
     left: 50%;
-    width: fit-content;
+    width: 100%;
+    max-width: 44.4rem;
     padding: 2.8rem 3.2rem;
     background: linear-gradient(180deg, rgb(0 0 0 / 15%) 0%, rgb(63 188 95 / 15%) 100%);
     border: 1px solid rgb(255 255 255 / 56%);
@@ -51,8 +61,9 @@ export const description = withTheme(
     word-break: keep-all;
 
     ${mediaQueries.mobile} {
+      max-width: 26.4rem;
       padding: 1.2rem 2rem;
-      ${theme.fonts.BODY.BODY4_M}
+      ${theme.fonts.BODY.BODY4_M};
     }
   `,
 );

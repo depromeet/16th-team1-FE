@@ -22,6 +22,11 @@ export const firstLine = css`
     flex-basis: 38.7rem;
     background: rgb(174 232 255 / 3%);
     border: 0 solid rgb(174 232 255 / 15%);
+
+    ${mediaQueries.mobileAndTablet} {
+      flex-basis: auto;
+      width: 100%;
+    }
   }
 
   & > div:nth-child(2) {
@@ -80,12 +85,40 @@ export const item = css`
   }
 `;
 
+export const firstItem = css`
+  ${item}
+
+  ${mediaQueries.mobileAndTablet} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  ${mediaQueries.mobile} {
+    align-items: flex-start;
+  }
+`;
+
+export const secondItem = css`
+  ${item}
+  padding-bottom: 0;
+
+  ${mediaQueries.tablet} {
+    padding-right: 0;
+  }
+`;
+
+export const titleWrapper = css`
+  flex-shrink: 0;
+`;
+
 export const title = withTheme(
   (theme) => css`
     ${theme.fonts.HEADLINE.HEAD4};
     color: ${theme.colors.GRAY[200]} !important;
     white-space: normal;
     margin-top: 0.8rem;
+    flex-shrink: 0;
 
     ${mediaQueries.mobile} {
       ${theme.fonts.SUBTITLE.SUB2_B};
@@ -134,16 +167,64 @@ export const list = withTheme(
   `,
 );
 
+export const gradeWrapper = css`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
+`;
+
 export const gradeExample = css`
+  position: relative;
   width: 100%;
   max-width: 30.7rem;
   aspect-ratio: 307/202;
   margin-top: 2.4rem;
+  text-align: right;
+
+  ${mediaQueries.mobileAndTablet} {
+    margin-top: 0;
+  }
+
+  ${mediaQueries.tablet} {
+    max-width: 24.317rem;
+    height: 16rem;
+  }
+
+  ${mediaQueries.mobile} {
+    max-width: 9.7rem;
+    height: 12.6rem;
+  }
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 `;
 
 export const chartExample = css`
+  position: relative;
   width: 100%;
   max-width: 54.3rem;
   aspect-ratio: 543/236;
   margin-top: 2.4rem;
+
+  ${mediaQueries.tablet} {
+    float: right;
+    max-width: 49.5rem;
+  }
+
+  ${mediaQueries.mobile} {
+    float: none;
+    margin: 2.4rem auto 0;
+  }
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom;
+  }
 `;
