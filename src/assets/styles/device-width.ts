@@ -1,13 +1,14 @@
 export const deviceWidth = {
-  mobile: '768px',
-  tablet: '1100px',
+  tabelt: '768px',
+  desktop: '1100px',
 } as const;
 
 export const mediaQueries = {
-  mobile: `@media (width <= ${deviceWidth.mobile})`,
-  tablet: `@media (width > ${deviceWidth.mobile}) and (width <= ${deviceWidth.tablet})`,
-  mobileAndTablet: `@media (width <= ${deviceWidth.tablet})`,
-  desktop: `@media (width > ${deviceWidth.tablet})`,
+  mobile: `@media (width < ${deviceWidth.tabelt})`,
+  tablet: `@media (width >= ${deviceWidth.tabelt}) and (width < ${deviceWidth.desktop})`,
+  mobileAndTablet: `@media (width < ${deviceWidth.desktop})`,
+  tabletAndDesktop: `@media (width >= ${deviceWidth.tabelt})`,
+  desktop: `@media (width >= ${deviceWidth.desktop})`,
 };
 
 export type DeviceWidthTypes = typeof deviceWidth;
