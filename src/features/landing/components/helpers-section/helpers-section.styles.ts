@@ -20,7 +20,7 @@ export const sectionWrapper = css`
   }
 `;
 
-export const titleWrapper = (inView: boolean) => css`
+export const titleWrapper = css`
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
@@ -29,12 +29,6 @@ export const titleWrapper = (inView: boolean) => css`
   ${mediaQueries.mobile} {
     gap: 1.2rem;
   }
-
-  opacity: ${inView ? 1 : 0};
-  transform: translateY(${inView ? '0' : '2rem'});
-  transition:
-    opacity 0.6s ease-out,
-    transform 0.6s ease-out;
 `;
 
 export const sectionBadge = withTheme(

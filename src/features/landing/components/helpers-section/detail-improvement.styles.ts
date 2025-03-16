@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
-export const detailImprovementWrapper = (inView: boolean) => css`
+export const detailImprovementWrapper = css`
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -16,13 +16,6 @@ export const detailImprovementWrapper = (inView: boolean) => css`
     gap: 1.6rem;
     align-items: center;
   }
-
-  opacity: ${inView ? 1 : 0};
-  transform: translateY(${inView ? '0' : '2rem'});
-  transition:
-    opacity 0.6s ease-out,
-    transform 0.6s ease-out;
-  transition-delay: ${inView ? '0.5s' : '0s'};
 `;
 
 export const improvementItemWrapper = css`

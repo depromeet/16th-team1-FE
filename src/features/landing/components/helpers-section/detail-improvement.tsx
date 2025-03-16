@@ -3,6 +3,7 @@ import { useInView } from 'react-intersection-observer';
 
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
+import FadeInDiv from '@/common/components/interaction/fade-in-div';
 import useDeviceType from '@/common/hooks/use-device-type';
 
 import { detailImprovementData } from '../../common/data';
@@ -31,7 +32,12 @@ export default function DetailImprovement() {
   }, []);
 
   return (
-    <div ref={detailImprovementRef} css={styles.detailImprovementWrapper(detailImprovementInView)}>
+    <FadeInDiv
+      ref={detailImprovementRef}
+      inView={detailImprovementInView}
+      delay={0.5}
+      additionalStyles={styles.detailImprovementWrapper}
+    >
       <ul css={styles.improvementItemWrapper}>
         {detailImprovementData.map(({ title }) => (
           <li
@@ -72,6 +78,6 @@ export default function DetailImprovement() {
           </>
         )}
       </div>
-    </div>
+    </FadeInDiv>
   );
 }

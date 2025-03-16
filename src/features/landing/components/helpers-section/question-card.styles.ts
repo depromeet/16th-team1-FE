@@ -4,7 +4,7 @@ import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const questionCard = withTheme(
-  (theme, inView: boolean, delay: number) => css`
+  (theme) => css`
     display: flex;
     justify-content: space-between;
     width: 33rem;
@@ -25,12 +25,6 @@ export const questionCard = withTheme(
     ${mediaQueries.mobile} {
       padding: 2rem 2.4rem;
     }
-
-    opacity: ${inView ? 1 : 0};
-    transform: translateY(${inView ? '0' : '2rem'});
-    transition:
-      opacity 0.6s ease-out ${delay}s,
-      transform 0.6s ease-out ${delay}s;
   `,
 );
 

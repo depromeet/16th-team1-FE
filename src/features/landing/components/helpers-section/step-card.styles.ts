@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
-export const stepCard = (inView: boolean, delay: number) => css`
+export const stepCard = css`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -19,12 +19,6 @@ export const stepCard = (inView: boolean, delay: number) => css`
     min-height: fit-content;
     padding: 2rem 0 2rem 2.4rem;
   }
-
-  opacity: ${inView ? 1 : 0};
-  transform: translateY(${inView ? '0' : '2rem'});
-  transition:
-    opacity 0.6s ease-out ${delay}s,
-    transform 0.6s ease-out ${delay}s;
 `;
 
 export const stepTextWrapper = css`

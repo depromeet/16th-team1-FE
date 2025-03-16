@@ -11,14 +11,6 @@ export const flexColumn = css`
   align-items: center;
 `;
 
-export const icon = (inView: boolean) => css`
-  opacity: ${inView ? 1 : 0};
-  transform: translateY(${inView ? '0' : '2rem'});
-  transition:
-    opacity 0.6s ease-out,
-    transform 0.6s ease-out;
-`;
-
 export const mainText = withTheme(
   (theme, type: RoutingSectionPositionType, inView?: boolean) => css`
     background: linear-gradient(180deg, #fff 0%, #c6dfe9 100%);

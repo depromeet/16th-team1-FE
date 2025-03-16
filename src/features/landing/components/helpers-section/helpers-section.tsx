@@ -2,6 +2,7 @@ import { useInView } from 'react-intersection-observer';
 
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
+import FadeInDiv from '@/common/components/interaction/fade-in-div';
 import useDeviceType from '@/common/hooks/use-device-type';
 import { questionData, stepData } from '@/features/landing/common/data';
 import QuestionCard from '@/features/landing/components/helpers-section/question-card';
@@ -84,13 +85,17 @@ export default function HelpersSection() {
   return (
     <>
       <section css={styles.sectionWrapper} id="features-section">
-        <div ref={cardTitleRef} css={styles.titleWrapper(cardTitleInView)}>
+        <FadeInDiv
+          ref={cardTitleRef}
+          inView={cardTitleInView}
+          additionalStyles={styles.titleWrapper}
+        >
           <h2 css={styles.sectionTitle}>
             포트폴리오 제작하면서
             <br />
             이런 경험 없으셨나요?
           </h2>
-        </div>
+        </FadeInDiv>
         <div css={styles.contentWrapper(isDesktop ? 'row' : 'column')}>
           {questionData.map(({ question, description, author }, idx) => (
             <QuestionCard
@@ -107,13 +112,17 @@ export default function HelpersSection() {
       </section>
 
       <section css={styles.sectionWrapper}>
-        <div ref={stepTitleRef} css={styles.titleWrapper(stepTitleInView)}>
+        <FadeInDiv
+          ref={stepTitleRef}
+          inView={stepTitleInView}
+          additionalStyles={styles.titleWrapper}
+        >
           <h2 css={styles.sectionTitle}>
             한 번의 PDF 업로드로
             <br />
             맞춤형 피드백을 받아보세요
           </h2>
-        </div>
+        </FadeInDiv>
         <div css={styles.contentWrapper('column')}>
           {stepData.map(({ step, text, image, aspectRatio, width }, idx) => (
             <StepCard
@@ -132,35 +141,44 @@ export default function HelpersSection() {
       </section>
 
       <section css={styles.sectionWrapper}>
-        <div ref={totalEvaluationTitleRef} css={styles.titleWrapper(totalEvaluationTitleInView)}>
+        <FadeInDiv
+          ref={totalEvaluationTitleRef}
+          inView={totalEvaluationTitleInView}
+          additionalStyles={styles.titleWrapper}
+        >
           <SectionBadge color={theme.colors.SORA[200]} text="종합 평가" />
           <h2 css={styles.sectionTitle}>
             포트폴리오를
             <br />
             정량적으로 평가해드려요
           </h2>
-        </div>
+        </FadeInDiv>
         <div css={styles.contentWrapper('column')}>
           <TotalEvaluationGrid />
         </div>
       </section>
 
       <section css={styles.sectionWrapper}>
-        <div ref={projectTitleRef} css={styles.titleWrapper(projectTitleInView)}>
+        <FadeInDiv
+          ref={projectTitleRef}
+          inView={projectTitleInView}
+          additionalStyles={styles.titleWrapper}
+        >
           <SectionBadge color="#D7B1FF" text="프로젝트 평가" />
           <h2 css={styles.sectionTitle}>
             프로젝트 과정에서 놓친 부분은 없는지
             <br />
             단계별로 확인해요
           </h2>
-        </div>
+        </FadeInDiv>
         <ProjectsWrapper />
       </section>
 
       <section css={styles.sectionWrapper}>
-        <div
+        <FadeInDiv
           ref={detailImprovementTitleRef}
-          css={styles.titleWrapper(detailImprovementTitleInView)}
+          inView={detailImprovementTitleInView}
+          additionalStyles={styles.titleWrapper}
         >
           <SectionBadge color="#C3C3D9" text="세부 개선점" />
           <h2 css={styles.sectionTitle}>
@@ -168,7 +186,7 @@ export default function HelpersSection() {
             <br />
             피드백 해드려요
           </h2>
-        </div>
+        </FadeInDiv>
         <DetailImprovement />
       </section>
     </>

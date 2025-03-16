@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 
 import { Button } from '@/common/components/button/Button';
 import Icon from '@/common/components/icon/icon';
+import FadeInDiv from '@/common/components/interaction/fade-in-div';
 import Spacing from '@/common/components/spacing/spacing';
 import useDeviceType from '@/common/hooks/use-device-type';
 
@@ -36,9 +37,9 @@ export default function RoutingBottomSection() {
 
   return (
     <section css={styles.flexColumn}>
-      <div ref={iconRef} css={styles.icon(iconInView)}>
+      <FadeInDiv ref={iconRef} inView={iconInView}>
         <Icon name="symbol" width={isMobile ? 40 : 60} />
-      </div>
+      </FadeInDiv>
       <Spacing size={isMobile ? 1.6 : 3.2} />
       <p ref={textRef} css={styles.mainText('bottom', textInView)}>
         내 포트폴리오에 딱 맞는 피드백
