@@ -1,28 +1,27 @@
-import LogicalError from '@/features/total-evaluation/components/logical-leap/logical-error';
-import LogicalImprovement from '@/features/total-evaluation/components/logical-leap/logical-improvement';
+import LogicalLeapContent from '@/features/total-evaluation/components/logical-leap/logical-leap-content';
 import { LOGICAL_LEAP_CONSTANT } from '@/features/total-evaluation/constants/evaluation-constant';
 
 import * as styles from './logical-leap.styles';
 
 interface LogicalLeapProps {
+  title: string;
   logicalLeapData: {
-    description: string;
-    logicalErrors: string[];
-    improvementText: string;
+    beforeEdit: string;
+    afterEdit: string;
   };
 }
 
-export default function LogicalLeap({ logicalLeapData }: LogicalLeapProps) {
+export default function LogicalLeap({ title, logicalLeapData }: LogicalLeapProps) {
   return (
     <div css={styles.logicalLeapWrapper}>
-      <p css={styles.logicalLeapDescription}>{logicalLeapData.description}</p>
-      <LogicalError
-        label={LOGICAL_LEAP_CONSTANT.logicalError}
-        logicalErrorList={logicalLeapData.logicalErrors}
+      <p css={styles.logicalLeapDescription}>{title}</p>
+      <LogicalLeapContent
+        label={LOGICAL_LEAP_CONSTANT.beforeEdit}
+        text={logicalLeapData.beforeEdit}
       />
-      <LogicalImprovement
-        label={LOGICAL_LEAP_CONSTANT.improvement}
-        improvementText={logicalLeapData.improvementText}
+      <LogicalLeapContent
+        label={LOGICAL_LEAP_CONSTANT.afterEdit}
+        text={logicalLeapData.afterEdit}
       />
     </div>
   );

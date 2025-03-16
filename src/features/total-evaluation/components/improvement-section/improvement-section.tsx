@@ -4,8 +4,8 @@ import { IMPROVEMENT_CONSTANT } from '@/features/total-evaluation/constants/eval
 import * as styles from './improvement-section.styles';
 
 interface ImprovementData {
-  originalText: string;
-  revisedText: string;
+  beforeEdit: string;
+  afterEdit: string;
 }
 
 interface ImprovementSectionProps {
@@ -16,12 +16,12 @@ export default function ImprovementSection({ improvementData }: ImprovementSecti
   return (
     <div css={styles.improvementTextWrapper}>
       <ImprovementText
-        label={IMPROVEMENT_CONSTANT.originalText}
-        improvementText={improvementData.originalText}
+        label={IMPROVEMENT_CONSTANT.beforeEdit}
+        improvementText={improvementData.beforeEdit}
       />
       <ImprovementText
-        label={IMPROVEMENT_CONSTANT.revisedText}
-        improvementText={improvementData.revisedText}
+        label={IMPROVEMENT_CONSTANT.afterEdit}
+        improvementText={improvementData.afterEdit}
       />
     </div>
   );

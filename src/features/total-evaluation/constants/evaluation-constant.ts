@@ -3,13 +3,13 @@ import { EvaluationCriteria } from '@/features/total-evaluation/types/evaluation
 import { FeedbackContentType } from '../services/use-get-portfolio-feedback';
 
 export const IMPROVEMENT_CONSTANT = {
-  originalText: '기존 문장',
-  revisedText: '수정 문장',
+  beforeEdit: '기존 문장',
+  afterEdit: '수정 문장',
 } as const;
 
 export const LOGICAL_LEAP_CONSTANT = {
-  logicalError: '논리적 오류',
-  improvement: '개선 방향',
+  beforeEdit: '논리적 오류',
+  afterEdit: '개선 방향',
 } as const;
 
 /** 전체 평가 항목에 해당하는 라벨 */
