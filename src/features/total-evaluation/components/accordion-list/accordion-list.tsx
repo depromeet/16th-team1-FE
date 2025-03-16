@@ -2,22 +2,25 @@ import { ReactNode } from 'react';
 
 import * as Accordion from '@radix-ui/react-accordion';
 
-export type AccordionItemsType = {
-  accordionTrigger: string;
-  accordionContents: string[];
-};
-
-interface AccordionListProps {
-  type: 'multiple' | 'single';
+interface AccordionListBase {
   orientation: 'vertical' | 'horizontal';
   children: ReactNode;
 }
 
-function AccordionList({ type, orientation, children }: AccordionListProps) {
-  return (
-    <Accordion.Root type={type} orientation={orientation}>
-      {children}
-    </Accordion.Root>
-  );
+interface SingleListProps extends AccordionListBase {
+  type: 'single';
+  defaultValue?: string;
+  collapsible?: boolean;
+}
+
+interface MultiListProps extends AccordionListBase {
+  type: 'multiple';
+  defaultValue?: string[];
+}
+
+export type AccordionListProps = SingleListProps | MultiListProps;
+
+function AccordionList({ children, ...props }: AccordionListProps) {
+  return <Accordion.Root {...props}>{children}</Accordion.Root>;
 }
 export default AccordionList;
