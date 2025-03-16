@@ -14,6 +14,7 @@ export const date = withTheme(
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     width: 8.9rem;
     height: 2.6rem;
     ${theme.fonts.BODY.BODY5_M};
@@ -25,6 +26,7 @@ export const date = withTheme(
 
 export const pdf = withTheme(
   (theme) => css`
+    flex-shrink: 0;
     padding: 0.8rem 0;
     ${theme.fonts.CAPTION.CAPTION1_SB}
     color: ${theme.colors.GRAY[500]};
