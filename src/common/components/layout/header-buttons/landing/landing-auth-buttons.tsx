@@ -9,10 +9,10 @@ import * as styles from './landing-auth-buttons.styles';
 
 function LandingAuthButtons() {
   const navigate = useNavigate();
-  const deviceState = useDeviceType();
+  const { isMobile } = useDeviceType();
   return (
     <div css={styles.container}>
-      {deviceState.isDesktop && (
+      {!isMobile && (
         <Button
           size="small"
           variant="text"

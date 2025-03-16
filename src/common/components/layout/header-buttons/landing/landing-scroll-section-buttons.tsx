@@ -12,10 +12,10 @@ gsap.registerPlugin(ScrollToPlugin);
 
 function LandingScrollSectionButtons() {
   const theme = useTheme();
-  const deviceState = useDeviceType();
+  const { isMobile } = useDeviceType();
 
   return (
-    deviceState.isDesktop && (
+    !isMobile && (
       <div css={styles.container}>
         <Button
           size="small"
