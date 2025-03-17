@@ -1,16 +1,21 @@
+import { useGetFeedbackHistory } from '../profile/services/use-get-feedback-history';
 import PortfolioUpload from './components/portfolio-upload/portfolio-upload';
+import RecentFeedback from './components/recent-feedback/recent-feedback';
 
 import * as styles from './upload-page.styles';
 
 export default function UploadPage() {
+  const { data: feedbackHistoryResponse } = useGetFeedbackHistory();
+  const feedbackHistory = feedbackHistoryResponse?.result;
+
   return (
     <div css={styles.container}>
-      <h1 css={styles.title}>
-        PDF 업로드만 하면,
-        <br />
-        포트폴리오 분석을 해드려요
-      </h1>
+      <h1 css={styles.title}>PDF를 업로드해주세요</h1>
+      <p css={styles.description}>PDF 용량은 최대 50MB, 장수는 최대 50장 가능해요.</p>
       <PortfolioUpload />
+      {feedbackHistory && feedbackHistory?.length > 0 && (
+        <RecentFeedback history={feedbackHistory || []} />
+      )}
     </div>
   );
 }

@@ -1,11 +1,14 @@
 import { usePostPortfolioMutation } from '../../services/mutations';
+import { useGetRemainingCountQuery } from '../../services/queries';
 import FileUpload from '../file-upload/file-upload';
 
 export default function PortfolioUpload() {
   const { mutateAsync: postPortfolio } = usePostPortfolioMutation();
+  const { data: remainingCount } = useGetRemainingCountQuery();
 
   return (
     <FileUpload
+      remainCount={remainingCount?.result.remainCount}
       onSubmit={async ({ file }) => {
         try {
           const formData = new FormData();
