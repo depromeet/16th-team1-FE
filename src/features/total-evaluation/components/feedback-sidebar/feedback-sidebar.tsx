@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { scrollToSection } from '@/common/utils/scroll-to-section';
 import AccordionList from '@/features/total-evaluation/components/accordion-list/accordion-list';
@@ -21,6 +21,11 @@ function FeedbackSidebar({ projectEvaluation }: FeedbackSidebarProps) {
   const { selectedPage, setSelectedPage } = useContext(SelectedPageContext);
   const [currentOpenedTrigger, setCurrentOpenedTrigger] = useState<string[]>([]);
 
+  useEffect(() => {
+    setCurrentOpenedTrigger(['포트폴리오 종합 평가']);
+    setSelectedPage('종합 평가 요약');
+  }, []);
+
   const handleTriggerButton = (triggerTitle: string) => {
     setCurrentOpenedTrigger((prev) =>
       prev.includes(triggerTitle)
@@ -36,7 +41,7 @@ function FeedbackSidebar({ projectEvaluation }: FeedbackSidebarProps) {
 
   return (
     <FeedbackPageNavigator>
-      <AccordionList type="multiple" orientation="vertical">
+      <AccordionList type="multiple" orientation="vertical" defaultValue={['포트폴리오 종합 평가']}>
         <FeedbackContents
           dataList={projectEvaluation}
           /** 각 메뉴 트리거 버튼 */

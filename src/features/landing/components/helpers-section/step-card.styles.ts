@@ -6,7 +6,6 @@ import { withTheme } from '@/common/utils/with-theme';
 export const stepCard = css`
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
   width: 100%;
   min-height: 36.5rem;
   padding: 3.4rem 0 0 4rem;
@@ -14,9 +13,15 @@ export const stepCard = css`
   background-color: #141418;
   gap: 7.5rem;
 
+  ${mediaQueries.tablet} {
+    min-height: 25.2rem;
+    padding: 2rem 0 2rem 2.4rem;
+  }
+
   ${mediaQueries.mobile} {
     gap: 2.4rem;
     min-height: fit-content;
+    flex-flow: column wrap;
     padding: 2rem 0 2rem 2.4rem;
   }
 `;
@@ -25,6 +30,7 @@ export const stepTextWrapper = css`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+  flex-shrink: 0;
 `;
 
 export const stepText = withTheme(
@@ -53,6 +59,10 @@ export const stepExplainText = withTheme(
     }
   `,
 );
+
+export const imageWrapper = css`
+  text-align: right;
+`;
 
 export const image = (aspectRatio: number, width: number) => css`
   aspect-ratio: ${aspectRatio};

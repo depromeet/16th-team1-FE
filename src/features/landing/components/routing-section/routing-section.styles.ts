@@ -12,7 +12,7 @@ export const flexColumn = css`
 `;
 
 export const mainText = withTheme(
-  (theme, type: RoutingSectionPositionType) => css`
+  (theme, type: RoutingSectionPositionType, inView?: boolean) => css`
     background: linear-gradient(180deg, #fff 0%, #c6dfe9 100%);
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -41,6 +41,13 @@ export const mainText = withTheme(
       ${mediaQueries.mobile} {
         ${theme.fonts.HEADLINE.HEAD6}
       }
+
+      opacity: ${inView ? 1 : 0};
+      transform: translateY(${inView ? '0' : '2rem'});
+      transition:
+        opacity 0.6s ease-out,
+        transform 0.6s ease-out;
+      transition-delay: ${inView ? '0.4s' : '0s'};
     `}
   `,
 );
@@ -55,3 +62,12 @@ export const explainText = withTheme(
     }
   `,
 );
+
+export const button = (inView: boolean) => css`
+  opacity: ${inView ? 1 : 0};
+  transform: translateY(${inView ? '0' : '2rem'});
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+  transition-delay: 0.6s;
+`;

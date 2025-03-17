@@ -53,7 +53,7 @@ function LeftSidebarContainer({
     width: 26.4,
     height: 'all',
     gap: 4.8,
-    padding: 1.2,
+    padding: 1,
   },
   animation = {
     duration: 300,

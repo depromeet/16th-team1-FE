@@ -21,12 +21,11 @@ export const container: containerStyleFnType = (isSidebarOpen, size, animation, 
   --sidebar-height: ${size.height === 'all' ? '100dvh' : size.height};
 
   display: flex;
-  flex-direction: column;
-  gap: ${size.gap}rem;
   overflow: auto;
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 2;
   width: ${size.width}rem;
   height: var(--sidebar-height);
   padding: ${size.padding}rem;
@@ -34,6 +33,8 @@ export const container: containerStyleFnType = (isSidebarOpen, size, animation, 
   transition:
     transform ${animation.duration}ms ${animation.easing},
     background-color ${animation.duration}ms ${animation.easing};
+  flex-direction: column;
+  gap: ${size.gap}rem;
   background-color: var(--sidebar-bg);
 
   &::-webkit-scrollbar {

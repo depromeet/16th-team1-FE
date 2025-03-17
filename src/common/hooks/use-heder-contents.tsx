@@ -1,41 +1,45 @@
-import Icon from '../components/icon/icon';
-import LandingMiddleButtons from '../components/layout/header-buttons/landing-middle-buttons';
-import TotalEvalutationLeftButtons from '../components/layout/header-buttons/total-evaluation-left-buttons';
+import { ReactNode } from 'react';
+
+import AuthProfile from '../components/layout/header-buttons/auth-profile';
+import HeaderLogo from '../components/layout/header-buttons/header-logo';
+import LandingAuthButtons from '../components/layout/header-buttons/landing/landing-auth-buttons';
+import LandingScrollSectionButtons from '../components/layout/header-buttons/landing/landing-scroll-section-buttons';
+import TotalEvalutationAuth from '../components/layout/header-buttons/total-evaluation/total-evaluation-auth';
+import TotalEvalutationSidebarButtons from '../components/layout/header-buttons/total-evaluation/total-evaluation-sidebar-buttons';
+import TotalEvalutationUserInfo from '../components/layout/header-buttons/total-evaluation/total-evaluation-user-info';
 import { PageLabelKey } from '../constants/path';
 
-export const useHederContents = (pageLabel: PageLabelKey) => {
-  if (pageLabel === 'TotalEvaluation') {
-    return {
-      left: <TotalEvalutationLeftButtons />,
-      middle: <Icon name="fix" />,
-      right: <Icon name="fix" />,
-    };
-  }
-  if (pageLabel === 'Landing') {
-    return {
-      left: <Icon name="logo-full-header-navigation" />,
-      middle: <LandingMiddleButtons />,
-      right: <Icon name="fix" />,
-    };
-  }
-  if (pageLabel === 'Upload') {
-    return {
-      left: <Icon name="logo-full-header-navigation" />,
-      middle: <Icon name="fix" />,
-      right: <Icon name="fix" />,
-    };
-  }
-  if (pageLabel === 'Login') {
-    return {
-      left: <Icon name="logo-full-header-navigation" />,
-      middle: <Icon name="fix" />,
-      right: <Icon name="fix" />,
-    };
-  }
-
-  return {
-    left: null,
-    middle: null,
-    right: null,
+type ContentType = {
+  [key in PageLabelKey]: {
+    left: ReactNode;
+    middle: ReactNode;
+    right: ReactNode;
   };
+};
+
+export const useHederContents = (pageLabel: PageLabelKey) => {
+  const content: ContentType = {
+    Landing: {
+      left: <HeaderLogo />,
+      middle: <LandingScrollSectionButtons />,
+      right: <LandingAuthButtons />,
+    },
+    Upload: {
+      left: <HeaderLogo />,
+      middle: null,
+      right: <AuthProfile />,
+    },
+    TotalEvaluation: {
+      left: <TotalEvalutationSidebarButtons />,
+      middle: <TotalEvalutationUserInfo />,
+      right: <TotalEvalutationAuth />,
+    },
+    Login: {
+      left: null,
+      middle: null,
+      right: null,
+    },
+  };
+
+  return content[pageLabel];
 };

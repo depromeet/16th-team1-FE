@@ -20,9 +20,12 @@ export const detailImprovementWrapper = css`
 
 export const improvementItemWrapper = css`
   display: flex;
+  width: 100%;
+  width: 27rem;
+  margin: 0 auto;
+  place-content: safe center safe center;
   flex-direction: column;
   gap: 1.2rem;
-  width: 27rem;
   min-width: 27rem;
 
   ${mediaQueries.mobileAndTablet} {
@@ -68,7 +71,11 @@ export const improvementContentWrapper = css`
   flex: 1;
   background-color: #16161a;
 
+  ${mediaQueries.mobileAndTablet} {
+    max-width: inherit;
+  }
   ${mediaQueries.mobile} {
+    width: 100%;
     padding: 0;
     gap: 2.4rem;
     background-color: transparent;

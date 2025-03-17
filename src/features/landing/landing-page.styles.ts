@@ -26,9 +26,11 @@ export const flexColumn = (gap: number) => css`
   width: 100%;
 `;
 
-export const image = css`
-  max-width: 134rem;
+export const image = (inView: boolean) => css`
   width: 100%;
-  object-fit: cover;
   height: auto;
+  transform: ${inView ? 'scale(1)' : 'scale(0.8)'};
+  transition: transform 0.3s ease-in-out;
+  max-width: 134rem;
+  object-fit: cover;
 `;

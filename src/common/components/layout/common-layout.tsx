@@ -1,9 +1,8 @@
 import { Outlet } from 'react-router';
 
 import { PageLabelKey } from '@/common/constants/path';
-import { useHederContents } from '@/common/hooks/use-heder-contents';
 
-import HeaderNavigationLayout from './header-navigation/header-navigation-layout';
+import HeaderNavigation from './header-navigation/header-navigation-layout';
 
 import * as styles from './common-layout.styles';
 
@@ -13,11 +12,9 @@ interface CommonLayoutProps {
 }
 
 function CommonLayout({ isHeader, pageLabel }: CommonLayoutProps) {
-  const { left, middle, right } = useHederContents(pageLabel);
-
   return (
     <div css={styles.container(pageLabel)}>
-      {isHeader && <HeaderNavigationLayout left={left} middle={middle} right={right} />}
+      {isHeader && <HeaderNavigation pageLabel={pageLabel} />}
       <Outlet />
     </div>
   );

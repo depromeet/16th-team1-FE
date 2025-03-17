@@ -27,17 +27,23 @@ export const FAQWrapper = css`
 `;
 
 export const title = withTheme(
-  (theme) => css`
+  (theme, inView: boolean) => css`
     ${theme.fonts.HEADLINE.HEAD1}
     color: ${theme.colors.GRAY[100]} !important;
 
     ${mediaQueries.mobile} {
       ${theme.fonts.HEADLINE.HEAD6}
     }
+
+    opacity: ${inView ? 1 : 0};
+    transform: translateY(${inView ? '0' : '2rem'});
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
   `,
 );
 
-export const accordionRoot = css`
+export const accordionRoot = (inView: boolean) => css`
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
@@ -46,6 +52,13 @@ export const accordionRoot = css`
   ${mediaQueries.mobile} {
     gap: 1.6rem;
   }
+
+  opacity: ${inView ? 1 : 0};
+  transform: translateY(${inView ? '0' : '2rem'});
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+  transition-delay: ${inView ? '0.5s' : '0s'};
 `;
 
 export const accordionItem = withTheme(

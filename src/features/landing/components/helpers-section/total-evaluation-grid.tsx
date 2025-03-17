@@ -1,3 +1,6 @@
+import detailEvaluationChart from '@assets/images/detail-evaluation-chart.png';
+import gradeSmall from '@assets/images/grade-small.png';
+import grade from '@assets/images/grade.png';
 import { css } from '@emotion/react';
 
 import { theme } from '@/assets/styles/theme';
@@ -12,35 +15,43 @@ export default function TotalEvaluationGrid() {
   return (
     <div css={styles.container}>
       <div css={styles.firstLine}>
-        <div css={styles.item}>
-          <Icon name="pin" width={24} color={theme.colors.SORA[200]} />
-          <h3
-            css={[
-              styles.title,
-              (theme) => css`
-                color: ${theme.colors.SORA[200]};
-              `,
-            ]}
-          >
-            디프님의
-            <br /> 포트폴리오 등급은
-          </h3>
-          <div css={styles.gradeExample}></div>
+        <div css={styles.firstItem}>
+          <div css={styles.titleWrapper}>
+            <Icon name="pin" width={24} color={theme.colors.SORA[200]} />
+            <h3
+              css={[
+                styles.title,
+                (theme) => css`
+                  color: ${theme.colors.SORA[200]} !important;
+                `,
+              ]}
+            >
+              디프님의
+              <br /> 포트폴리오 등급은
+            </h3>
+          </div>
+          <div css={styles.gradeWrapper}>
+            <div css={styles.gradeExample}>
+              <img src={isMobile ? gradeSmall : grade} alt="등급" />
+            </div>
+          </div>
         </div>
-        <div css={styles.item}>
+        <div css={styles.secondItem}>
           <Icon name="document-mono" width={24} color="#D7B1FF" />
           <h3
             css={[
               styles.title,
               css`
-                color: #d5b2ff;
+                color: #d5b2ff !important;
               `,
             ]}
           >
             포트폴리오
             <br /> 세부 평가 항목의 점수는
           </h3>
-          <div css={styles.chartExample}></div>
+          <div css={styles.chartExample}>
+            <img src={detailEvaluationChart} alt="세부 평가 차트" />
+          </div>
         </div>
       </div>
       <div css={styles.secondLine}>
