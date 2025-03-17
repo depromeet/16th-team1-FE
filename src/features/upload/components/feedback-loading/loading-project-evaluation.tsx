@@ -1,9 +1,9 @@
+import loadingProjectEvaluation from '@/assets/images/loading-project-evaluation.png';
 import Icon from '@/common/components/icon/icon';
 import Spacing from '@/common/components/spacing/spacing';
 import useDeviceType from '@/common/hooks/use-device-type';
 
 import TotalEvaluationBottom from './loading-evaluation-bottom';
-import loadingProjectEvaluation from '../../../../../public/images/loading-project-evaluation.png';
 
 import * as styles from './loading-project-evaluation.styles';
 
