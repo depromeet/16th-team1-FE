@@ -1,6 +1,6 @@
 import { PageLabelKey } from '@/common/constants/path';
 import useDeviceType from '@/common/hooks/use-device-type';
-import { useHederContents } from '@/common/hooks/use-heder-contents';
+import { useHeaderContents } from '@/common/hooks/use-header-contents';
 
 import * as styles from './header-navigation-layout.styles';
 
@@ -9,7 +9,7 @@ interface HeaderNavigationProps {
 }
 
 function HeaderNavigation({ pageLabel }: HeaderNavigationProps) {
-  const { left, middle, right } = useHederContents(pageLabel);
+  const { left, middle, right } = useHeaderContents(pageLabel);
   const { isMobile } = useDeviceType();
   return (
     <>

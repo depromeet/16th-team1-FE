@@ -23,6 +23,9 @@ const getPaddingByPage = (pageLabel: PageLabelKey, isMobile: boolean) => {
     Login: {
       padding: '0',
     },
+    Loading: {
+      padding: '0',
+    },
   };
 
   return paddingInfo[pageLabel].padding;
