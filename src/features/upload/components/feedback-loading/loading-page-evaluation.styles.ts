@@ -6,8 +6,6 @@ import { withTheme } from '@/common/utils/with-theme';
 export const contentWrapper = css`
   display: flex;
   justify-content: center;
-
-  /* width: 100%; */
   gap: 4rem;
   align-self: stretch;
 
