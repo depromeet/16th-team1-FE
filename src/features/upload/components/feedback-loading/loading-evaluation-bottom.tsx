@@ -1,5 +1,5 @@
 import Icon from '@/common/components/icon/icon';
-import useBreakpoint from '@/common/hooks/use-break-point';
+import useDeviceType from '@/common/hooks/use-device-type';
 
 import { LOADING_BOTTOM } from '../../constants/loading-constant';
 
@@ -10,14 +10,14 @@ export interface TotalEvaluationBottomProps {
 }
 
 export default function TotalEvaluationBottom({ type }: TotalEvaluationBottomProps) {
-  const breakpoint = useBreakpoint();
+  const { isMobile, isTablet } = useDeviceType();
   const data = LOADING_BOTTOM[type];
 
   let content = [...data.content];
 
-  if (type === 'fix' && breakpoint === 'tablet') {
+  if (type === 'fix' && isTablet) {
     content = ['1. UI/UX 디자인 과정 추가하기', ...data.content.slice(1)];
-  } else if (type === 'smile' && breakpoint === 'mobile') {
+  } else if (type === 'smile' && isMobile) {
     content = [data.content[0], '2. 그로스 전략 적용', ...data.content.slice(2)];
   }
 

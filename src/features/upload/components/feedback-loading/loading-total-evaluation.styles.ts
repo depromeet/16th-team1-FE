@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 
+import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const Wrapper = css`
@@ -7,20 +8,16 @@ export const Wrapper = css`
   flex-direction: column;
   align-items: center;
   align-self: stretch;
+  gap: 2rem;
 
-  @media (width >= 768px) {
-    gap: 2rem;
-  }
-
-  @media (width < 768px) {
+  ${mediaQueries.mobile} {
     gap: 1.2rem;
-    margin: 0 2rem;
   }
 `;
 
 export const mainWrapper = withTheme(
   (theme) => css`
-    @media (width >= 768px) {
+    ${mediaQueries.tabletAndDesktop} {
       display: flex;
       align-items: flex-start;
       padding: 6.4rem 8.8rem;
@@ -37,18 +34,14 @@ export const image = css`
 `;
 
 export const bottomWrapper = css`
-  @media (width >= 768px) {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    align-self: stretch;
-  }
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  align-self: stretch;
 
-  @media (width < 768px) {
-    display: flex;
+  ${mediaQueries.mobile} {
     flex-direction: column;
     align-items: center;
     gap: 1.2rem;
-    align-self: stretch;
   }
 `;

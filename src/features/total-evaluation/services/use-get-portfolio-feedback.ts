@@ -36,8 +36,13 @@ export interface FeedbackPerPageType {
   contents: [
     {
       type: FeedbackContentType;
-      beforeEdit: string;
-      afterEdit: string;
+      title: string;
+      feedbackContentDetailList: [
+        {
+          afterEdit: string;
+          beforeEdit: string;
+        },
+      ];
     },
   ];
   imageUrl: string;

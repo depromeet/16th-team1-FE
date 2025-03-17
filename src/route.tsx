@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { createBrowserRouter } from 'react-router';
 
 import LandingPage from '@/features/landing/landing-page';
+import FeedbackLoadingPage from '@/features/upload/components/feedback-loading/feedback-loading';
 import UploadPage from '@/features/upload/upload-page';
 
 import Authorization from './common/components/auth/Authorization';
@@ -38,6 +39,13 @@ const RouterInfo: RouterInfoType[] = [
     withAuthorization: true,
     element: <UploadPage />,
     label: 'Upload',
+    isHeader: true,
+  },
+  {
+    path: PAGE_URL.Loading,
+    withAuthorization: true,
+    element: <FeedbackLoadingPage />,
+    label: 'Loading',
     isHeader: true,
   },
   {

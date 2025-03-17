@@ -4,14 +4,12 @@ import Icon from '@/common/components/icon/icon';
 import useDeviceType from '@/common/hooks/use-device-type';
 
 import { EVALUATION_OPTIONS } from '../../constants/loading-constant';
-import useHorizontalScroll from '../../hooks/useHorizontalScroll';
 
 import * as styles from './loading-page-evaluation.styles';
 
 export default function LoadingPageEvaluation() {
   const [selectedOption, setSelectedOption] = useState(EVALUATION_OPTIONS[0].key);
   const { isMobile, isTablet } = useDeviceType();
-  const { ref, isDragging, onDragStart, onThrottleDragMove, onDragEnd } = useHorizontalScroll();
 
   const currentData = useMemo(
     () => EVALUATION_OPTIONS.find((data) => data.key === selectedOption),
@@ -24,14 +22,7 @@ export default function LoadingPageEvaluation() {
 
   return (
     <div css={styles.contentWrapper}>
-      <aside
-        css={styles.optionWrapper}
-        ref={ref}
-        onMouseDown={onDragStart}
-        onMouseMove={isDragging ? onThrottleDragMove : undefined}
-        onMouseUp={onDragEnd}
-        onMouseLeave={onDragEnd}
-      >
+      <aside css={styles.optionWrapper}>
         {EVALUATION_OPTIONS.map((option) => (
           <div
             key={option.key}

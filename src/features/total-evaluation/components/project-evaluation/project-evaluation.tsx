@@ -16,6 +16,7 @@ import {
 import EvaluationTitle from '../evaluation-title/evaluation-title';
 import ImprovementSection from '../improvement-section/improvement-section';
 import ImprovementTitle from '../improvement-title/improvement-title';
+import LogicalLeap from '../logical-leap/logical-leap';
 import NestedList from '../nested-list/nested-list';
 import SummaryTitle from '../summary-title/summary-title';
 
@@ -45,6 +46,7 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
     processReview,
     process,
     feedbackPerPage,
+    projectSummary,
   } = projectEvaluation;
 
   return (
@@ -108,6 +110,12 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
           ))}
         </div>
       </section>
+
+      {/* 한 줄 요약 */}
+      <section css={styles.oneLineSummaryWrapper}>
+        <span css={styles.oneLineSummaryTitle}>한 줄 요약</span>
+        <p css={styles.oneLineSummaryDescription}>{projectSummary}</p>
+      </section>
     </div>
   );
 }
@@ -147,12 +155,15 @@ function FeedbackPerPageItem({ projectName, feedbackData }: FeedbackPerPageItemP
         {contents.map((content) => (
           <div key={content.type} css={styles.feedbackPerPageContent}>
             <ImprovementTitle improvementTitle={FEEDBACK_PER_PAGE_CONTENT_TYPE[content.type]} />
-            <ImprovementSection
-              improvementData={{
-                originalText: content.beforeEdit,
-                revisedText: content.afterEdit,
-              }}
-            />
+            {content.feedbackContentDetailList.map((detailContent) => (
+              <div key={detailContent.afterEdit} css={styles.improvementSection}>
+                {content.type === 'LOGICAL_LEAP' ? (
+                  <LogicalLeap title={content.title} logicalLeapData={detailContent} />
+                ) : (
+                  <ImprovementSection improvementData={detailContent} />
+                )}
+              </div>
+            ))}
           </div>
         ))}
       </div>

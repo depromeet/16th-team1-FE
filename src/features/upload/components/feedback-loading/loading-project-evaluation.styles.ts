@@ -1,41 +1,40 @@
 import { css } from '@emotion/react';
 
+import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const Wrapper = css`
   display: flex;
   flex-direction: column;
+  gap: 2rem;
 
-  @media (width >= 768px) {
-    gap: 2rem;
-  }
-
-  @media (width < 768px) {
+  ${mediaQueries.mobile} {
     gap: 1.2rem;
-    margin: 0 2rem;
   }
 `;
 
 export const contentWrapper = withTheme(
   (theme) => css`
-    @media (width >= 970px) {
-      max-width: 90rem;
-    }
+    display: flex;
+    flex-direction: column;
 
-    @media (width >= 768px) {
-      display: flex;
+    ${mediaQueries.desktop} {
       padding: 6.4rem 8.8rem;
+      max-width: 90rem;
       background: ${theme.colors.GRAY[990]};
-      flex-direction: column;
       border-radius: 3.2rem;
       gap: 3.2rem;
     }
 
-    @media (width < 970px) and (width >= 768px) {
-      width: 100%;
+    ${mediaQueries.tablet} {
+      max-width: 90rem;
+      padding: 6.4rem 8.8rem;
+      background: ${theme.colors.GRAY[990]};
+      border-radius: 3.2rem;
+      gap: 3.2rem;
     }
 
-    @media (width < 768px) {
+    ${mediaQueries.mobile} {
       display: flex;
       align-items: center;
       flex-direction: column;
@@ -47,7 +46,7 @@ export const contentWrapper = withTheme(
 );
 
 export const titleWrapper = css`
-  @media (width < 768px) {
+  ${mediaQueries.mobile} {
     display: none;
   }
 `;
@@ -82,11 +81,11 @@ export const descriptionWrapper = withTheme(
     gap: 0.6rem;
     border-radius: 2rem;
 
-    @media (width < 970px) and (width >= 768px) {
+    ${mediaQueries.tablet} {
       width: 100%;
     }
 
-    @media (width < 768px) {
+    ${mediaQueries.mobile} {
       width: 100%;
       background: ${theme.colors.GRAY[990]};
     }
@@ -95,12 +94,10 @@ export const descriptionWrapper = withTheme(
 
 export const descriptionTitle = withTheme(
   (theme) => css`
-    @media (width >= 768px) {
-      ${theme.fonts.SUBTITLE.SUB2_SB};
-      color: ${theme.colors.GRAY[50]};
-    }
+    ${theme.fonts.SUBTITLE.SUB2_SB};
+    color: ${theme.colors.GRAY[50]};
 
-    @media (width < 768px) {
+    ${mediaQueries.mobile} {
       ${theme.fonts.SUBTITLE.SUB3_SB};
       color: ${theme.colors.GRAY[50]};
     }
@@ -109,12 +106,10 @@ export const descriptionTitle = withTheme(
 
 export const description = withTheme(
   (theme) => css`
-    @media (width >= 768px) {
-      ${theme.fonts.BODY.BODY2_R};
-      color: ${theme.colors.GRAY[300]};
-    }
+    ${theme.fonts.BODY.BODY2_R};
+    color: ${theme.colors.GRAY[300]};
 
-    @media (width < 768px) {
+    ${mediaQueries.mobile} {
       ${theme.fonts.BODY.BODY3_R};
       color: ${theme.colors.GRAY[300]};
     }
@@ -122,18 +117,14 @@ export const description = withTheme(
 );
 
 export const bottomWrapper = css`
-  @media (width >= 768px) {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    align-self: stretch;
-  }
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  align-self: stretch;
 
-  @media (width < 768px) {
-    display: flex;
+  ${mediaQueries.mobile} {
     flex-direction: column;
     align-items: center;
     gap: 1.2rem;
-    align-self: stretch;
   }
 `;

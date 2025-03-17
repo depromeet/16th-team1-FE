@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 
+import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const contentWrapper = withTheme(
@@ -13,15 +14,11 @@ export const contentWrapper = withTheme(
     flex: 1 0 0;
     border-radius: 3.2rem;
 
-    @media (width >= 970px) {
+    ${mediaQueries.tabletAndDesktop} {
       max-width: 44rem;
     }
 
-    @media (width < 970px) and (width >= 768px) {
-      width: 100%;
-    }
-
-    @media (width < 768px) {
+    ${mediaQueries.mobile} {
       width: 100%;
       padding: 3.2rem 4rem;
       gap: 1.4rem;
@@ -35,13 +32,10 @@ export const title = ({ color }: { color: string }) =>
     (theme) => css`
       display: flex;
       align-items: center;
+      ${theme.fonts.HEADLINE.HEAD4};
+      color: ${color};
 
-      @media (width >= 768px) {
-        ${theme.fonts.HEADLINE.HEAD4};
-        color: ${color};
-      }
-
-      @media (width < 768px) {
+      ${mediaQueries.mobile} {
         ${theme.fonts.SUBTITLE.SUB2_B};
         color: ${color};
       }
