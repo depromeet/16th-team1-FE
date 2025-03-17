@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router';
 
+import Footer from '@/common/components/layout/footer/footer';
 import { PageLabelKey } from '@/common/constants/path';
 
 import HeaderNavigation from './header-navigation/header-navigation-layout';
@@ -16,6 +17,7 @@ function CommonLayout({ isHeader, pageLabel }: CommonLayoutProps) {
     <div css={styles.container(pageLabel)}>
       {isHeader && <HeaderNavigation pageLabel={pageLabel} />}
       <Outlet />
+      <Footer />
     </div>
   );
 }
