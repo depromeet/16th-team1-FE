@@ -17,7 +17,7 @@ type ContentType = {
   };
 };
 
-export const useHederContents = (pageLabel: PageLabelKey) => {
+export const useHeaderContents = (pageLabel: PageLabelKey) => {
   const content: ContentType = {
     Landing: {
       left: <HeaderLogo />,
@@ -38,6 +38,11 @@ export const useHederContents = (pageLabel: PageLabelKey) => {
       left: null,
       middle: null,
       right: null,
+    },
+    Loading: {
+      left: <HeaderLogo />,
+      middle: null,
+      right: <AuthProfile />,
     },
   };
 

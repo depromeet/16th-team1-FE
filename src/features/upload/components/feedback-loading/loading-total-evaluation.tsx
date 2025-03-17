@@ -1,8 +1,8 @@
+import loadingTotalEvaluationSmall from '@/assets/images/loading-total-evaluation-small.png';
+import loadingTotalEvaluation from '@/assets/images/loading-total-evaluation.png';
 import useDeviceType from '@/common/hooks/use-device-type';
 
 import LoadingEvaluationBottom from './loading-evaluation-bottom';
-import loadingTotalEvaluationSmall from '../../../../../public/images/loading-total-evaluation-small.png';
-import loadingTotalEvaluation from '../../../../../public/images/loading-total-evaluation.png';
 
 import * as styles from './loading-total-evaluation.styles';
 
