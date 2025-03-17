@@ -24,7 +24,7 @@ const getPaddingByPage = (pageLabel: PageLabelKey, isMobile: boolean) => {
       padding: '0',
     },
     Loading: {
-      padding: '0',
+      padding: isMobile ? `1.1rem 2rem` : `1rem`,
     },
   };
 
