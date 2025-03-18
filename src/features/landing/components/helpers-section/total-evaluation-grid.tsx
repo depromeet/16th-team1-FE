@@ -5,6 +5,7 @@ import { css } from '@emotion/react';
 
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
+import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import useDeviceType from '@/common/hooks/use-device-type';
 
 import * as styles from './total-evaluation-grid.styles';
@@ -15,7 +16,13 @@ export default function TotalEvaluationGrid() {
   return (
     <div css={styles.container}>
       <div css={styles.firstLine}>
-        <div css={styles.firstItem}>
+        <FadeInWrapper
+          additionalStyles={styles.firstItem}
+          intersectionOptions={{
+            threshold: 0.3,
+            triggerOnce: true,
+          }}
+        >
           <div css={styles.titleWrapper}>
             <Icon name="pin" width={24} color={theme.colors.SORA[200]} />
             <h3
@@ -35,8 +42,17 @@ export default function TotalEvaluationGrid() {
               <img src={isMobile ? gradeSmall : grade} alt="등급" />
             </div>
           </div>
-        </div>
-        <div css={styles.secondItem}>
+        </FadeInWrapper>
+        <FadeInWrapper
+          additionalStyles={styles.secondItem}
+          intersectionOptions={{
+            threshold: 0.3,
+            triggerOnce: true,
+          }}
+          transitionOptions={{
+            delay: 0.2,
+          }}
+        >
           <Icon name="document-mono" width={24} color="#D7B1FF" />
           <h3
             css={[
@@ -52,10 +68,19 @@ export default function TotalEvaluationGrid() {
           <div css={styles.chartExample}>
             <img src={detailEvaluationChart} alt="세부 평가 차트" />
           </div>
-        </div>
+        </FadeInWrapper>
       </div>
       <div css={styles.secondLine}>
-        <div css={styles.item}>
+        <FadeInWrapper
+          additionalStyles={styles.item}
+          intersectionOptions={{
+            threshold: 0.3,
+            triggerOnce: true,
+          }}
+          transitionOptions={{
+            delay: 0.4,
+          }}
+        >
           <Icon name="thumb-up-mono" color="#BEFFAE" width={isMobile ? 20 : 28} />
           <h3 css={styles.title}>
             <strong
@@ -73,8 +98,17 @@ export default function TotalEvaluationGrid() {
             <li>스토리텔링이 강한 포트폴리오</li>
             <li>다양한 협업 경험</li>
           </ul>
-        </div>
-        <div css={styles.item}>
+        </FadeInWrapper>
+        <FadeInWrapper
+          additionalStyles={styles.item}
+          intersectionOptions={{
+            threshold: 0.3,
+            triggerOnce: true,
+          }}
+          transitionOptions={{
+            delay: 0.6,
+          }}
+        >
           <Icon name="exclamation-circle-mono" color="#FF7568" width={isMobile ? 20 : 28} />
           <h3 css={styles.title}>
             <strong
@@ -91,7 +125,7 @@ export default function TotalEvaluationGrid() {
             <li>사용자 리서치 방법론 보완하기</li>
             <li>프로젝트별 핵심 KPI를 강조하기</li>
           </ul>
-        </div>
+        </FadeInWrapper>
       </div>
     </div>
   );

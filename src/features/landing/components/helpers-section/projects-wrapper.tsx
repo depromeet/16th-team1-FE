@@ -6,6 +6,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 
+import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
+
 import Projects from './projects';
 import { projectsData } from '../../common/data';
 
@@ -80,7 +82,16 @@ export default function ProjectsWrapper() {
   );
 
   return (
-    <div css={styles.projectContainer}>
+    <FadeInWrapper
+      additionalStyles={styles.projectContainer}
+      intersectionOptions={{
+        threshold: 0.3,
+        triggerOnce: true,
+      }}
+      transitionOptions={{
+        delay: 0.5,
+      }}
+    >
       <div ref={container} id="projects-container" css={styles.projectScrollContainer}>
         <Swiper slidesPerView={1} onSwiper={(swiper) => (swiperRef.current = swiper)}>
           {projectsData.map((project, index) => (
@@ -95,6 +106,6 @@ export default function ProjectsWrapper() {
           ))}
         </Swiper>
       </div>
-    </div>
+    </FadeInWrapper>
   );
 }
