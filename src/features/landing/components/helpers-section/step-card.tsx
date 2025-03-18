@@ -33,28 +33,3 @@ export default function StepCard({ idx, step, text, image, aspectRatio, width }:
     </FadeInWrapper>
   );
 }
-
-// const StepCard = forwardRef<HTMLDivElement, StepCardProps>(
-//   ({ idx, step, text, image, aspectRatio, width }) => {
-//     return (
-//       <FadeInWrapper
-//         additionalStyles={styles.stepCard}
-//         transitionOptions={{
-//           delay: idx * 0.2,
-//         }}
-//       >
-//         <div css={styles.stepTextWrapper}>
-//           <span css={styles.stepText}>{step}</span>
-//           <p css={styles.stepExplainText}>{text}</p>
-//         </div>
-//         <div>
-//           <img css={styles.image(aspectRatio, width)} src={image} alt={`${step}: ${text}`} />
-//         </div>
-//       </FadeInWrapper>
-//     );
-//   },
-// );
-
-// StepCard.displayName = 'StepCard';
-
-// export default StepCard;
