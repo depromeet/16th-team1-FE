@@ -12,7 +12,6 @@ import TotalEvaluationGrid from './total-evaluation-grid';
 
 import * as styles from './helpers-section.styles';
 
-//TODO: TotalEvaluationGrid, ProjectsWrapper 인터렉션 적용
 export default function HelpersSection() {
   const { isDesktop } = useDeviceType();
 
