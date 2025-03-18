@@ -4,7 +4,7 @@ import { colors } from '@/assets/styles/colors';
 import Icon from '@/common/components/icon/icon';
 import Modal from '@/common/components/modal/base-modal';
 
-import { useGetFeedbackHistory } from '../../services/use-get-feedback-history';
+import { useGetFeedbackHistory } from '../../../feedback-history/services/use-get-feedback-history';
 import { parseFeedbackData } from '../../util/parse-feedback-data';
 
 import * as styles from './recent-feedback-modal.styles';

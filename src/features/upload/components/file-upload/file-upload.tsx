@@ -4,7 +4,6 @@ import { Controller, FieldValues, SubmitErrorHandler, useForm } from 'react-hook
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-import { Button } from '@/common/components/button/Button';
 import Icon from '@/common/components/icon/icon';
 
 import * as styles from './file-upload.styles';
@@ -20,22 +19,20 @@ const schema = z.object({
 
 interface FileUploadProps {
   onSubmit: (data: FieldValues) => unknown;
+  remainCount?: number;
 }
 
 // 파일 업로드용 컴포넌트
-export default function FileUpload({ onSubmit }: FileUploadProps) {
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-    setValue,
-  } = useForm({
+export default function FileUpload({ onSubmit, remainCount }: FileUploadProps) {
+  const isDisabled = remainCount === 0;
+
+  const { handleSubmit, control, setValue } = useForm({
     resolver: zodResolver(schema),
     mode: 'onChange',
   });
 
-  const { acceptedFiles, getInputProps, getRootProps, isDragActive, open } = useDropzone({
-    noClick: true,
+  const { getInputProps, getRootProps } = useDropzone({
+    disabled: isDisabled,
     onDrop: (files) => {
       setValue('file', files[0]);
 
@@ -48,7 +45,7 @@ export default function FileUpload({ onSubmit }: FileUploadProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
+    <form css={styles.form(isDisabled)}>
       <Controller
         name="file"
         control={control}
@@ -58,6 +55,8 @@ export default function FileUpload({ onSubmit }: FileUploadProps) {
               {...getInputProps({
                 accept: 'application/pdf',
                 onChange: (e) => {
+                  e.stopPropagation();
+
                   const { files } = e.target;
 
                   field.onChange(files?.[0]);
@@ -66,27 +65,15 @@ export default function FileUpload({ onSubmit }: FileUploadProps) {
                 },
               })}
             />
-            <Icon name="add-document" width={50} />
+            <Icon name="folder" width={123} customStyle={styles.folder(isDisabled)} />
 
             <div css={styles.description}>
-              {isDragActive ? (
-                <p>파일 업로드하기</p>
+              {isDisabled ? (
+                <p>이번 달에 사용 가능한 피드백을 모두 받았어요</p>
               ) : (
-                acceptedFiles.length === 0 && (
-                  <p>
-                    <strong>PDF를 업로드해주세요.</strong>
-                    <wbr /> 최대 50mb까지 가능해요.
-                  </p>
-                )
+                <p>이번 달 남은 피드백 횟수 {remainCount || '-'}회</p>
               )}
-
-              {!isDragActive && <div>{acceptedFiles?.[0]?.name}</div>}
             </div>
-
-            <Button size="xxLarge" variant="primary" usage="text" onClick={open}>
-              PDF 업로드하기
-            </Button>
-            {errors.file && <p css={styles.errorText}>{errors.file.message?.toString()}</p>}
           </div>
         )}
       />

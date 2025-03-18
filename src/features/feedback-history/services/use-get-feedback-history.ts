@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { axiosInstance } from '@/common/services/service-config';
 
-interface FeedbackItemType {
+export interface FeedbackItemType {
   feedbackId: string;
   date: string;
   title: string;
