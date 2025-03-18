@@ -1,4 +1,4 @@
-import { useGetFeedbackHistory } from '../profile/services/use-get-feedback-history';
+import { useGetFeedbackHistory } from '../feedback-history/services/use-get-feedback-history';
 import PortfolioUpload from './components/portfolio-upload/portfolio-upload';
 import RecentFeedback from './components/recent-feedback/recent-feedback';
 
