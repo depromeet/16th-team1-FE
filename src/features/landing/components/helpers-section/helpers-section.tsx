@@ -1,8 +1,6 @@
-import { useInView } from 'react-intersection-observer';
-
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
-import FadeInDiv from '@/common/components/interaction/fade-in-div';
+import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import useDeviceType from '@/common/hooks/use-device-type';
 import { questionData, stepData } from '@/features/landing/common/data';
 import QuestionCard from '@/features/landing/components/helpers-section/question-card';
@@ -18,91 +16,27 @@ import * as styles from './helpers-section.styles';
 export default function HelpersSection() {
   const { isDesktop } = useDeviceType();
 
-  // 제목 ref 및 inView 상태
-  const { ref: cardTitleRef, inView: cardTitleInView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-  });
-
-  const { ref: stepTitleRef, inView: stepTitleInView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-  });
-
-  const { ref: totalEvaluationTitleRef, inView: totalEvaluationTitleInView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-  });
-
-  const { ref: projectTitleRef, inView: projectTitleInView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-  });
-
-  const { ref: detailImprovementTitleRef, inView: detailImprovementTitleInView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-  });
-
-  // 질문 카드의 ref 및 inView 상태
-  const { ref: firstCardRef, inView: firstCardInView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-    delay: cardTitleInView ? 0.2 : 9999,
-  });
-
-  const { ref: secondCardRef, inView: secondCardInView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-    delay: firstCardInView ? 0.2 : 9999,
-  });
-
-  const { ref: thirdCardRef, inView: thirdCardInView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-    delay: secondCardInView ? 0.2 : 9999,
-  });
-
-  const cardRefs = [firstCardRef, secondCardRef, thirdCardRef];
-  const cardInViews = [firstCardInView, secondCardInView, thirdCardInView];
-
-  // 단계 카드의 ref 및 inView 상태
-  const { ref: firstStepRef, inView: firstStepInView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-    delay: stepTitleInView ? 0.2 : 9999,
-  });
-
-  const { ref: secondStepRef, inView: secondStepInView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-    delay: firstStepInView ? 0.2 : 9999,
-  });
-
-  const stepRefs = [firstStepRef, secondStepRef];
-  const stepInViews = [firstStepInView, secondStepInView];
-
   return (
     <>
       <section css={styles.sectionWrapper} id="features-section">
-        <FadeInDiv
-          ref={cardTitleRef}
-          inView={cardTitleInView}
+        <FadeInWrapper
           additionalStyles={styles.titleWrapper}
+          intersectionOptions={{
+            threshold: 0.3,
+            triggerOnce: true,
+          }}
         >
           <h2 css={styles.sectionTitle}>
             포트폴리오 제작하면서
             <br />
             이런 경험 없으셨나요?
           </h2>
-        </FadeInDiv>
+        </FadeInWrapper>
         <div css={styles.contentWrapper(isDesktop ? 'row' : 'column')}>
           {questionData.map(({ question, description, author }, idx) => (
             <QuestionCard
               key={question}
               idx={idx}
-              ref={cardRefs[idx]}
-              inView={cardInViews[idx]}
               question={question}
               description={description}
               author={author}
@@ -112,24 +46,24 @@ export default function HelpersSection() {
       </section>
 
       <section css={styles.sectionWrapper}>
-        <FadeInDiv
-          ref={stepTitleRef}
-          inView={stepTitleInView}
-          additionalStyles={styles.titleWrapper}
+        <FadeInWrapper
+          as={'h2'}
+          additionalStyles={styles.sectionTitle()}
+          intersectionOptions={{
+            threshold: 0.3,
+            triggerOnce: true,
+          }}
         >
-          <h2 css={styles.sectionTitle}>
-            한 번의 PDF 업로드로
-            <br />
-            맞춤형 피드백을 받아보세요
-          </h2>
-        </FadeInDiv>
+          한 번의 PDF 업로드로
+          <br />
+          맞춤형 피드백을 받아보세요
+        </FadeInWrapper>
+
         <div css={styles.contentWrapper('column')}>
           {stepData.map(({ step, text, image, aspectRatio, width }, idx) => (
             <StepCard
               key={step}
               idx={idx}
-              ref={stepRefs[idx]}
-              inView={stepInViews[idx]}
               step={step}
               text={text}
               image={image}
@@ -141,10 +75,12 @@ export default function HelpersSection() {
       </section>
 
       <section css={styles.sectionWrapper}>
-        <FadeInDiv
-          ref={totalEvaluationTitleRef}
-          inView={totalEvaluationTitleInView}
+        <FadeInWrapper
           additionalStyles={styles.titleWrapper}
+          intersectionOptions={{
+            threshold: 0.3,
+            triggerOnce: true,
+          }}
         >
           <SectionBadge color={theme.colors.SORA[200]} text="종합 평가" />
           <h2 css={styles.sectionTitle}>
@@ -152,17 +88,19 @@ export default function HelpersSection() {
             <br />
             정량적으로 평가해드려요
           </h2>
-        </FadeInDiv>
+        </FadeInWrapper>
         <div css={styles.contentWrapper('column')}>
           <TotalEvaluationGrid />
         </div>
       </section>
 
       <section css={styles.sectionWrapper}>
-        <FadeInDiv
-          ref={projectTitleRef}
-          inView={projectTitleInView}
+        <FadeInWrapper
           additionalStyles={styles.titleWrapper}
+          intersectionOptions={{
+            threshold: 0.3,
+            triggerOnce: true,
+          }}
         >
           <SectionBadge color="#D7B1FF" text="프로젝트 평가" />
           <h2 css={styles.sectionTitle}>
@@ -170,15 +108,17 @@ export default function HelpersSection() {
             <br />
             단계별로 확인해요
           </h2>
-        </FadeInDiv>
+        </FadeInWrapper>
         <ProjectsWrapper />
       </section>
 
       <section css={styles.sectionWrapper}>
-        <FadeInDiv
-          ref={detailImprovementTitleRef}
-          inView={detailImprovementTitleInView}
+        <FadeInWrapper
           additionalStyles={styles.titleWrapper}
+          intersectionOptions={{
+            threshold: 0.3,
+            triggerOnce: true,
+          }}
         >
           <SectionBadge color="#C3C3D9" text="세부 개선점" />
           <h2 css={styles.sectionTitle}>
@@ -186,7 +126,7 @@ export default function HelpersSection() {
             <br />
             피드백 해드려요
           </h2>
-        </FadeInDiv>
+        </FadeInWrapper>
         <DetailImprovement />
       </section>
     </>

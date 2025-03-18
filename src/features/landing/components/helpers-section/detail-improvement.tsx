@@ -1,9 +1,8 @@
 import { useState, useMemo, useCallback } from 'react';
-import { useInView } from 'react-intersection-observer';
 
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
-import FadeInDiv from '@/common/components/interaction/fade-in-div';
+import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import useDeviceType from '@/common/hooks/use-device-type';
 
 import { detailImprovementData } from '../../common/data';
@@ -11,11 +10,6 @@ import { detailImprovementData } from '../../common/data';
 import * as styles from './detail-improvement.styles';
 
 export default function DetailImprovement() {
-  const { ref: detailImprovementRef, inView: detailImprovementInView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-  });
-
   const { isMobile } = useDeviceType();
 
   const [currentImprovementKey, setCurrentImprovementKey] = useState(
@@ -32,11 +26,15 @@ export default function DetailImprovement() {
   }, []);
 
   return (
-    <FadeInDiv
-      ref={detailImprovementRef}
-      inView={detailImprovementInView}
-      delay={0.5}
+    <FadeInWrapper
       additionalStyles={styles.detailImprovementWrapper}
+      transitionOptions={{
+        delay: 0.5,
+      }}
+      intersectionOptions={{
+        threshold: 0.3,
+        triggerOnce: true,
+      }}
     >
       <ul css={styles.improvementItemWrapper}>
         {detailImprovementData.map(({ title }) => (
@@ -78,6 +76,6 @@ export default function DetailImprovement() {
           </>
         )}
       </div>
-    </FadeInDiv>
+    </FadeInWrapper>
   );
 }
