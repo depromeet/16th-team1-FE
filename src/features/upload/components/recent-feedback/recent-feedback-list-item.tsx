@@ -1,10 +1,9 @@
 import { useNavigate } from 'react-router';
 
+import { convertDateStringToObject } from '@common/utils/date';
 import { css } from '@emotion/react';
 
 import Icon from '@/common/components/icon/icon';
-
-import { convertDateStringToObject } from '../../utils/date';
 
 import * as styles from './recent-feedback-list-item.styles';
 

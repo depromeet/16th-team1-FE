@@ -1,3 +1,5 @@
+import { convertDateStringToObject } from '@/common/utils/date';
+
 interface FeedbackItem {
   feedbackId: string;
   date: string;
@@ -12,14 +14,16 @@ export const parseFeedbackData = (feedbackData: FeedbackItem[]): GroupedFeedback
   const result: GroupedFeedback = {};
 
   feedbackData.forEach((item) => {
-    const year = parseYear(item.date);
-    const monthAndDay = parseMonthAndDay(item.date);
+    const { year, month, day } = convertDateStringToObject(item.date);
 
-    if (!result[year]) {
-      result[year] = [];
+    const yearForKey = `${year}년`;
+    const monthAndDay = `${month}. ${day}.`;
+
+    if (!result[yearForKey]) {
+      result[yearForKey] = [];
     }
 
-    result[year].push({
+    result[yearForKey].push({
       date: monthAndDay,
       title: item.title,
       feedbackId: item.feedbackId,
@@ -27,17 +31,4 @@ export const parseFeedbackData = (feedbackData: FeedbackItem[]): GroupedFeedback
   });
 
   return result;
-};
-
-const parseYear = (dateData: string): string => {
-  const date = new Date(dateData);
-  const year = date.getFullYear();
-  return `${year}년`;
-};
-
-const parseMonthAndDay = (dateData: string): string => {
-  const date = new Date(dateData);
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0');
-  return `${month}. ${day}.`;
 };
