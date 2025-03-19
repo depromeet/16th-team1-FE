@@ -6,3 +6,9 @@ export const container = css`
   justify-content: flex-end;
   width: 14.8rem;
 `;
+
+export const profileContent = css`
+  min-width: 200px;
+  height: 400px;
+  background-color: red;
+`;
