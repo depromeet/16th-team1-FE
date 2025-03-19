@@ -15,12 +15,12 @@ function TotalEvalutationUserInfo() {
 export default TotalEvalutationUserInfo;
 
 const TotalEvalutationUserInfoContent = () => {
-  const { createdAt, portfolioId } = useGetPortfolioFeedbackData();
+  const { createdAt, fileId } = useGetPortfolioFeedbackData();
 
   return (
     <div css={styles.container}>
       <p css={styles.date}>{createdAt ?? '-'}</p>
-      <p css={styles.pdf}>{portfolioId}</p>
+      <p css={styles.pdf}>{fileId}</p>
     </div>
   );
 };

@@ -71,7 +71,7 @@ interface UseGetPortfolioFeedbackResponse {
     deletedAt: null;
     id: string;
     userId: string;
-    portfolioId: string;
+    fileId: string;
     overallEvaluation: OverallEvaluationType;
     additionalChat: AdditionalChatType[];
     projectEvaluation: ProjectEvaluationType[];
