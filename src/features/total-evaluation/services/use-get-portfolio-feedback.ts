@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { axiosInstance } from '@/common/services/service-config';
 
@@ -87,7 +87,7 @@ export const useGetPortfolioFeedback = ({ feedbackId }: UseGetPortfolioFeedbackP
   const queryFn = () =>
     axiosInstance.get(endPoint, { params: { feedbackId } }).then((res) => res.data);
 
-  return useQuery<UseGetPortfolioFeedbackResponse>({
+  return useSuspenseQuery<UseGetPortfolioFeedbackResponse>({
     queryKey: [endPoint, feedbackId],
     queryFn,
   });

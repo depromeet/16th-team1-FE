@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from 'react';
 
 import { scrollToSection } from '@/common/utils/scroll-to-section';
 import AccordionList from '@/features/total-evaluation/components/accordion-list/accordion-list';
+import { useGetPortfolioFeedbackData } from '@/features/total-evaluation/hooks/use-get-portfolio-feedback-data';
 
-import { ProjectEvaluationType } from '../../services/use-get-portfolio-feedback';
 import { LocationButtonType } from '../../types/sidebar-Info-types';
 import FeedbackContents from '../accordion-list/feedback-contents';
 import { SelectedPageContext } from '../context/selected-page/selected-page-context';
@@ -12,14 +12,12 @@ import { PageLocationButton } from '../custom-buttons/page-location-button';
 import { ProjectTitleButton } from '../custom-buttons/project-title-button';
 import FeedbackPageNavigator from '../sidebar/feedback-page-navigator/feedback-page-navigator';
 
-interface FeedbackSidebarProps {
-  projectEvaluation: ProjectEvaluationType[];
-}
-
-function FeedbackSidebar({ projectEvaluation }: FeedbackSidebarProps) {
+function FeedbackSidebar() {
   const { isSidebarOpen } = useContext(SidebarContext);
   const { selectedPage, setSelectedPage } = useContext(SelectedPageContext);
   const [currentOpenedTrigger, setCurrentOpenedTrigger] = useState<string[]>([]);
+
+  const { projectEvaluation } = useGetPortfolioFeedbackData();
 
   useEffect(() => {
     setCurrentOpenedTrigger(['포트폴리오 종합 평가']);

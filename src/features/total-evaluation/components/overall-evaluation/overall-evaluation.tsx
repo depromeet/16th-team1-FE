@@ -3,9 +3,9 @@ import * as commonStyles from '@features/total-evaluation/total-evaluation-page.
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import Spacing from '@/common/components/spacing/spacing';
+import { useGetPortfolioFeedbackData } from '@/features/total-evaluation/hooks/use-get-portfolio-feedback-data';
 
 import { EVALUATION_LABEL } from '../../constants/evaluation-constant';
-import { OverallEvaluationType } from '../../services/use-get-portfolio-feedback';
 import EvaluationChart from '../evaluation-chart/evaluation-chart';
 import EvaluationSummary from '../evaluation-summary/evaluation-summary';
 import EvaluationTable from '../evaluation-table/evaluation-table';
@@ -17,11 +17,8 @@ import * as styles from './overall-evaluation.styles';
 
 export type GradeType = 'A' | 'B' | 'C' | 'D';
 
-interface OverallEvaluationProps {
-  overallEvaluation: OverallEvaluationType;
-}
-
-export default function OverallEvaluation({ overallEvaluation }: OverallEvaluationProps) {
+export default function OverallEvaluation() {
+  const { overallEvaluation } = useGetPortfolioFeedbackData();
   const { summary, strengths, improvements, ...evaluationItems } = overallEvaluation;
 
   const GRADE_THRESHOLDS: { threshold: number; grade: GradeType }[] = [
