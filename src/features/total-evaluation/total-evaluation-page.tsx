@@ -1,5 +1,4 @@
-import { ErrorBoundary } from 'react-error-boundary';
-
+import FallbackBoundary from '@/common/components/fallback-boundary/fallback-boundary';
 import FeedbackSidebar from '@/features/total-evaluation/components/feedback-sidebar/feedback-sidebar';
 import ProjectEvaluationList from '@/features/total-evaluation/components/project-evaluation/project-evaluation-list';
 
@@ -10,17 +9,14 @@ import * as styles from './total-evaluation-page.styles';
 export default function TotalEvaluationPage() {
   return (
     <div css={styles.container}>
-      {/* TODO: Suspense적용 후, 조건부 렌더링 제거 예정 */}
-      <ErrorBoundary fallback={<div>로딩</div>}>
-        <FeedbackSidebar />
-      </ErrorBoundary>
+      <FeedbackSidebar />
 
-      <ErrorBoundary fallback={<div>로딩</div>}>
+      <FallbackBoundary>
         <div css={styles.totalEvaluationSection}>
           <OverallEvaluation />
           <ProjectEvaluationList />
         </div>
-      </ErrorBoundary>
+      </FallbackBoundary>
     </div>
   );
 }
