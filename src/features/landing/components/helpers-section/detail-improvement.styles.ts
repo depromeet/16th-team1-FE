@@ -28,11 +28,22 @@ export const improvementItemWrapper = css`
   gap: 1.2rem;
   min-width: 27rem;
 
-  ${mediaQueries.mobileAndTablet} {
-    width: 100%;
+  ${mediaQueries.mobile} {
     flex-direction: row;
-    gap: 0.8rem;
+    position: relative;
+    left: -2rem;
+    width: calc(100% + 4rem);
+    white-space: nowrap;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 
@@ -158,3 +169,49 @@ export const detailText = withTheme(
     }
   `,
 );
+
+export const leftSensor = css`
+  ${mediaQueries.mobile} {
+    top: 0;
+    left: 0;
+    background: transparent;
+  }
+`;
+
+export const rightSensor = css`
+  ${mediaQueries.mobile} {
+    top: 0;
+    right: 0;
+    background: transparent;
+  }
+`;
+
+export const shadowRight = (isShow?: boolean) => css`
+  ${mediaQueries.mobile} {
+    position: absolute;
+    top: -1rem;
+    right: -2rem;
+    z-index: 10;
+    width: 5.5rem;
+    height: 6.2rem;
+    background: linear-gradient(90deg, rgb(24 23 29 / 0%) 0%, #18171d 100%);
+    transition: opacity 0.4s ease;
+    opacity: ${isShow ? 1 : 0};
+    pointer-events: none;
+  }
+`;
+
+export const shadowLeft = (isShow?: boolean) => css`
+  ${mediaQueries.mobile} {
+    position: absolute;
+    top: -1rem;
+    left: -2rem;
+    z-index: 10;
+    width: 5.5rem;
+    height: 6.2rem;
+    background: linear-gradient(270deg, rgb(24 23 29 / 0%) 0%, #18171d 100%);
+    transition: opacity 0.4s ease;
+    opacity: ${isShow ? 1 : 0};
+    pointer-events: none;
+  }
+`;

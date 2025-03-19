@@ -4,6 +4,7 @@ import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import useDeviceType from '@/common/hooks/use-device-type';
+import useShadowScroll from '@/common/hooks/use-shadow-scroll';
 
 import { detailImprovementData } from '../../common/data';
 
@@ -11,6 +12,12 @@ import * as styles from './detail-improvement.styles';
 
 export default function DetailImprovement() {
   const { isMobile } = useDeviceType();
+
+  const [mainRef, setMainRef] = useState<HTMLElement | null>(null);
+  const [leftRef, setLeftRef] = useState<HTMLDivElement | null>(null);
+  const [rightRef, setRightRef] = useState<HTMLDivElement | null>(null);
+
+  const { left, right } = useShadowScroll({ mainRef, refs: { left: leftRef, right: rightRef } });
 
   const [currentImprovementKey, setCurrentImprovementKey] = useState(
     detailImprovementData[0].title,
@@ -36,7 +43,10 @@ export default function DetailImprovement() {
         triggerOnce: true,
       }}
     >
-      <ul css={styles.improvementItemWrapper}>
+      {isMobile && <div css={styles.shadowLeft(left)} />}
+      {isMobile && <div css={styles.shadowRight(right)} />}
+      <ul ref={setMainRef} css={styles.improvementItemWrapper}>
+        {isMobile && <div ref={setLeftRef} css={styles.leftSensor} />}
         {detailImprovementData.map(({ title }) => (
           <li
             key={title}
@@ -47,6 +57,7 @@ export default function DetailImprovement() {
             {title}
           </li>
         ))}
+        {isMobile && <div ref={setRightRef} css={styles.rightSensor} />}
       </ul>
       <div css={styles.improvementContentWrapper}>
         {currentImprovementData && (
