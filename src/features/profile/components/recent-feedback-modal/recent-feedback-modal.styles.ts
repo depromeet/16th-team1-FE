@@ -113,7 +113,7 @@ export const description = withTheme(
   `,
 );
 
-export const shadow = (isShow: boolean) => css`
+export const shadow = (isShow?: boolean) => css`
   position: fixed;
   bottom: 0;
   left: 0;
