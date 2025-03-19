@@ -115,6 +115,7 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
       <section css={styles.oneLineSummaryWrapper}>
         <span css={styles.oneLineSummaryTitle}>한 줄 요약</span>
         <p css={styles.oneLineSummaryDescription}>{projectSummary}</p>
+        <Spacing size={10} />
       </section>
     </div>
   );
