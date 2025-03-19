@@ -8,6 +8,7 @@ export const contentWrapper = css`
   justify-content: center;
   gap: 4rem;
   align-self: stretch;
+  position: relative;
 
   ${mediaQueries.tablet} {
     max-width: 90rem;
@@ -21,6 +22,25 @@ export const contentWrapper = css`
   }
 `;
 
+export const scrollWrapper = css`
+  display: flex;
+  justify-content: center;
+  ${mediaQueries.mobile} {
+    align-items: safe center;
+    justify-content: safe center;
+    position: relative;
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+`;
+
 export const optionWrapper = css`
   ${mediaQueries.desktop} {
     display: flex;
@@ -31,25 +51,54 @@ export const optionWrapper = css`
 
   ${mediaQueries.tablet} {
     display: flex;
-    align-items: flex-start;
-    align-self: center;
     gap: 0.8rem;
   }
 
   ${mediaQueries.mobile} {
-    display: flex;
-    align-items: safe center;
-    justify-content: safe center;
-    white-space: nowrap;
     gap: 0.8rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    display: flex;
+  }
+`;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+export const leftSensor = css`
+  ${mediaQueries.mobile} {
+    top: 0;
+    left: 0;
+    background: transparent;
+  }
+`;
+
+export const rightSensor = css`
+  ${mediaQueries.mobile} {
+    top: 0;
+    right: 0;
+    background: transparent;
+  }
+`;
+
+export const shadowRight = (isShow?: boolean) => css`
+  ${mediaQueries.mobile} {
+    position: absolute;
+    top: 0.8rem;
+    right: -2rem;
+    width: 5.5rem;
+    height: 3.3rem;
+    background: linear-gradient(90deg, rgb(10 10 12 / 0%) 0%, #0a0a0c 100%);
+    transition: opacity 0.2s ease;
+    opacity: ${isShow ? 1 : 0};
+  }
+`;
+
+export const shadowLeft = (isShow?: boolean) => css`
+  ${mediaQueries.mobile} {
+    position: absolute;
+    top: 0.8rem;
+    left: -2rem;
+    width: 5.5rem;
+    height: 3.3rem;
+    background: linear-gradient(270deg, rgb(10 10 12 / 0%) 0%, #0a0a0c 100%);
+    transition: opacity 0.2s ease;
+    opacity: ${isShow ? 1 : 0};
   }
 `;
 
