@@ -19,7 +19,7 @@ export const container = css`
   height: 100%;
   padding-top: 9.7rem;
   background: linear-gradient(105deg, rgb(211 207 254 / 2%) -4.89%, rgb(204 233 255 / 2%) 102.93%);
-  border: 1px dashed #494d6e;
+  border: 0.1rem dashed #494d6e;
   gap: 1.55rem;
   border-radius: 2.4rem;
   backdrop-filter: blur(14.5px);
