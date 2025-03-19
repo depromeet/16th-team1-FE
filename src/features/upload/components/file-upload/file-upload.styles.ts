@@ -18,10 +18,8 @@ export const container = css`
   width: 100%;
   height: 100%;
   padding-top: 9.7rem;
-  background:
-    linear-gradient(#18171d, #18171d) padding-box,
-    linear-gradient(137deg, #abe4fa 0%, #d7adfe 100%) border-box;
-  border: 1px dashed #18171d;
+  background: linear-gradient(105deg, rgb(211 207 254 / 2%) -4.89%, rgb(204 233 255 / 2%) 102.93%);
+  border: 0.1rem dashed #494d6e;
   gap: 1.55rem;
   border-radius: 2.4rem;
   backdrop-filter: blur(14.5px);
