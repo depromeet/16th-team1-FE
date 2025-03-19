@@ -5,7 +5,7 @@ import RecentFeedback from './components/recent-feedback/recent-feedback';
 import * as styles from './upload-page.styles';
 
 export default function UploadPage() {
-  const { data: feedbackHistoryResponse } = useGetFeedbackHistory();
+  const { data: feedbackHistoryResponse } = useGetFeedbackHistory('650e6f9b14a5f12a6b5c3f92');
   const feedbackHistory = feedbackHistoryResponse?.result;
 
   return (
