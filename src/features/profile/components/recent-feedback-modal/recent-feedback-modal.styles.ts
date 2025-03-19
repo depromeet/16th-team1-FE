@@ -108,8 +108,12 @@ export const descriptionWrapper = css`
 
 export const description = withTheme(
   (theme) => css`
+    overflow: hidden;
+    width: 40rem;
     ${theme.fonts.BODY.BODY2_M}
     color: ${theme.colors.GRAY[300]};
+    text-overflow: ellipsis;
+    white-space: nowrap;
   `,
 );
 
@@ -130,5 +134,5 @@ export const shadow = (isShow?: boolean) => css`
 export const bottomWrapper = css`
   height: 0.01rem;
   flex-shrink: 0;
-  margin-top: -2.4rem;
+  margin-top: -2.8rem;
 `;

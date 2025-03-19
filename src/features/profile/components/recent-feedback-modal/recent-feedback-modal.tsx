@@ -13,12 +13,13 @@ import * as styles from './recent-feedback-modal.styles';
 
 export default function RecentFeedbackModal() {
   const { isOpen, closeModal } = useModalStore();
-  const { data, isLoading } = useGetFeedbackHistory();
+  // 추후에 로그인 연동되면 ID 수정해야합니다!!
+  const { data, isLoading } = useGetFeedbackHistory('650e6f9b14a5f12a6b5c3f92');
   const parseData = parseFeedbackData(data?.result ?? []);
   const [mainRef, setMainRef] = useState<HTMLElement | null>(null);
   const [bottomRef, setBottomRef] = useState<HTMLDivElement | null>(null);
 
-  const { bottom } = useShadowScroll(mainRef, bottomRef);
+  const { bottom } = useShadowScroll({ mainRef, refs: { bottom: bottomRef } });
 
   if (isLoading) {
     return <div>로딩</div>;
