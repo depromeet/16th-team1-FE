@@ -7,28 +7,35 @@ interface ShadowProps {
   bottom?: boolean;
 }
 
+interface useShadowScrollProps {
+  mainRef: HTMLElement | null;
+  refs?: {
+    left?: HTMLElement | null;
+    right?: HTMLElement | null;
+    top?: HTMLElement | null;
+    bottom?: HTMLElement | null;
+  };
+  threshold?: number;
+}
+
 /**
  * 특정 요소(mainRef)의 스크롤이 상하좌우 끝에 도달했는지 감지하는 커스텀 훅
  * @param mainRef - 스크롤 컨테이너 요소
- * @param leftRef - 왼쪽 감지 요소
- * @param rightRef - 오른쪽 감지 요소
- * @param topRef - 상단 감지 요소
- * @param bottomRef - 하단 감지 요소
+ * @param refs - 스크롤 감지를 위한 요소 모음 (left, right, top, bottom)
  * @param threshold - 감지 기준
  */
-export default function useShadowScroll(
-  mainRef: HTMLElement | null,
-  leftRef?: HTMLElement | null,
-  rightRef?: HTMLElement | null,
-  topRef?: HTMLElement | null,
-  bottomRef?: HTMLElement | null,
-  threshold: number = 0.1,
-) {
+export default function useShadowScroll({
+  mainRef,
+  refs = {},
+  threshold = 0.1,
+}: useShadowScrollProps) {
+  const { left, right, top, bottom } = refs;
+
   const [shadowState, setShadowState] = useState<ShadowProps>({
-    left: !!leftRef,
-    right: !!rightRef,
-    top: !!topRef,
-    bottom: !!bottomRef,
+    left: !!left,
+    right: !!right,
+    top: !!top,
+    bottom: !!bottom,
   });
 
   useEffect(() => {
@@ -49,7 +56,7 @@ export default function useShadowScroll(
 
     const observers: IntersectionObserver[] = [];
 
-    const refEntries = { left: leftRef, right: rightRef, top: topRef, bottom: bottomRef };
+    const refEntries = { left, right, top, bottom };
     Object.entries(refEntries).forEach(([key, ref]) => {
       if (ref) {
         const observer = createObserver(ref, key as keyof ShadowProps);
@@ -63,7 +70,7 @@ export default function useShadowScroll(
     return () => {
       observers.forEach((observer) => observer.disconnect());
     };
-  }, [mainRef, leftRef, rightRef, topRef, bottomRef, threshold]);
+  }, [mainRef, left, right, top, bottom, threshold]);
 
   return shadowState;
 }
