@@ -29,11 +29,15 @@ export const scrollWrapper = css`
     align-items: safe center;
     justify-content: safe center;
     position: relative;
+    left: -2rem;
+    width: calc(100% + 4rem);
     white-space: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    padding-left: 2rem;
+    padding-right: 2rem;
 
     &::-webkit-scrollbar {
       display: none;
@@ -79,26 +83,30 @@ export const rightSensor = css`
 export const shadowRight = (isShow?: boolean) => css`
   ${mediaQueries.mobile} {
     position: absolute;
-    top: 0.8rem;
+    top: -1rem;
     right: -2rem;
+    z-index: 10;
     width: 5.5rem;
-    height: 3.3rem;
-    background: linear-gradient(90deg, rgb(10 10 12 / 0%) 0%, #0a0a0c 100%);
-    transition: opacity 0.2s ease;
+    height: 6.2rem;
+    background: linear-gradient(90deg, rgb(24 23 29 / 0%) 0%, #18171d 100%);
+    transition: opacity 0.4s ease;
     opacity: ${isShow ? 1 : 0};
+    pointer-events: none;
   }
 `;
 
 export const shadowLeft = (isShow?: boolean) => css`
   ${mediaQueries.mobile} {
     position: absolute;
-    top: 0.8rem;
+    top: -1rem;
     left: -2rem;
+    z-index: 10;
     width: 5.5rem;
-    height: 3.3rem;
-    background: linear-gradient(270deg, rgb(10 10 12 / 0%) 0%, #0a0a0c 100%);
-    transition: opacity 0.2s ease;
+    height: 6.2rem;
+    background: linear-gradient(270deg, rgb(24 23 29 / 0%) 0%, #18171d 100%);
+    transition: opacity 0.4s ease;
     opacity: ${isShow ? 1 : 0};
+    pointer-events: none;
   }
 `;
 
