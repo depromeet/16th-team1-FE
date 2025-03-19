@@ -1,18 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ReactNode, Suspense } from 'react';
+import { ErrorInfo, ReactNode, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
+
+import Skeleton from '../skeleton/skeleton';
 
 type ResetDetails =
   | { reason: 'imperative-api'; args: any[] }
   | { reason: 'keys'; prev: any[] | undefined; next: any[] | undefined };
 
 interface FallbackBoundaryProps {
-  errorBoundaryProps?: {
+  error?: {
     fallbackUI?: ReactNode;
-    onError?: (error: Error, info: React.ErrorInfo) => void;
-    onReset?: (details: ResetDetails) => void | (() => void);
+    onError?: (error: Error, info: ErrorInfo) => void;
+    onReset?: (details: ResetDetails) => void | VoidFunction;
   };
-  suspenseProps?: {
+  suspense?: {
     fallbackUI?: ReactNode;
   };
   children: ReactNode;
@@ -20,11 +22,11 @@ interface FallbackBoundaryProps {
 
 export default function FallbackBoundary({
   children,
-  errorBoundaryProps = {},
-  suspenseProps = {},
+  error = {},
+  suspense = {},
 }: FallbackBoundaryProps) {
-  const { fallbackUI: errorFallbackUI = <div>에러</div>, onError, onReset } = errorBoundaryProps;
-  const { fallbackUI: suspenseFallbackUI = <div>로딩</div> } = suspenseProps;
+  const { fallbackUI: errorFallbackUI = <Skeleton />, onError, onReset } = error;
+  const { fallbackUI: suspenseFallbackUI = <Skeleton /> } = suspense;
 
   return (
     <ErrorBoundary fallback={errorFallbackUI} onError={onError} onReset={onReset}>
