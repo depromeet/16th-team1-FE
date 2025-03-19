@@ -16,7 +16,7 @@ export default function LoadingPageEvaluation() {
   const [leftRef, setLeftRef] = useState<HTMLDivElement | null>(null);
   const [rightRef, setRightRef] = useState<HTMLDivElement | null>(null);
 
-  const { left, right } = useShadowScroll(mainRef, leftRef, rightRef);
+  const { left, right } = useShadowScroll({ mainRef, refs: { left: leftRef, right: rightRef } });
 
   const currentData = useMemo(
     () => EVALUATION_OPTIONS.find((data) => data.key === selectedOption),
@@ -29,10 +29,10 @@ export default function LoadingPageEvaluation() {
 
   return (
     <div css={styles.contentWrapper}>
-      <div css={styles.shadowLeft(left)} />
-      <div css={styles.shadowRight(right)} />
+      {isMobile && <div css={styles.shadowLeft(left)} />}
+      {isMobile && <div css={styles.shadowRight(right)} />}
       <div ref={setMainRef} css={styles.scrollWrapper}>
-        <div ref={setLeftRef} css={styles.leftSensor} />
+        {isMobile && <div ref={setLeftRef} css={styles.leftSensor} />}
         <aside css={styles.optionWrapper}>
           {EVALUATION_OPTIONS.map((option) => (
             <div
@@ -44,7 +44,7 @@ export default function LoadingPageEvaluation() {
             </div>
           ))}
         </aside>
-        <div ref={setRightRef} css={styles.rightSensor} />
+        {isMobile && <div ref={setRightRef} css={styles.rightSensor} />}
       </div>
 
       {currentData && (
