@@ -10,7 +10,7 @@ type ResetDetails =
 
 interface FallbackBoundaryProps {
   error?: {
-    fallbackUI?: ReactNode;
+    fallbackUI?: ReactNode | ((onReset: VoidFunction) => ReactNode);
     onError?: (error: Error, info: ErrorInfo) => void;
     onReset?: (details: ResetDetails) => void | VoidFunction;
   };
@@ -29,7 +29,17 @@ export default function FallbackBoundary({
   const { fallbackUI: suspenseFallbackUI = <Skeleton /> } = suspense;
 
   return (
-    <ErrorBoundary fallback={errorFallbackUI} onError={onError} onReset={onReset}>
+    <ErrorBoundary
+      // errorFallbackUI가 함수일 경우 resetErrorBoundary 주입
+      fallbackRender={({ resetErrorBoundary }) => {
+        if (typeof errorFallbackUI === 'function') {
+          return errorFallbackUI(resetErrorBoundary);
+        }
+        return errorFallbackUI;
+      }}
+      onError={onError}
+      onReset={onReset}
+    >
       <Suspense fallback={suspenseFallbackUI}>{children}</Suspense>
     </ErrorBoundary>
   );
