@@ -14,7 +14,7 @@ function generateIconTypes() {
     .filter((file) => file.endsWith('.svg'))
     .map((file) => file.replace('.svg', ''));
 
-  const typeFile = `export type iconTypes = ${iconTypes.map((name) => `"${name}"`).join(' | ')}`;
+  const typeFile = `export type iconTypes =\n  | ${iconTypes.map((name) => `'${name}'`).join('\n  | ')};\n`;
 
   fs.writeFileSync(OUTPUT_FILE, typeFile);
 }
