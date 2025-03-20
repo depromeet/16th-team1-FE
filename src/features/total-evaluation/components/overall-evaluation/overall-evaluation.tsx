@@ -3,6 +3,7 @@ import * as commonStyles from '@features/total-evaluation/total-evaluation-page.
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import Spacing from '@/common/components/spacing/spacing';
+import { iconTypes } from '@/common/types/icon-types';
 
 import { EVALUATION_LABEL } from '../../constants/evaluation-constant';
 import { OverallEvaluationType } from '../../services/use-get-portfolio-feedback';
@@ -93,7 +94,7 @@ function EvaluationSection({ titleKey, iconName, color, listItems }: EvaluationS
     <section css={commonStyles.evaluationSection('2.4rem')}>
       <EvaluationTitle
         title={EVALUATION_LABEL[titleKey]}
-        icon={<Icon name={iconName} color={color} />}
+        icon={<Icon name={iconName as iconTypes} color={color} />}
         color={color}
       />
       <NestedList listItems={listItems} />

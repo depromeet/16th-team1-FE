@@ -3,6 +3,7 @@ import * as commonStyles from '@features/total-evaluation/total-evaluation-page.
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import Spacing from '@/common/components/spacing/spacing';
+import { iconTypes } from '@/common/types/icon-types';
 
 import {
   EVALUATION_LABEL,
@@ -131,7 +132,7 @@ function ProjectProcessItem({ process, category }: ProjectProcessItemProps) {
   return (
     <div css={styles.projectProcessItem} key={category}>
       <div css={styles.processIcon(color)}>
-        <Icon name={name} />
+        <Icon name={name as iconTypes} />
       </div>
       <span css={styles.processCategory}>{category}</span>
     </div>

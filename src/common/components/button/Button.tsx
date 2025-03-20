@@ -2,6 +2,7 @@ import { forwardRef } from 'react';
 
 import { IconProps, MultiProps, TextProps } from '@/assets/styles/button';
 import { BaseButton } from '@/common/components/button/base-button';
+import { iconTypes } from '@/common/types/icon-types';
 
 import Icon from '../icon/icon';
 
@@ -24,7 +25,7 @@ const multiIconSizeMap = {
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ size, usage, variant, iconName, children, iconPosition, ...props }, ref) => {
     const content =
-      usage !== 'icon' ? children : <Icon name={iconName} width={iconSizeMap[size]} />;
+      usage !== 'icon' ? children : <Icon name={iconName as iconTypes} width={iconSizeMap[size]} />;
 
     return (
       <BaseButton
@@ -35,11 +36,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {usage === 'multi' && iconPosition === 'left' && (
-          <Icon name={iconName} width={multiIconSizeMap[size]} />
+          <Icon name={iconName as iconTypes} width={multiIconSizeMap[size]} />
         )}
         {content}
         {usage === 'multi' && iconPosition === 'right' && (
-          <Icon name={iconName} width={multiIconSizeMap[size]} />
+          <Icon name={iconName as iconTypes} width={multiIconSizeMap[size]} />
         )}
       </BaseButton>
     );
