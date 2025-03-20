@@ -1,32 +1,30 @@
 import { css } from '@emotion/react';
 
+import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const title = withTheme(
-  (theme, inView?: boolean) => css`
-    ${theme.fonts.HEADLINE.HEAD1};
+  (theme) => css`
+    ${theme.fonts.HEADLINE.HEAD2};
+    ${mediaQueries.mobile} {
+      ${theme.fonts.HEADLINE.HEAD4};
+    }
+
     background: var(--gradient, linear-gradient(137deg, #e1c6fe 0%, #afe7ff 100%));
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    opacity: ${inView ? 1 : 0};
-    transform: translateY(${inView ? '0' : '2rem'});
-    transition:
-      opacity 0.6s ease-out,
-      transform 0.6s ease-out;
-    transition-delay: ${inView ? '0.2s' : '0s'};
   `,
 );
 
 export const description = withTheme(
-  (theme, inView?: boolean) => css`
-    ${theme.fonts.SUBTITLE.SUB1_M}
+  (theme) => css`
+    ${theme.fonts.SUBTITLE.SUB1_M};
     color: ${theme.colors.GRAY[400]};
-    opacity: ${inView ? 1 : 0};
-    transform: translateY(${inView ? '0' : '2rem'});
-    transition:
-      opacity 0.6s ease-out,
-      transform 0.6s ease-out;
-    transition-delay: ${inView ? '0.4s' : '0s'};
+
+    ${mediaQueries.mobile} {
+      ${theme.fonts.BODY.BODY2_M};
+      color: ${theme.colors.GRAY[400]};
+    }
   `,
 );
 
