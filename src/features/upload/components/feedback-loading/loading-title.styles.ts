@@ -8,6 +8,7 @@ export const titleWrapper = css`
   flex-direction: column;
   align-items: center;
   gap: 2.4rem;
+  margin-bottom: 4.8rem;
 
   ${mediaQueries.mobile} {
     gap: 1.6rem;
