@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const ICONS_DIR = path.resolve(__dirname, '../src/assets/icons');
-const OUTPUT_FILE = path.resolve(__dirname, '../src/common/types/icon.ts');
+const OUTPUT_FILE = path.resolve(__dirname, '../src/common/types/icon-types.ts');
 
 function generateIconTypes() {
   const iconTypes = fs
