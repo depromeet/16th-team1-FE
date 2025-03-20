@@ -30,7 +30,7 @@ interface ProjectEvaluationProps {
 const PROCESS_CATEGORIES = ['개요', '문제정의', '가설', '결과', '회고'];
 
 const getProcessIcon = (process: ProjectProcessType) => {
-  const icons = {
+  const icons: Record<ProjectProcessType, { name: iconTypes; color: string }> = {
     GOOD: { name: 'check', color: theme.colors.GRAY[700] },
     SOSO: { name: 'triangle', color: '#EA8430' },
     BAD: { name: 'x', color: theme.colors.RED[600] },
@@ -132,7 +132,7 @@ function ProjectProcessItem({ process, category }: ProjectProcessItemProps) {
   return (
     <div css={styles.projectProcessItem} key={category}>
       <div css={styles.processIcon(color)}>
-        <Icon name={name as iconTypes} />
+        <Icon name={name} />
       </div>
       <span css={styles.processCategory}>{category}</span>
     </div>

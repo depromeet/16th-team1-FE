@@ -84,7 +84,7 @@ export default function OverallEvaluation({ overallEvaluation }: OverallEvaluati
 
 interface EvaluationSectionProps {
   titleKey: string;
-  iconName: string;
+  iconName: iconTypes;
   color: string;
   listItems: NestedListItem[];
 }
@@ -94,7 +94,7 @@ function EvaluationSection({ titleKey, iconName, color, listItems }: EvaluationS
     <section css={commonStyles.evaluationSection('2.4rem')}>
       <EvaluationTitle
         title={EVALUATION_LABEL[titleKey]}
-        icon={<Icon name={iconName as iconTypes} color={color} />}
+        icon={<Icon name={iconName} color={color} />}
         color={color}
       />
       <NestedList listItems={listItems} />
