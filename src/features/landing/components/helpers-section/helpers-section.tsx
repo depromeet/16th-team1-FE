@@ -140,7 +140,7 @@ interface SectionBadgeProps {
 function SectionBadge({ color, text }: SectionBadgeProps) {
   return (
     <div css={styles.sectionBadge(color)}>
-      <Icon name="spark" width={16} color={color} /> {text}
+      <Icon name="spark" width={28} color={color} /> {text}
     </div>
   );
 }

@@ -24,7 +24,7 @@ export default function TotalEvaluationGrid() {
           }}
         >
           <div css={styles.titleWrapper}>
-            <Icon name="pin" width={24} color={theme.colors.SORA[200]} />
+            <Icon name="pin" width={28} color={theme.colors.SORA[200]} />
             <h3
               css={[
                 styles.title,
@@ -53,7 +53,7 @@ export default function TotalEvaluationGrid() {
             delay: 0.2,
           }}
         >
-          <Icon name="document-mono" width={24} color="#D7B1FF" />
+          <Icon name="file-white" width={28} color="#D7B1FF" />
           <h3
             css={[
               styles.title,
