@@ -7,25 +7,25 @@ export const toastConfig: Record<
   aiCompleteLarge: {
     message: 'AI 분석이 끝났어요!',
     duration: Infinity,
-    icon: 'upArrow',
+    icon: 'arrow-up',
     iconPosition: 'right',
   },
   aiCompleteSmall: {
     message: 'AI 분석이 끝났어요!',
     duration: 3000,
-    icon: 'rightArrow',
+    icon: 'arrow-right-with-tail',
     iconPosition: 'right',
   },
   loginFailure: {
     message: '로그인에 실패했어요',
     duration: 3000,
-    icon: 'loginFail',
+    icon: 'login-fail',
     iconPosition: 'left',
   },
   pdfSubmit: {
     message: 'PDF 제출이 완료됐어요',
     duration: 3000,
-    icon: 'pdfSubmitSuccess',
+    icon: 'pdf-submit-success',
     iconPosition: 'left',
   },
 };

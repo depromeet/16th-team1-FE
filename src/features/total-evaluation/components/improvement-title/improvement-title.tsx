@@ -10,7 +10,7 @@ interface ImprovementTitleProps {
 export default function ImprovementTitle({ improvementTitle }: ImprovementTitleProps) {
   return (
     <div css={styles.improvementTitleWrapper}>
-      <Icon name="checkIcon" width={32} color={colors.GRAY[200]} />
+      <Icon name="checkbox" width={32} color={colors.GRAY[200]} />
       <span css={styles.improvementTitle}>{improvementTitle}</span>
     </div>
   );

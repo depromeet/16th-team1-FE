@@ -31,7 +31,7 @@ export default function Projects({
         <div css={styles.iconWrapper(PROCESS_COLOR[process])}>
           {process === 'GOOD' && <Icon name="check" width={isMobile ? 32 : 56} />}
           {process === 'SOSO' && <Icon name="triangle" width={isMobile ? 32 : 56} />}
-          {process === 'BAD' && <Icon name="ico-x" width={isMobile ? 32 : 56} />}
+          {process === 'BAD' && <Icon name="x" width={isMobile ? 32 : 56} />}
         </div>
         <span css={styles.feedbackType}>{feedbackType}</span>
         <HorizontalSvg />

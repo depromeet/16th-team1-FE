@@ -35,7 +35,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    name: 'checkIcon',
+    name: 'checkbox',
     width: 40,
     color: 'black',
   },

@@ -64,14 +64,14 @@ export default function OverallEvaluation({ overallEvaluation }: OverallEvaluati
       <div css={styles.analysisWrapper}>
         <EvaluationSection
           titleKey="strengths"
-          iconName="strength"
+          iconName="fist"
           color={theme.colors.SORA[400]}
           listItems={strengths}
         />
         <hr css={commonStyles.hr} />
         <EvaluationSection
           titleKey="improvements"
-          iconName="fix"
+          iconName="bulb"
           color="#D6AA59"
           listItems={improvements}
         />

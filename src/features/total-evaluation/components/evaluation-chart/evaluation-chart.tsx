@@ -28,7 +28,7 @@ export default function EvaluationChart({
           </div>
         ))}
       </div>
-      <Icon name={`grade_${overallEvaluationGrade}`} />
+      <Icon name={`grade-${overallEvaluationGrade.toLowerCase()}`} />
     </div>
   );
 }

@@ -81,7 +81,7 @@ export default function TotalEvaluationGrid() {
             delay: 0.4,
           }}
         >
-          <Icon name="thumb-up-mono" color="#BEFFAE" width={isMobile ? 20 : 28} />
+          <Icon name="thumb" color="#BEFFAE" width={isMobile ? 20 : 28} />
           <h3 css={styles.title}>
             <strong
               css={css`
@@ -109,7 +109,7 @@ export default function TotalEvaluationGrid() {
             delay: 0.6,
           }}
         >
-          <Icon name="exclamation-circle-mono" color="#FF7568" width={isMobile ? 20 : 28} />
+          <Icon name="alert-circle" color="#FF7568" width={isMobile ? 20 : 28} />
           <h3 css={styles.title}>
             <strong
               css={css`
