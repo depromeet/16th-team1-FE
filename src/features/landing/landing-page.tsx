@@ -29,7 +29,7 @@ export default function LandingPage() {
       </div>
       <div css={styles.flexColumn(isMobile ? 16 : 22)}>
         <HelpersSection />
-        <div id="help-section">
+        <div id="help-section" css={styles.sectionWrapper}>
           <FAQ />
         </div>
         <RoutingBottomSection />
