@@ -1,4 +1,5 @@
 import Icon from '@/common/components/icon/icon';
+import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import useDeviceType from '@/common/hooks/use-device-type';
 import { iconTypes } from '@/common/types/icon-types';
 
@@ -8,9 +9,10 @@ import * as styles from './loading-evaluation-bottom.styles';
 
 export interface TotalEvaluationBottomProps {
   type: 'strength' | 'fix' | 'smile' | 'sad';
+  delayTime?: number;
 }
 
-export default function TotalEvaluationBottom({ type }: TotalEvaluationBottomProps) {
+export default function TotalEvaluationBottom({ type, delayTime = 0 }: TotalEvaluationBottomProps) {
   const { isMobile, isTablet } = useDeviceType();
   const data = LOADING_BOTTOM[type];
 
@@ -30,7 +32,16 @@ export default function TotalEvaluationBottom({ type }: TotalEvaluationBottomPro
   }
 
   return (
-    <div css={styles.contentWrapper}>
+    <FadeInWrapper
+      additionalStyles={styles.contentWrapper()}
+      intersectionOptions={{
+        threshold: 0.3,
+        triggerOnce: true,
+      }}
+      transitionOptions={{
+        delay: delayTime,
+      }}
+    >
       <h1 css={styles.title({ color: data.color })}>
         {data.title}
         <Icon name={nameIconMap[type]} color={data.color} />
@@ -40,6 +51,6 @@ export default function TotalEvaluationBottom({ type }: TotalEvaluationBottomPro
           {item}
         </p>
       ))}
-    </div>
+    </FadeInWrapper>
   );
 }

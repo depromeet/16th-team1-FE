@@ -1,5 +1,6 @@
 import loadingProjectEvaluation from '@/assets/images/loading-project-evaluation.png';
 import Icon from '@/common/components/icon/icon';
+import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import Spacing from '@/common/components/spacing/spacing';
 import useDeviceType from '@/common/hooks/use-device-type';
 
@@ -15,7 +16,14 @@ export default function LoadingProjectEvaluation() {
 
   return (
     <div css={styles.Wrapper}>
-      <main css={styles.contentWrapper}>
+      <FadeInWrapper
+        as={'main'}
+        additionalStyles={styles.contentWrapper()}
+        intersectionOptions={{
+          threshold: 0.3,
+          triggerOnce: true,
+        }}
+      >
         <article>
           <figure css={styles.titleWrapper}>
             <span css={styles.caption}>
@@ -36,10 +44,10 @@ export default function LoadingProjectEvaluation() {
           <h3 css={styles.descriptionTitle}>프로세스 평가</h3>
           <p css={styles.description}>{descriptionText}</p>
         </section>
-      </main>
+      </FadeInWrapper>
       <section css={styles.bottomWrapper}>
         <TotalEvaluationBottom type="smile" />
-        <TotalEvaluationBottom type="sad" />
+        <TotalEvaluationBottom type="sad" delayTime={0.2} />
       </section>
     </div>
   );

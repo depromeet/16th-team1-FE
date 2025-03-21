@@ -1,6 +1,7 @@
 import { useState, useMemo, useCallback } from 'react';
 
 import Icon from '@/common/components/icon/icon';
+import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import useDeviceType from '@/common/hooks/use-device-type';
 import useShadowScroll from '@/common/hooks/use-shadow-scroll';
 
@@ -28,7 +29,13 @@ export default function LoadingPageEvaluation() {
   }, []);
 
   return (
-    <div css={styles.contentWrapper}>
+    <FadeInWrapper
+      additionalStyles={styles.contentWrapper}
+      intersectionOptions={{
+        threshold: 0.3,
+        triggerOnce: true,
+      }}
+    >
       {isMobile && <div css={styles.shadowLeft(left)} />}
       {isMobile && <div css={styles.shadowRight(right)} />}
       <div ref={setMainRef} css={styles.scrollWrapper}>
@@ -68,6 +75,6 @@ export default function LoadingPageEvaluation() {
           </div>
         </main>
       )}
-    </div>
+    </FadeInWrapper>
   );
 }
