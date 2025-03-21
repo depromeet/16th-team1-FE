@@ -1,4 +1,5 @@
 import Icon from '@/common/components/icon/icon';
+import { iconTypes } from '@/common/types/icon-types';
 
 import BarChart from '../../../../common/components/bar-chart/bar-chart';
 import { EvaluationItemsType } from '../../types/evaluation-types';
@@ -17,6 +18,12 @@ export default function EvaluationChart({
   evaluationItems,
 }: EvaluationChartProps) {
   const evaluationData = getEvaluationData(evaluationItems);
+  const gradeIconMap: Record<GradeType, iconTypes> = {
+    A: 'grade-a',
+    B: 'grade-b',
+    C: 'grade-c',
+    D: 'grade-d',
+  };
 
   return (
     <div css={styles.evaluationChart}>
@@ -28,7 +35,7 @@ export default function EvaluationChart({
           </div>
         ))}
       </div>
-      <Icon name={`grade-${overallEvaluationGrade.toLowerCase()}`} />
+      <Icon name={gradeIconMap[overallEvaluationGrade]} />
     </div>
   );
 }
