@@ -28,7 +28,7 @@ export const improvementItemWrapper = css`
   gap: 1.2rem;
   min-width: 27rem;
 
-  ${mediaQueries.mobile} {
+  ${mediaQueries.mobileAndTablet} {
     flex-direction: row;
     position: relative;
     left: -2rem;
