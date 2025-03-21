@@ -122,6 +122,21 @@ const toastVariants = {
     },
     position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
   },
+  getFeedbackFailure: {
+    background: `${colors.GRAY[1000]}`,
+    border: `0.2rem solid rgba(233, 97, 80, 0.15)`,
+    textColor: `${colors.RED[500]}`,
+    padding: '1.8rem 2.4rem',
+    gap: '1rem',
+    fontSize: '1.6rem',
+    isClickable: true,
+    animation: {
+      open: slideLeft,
+      close: slideRight,
+      extra: 'none',
+    },
+    position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
+  },
 };
 
 export const root = (name: ToastType) => {

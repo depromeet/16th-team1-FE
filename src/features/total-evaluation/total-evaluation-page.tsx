@@ -1,41 +1,44 @@
-import { useParams } from 'react-router';
-
+import { Button } from '@/common/components/button/Button';
+import FallbackBoundary from '@/common/components/fallback-boundary/fallback-boundary';
+import Skeleton from '@/common/components/skeleton/skeleton';
 import FeedbackSidebar from '@/features/total-evaluation/components/feedback-sidebar/feedback-sidebar';
+import ProjectEvaluationList from '@/features/total-evaluation/components/project-evaluation/project-evaluation-list';
 
 import OverallEvaluation from './components/overall-evaluation/overall-evaluation';
-import ProjectEvaluation from './components/project-evaluation/project-evaluation';
-import {
-  OverallEvaluationType,
-  useGetPortfolioFeedback,
-} from './services/use-get-portfolio-feedback';
 
 import * as styles from './total-evaluation-page.styles';
 
 export default function TotalEvaluationPage() {
-  const { feedbackId } = useParams();
-
-  const { data, isLoading } = useGetPortfolioFeedback({ feedbackId: feedbackId as string });
-
-  if (isLoading) {
-    return <div>로딩</div>;
-  }
-
   return (
     <div css={styles.container}>
-      {/* TODO: Suspense적용 후, 조건부 렌더링 제거 예정 */}
-      {data?.result.projectEvaluation && (
-        <FeedbackSidebar projectEvaluation={data?.result.projectEvaluation} />
-      )}
+      <FeedbackSidebar />
 
-      <div css={styles.totalEvaluationSection}>
-        <OverallEvaluation
-          overallEvaluation={data?.result.overallEvaluation as OverallEvaluationType}
-        />
-
-        {data?.result?.projectEvaluation?.map((project) => (
-          <ProjectEvaluation key={project.projectName} projectEvaluation={project} />
-        ))}
-      </div>
+      <FallbackBoundary suspense={fallbacks.suspense} error={fallbacks.error}>
+        <div css={styles.totalEvaluationSection}>
+          <OverallEvaluation />
+          <ProjectEvaluationList />
+        </div>
+      </FallbackBoundary>
     </div>
   );
 }
+
+const fallbacks = {
+  suspense: {
+    fallbackUI: (
+      <div css={styles.fallbackWrapper}>
+        <Skeleton />
+      </div>
+    ),
+  },
+  error: {
+    fallbackUI: (onReset: VoidFunction) => (
+      <div css={styles.fallbackWrapper}>
+        <Button size="xLarge" usage="text" variant="primary" onClick={onReset}>
+          다시 시도
+        </Button>
+      </div>
+      // <Toast name="getFeedbackFailure" open={true} setOpen={setToastOpen} onClick={onReset} />
+    ),
+  },
+};

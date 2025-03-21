@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 
+import FallbackBoundary from '@/common/components/fallback-boundary/fallback-boundary';
 import { scrollToSection } from '@/common/utils/scroll-to-section';
 import AccordionList from '@/features/total-evaluation/components/accordion-list/accordion-list';
 
-import { ProjectEvaluationType } from '../../services/use-get-portfolio-feedback';
 import { LocationButtonType } from '../../types/sidebar-Info-types';
 import FeedbackContents from '../accordion-list/feedback-contents';
 import { SelectedPageContext } from '../context/selected-page/selected-page-context';
@@ -12,11 +12,7 @@ import { PageLocationButton } from '../custom-buttons/page-location-button';
 import { ProjectTitleButton } from '../custom-buttons/project-title-button';
 import FeedbackPageNavigator from '../sidebar/feedback-page-navigator/feedback-page-navigator';
 
-interface FeedbackSidebarProps {
-  projectEvaluation: ProjectEvaluationType[];
-}
-
-function FeedbackSidebar({ projectEvaluation }: FeedbackSidebarProps) {
+function FeedbackSidebar() {
   const { isSidebarOpen } = useContext(SidebarContext);
   const { selectedPage, setSelectedPage } = useContext(SelectedPageContext);
   const [currentOpenedTrigger, setCurrentOpenedTrigger] = useState<string[]>([]);
@@ -41,31 +37,36 @@ function FeedbackSidebar({ projectEvaluation }: FeedbackSidebarProps) {
 
   return (
     <FeedbackPageNavigator>
-      <AccordionList type="multiple" orientation="vertical" defaultValue={['포트폴리오 종합 평가']}>
-        <FeedbackContents
-          dataList={projectEvaluation}
-          /** 각 메뉴 트리거 버튼 */
-          renderTriggerButton={(accordionTrigger) => (
-            <ProjectTitleButton
-              isCurrentTriggerSelected={currentOpenedTrigger.includes(accordionTrigger)}
-              onClick={() => handleTriggerButton(accordionTrigger)}
-            >
-              {accordionTrigger}
-            </ProjectTitleButton>
-          )}
-          /** 각 메뉴가 트리거되면 나타나는 세부 컨텐츠 */
-          renderContentButton={(type, value, buttonIndex) => (
-            <PageLocationButton
-              isSidebarOpen={isSidebarOpen}
-              isSelected={selectedPage === value}
-              buttonIndex={buttonIndex}
-              onClick={() => handleContentButton(value)}
-            >
-              {buttonFormatByButtonType(type, value)}
-            </PageLocationButton>
-          )}
-        />
-      </AccordionList>
+      <FallbackBoundary>
+        <AccordionList
+          type="multiple"
+          orientation="vertical"
+          defaultValue={['포트폴리오 종합 평가']}
+        >
+          <FeedbackContents
+            /** 각 메뉴 트리거 버튼 */
+            renderTriggerButton={(accordionTrigger) => (
+              <ProjectTitleButton
+                isCurrentTriggerSelected={currentOpenedTrigger.includes(accordionTrigger)}
+                onClick={() => handleTriggerButton(accordionTrigger)}
+              >
+                {accordionTrigger}
+              </ProjectTitleButton>
+            )}
+            /** 각 메뉴가 트리거되면 나타나는 세부 컨텐츠 */
+            renderContentButton={(type, value, buttonIndex) => (
+              <PageLocationButton
+                isSidebarOpen={isSidebarOpen}
+                isSelected={selectedPage === value}
+                buttonIndex={buttonIndex}
+                onClick={() => handleContentButton(value)}
+              >
+                {buttonFormatByButtonType(type, value)}
+              </PageLocationButton>
+            )}
+          />
+        </AccordionList>
+      </FallbackBoundary>
     </FeedbackPageNavigator>
   );
 }

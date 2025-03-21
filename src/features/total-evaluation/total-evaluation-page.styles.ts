@@ -31,3 +31,10 @@ export const hr = css`
     margin-bottom: 0;
   }
 `;
+
+export const fallbackWrapper = css`
+  display: flex;
+  width: 82rem;
+  align-self: flex-start;
+  margin: 0 auto;
+`;

@@ -1,6 +1,6 @@
 import * as Accordion from '@radix-ui/react-accordion';
 
-import { ProjectEvaluationType } from '../../services/use-get-portfolio-feedback';
+import { useGetPortfolioFeedbackData } from '../../hooks/use-get-portfolio-feedback-data';
 import {
   RenderAccordionContentButtonType,
   RenderAccordionTriggerButtonType,
@@ -9,16 +9,13 @@ import {
 import * as styles from './feedback-contents.styles';
 
 interface AccordionItemProps {
-  dataList: ProjectEvaluationType[];
   renderTriggerButton: RenderAccordionTriggerButtonType;
   renderContentButton: RenderAccordionContentButtonType;
 }
 
-function FeedbackContents({
-  dataList,
-  renderContentButton,
-  renderTriggerButton,
-}: AccordionItemProps) {
+function FeedbackContents({ renderContentButton, renderTriggerButton }: AccordionItemProps) {
+  const { projectEvaluation: dataList } = useGetPortfolioFeedbackData();
+
   return (
     <>
       {/* 특별 케이스: 포트폴리오 종합 평가 */}

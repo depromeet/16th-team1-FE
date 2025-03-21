@@ -1,4 +1,9 @@
-export type ToastType = 'aiCompleteLarge' | 'aiCompleteSmall' | 'loginFailure' | 'pdfSubmit';
+export type ToastType =
+  | 'aiCompleteLarge'
+  | 'aiCompleteSmall'
+  | 'loginFailure'
+  | 'pdfSubmit'
+  | 'getFeedbackFailure';
 import { iconTypes } from '@/common/types/icon-types';
 
 export const toastConfig: Record<
@@ -28,5 +33,11 @@ export const toastConfig: Record<
     duration: 3000,
     icon: 'pdf-submit-success',
     iconPosition: 'left',
+  },
+  getFeedbackFailure: {
+    message: '피드백을 불러올 수 없어요',
+    duration: Infinity,
+    icon: 'checkIcon',
+    iconPosition: 'right',
   },
 };
