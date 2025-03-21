@@ -9,7 +9,6 @@ export const FAQWrapper = css`
   gap: 4rem;
   align-items: center;
   width: 77.4rem;
-  max-width: 77.4rem;
   margin: auto;
 
   ${mediaQueries.mobileAndTablet} {
@@ -36,6 +35,10 @@ export const title = withTheme(
     }
   `,
 );
+
+export const accordionWrapper = css`
+  width: 100%;
+`;
 
 export const accordionRoot = css`
   display: flex;
