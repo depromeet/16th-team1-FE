@@ -1,5 +1,6 @@
 import Icon from '@/common/components/icon/icon';
 import useDeviceType from '@/common/hooks/use-device-type';
+import { iconTypes } from '@/common/types/icon-types';
 
 import { LOADING_BOTTOM } from '../../constants/loading-constant';
 
@@ -15,6 +16,13 @@ export default function TotalEvaluationBottom({ type }: TotalEvaluationBottomPro
 
   let content = [...data.content];
 
+  const nameIconMap: Record<TotalEvaluationBottomProps['type'], iconTypes> = {
+    strength: 'fist',
+    fix: 'bulb',
+    smile: 'smile',
+    sad: 'bad',
+  };
+
   if (type === 'fix' && isTablet) {
     content = ['1. UI/UX 디자인 과정 추가하기', ...data.content.slice(1)];
   } else if (type === 'smile' && isMobile) {
@@ -25,7 +33,7 @@ export default function TotalEvaluationBottom({ type }: TotalEvaluationBottomPro
     <div css={styles.contentWrapper}>
       <h1 css={styles.title({ color: data.color })}>
         {data.title}
-        <Icon name={type} color={data.color} />
+        <Icon name={nameIconMap[type]} color={data.color} />
       </h1>
       {content.map((item, index) => (
         <p key={index} css={styles.description}>
