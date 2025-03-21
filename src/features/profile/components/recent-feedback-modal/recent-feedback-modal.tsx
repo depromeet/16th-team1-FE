@@ -37,7 +37,7 @@ export default function RecentFeedbackModal() {
         <header css={styles.modalHeader}>
           <Modal.Title css={styles.title}>최근 피드백</Modal.Title>
           <Modal.Close asChild>
-            <Icon name="close" color={colors.GRAY[400]} customStyle={styles.closeIconWrapper} />
+            <Icon name="x" color={colors.GRAY[400]} customStyle={styles.closeIconWrapper} />
           </Modal.Close>
         </header>
         <main css={styles.modalDescription} ref={setMainRef}>
@@ -49,7 +49,7 @@ export default function RecentFeedbackModal() {
                   <article key={feedback.feedbackId} css={styles.totalDescriptionWrapper}>
                     <span css={styles.date}>{feedback.date}</span>
                     <div css={styles.descriptionWrapper}>
-                      <Icon name="feedback" />
+                      <Icon name="file" />
                       <span css={styles.description}>{feedback.title}</span>
                     </div>
                   </article>

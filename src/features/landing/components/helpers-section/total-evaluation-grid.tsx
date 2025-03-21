@@ -24,7 +24,7 @@ export default function TotalEvaluationGrid() {
           }}
         >
           <div css={styles.titleWrapper}>
-            <Icon name="pin" width={24} color={theme.colors.SORA[200]} />
+            <Icon name="pin" width={28} color={theme.colors.SORA[200]} />
             <h3
               css={[
                 styles.title,
@@ -53,7 +53,7 @@ export default function TotalEvaluationGrid() {
             delay: 0.2,
           }}
         >
-          <Icon name="document-mono" width={24} color="#D7B1FF" />
+          <Icon name="file-white" width={28} color="#D7B1FF" />
           <h3
             css={[
               styles.title,
@@ -81,7 +81,7 @@ export default function TotalEvaluationGrid() {
             delay: 0.4,
           }}
         >
-          <Icon name="thumb-up-mono" color="#BEFFAE" width={isMobile ? 20 : 28} />
+          <Icon name="thumb" color="#BEFFAE" width={isMobile ? 20 : 28} />
           <h3 css={styles.title}>
             <strong
               css={css`
@@ -109,7 +109,7 @@ export default function TotalEvaluationGrid() {
             delay: 0.6,
           }}
         >
-          <Icon name="exclamation-circle-mono" color="#FF7568" width={isMobile ? 20 : 28} />
+          <Icon name="alert-circle" color="#FF7568" width={isMobile ? 20 : 28} />
           <h3 css={styles.title}>
             <strong
               css={css`

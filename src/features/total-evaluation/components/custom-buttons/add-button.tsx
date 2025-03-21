@@ -10,7 +10,7 @@ function AddButton() {
   return (
     <BaseButton css={styles.controlButtonCommonStyle}>
       <Icon
-        name="ico_plus"
+        name="plus"
         color={theme.colors.GRAY[700]}
         customStyle={css`
           cursor: pointer;

@@ -50,7 +50,7 @@ export default function LoadingTopSection() {
       <FadeInDiv ref={iconRef} inView={iconInView} delay={0.6}>
         <div css={styles.bottomWrapper}>
           <span css={styles.exampleDescription}>피드백 예시 보기</span>
-          <Icon name="feedbackLoadingDownArrow" customStyle={styles.floating} />
+          <Icon name="feedback-loading-down-arrow" customStyle={styles.floating} />
         </div>
       </FadeInDiv>
     </>

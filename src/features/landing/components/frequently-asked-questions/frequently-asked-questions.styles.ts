@@ -101,14 +101,14 @@ export const icon = withTheme(
     [data-state='open'] & {
       transform: rotate(270deg); /* 열릴 때 V 모양 */
       path {
-        fill: ${theme.colors.GRAY[100]};
+        fill: ${theme.colors.GRAY[700]};
       }
     }
 
     [data-state='closed'] & {
       transform: rotate(180deg); /* 닫힐 때 > 모양 */
       path {
-        fill: ${theme.colors.GRAY[400]};
+        fill: ${theme.colors.GRAY[700]};
       }
     }
   `,

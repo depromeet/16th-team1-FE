@@ -52,7 +52,7 @@ export default function LoadingPageEvaluation() {
           <img src={currentData.image} alt={currentData.title} css={styles.image} />
           <div css={styles.contentBox}>
             <h2 css={styles.sectionTitle}>
-              <Icon name="checkIcon" width={isMobile ? 20 : isTablet ? 28 : 24} />
+              <Icon name="checkbox" width={isMobile ? 20 : isTablet ? 28 : 24} />
               {currentData.title}
             </h2>
             <div css={styles.descriptionWrapper}>

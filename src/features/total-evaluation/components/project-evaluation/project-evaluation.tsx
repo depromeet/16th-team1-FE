@@ -83,7 +83,7 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
         <section css={styles.evaluationSection('3.2rem')}>
           <EvaluationTitle
             title={EVALUATION_LABEL['negatives']}
-            icon={<Icon name="sad" color="#E97950" />}
+            icon={<Icon name="bad" color="#E97950" />}
             color="#E97950"
           />
           <NestedList listItems={negativeFeedback} gap={3.2} />

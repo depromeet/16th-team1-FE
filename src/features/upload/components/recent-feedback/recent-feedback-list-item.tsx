@@ -29,7 +29,7 @@ export default function RecentFeedbackListItem({
       >{`${parsedDate.year.toString().slice(2)}. ${parsedDate.month}. ${parsedDate.day}`}</div>
       <div css={styles.fileName}>
         <Icon
-          name="page"
+          name="file"
           width={20}
           customStyle={css`
             flex-shrink: 0;
