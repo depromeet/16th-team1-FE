@@ -1,8 +1,9 @@
 export type ToastType = 'aiCompleteLarge' | 'aiCompleteSmall' | 'loginFailure' | 'pdfSubmit';
+import { iconTypes } from '@/common/types/icon-types';
 
 export const toastConfig: Record<
   ToastType,
-  { message: string; duration?: number; icon: string; iconPosition: 'left' | 'right' }
+  { message: string; duration?: number; icon: iconTypes; iconPosition: 'left' | 'right' }
 > = {
   aiCompleteLarge: {
     message: 'AI 분석이 끝났어요!',

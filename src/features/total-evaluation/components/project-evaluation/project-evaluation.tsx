@@ -3,6 +3,7 @@ import * as commonStyles from '@features/total-evaluation/total-evaluation-page.
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import Spacing from '@/common/components/spacing/spacing';
+import { iconTypes } from '@/common/types/icon-types';
 
 import {
   EVALUATION_LABEL,
@@ -29,7 +30,7 @@ interface ProjectEvaluationProps {
 const PROCESS_CATEGORIES = ['개요', '문제정의', '가설', '결과', '회고'];
 
 const getProcessIcon = (process: ProjectProcessType) => {
-  const icons = {
+  const icons: Record<ProjectProcessType, { name: iconTypes; color: string }> = {
     GOOD: { name: 'check', color: theme.colors.GRAY[700] },
     SOSO: { name: 'triangle', color: '#EA8430' },
     BAD: { name: 'x', color: theme.colors.RED[600] },
