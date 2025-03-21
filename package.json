@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "npx tsx script/generate-icon-types.ts && vite",
+    "build": "npx tsx script/generate-icon-types.ts && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "pwa": "pwa-assets-generator --preset minimal public/vite.svg",
@@ -97,6 +97,7 @@
     "stylelint": "^16.14.1",
     "stylelint-config-standard": "^37.0.0",
     "stylelint-order": "^6.0.4",
+    "ts-node": "^10.9.2",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",
     "vite": "^6.0.5",
@@ -105,3 +106,4 @@
     "vitest": "^3.0.5"
   }
 }
+

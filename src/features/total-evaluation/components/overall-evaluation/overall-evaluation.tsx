@@ -3,6 +3,7 @@ import * as commonStyles from '@features/total-evaluation/total-evaluation-page.
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import Spacing from '@/common/components/spacing/spacing';
+import { iconTypes } from '@/common/types/icon-types';
 import { useGetPortfolioFeedbackData } from '@/features/total-evaluation/hooks/use-get-portfolio-feedback-data';
 
 import { EVALUATION_LABEL } from '../../constants/evaluation-constant';
@@ -61,14 +62,14 @@ export default function OverallEvaluation() {
       <div css={styles.analysisWrapper}>
         <EvaluationSection
           titleKey="strengths"
-          iconName="strength"
+          iconName="fist"
           color={theme.colors.SORA[400]}
           listItems={strengths}
         />
         <hr css={commonStyles.hr} />
         <EvaluationSection
           titleKey="improvements"
-          iconName="fix"
+          iconName="bulb"
           color="#D6AA59"
           listItems={improvements}
         />
@@ -80,7 +81,7 @@ export default function OverallEvaluation() {
 
 interface EvaluationSectionProps {
   titleKey: string;
-  iconName: string;
+  iconName: iconTypes;
   color: string;
   listItems: NestedListItem[];
 }

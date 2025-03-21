@@ -4,33 +4,34 @@ export type ToastType =
   | 'loginFailure'
   | 'pdfSubmit'
   | 'getFeedbackFailure';
+import { iconTypes } from '@/common/types/icon-types';
 
 export const toastConfig: Record<
   ToastType,
-  { message: string; duration?: number; icon: string; iconPosition: 'left' | 'right' }
+  { message: string; duration?: number; icon: iconTypes; iconPosition: 'left' | 'right' }
 > = {
   aiCompleteLarge: {
     message: 'AI 분석이 끝났어요!',
     duration: Infinity,
-    icon: 'upArrow',
+    icon: 'arrow-up',
     iconPosition: 'right',
   },
   aiCompleteSmall: {
     message: 'AI 분석이 끝났어요!',
     duration: 3000,
-    icon: 'rightArrow',
+    icon: 'arrow-right-with-tail',
     iconPosition: 'right',
   },
   loginFailure: {
     message: '로그인에 실패했어요',
     duration: 3000,
-    icon: 'loginFail',
+    icon: 'login-fail',
     iconPosition: 'left',
   },
   pdfSubmit: {
     message: 'PDF 제출이 완료됐어요',
     duration: 3000,
-    icon: 'pdfSubmitSuccess',
+    icon: 'pdf-submit-success',
     iconPosition: 'left',
   },
   getFeedbackFailure: {

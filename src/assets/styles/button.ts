@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 
 import { BaseButtonProps } from '@/common/components/button/base-button';
+import { iconTypes } from '@/common/types/icon-types';
 
 import { colors } from './colors';
 import { sizeToken } from './space';
@@ -220,7 +221,7 @@ export type MultiProps = BaseButtonProps & {
   usage: 'multi';
   size: RestSize;
   children: ReactNode;
-  iconName: string;
+  iconName: iconTypes;
   iconPosition: 'left' | 'right';
   variant: RestVariant;
 };
@@ -229,7 +230,7 @@ export type MultiProps = BaseButtonProps & {
 export type IconProps = BaseButtonProps & {
   usage: 'icon';
   size: RestSize;
-  iconName: string;
+  iconName: iconTypes;
   children?: never;
   iconPosition?: never;
   variant: IconVariant;

@@ -59,7 +59,7 @@ export default function DetailImprovement() {
             />
             <div css={styles.improvementTextWrapper}>
               <div css={styles.improvementTitleWrapper}>
-                <Icon name="checkIcon" color={theme.colors.GRAY[200]} width={isMobile ? 20 : 28} />
+                <Icon name="checkbox" color={theme.colors.GRAY[200]} width={isMobile ? 20 : 28} />
                 <span>{currentImprovementData.cardTitle ?? currentImprovementData.title}</span>
               </div>
               <div css={styles.improvementSection}>

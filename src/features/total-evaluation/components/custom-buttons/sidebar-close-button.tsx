@@ -13,7 +13,7 @@ const SidebarCloseButton = forwardRef<HTMLButtonElement, ButtonHTMLAttributes<HT
     return (
       <BaseButton css={styles.controlButtonCommonStyle} {...props} ref={ref}>
         <Icon
-          name="ico_leftarrow2"
+          name="double-arrow-left"
           color={theme.colors.GRAY[700]}
           customStyle={css`
             cursor: pointer;

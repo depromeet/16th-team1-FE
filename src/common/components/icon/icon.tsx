@@ -1,9 +1,11 @@
 import { css } from '@emotion/react';
 
+import { iconTypes } from '@/common/types/icon-types';
+
 import { iconMap } from './icon-map';
 
 interface IconProps {
-  name: string;
+  name: iconTypes;
   width?: number;
   color?: string;
   customStyle?: ReturnType<typeof css>;

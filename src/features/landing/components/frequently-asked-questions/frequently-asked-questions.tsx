@@ -28,7 +28,7 @@ export default function FAQ() {
                   {question}{' '}
                   <div css={styles.icon}>
                     <Icon
-                      name="leftArrow"
+                      name="arrow-left"
                       customStyle={css`
                         cursor: pointer;
                       `}

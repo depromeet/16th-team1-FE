@@ -3,6 +3,7 @@ import * as commonStyles from '@features/total-evaluation/total-evaluation-page.
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import Spacing from '@/common/components/spacing/spacing';
+import { iconTypes } from '@/common/types/icon-types';
 
 import {
   EVALUATION_LABEL,
@@ -29,7 +30,7 @@ interface ProjectEvaluationProps {
 const PROCESS_CATEGORIES = ['개요', '문제정의', '가설', '결과', '회고'];
 
 const getProcessIcon = (process: ProjectProcessType) => {
-  const icons = {
+  const icons: Record<ProjectProcessType, { name: iconTypes; color: string }> = {
     GOOD: { name: 'check', color: theme.colors.GRAY[700] },
     SOSO: { name: 'triangle', color: '#EA8430' },
     BAD: { name: 'x', color: theme.colors.RED[600] },
@@ -82,7 +83,7 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
         <section css={styles.evaluationSection('3.2rem')}>
           <EvaluationTitle
             title={EVALUATION_LABEL['negatives']}
-            icon={<Icon name="sad" color="#E97950" />}
+            icon={<Icon name="bad" color="#E97950" />}
             color="#E97950"
           />
           <NestedList listItems={negativeFeedback} gap={3.2} />
@@ -115,6 +116,7 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
       <section css={styles.oneLineSummaryWrapper}>
         <span css={styles.oneLineSummaryTitle}>한 줄 요약</span>
         <p css={styles.oneLineSummaryDescription}>{projectSummary}</p>
+        <Spacing size={10} />
       </section>
     </div>
   );

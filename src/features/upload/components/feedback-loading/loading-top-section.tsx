@@ -1,5 +1,6 @@
 import { useInView } from 'react-intersection-observer';
 
+import logoSpinning from '@/assets/video/logoSpinning.mp4';
 import Icon from '@/common/components/icon/icon';
 import FadeInDiv from '@/common/components/interaction/fade-in-div';
 import Spacing from '@/common/components/spacing/spacing';
@@ -34,7 +35,7 @@ export default function LoadingTopSection() {
     <>
       <FadeInDiv ref={videoRef} inView={videoInView}>
         <video width={60} height={60} autoPlay loop muted>
-          <source src="./src/assets/video/logoSpinning.mp4" type="video/mp4" />
+          <source src={logoSpinning} type="video/mp4" />
         </video>
       </FadeInDiv>
       <Spacing size={1.2} />
@@ -49,7 +50,7 @@ export default function LoadingTopSection() {
       <FadeInDiv ref={iconRef} inView={iconInView} delay={0.6}>
         <div css={styles.bottomWrapper}>
           <span css={styles.exampleDescription}>피드백 예시 보기</span>
-          <Icon name="feedbackLoadingDownArrow" customStyle={styles.floating} />
+          <Icon name="feedback-loading-down-arrow" customStyle={styles.floating} />
         </div>
       </FadeInDiv>
     </>

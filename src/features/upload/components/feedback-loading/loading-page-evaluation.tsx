@@ -2,6 +2,7 @@ import { useState, useMemo, useCallback } from 'react';
 
 import Icon from '@/common/components/icon/icon';
 import useDeviceType from '@/common/hooks/use-device-type';
+import useShadowScroll from '@/common/hooks/use-shadow-scroll';
 
 import { EVALUATION_OPTIONS } from '../../constants/loading-constant';
 
@@ -10,6 +11,12 @@ import * as styles from './loading-page-evaluation.styles';
 export default function LoadingPageEvaluation() {
   const [selectedOption, setSelectedOption] = useState(EVALUATION_OPTIONS[0].key);
   const { isMobile, isTablet } = useDeviceType();
+
+  const [mainRef, setMainRef] = useState<HTMLElement | null>(null);
+  const [leftRef, setLeftRef] = useState<HTMLDivElement | null>(null);
+  const [rightRef, setRightRef] = useState<HTMLDivElement | null>(null);
+
+  const { left, right } = useShadowScroll({ mainRef, refs: { left: leftRef, right: rightRef } });
 
   const currentData = useMemo(
     () => EVALUATION_OPTIONS.find((data) => data.key === selectedOption),
@@ -22,24 +29,30 @@ export default function LoadingPageEvaluation() {
 
   return (
     <div css={styles.contentWrapper}>
-      <aside css={styles.optionWrapper}>
-        {EVALUATION_OPTIONS.map((option) => (
-          <div
-            key={option.key}
-            css={styles.optionButton(selectedOption === option.key)}
-            onMouseOver={() => handleMouseOver(option.key)}
-          >
-            {option.title}
-          </div>
-        ))}
-      </aside>
+      {isMobile && <div css={styles.shadowLeft(left)} />}
+      {isMobile && <div css={styles.shadowRight(right)} />}
+      <div ref={setMainRef} css={styles.scrollWrapper}>
+        {isMobile && <div ref={setLeftRef} css={styles.leftSensor} />}
+        <aside css={styles.optionWrapper}>
+          {EVALUATION_OPTIONS.map((option) => (
+            <div
+              key={option.key}
+              css={styles.optionButton(selectedOption === option.key)}
+              onMouseOver={() => handleMouseOver(option.key)}
+            >
+              {option.title}
+            </div>
+          ))}
+        </aside>
+        {isMobile && <div ref={setRightRef} css={styles.rightSensor} />}
+      </div>
 
       {currentData && (
         <main key={currentData.key} css={styles.mainContent}>
           <img src={currentData.image} alt={currentData.title} css={styles.image} />
           <div css={styles.contentBox}>
             <h2 css={styles.sectionTitle}>
-              <Icon name="checkIcon" width={isMobile ? 20 : isTablet ? 28 : 24} />
+              <Icon name="checkbox" width={isMobile ? 20 : isTablet ? 28 : 24} />
               {currentData.title}
             </h2>
             <div css={styles.descriptionWrapper}>
