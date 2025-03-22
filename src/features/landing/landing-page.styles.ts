@@ -34,3 +34,7 @@ export const image = (inView: boolean) => css`
   max-width: 134rem;
   object-fit: cover;
 `;
+
+export const sectionWrapper = css`
+  width: 100%;
+`;

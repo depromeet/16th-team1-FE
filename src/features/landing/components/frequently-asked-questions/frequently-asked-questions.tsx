@@ -19,7 +19,10 @@ export default function FAQ() {
         자주 묻는 질문
       </FadeInWrapper>
 
-      <FadeInWrapper intersectionOptions={{ threshold: 0.3, triggerOnce: true }}>
+      <FadeInWrapper
+        intersectionOptions={{ threshold: 0.3, triggerOnce: true }}
+        additionalStyles={styles.accordionWrapper}
+      >
         <Accordion.Root type="multiple" css={styles.accordionRoot}>
           {faqData.map(({ question, answer }) => (
             <Accordion.Item key={question} value={question} css={styles.accordionItem}>
