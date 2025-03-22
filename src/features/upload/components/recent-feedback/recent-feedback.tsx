@@ -1,5 +1,5 @@
 import Spacing from '@/common/components/spacing/spacing';
-import { FeedbackItemType } from '@/features/feedback-history/services/use-get-feedback-history';
+import { FeedbackItemType } from '@/features/feedback/services/use-get-feedback-history';
 
 import RecentFeedbackList from './recent-feedback-list';
 import RecentFeedbackListItem from './recent-feedback-list-item';

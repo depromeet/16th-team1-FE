@@ -2,7 +2,7 @@
 
 // import { axiosInstance } from '@/common/services/service-config';
 
-import { useGetFeedbackHistory } from '../feedback-history/services/use-get-feedback-history';
+import { useGetFeedbackHistory } from '../feedback/services/use-get-feedback-history';
 import PortfolioUpload from './components/portfolio-upload/portfolio-upload';
 import RecentFeedback from './components/recent-feedback/recent-feedback';
 

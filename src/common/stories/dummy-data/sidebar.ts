@@ -1,4 +1,4 @@
-import { ProjectEvaluationType } from '@/features/total-evaluation/services/use-get-portfolio-feedback';
+import { ProjectEvaluationType } from '@/features/feedback/services/use-get-portfolio-feedback';
 
 export const dummyEvaluationData: ProjectEvaluationType[] = [
   {
