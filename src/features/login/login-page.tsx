@@ -1,8 +1,11 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
+
 import { css } from '@emotion/react';
 
 import Icon from '@/common/components/icon/icon';
-import { useAuth } from '@/common/hooks/use-auth';
-import { useQueryStrings } from '@/common/hooks/use-query-strings';
+import { useCheckQueryStrings } from '@/common/hooks/use-check-query-strings';
+import { AUTH_SERVICE } from '@/common/services/auth';
 import { axiosInstance } from '@/common/services/service-config';
 
 import GoogleAuthButton from './components/custom-buttons/google-auth-button';
@@ -10,8 +13,18 @@ import GoogleAuthButton from './components/custom-buttons/google-auth-button';
 import * as styles from './login-page.styles';
 
 function LoginPage() {
-  const isProcessQueryExist = useQueryStrings({ process: 'true' });
-  useAuth(isProcessQueryExist);
+  const navigate = useNavigate();
+  const isRollback = useCheckQueryStrings({ rollback: 'true' });
+
+  useEffect(() => {
+    const loginPageAuth = async () => {
+      const { accessToken, expirationTime } = (await AUTH_SERVICE.authenticate()) ?? {};
+      if (accessToken && expirationTime) navigate('/upload');
+    };
+
+    if (!isRollback) loginPageAuth();
+  }, [navigate, isRollback]);
+
   return (
     <div css={styles.container}>
       <div css={styles.content}>

@@ -12,10 +12,10 @@ class AuthService {
   private endPoint: string = `/api/v1/reissue`;
   private userInfoEndPoint: string = `/api/v1/users/me`;
 
-  /** 생성자는 private으로 외부에서 직접 인스턴스화 불가 */
+  /* 생성자는 private으로 외부에서 직접 인스턴스 생성 x */
   private constructor() {}
 
-  /** 싱글톤 인스턴스 반환 메소드 */
+  /* 싱글톤 인스턴스 반환 */
   public static getInstance(): AuthService {
     if (!AuthService.instance) {
       AuthService.instance = new AuthService();
@@ -23,17 +23,13 @@ class AuthService {
     return AuthService.instance;
   }
 
-  /**
-   * 빌더 패턴 메소드: endPoint 설정
-   */
+  /* 별도의 endPoint 설정 */
   public withEndPoint(endPoint: string): AuthService {
     this.endPoint = endPoint;
     return this;
   }
 
-  /**
-   * 빌더 패턴 메소드: userInfoEndPoint 설정
-   */
+  /* 별도의 userInfoEndPoint 설정 */
   public withUserInfoEndPoint(userInfoEndPoint: string): AuthService {
     this.userInfoEndPoint = userInfoEndPoint;
     return this;
@@ -46,10 +42,10 @@ class AuthService {
    * 3. 자동 갱신 설정
    * 4. 사용자 정보 조회 및 상태 저장
    */
-  public async authenticate() {
+  public async authenticate(): Promise<{ accessToken: string; expirationTime: string } | null> {
     // 1. 토큰 재발급(로그인) 처리
     const tokenData = await this.postReIssue();
-    if (!tokenData) return;
+    if (!tokenData) return null;
 
     const { accessToken, expirationTime } = tokenData;
 
@@ -61,10 +57,11 @@ class AuthService {
 
     // 4. 사용자 정보 조회 및 Zustand 상태 저장
     const userInfo = await this.getUserInfo();
-    if (!userInfo) return;
+    if (!userInfo) return null;
 
     // Zustand 스토어에 사용자 정보 저장
     this.updateUserStateInZustand(userInfo);
+    return { accessToken, expirationTime };
   }
 
   /** 토큰 재발급(로그인) 처리 && RTR 환경에서 strtictMode로 인한 API 2번 호출 문제 대응
@@ -84,12 +81,12 @@ class AuthService {
     }
   }
 
-  /** Authorization 헤더에 토큰 등록 */
+  /* Authorization 헤더에 토큰 등록 */
   public enrollAuthorizationHeader(accessToken: string): void {
     axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
   }
 
-  /** Authorization 헤더에서 토큰 제거 */
+  /* Authorization 헤더에서 토큰 제거 */
   public deleteAuthorizationHeader(): void {
     delete axiosInstance.defaults.headers.common['Authorization'];
   }
@@ -100,23 +97,22 @@ class AuthService {
     setTimeout(() => this.authenticate(), refreshTime);
   }
 
-  /** 사용자 정보 조회 */
+  /* 사용자 정보 조회 */
   public async getUserInfo(): Promise<UserInfo | null> {
     const endpoint = this.userInfoEndPoint;
     const response = await axiosInstance.get<{ result: UserInfo }>(endpoint);
     return response.data.result;
   }
 
-  /** Zustand 스토어에 사용자 정보 업데이트 */
+  /* Zustand 스토어에 사용자 정보 업데이트 */
   private updateUserStateInZustand(userInfo: UserInfo): void {
     const { setUserInfo } = useUserStore.getState();
     setUserInfo(userInfo);
   }
 
-  /** 로그아웃 처리 */
+  /* 로그아웃 처리 */
   public logout(): void {
     this.deleteAuthorizationHeader();
-    // Zustand 스토어의 사용자 정보 초기화
     const { resetUserInfo } = useUserStore.getState();
     resetUserInfo();
   }
