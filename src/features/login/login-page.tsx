@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 
 import Icon from '@/common/components/icon/icon';
 import { useAuth } from '@/common/hooks/use-auth';
+import { axiosInstance } from '@/common/services/service-config';
 
 import GoogleAuthButton from './components/custom-buttons/google-auth-button';
 
@@ -25,6 +26,19 @@ function LoginPage() {
           </div>
 
           <GoogleAuthButton />
+
+          {/* 테스트용 */}
+          <button
+            onClick={async () => {
+              const response = await axiosInstance.get(`/api/v1/users/me`);
+              console.log(response.data);
+            }}
+            css={css`
+              font-size: 3rem;
+            `}
+          >
+            내 정보 확인(테스트용)
+          </button>
         </div>
       </div>
     </div>
