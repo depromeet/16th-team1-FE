@@ -3,8 +3,9 @@ import { AxiosResponse } from 'axios';
 import { UserInfo, useUserStore } from '@/store/user-auth';
 
 import { axiosInstance } from './service-config';
-import { ReIssue } from '../types/auth'; // UserInfo 타입 추가 필요
+import { ReIssue } from '../types/auth';
 
+/** 유저 인증 싸이클 인스턴스 클래스*/
 class AuthService {
   private static instance: AuthService | null = null;
   private refreshTokenPromise: Promise<AxiosResponse<ReIssue, unknown>> | undefined;
@@ -30,7 +31,9 @@ class AuthService {
     return this;
   }
 
-  /** 빌더 패턴 메소드: userInfoEndPoint 설정 */
+  /**
+   * 빌더 패턴 메소드: userInfoEndPoint 설정
+   */
   public withUserInfoEndPoint(userInfoEndPoint: string): AuthService {
     this.userInfoEndPoint = userInfoEndPoint;
     return this;
@@ -46,10 +49,8 @@ class AuthService {
   public async authenticate() {
     // 1. 토큰 재발급(로그인) 처리
     const tokenData = await this.postReIssue();
+    if (!tokenData) return;
 
-    if (!tokenData || !tokenData.accessToken || !tokenData.expirationTime) {
-      throw new Error();
-    }
     const { accessToken, expirationTime } = tokenData;
 
     // 2. 토큰을 Authorization 헤더에 등록
@@ -60,15 +61,15 @@ class AuthService {
 
     // 4. 사용자 정보 조회 및 Zustand 상태 저장
     const userInfo = await this.getUserInfo();
-    if (userInfo) {
-      // Zustand 스토어에 사용자 정보 저장
-      this.updateUserStateInZustand(userInfo);
-    }
+    if (!userInfo) return;
+
+    // Zustand 스토어에 사용자 정보 저장
+    this.updateUserStateInZustand(userInfo);
   }
 
   /** 토큰 재발급(로그인) 처리 && RTR 환경에서 strtictMode로 인한 API 2번 호출 문제 대응
-   * - try와 함께 catch를 사용하지 않은 이유는 에러의 경우 상위 컨텍스트에서 처리하고 있기때문이며
-   * - finally를 적용한 이유는 에러가 발생했을 때도 refreshTokenPromise = undefined;는 반드시 실행하기 위함
+   * - try와 함께 catch를 사용하지 않은 이유: 에러의 경우 상위 컨텍스트에서 일괄적으로 처리하기 위함
+   * - finally를 적용한 이유: 에러가 발생했을 때도 refreshTokenPromise = undefined;는 반드시 실행
    */
   public async postReIssue(): Promise<ReIssue['result'] | null> {
     if (this.refreshTokenPromise !== undefined) return null;
@@ -96,12 +97,12 @@ class AuthService {
   /** 토큰 만료 전 자동 갱신 설정 */
   public silentRefresh(JWT_EXPIRY_MINUTE: string): void {
     const refreshTime = (Number(JWT_EXPIRY_MINUTE) - 60) * 1000;
-    setTimeout(() => this.postReIssue(), refreshTime);
+    setTimeout(() => this.authenticate(), refreshTime);
   }
 
   /** 사용자 정보 조회 */
-  public async getUserInfo(customEndPoint?: string): Promise<UserInfo | null> {
-    const endpoint = customEndPoint || this.userInfoEndPoint;
+  public async getUserInfo(): Promise<UserInfo | null> {
+    const endpoint = this.userInfoEndPoint;
     const response = await axiosInstance.get<{ result: UserInfo }>(endpoint);
     return response.data.result;
   }

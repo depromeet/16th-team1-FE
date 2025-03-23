@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 export interface UserInfo {
   email: string;
@@ -13,18 +14,24 @@ export interface UserStore {
   resetUserInfo: () => void;
 }
 
-export const useUserStore = create<UserStore>((set) => ({
-  userInfo: null,
-  isAuthenticated: false,
-  setUserInfo: (userInfo: UserInfo) =>
-    set({
-      userInfo,
-      isAuthenticated: true,
-    }),
-
-  resetUserInfo: () =>
-    set({
+export const useUserStore = create<UserStore>()(
+  persist(
+    (set) => ({
       userInfo: null,
       isAuthenticated: false,
+      setUserInfo: (userInfo: UserInfo) =>
+        set({
+          userInfo,
+          isAuthenticated: true,
+        }),
+      resetUserInfo: () =>
+        set({
+          userInfo: null,
+          isAuthenticated: false,
+        }),
     }),
-}));
+    {
+      name: 'user-store',
+    },
+  ),
+);

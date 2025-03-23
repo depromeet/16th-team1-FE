@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 
 import Icon from '@/common/components/icon/icon';
 import { useAuth } from '@/common/hooks/use-auth';
+import { useQueryStrings } from '@/common/hooks/use-query-strings';
 import { axiosInstance } from '@/common/services/service-config';
 
 import GoogleAuthButton from './components/custom-buttons/google-auth-button';
@@ -9,7 +10,8 @@ import GoogleAuthButton from './components/custom-buttons/google-auth-button';
 import * as styles from './login-page.styles';
 
 function LoginPage() {
-  useAuth();
+  const isProcessQueryExist = useQueryStrings({ process: 'true' });
+  useAuth(isProcessQueryExist);
   return (
     <div css={styles.container}>
       <div css={styles.content}>
