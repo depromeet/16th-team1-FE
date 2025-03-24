@@ -8,7 +8,7 @@ import { ReIssue } from '../types/auth';
 /** 유저 인증 싸이클 인스턴스 클래스*/
 class AuthService {
   private static instance: AuthService | null = null;
-  private refreshTokenPromise: Promise<AxiosResponse<ReIssue, unknown>> | undefined;
+  private accessTokenPromise: Promise<AxiosResponse<ReIssue, unknown>> | undefined;
   private endPoint: string = `/api/v1/reissue`;
   private userInfoEndPoint: string = `/api/v1/users/me`;
   private refreshTimerId: ReturnType<typeof setTimeout> | null = null;
@@ -76,18 +76,18 @@ class AuthService {
 
   /** 토큰 재발급(로그인) 처리 && RTR 환경에서 strtictMode로 인한 API 2번 호출 문제 대응
    * - try와 함께 catch를 사용하지 않은 이유: 에러의 경우 상위 컨텍스트에서 일괄적으로 처리하기 위함
-   * - finally를 적용한 이유: 에러가 발생했을 때도 refreshTokenPromise = undefined;는 반드시 실행
+   * - finally를 적용한 이유: 에러가 발생했을 때도 accessTokenPromise = undefined;는 반드시 실행
    */
   public async postReIssue(): Promise<ReIssue['result'] | null> {
-    if (this.refreshTokenPromise !== undefined) return null;
+    if (this.accessTokenPromise !== undefined) return null;
 
     try {
-      this.refreshTokenPromise = axiosInstance.post<ReIssue>(this.endPoint);
-      const response = await this.refreshTokenPromise;
+      this.accessTokenPromise = axiosInstance.post<ReIssue>(this.endPoint);
+      const response = await this.accessTokenPromise;
 
       return response.data.result;
     } finally {
-      this.refreshTokenPromise = undefined;
+      this.accessTokenPromise = undefined;
     }
   }
 
