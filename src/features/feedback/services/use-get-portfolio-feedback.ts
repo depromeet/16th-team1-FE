@@ -90,7 +90,7 @@ export const useGetPortfolioFeedback = ({ feedbackId }: UseGetPortfolioFeedbackP
   const queryFn = () =>
     axiosInstance.get(endPoint, { params: { feedbackId } }).then((res) => res.data);
 
-  return useSuspenseQuery<UseGetPortfolioFeedbackResponse>({
+  return useSuspenseQuery<Response<UseGetPortfolioFeedbackResponse>>({
     queryKey: [endPoint, feedbackId],
     queryFn,
   });
