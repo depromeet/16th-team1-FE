@@ -1,8 +1,16 @@
+import type { Response } from '@/common/types/response';
+
 import { usePostPortfolioMutation } from '../../services/mutations';
 import { useGetRemainingCountQuery } from '../../services/queries';
+import { PortfolioResponse } from '../../types/portfolio-types';
 import FileUpload from '../file-upload/file-upload';
 
-export default function PortfolioUpload() {
+interface PortfolioUploadProps {
+  onSuccess?: (data: Response<PortfolioResponse>) => unknown;
+  onError?: (error: Error) => unknown;
+}
+
+export default function PortfolioUpload({ onSuccess, onError }: PortfolioUploadProps) {
   const { mutateAsync: postPortfolio } = usePostPortfolioMutation();
   const { data: remainingCount } = useGetRemainingCountQuery();
 
@@ -19,15 +27,15 @@ export default function PortfolioUpload() {
               file,
             },
             {
-              onSuccess: (data) => {
-                // TODO: 업로드 성공 시 액션
-                console.log('success', data);
-              },
+              onSuccess,
+              onError,
             },
           );
         } catch (error) {
           // TODO: 업로드 실패 시 액션
-          console.log('error', error);
+          if (error instanceof Error) {
+            onError?.(error);
+          }
         }
       }}
     />
