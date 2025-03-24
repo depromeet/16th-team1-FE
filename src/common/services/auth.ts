@@ -43,26 +43,35 @@ class AuthService {
    * 3. 자동 갱신 설정
    * 4. 사용자 정보 조회 및 상태 저장
    */
-  public async authenticate(): Promise<{ accessToken: string; expirationTime: string } | null> {
-    // 1. 토큰 재발급(로그인) 처리
-    const tokenData = await this.postReIssue();
-    if (!tokenData) return null;
+  public async authenticate(): Promise<
+    { accessToken: string; expirationTime: string } | undefined
+  > {
+    const { isAuthenticated, userInfo } = useUserStore.getState();
+    if (userInfo !== null && isAuthenticated) return;
 
-    const { accessToken, expirationTime } = tokenData;
+    try {
+      // 1. 토큰 재발급(로그인) 처리
+      const tokenData = await this.postReIssue();
+      if (!tokenData) return;
 
-    // 2. 토큰을 Authorization 헤더에 등록
-    this.enrollAuthorizationHeader(accessToken);
+      const { accessToken, expirationTime } = tokenData;
 
-    // 3. 자동 갱신 설정
-    this.silentRefresh(expirationTime);
+      // 2. 토큰을 Authorization 헤더에 등록
+      this.enrollAuthorizationHeader(accessToken);
 
-    // 4. 사용자 정보 조회 및 Zustand 상태 저장
-    const userInfo = await this.getUserInfo();
-    if (!userInfo) return null;
+      // 3. 자동 갱신 설정
+      this.silentRefresh(expirationTime);
 
-    // Zustand 스토어에 사용자 정보 저장
-    this.updateUserStateInZustand(userInfo);
-    return { accessToken, expirationTime };
+      // 4. 사용자 정보 조회 및 Zustand 상태 저장
+      const userInfo = await this.getUserInfo();
+      if (!userInfo) return;
+
+      // 스토어에 사용자 정보 저장
+      this.updateUserStore(userInfo);
+      return { accessToken, expirationTime };
+    } catch (e) {
+      window.location.href = '/login?rollback=true';
+    }
   }
 
   /** 토큰 재발급(로그인) 처리 && RTR 환경에서 strtictMode로 인한 API 2번 호출 문제 대응
@@ -118,15 +127,16 @@ class AuthService {
     return response.data.result;
   }
 
-  /* Zustand 스토어에 사용자 정보 업데이트 */
-  private updateUserStateInZustand(userInfo: UserInfo): void {
+  /* 스토어에 사용자 정보 업데이트 */
+  private updateUserStore(userInfo: UserInfo): void {
     const { setUserInfo } = useUserStore.getState();
     setUserInfo(userInfo);
   }
 
-  /* 로그아웃 처리 */
+  /* 로그아웃 처리 - TODO: 백엔드에게 쿠키 지워달라고 요청 필요 */
   public logout(): void {
     this.deleteAuthorizationHeader();
+    this.clearRefreshTimer();
     const { resetUserInfo } = useUserStore.getState();
     resetUserInfo();
   }
