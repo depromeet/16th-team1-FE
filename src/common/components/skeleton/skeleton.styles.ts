@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const skeleton = withTheme(
-  (theme, isLoading: boolean) => css`
+  (theme, isLoading: boolean, width: string, height: string) => css`
     @keyframes shimmer {
       0% {
         background-position: 200% 0;
@@ -14,8 +14,8 @@ export const skeleton = withTheme(
       }
     }
 
-    width: 6.4rem;
-    height: 2.2rem;
+    width: ${width};
+    height: ${height};
     border-radius: 0.4rem;
     background: linear-gradient(
       90deg,

@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { axiosInstance } from '@/common/services/service-config';
 
@@ -15,7 +15,7 @@ interface UseGetFeedbackHistoryResponse {
 export const useGetFeedbackHistory = (userId: string) => {
   const endPoint = '/api/v1/feedback/recent/feedback';
 
-  return useQuery<UseGetFeedbackHistoryResponse>({
+  return useSuspenseQuery<UseGetFeedbackHistoryResponse>({
     queryKey: [endPoint, userId],
     queryFn: () =>
       axiosInstance
@@ -23,6 +23,5 @@ export const useGetFeedbackHistory = (userId: string) => {
           params: { userId },
         })
         .then((res) => res.data),
-    enabled: !!userId,
   });
 };
