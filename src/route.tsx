@@ -11,7 +11,7 @@ import LoginPage from './features/login/login-page';
 import TotalEvaluationPage from './features/total-evaluation/total-evaluation-page';
 
 export const router = createBrowserRouter([
-  // 인증이 필요 없는 라우트
+  /** 인증이 필요 없는 라우트 */
   {
     path: PAGE_URL.Landing,
     element: <CommonLayout isHeader={true} pageLabel="Landing" />,
@@ -22,6 +22,8 @@ export const router = createBrowserRouter([
     element: <CommonLayout isHeader={false} pageLabel="Login" />,
     children: [{ index: true, element: <LoginPage /> }],
   },
+
+  /** 인증이 필요한 라우트 */
   {
     element: <Authorization />,
     children: [
