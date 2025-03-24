@@ -38,7 +38,7 @@ export interface FeedbackPerPageType {
     {
       type: FeedbackContentType;
       title: string;
-      feedbackContentDetailList: [
+      editPairs: [
         {
           afterEdit: string;
           beforeEdit: string;

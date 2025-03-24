@@ -157,7 +157,7 @@ function FeedbackPerPageItem({ projectName, feedbackData }: FeedbackPerPageItemP
         {contents.map((content) => (
           <div key={content.type} css={styles.feedbackPerPageContent}>
             <ImprovementTitle improvementTitle={FEEDBACK_PER_PAGE_CONTENT_TYPE[content.type]} />
-            {content.feedbackContentDetailList.map((detailContent) => (
+            {content.editPairs.map((detailContent) => (
               <div key={detailContent.afterEdit} css={styles.improvementSection}>
                 {content.type === 'LOGICAL_LEAP' ? (
                   <LogicalLeap title={content.title} logicalLeapData={detailContent} />
