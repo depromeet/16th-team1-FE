@@ -16,8 +16,7 @@ function Authorization() {
     authCylcle();
   }, [navigate, isAuthenticated, userInfo]);
 
-  if (isAuthenticated && userInfo) return <Outlet />;
-  return null;
+  return <Outlet />;
 }
 
 export default Authorization;
