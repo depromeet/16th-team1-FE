@@ -11,6 +11,7 @@ class AuthService {
   private refreshTokenPromise: Promise<AxiosResponse<ReIssue, unknown>> | undefined;
   private endPoint: string = `/api/v1/reissue`;
   private userInfoEndPoint: string = `/api/v1/users/me`;
+  private refreshTimerId: ReturnType<typeof setTimeout> | null = null;
 
   /* 생성자는 private으로 외부에서 직접 인스턴스 생성 x */
   private constructor() {}
@@ -93,8 +94,21 @@ class AuthService {
 
   /** 토큰 만료 전 자동 갱신 설정 */
   public silentRefresh(JWT_EXPIRY_MINUTE: string): void {
+    // 기존 타이머가 있으면 제거
+    if (this.refreshTimerId !== null) {
+      clearTimeout(this.refreshTimerId);
+    }
+
     const refreshTime = (Number(JWT_EXPIRY_MINUTE) - 60) * 1000;
-    setTimeout(() => this.authenticate(), refreshTime);
+    this.refreshTimerId = setTimeout(() => this.authenticate(), refreshTime);
+  }
+
+  /* 타이머 정리 메소드 - 로그아웃 시 호출 */
+  public clearRefreshTimer(): void {
+    if (this.refreshTimerId !== null) {
+      clearTimeout(this.refreshTimerId);
+      this.refreshTimerId = null;
+    }
   }
 
   /* 사용자 정보 조회 */

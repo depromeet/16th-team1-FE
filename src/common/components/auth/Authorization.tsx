@@ -1,14 +1,10 @@
-import { ReactNode, useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router';
 
 import { AUTH_SERVICE } from '@/common/services/auth';
 import { useUserStore } from '@/store/user-auth';
 
-interface AuthorizationProps {
-  children: ReactNode;
-}
-
-function Authorization({ children }: AuthorizationProps) {
+function Authorization() {
   const navigate = useNavigate();
   const { isAuthenticated, userInfo } = useUserStore();
 
@@ -20,7 +16,6 @@ function Authorization({ children }: AuthorizationProps) {
           await AUTH_SERVICE.authenticate();
         }
       } catch (e: unknown) {
-        // 위의 인증 싸이클에 하나라도 에러가 터진다면 로그인 페이지로 리다이렉션
         navigate('/login?rollback=true');
       }
     };
@@ -28,9 +23,8 @@ function Authorization({ children }: AuthorizationProps) {
     authCylcle();
   }, [navigate, isAuthenticated, userInfo]);
 
-  if (isAuthenticated && userInfo) return <>{children}</>;
+  if (isAuthenticated && userInfo) return <Outlet />;
   return null;
 }
-// while에서 토큰 재발급 -> setInterval or setTimeout? && 뒷정리
 
 export default Authorization;
