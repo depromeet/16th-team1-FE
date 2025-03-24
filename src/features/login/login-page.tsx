@@ -6,7 +6,7 @@ import { css } from '@emotion/react';
 import Icon from '@/common/components/icon/icon';
 import { useCheckQueryStrings } from '@/common/hooks/use-check-query-strings';
 import { AUTH_SERVICE } from '@/common/services/auth';
-import { axiosInstance } from '@/common/services/service-config';
+// import { axiosInstance } from '@/common/services/service-config';
 
 import GoogleAuthButton from './components/custom-buttons/google-auth-button';
 
@@ -43,7 +43,7 @@ function LoginPage() {
           <GoogleAuthButton />
 
           {/* 테스트용 */}
-          <button
+          {/* <button
             onClick={async () => {
               const response = await axiosInstance.get(`/api/v1/users/me`);
               console.log(response.data);
@@ -53,7 +53,7 @@ function LoginPage() {
             `}
           >
             내 정보 확인(테스트용)
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
