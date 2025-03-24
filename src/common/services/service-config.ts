@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 export const axiosInstance = axios.create({
-  baseURL: '',
+  baseURL: import.meta.env.VITE_API_BASE_URL,
 });
-axios.defaults.withCredentials = true;
+axiosInstance.defaults.withCredentials = true;
 
 axiosInstance.interceptors.response.use(
   (response) => response,
