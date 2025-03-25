@@ -25,7 +25,7 @@ export const container: containerStyleFnType = (isSidebarOpen, size, animation, 
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 1;
   width: ${size.width}rem;
   height: var(--sidebar-height);
   padding: ${size.padding}rem;
