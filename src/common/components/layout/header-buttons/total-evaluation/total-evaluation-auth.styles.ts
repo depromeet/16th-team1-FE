@@ -72,7 +72,7 @@ export const subRemainFeebackCountPragraph = withTheme(
     justify-content: flex-start;
     padding: 0 0.8rem;
     color: ${theme.colors.GRAY[300]};
-    font-size: 12px;
+    font-size: 1.2rem;
     font-style: normal;
     font-weight: 400;
     line-height: 160%; /* 19.2px */
