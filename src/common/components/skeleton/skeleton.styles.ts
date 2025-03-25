@@ -6,11 +6,11 @@ export const skeleton = withTheme(
   (theme, isLoading: boolean, width: string, height: string) => css`
     @keyframes shimmer {
       0% {
-        background-position: 200% 0;
+        background-position: 100% 50%;
       }
 
       100% {
-        background-position: -200% 0;
+        background-position: 0 50%;
       }
     }
 
@@ -18,13 +18,13 @@ export const skeleton = withTheme(
     height: ${height};
     border-radius: 0.4rem;
     background: linear-gradient(
-      90deg,
-      ${theme.colors.GRAY[950]} 25%,
-      ${theme.colors.GRAY[900]} 50%,
-      ${theme.colors.GRAY[950]} 75%
+      270deg,
+      ${theme.colors.GRAY.bg} 0%,
+      rgb(135 133 146 / 50%) 51%,
+      ${theme.colors.GRAY.bg} 100%
     );
     background-size: 200% 100%;
-    animation: shimmer 2s infinite linear;
+    animation: shimmer 1.4s infinite ease;
 
     ${!isLoading &&
     css`
