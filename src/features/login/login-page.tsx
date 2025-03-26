@@ -6,13 +6,14 @@ import { css } from '@emotion/react';
 import Icon from '@/common/components/icon/icon';
 import { useCheckQueryStrings } from '@/common/hooks/use-check-query-strings';
 import { AUTH_SERVICE } from '@/common/services/auth';
-// import { axiosInstance } from '@/common/services/service-config';
+import { useUserStore } from '@/store/user-auth';
 
 import GoogleAuthButton from './components/custom-buttons/google-auth-button';
 
 import * as styles from './login-page.styles';
 
 function LoginPage() {
+  const { isAuthenticated, userInfo } = useUserStore();
   const navigate = useNavigate();
   const isRollback = useCheckQueryStrings({ rollback: 'true' });
 
@@ -22,8 +23,9 @@ function LoginPage() {
       if (accessToken && expirationTime) navigate('/upload');
     };
 
+    if (isAuthenticated && userInfo !== null) navigate('/upload');
     if (!isRollback) loginPageAuth();
-  }, [navigate, isRollback]);
+  }, [navigate, isRollback, isAuthenticated, userInfo]);
 
   return (
     <div css={styles.container}>
