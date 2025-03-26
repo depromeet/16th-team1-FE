@@ -47,18 +47,20 @@ export default function FeedbackStateObserver({ children }: FeedbackStateProps) 
   }, [changeState, feedback?.result, feedbackId, navigate, refetch]);
 
   useEffect(() => {
-    let intervalId: ReturnType<typeof setInterval>;
+    let timeoutId: ReturnType<typeof setTimeout>;
 
     if (feedbackId) {
       // 5초마다 피드백 상태 확인
       // 5초는 임의로 설정한 값
-      intervalId = setInterval(() => {
+      timeoutId = setTimeout(function tick() {
         getFeedbackState();
+
+        timeoutId = setTimeout(tick, POLLING_INTERVAL);
       }, POLLING_INTERVAL);
     }
 
     return () => {
-      clearInterval(intervalId);
+      clearTimeout(timeoutId);
     };
   }, [feedbackId, getFeedbackState, state]);
 
