@@ -1,21 +1,25 @@
+import { useState } from 'react';
+
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 import { BaseButton } from '@/common/components/button/base-button';
 import { useGetRemainingCountQuery } from '@/features/upload/services/queries';
 import { useModalStore } from '@/store/modal';
 
-import AuthProfile from '../auth-profile';
-import SingleProfileModalButton from './single-profile-modal-button';
+import AuthProfile from './auth-profile';
+import SingleProfileModalButton from './total-evaluation/single-profile-modal-button';
 
-import * as styles from './total-evaluation-auth.styles';
+import * as styles from './auth-profile-modal-dropdown.styles';
 
-function TotalEvalutationAuthButton() {
+function AuthProfileModalDropdown() {
   const { result: { remainCount } = {} } = useGetRemainingCountQuery().data ?? {};
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const { openModal } = useModalStore();
 
   return (
-    <DropdownMenu.Root>
+    <DropdownMenu.Root defaultOpen={false} open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
       <DropdownMenu.Trigger asChild>
         <BaseButton css={styles.positionRelative}>
           <AuthProfile />
@@ -26,7 +30,12 @@ function TotalEvalutationAuthButton() {
         <DropdownMenu.Content css={styles.profileContent}>
           <DropdownMenu.Item asChild>
             <div>
-              <SingleProfileModalButton label="내 계정" />
+              <SingleProfileModalButton
+                label="내 계정"
+                handleClick={() => {
+                  setIsDropdownOpen(false);
+                }}
+              />
 
               <p css={styles.subRemainFeebackCountPragraph}>
                 이번 달 남은 피드백 {remainCount ? remainCount : '-'}
@@ -34,10 +43,21 @@ function TotalEvalutationAuthButton() {
             </div>
           </DropdownMenu.Item>
           <DropdownMenu.Item asChild>
-            <SingleProfileModalButton label="최근 피드백" handleClick={openModal} />
+            <SingleProfileModalButton
+              label="최근 피드백"
+              handleClick={() => {
+                openModal();
+                setIsDropdownOpen(false);
+              }}
+            />
           </DropdownMenu.Item>
           <DropdownMenu.Item asChild>
-            <SingleProfileModalButton label="로그아웃" />
+            <SingleProfileModalButton
+              label="로그아웃"
+              handleClick={() => {
+                setIsDropdownOpen(false);
+              }}
+            />
           </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
@@ -45,4 +65,4 @@ function TotalEvalutationAuthButton() {
   );
 }
 
-export default TotalEvalutationAuthButton;
+export default AuthProfileModalDropdown;
