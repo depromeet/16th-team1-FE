@@ -1,10 +1,9 @@
 import { ReactNode } from 'react';
 
-import AuthProfile from '../components/layout/header-buttons/auth-profile';
+import AuthProfileModalDropdown from '../components/layout/header-buttons/auth-profile-modal-dropdown';
 import HeaderLogo from '../components/layout/header-buttons/header-logo';
 import LandingAuthButtons from '../components/layout/header-buttons/landing/landing-auth-buttons';
 import LandingScrollSectionButtons from '../components/layout/header-buttons/landing/landing-scroll-section-buttons';
-import TotalEvalutationAuthButton from '../components/layout/header-buttons/total-evaluation/total-evaluation-auth';
 import TotalEvalutationSidebarButtons from '../components/layout/header-buttons/total-evaluation/total-evaluation-sidebar-buttons';
 import TotalEvalutationUserInfo from '../components/layout/header-buttons/total-evaluation/total-evaluation-user-info';
 import { PageLabelKey } from '../constants/path';
@@ -24,25 +23,25 @@ export const useHeaderContents = (pageLabel: PageLabelKey) => {
       middle: <LandingScrollSectionButtons />,
       right: <LandingAuthButtons />,
     },
-    Upload: {
-      left: <HeaderLogo />,
-      middle: null,
-      right: <AuthProfile />,
-    },
-    TotalEvaluation: {
-      left: <TotalEvalutationSidebarButtons />,
-      middle: <TotalEvalutationUserInfo />,
-      right: <TotalEvalutationAuthButton />,
-    },
     Login: {
       left: null,
       middle: null,
       right: null,
     },
+    Upload: {
+      left: <HeaderLogo />,
+      middle: null,
+      right: <AuthProfileModalDropdown />,
+    },
     Loading: {
       left: <HeaderLogo />,
       middle: null,
-      right: <AuthProfile />,
+      right: <AuthProfileModalDropdown />,
+    },
+    TotalEvaluation: {
+      left: <TotalEvalutationSidebarButtons />,
+      middle: <TotalEvalutationUserInfo />,
+      right: <AuthProfileModalDropdown />,
     },
   };
 
