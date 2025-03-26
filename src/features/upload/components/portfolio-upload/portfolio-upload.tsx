@@ -1,3 +1,7 @@
+import { setLocalStorage } from '@/common/utils/storage';
+import { useGetStartFeedback } from '@/features/feedback/services/use-get-start-feedback';
+import { useFeedbackStore } from '@/store/feedback';
+
 import { usePostPortfolioMutation } from '../../services/mutations';
 import { useGetRemainingCountQuery } from '../../services/queries';
 import FileUpload from '../file-upload/file-upload';
@@ -5,6 +9,8 @@ import FileUpload from '../file-upload/file-upload';
 export default function PortfolioUpload() {
   const { mutateAsync: postPortfolio } = usePostPortfolioMutation();
   const { data: remainingCount } = useGetRemainingCountQuery();
+  const { mutateAsync: startFeedback } = useGetStartFeedback();
+  const { changeState } = useFeedbackStore();
 
   return (
     <FileUpload
@@ -19,15 +25,24 @@ export default function PortfolioUpload() {
               file,
             },
             {
-              onSuccess: (data) => {
-                // TODO: 업로드 성공 시 액션
-                console.log('success', data);
+              onSuccess: async (data) => {
+                const { id } = data.result;
+
+                await startFeedback(id);
+
+                changeState('PENDING', id);
+                setLocalStorage('feedbackId', id);
+              },
+              onError: () => {
+                changeState('ERROR');
               },
             },
           );
         } catch (error) {
           // TODO: 업로드 실패 시 액션
-          console.log('error', error);
+          if (error instanceof Error) {
+            changeState('ERROR');
+          }
         }
       }}
     />

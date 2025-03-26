@@ -5,7 +5,4 @@ interface SidebarContextProps {
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const SidebarContext = createContext<SidebarContextProps>({
-  isSidebarOpen: true,
-  setIsSidebarOpen: () => {},
-});
+export const SidebarContext = createContext<SidebarContextProps | null>(null);

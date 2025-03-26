@@ -1,6 +1,6 @@
 import { EvaluationCriteria } from '@/features/total-evaluation/types/evaluation-types';
 
-import { FeedbackContentType } from '../services/use-get-portfolio-feedback';
+import { FeedbackContentType } from '../../feedback/services/use-get-portfolio-feedback';
 
 export const IMPROVEMENT_CONSTANT = {
   beforeEdit: '기존 문장',

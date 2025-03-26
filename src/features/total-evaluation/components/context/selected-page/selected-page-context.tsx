@@ -5,7 +5,4 @@ interface SelectedPageContextProps {
   setSelectedPage: Dispatch<SetStateAction<string | null>>;
 }
 
-export const SelectedPageContext = createContext<SelectedPageContextProps>({
-  selectedPage: null,
-  setSelectedPage: () => {},
-});
+export const SelectedPageContext = createContext<SelectedPageContextProps | null>(null);

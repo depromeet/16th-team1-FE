@@ -1,6 +1,7 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { axiosInstance } from '@/common/services/service-config';
+import type { Response } from '@/common/types/response';
 
 export type FeedbackContentType =
   | 'TRANSLATION_OR_AWKWARD'
@@ -37,7 +38,7 @@ export interface FeedbackPerPageType {
     {
       type: FeedbackContentType;
       title: string;
-      feedbackContentDetailList: [
+      editPairs: [
         {
           afterEdit: string;
           beforeEdit: string;
@@ -64,18 +65,20 @@ interface AdditionalChatType {
   content: string;
 }
 
+type Status = 'COMPLETE' | 'IN_PROGRESS' | 'PENDING' | 'ERROR';
+
 interface UseGetPortfolioFeedbackResponse {
-  result: {
-    createdAt: null;
-    updatedAt: null;
-    deletedAt: null;
-    id: string;
-    userId: string;
-    fileId: string;
-    overallEvaluation: OverallEvaluationType;
-    additionalChat: AdditionalChatType[];
-    projectEvaluation: ProjectEvaluationType[];
-  };
+  createdAt: null;
+  updatedAt: null;
+  deletedAt: null;
+  id: string;
+  userId: string;
+  fileId: string;
+  overallStatus: Status;
+  projectStatus: Status;
+  overallEvaluation: OverallEvaluationType;
+  additionalChat: AdditionalChatType[];
+  projectEvaluation: ProjectEvaluationType[];
 }
 
 interface UseGetPortfolioFeedbackParams {
@@ -87,8 +90,26 @@ export const useGetPortfolioFeedback = ({ feedbackId }: UseGetPortfolioFeedbackP
   const queryFn = () =>
     axiosInstance.get(endPoint, { params: { feedbackId } }).then((res) => res.data);
 
-  return useSuspenseQuery<UseGetPortfolioFeedbackResponse>({
+  return useSuspenseQuery<Response<UseGetPortfolioFeedbackResponse>>({
     queryKey: [endPoint, feedbackId],
     queryFn,
+  });
+};
+
+export const useGetPortfolioFeedbackForStatus = ({
+  feedbackId,
+}: Partial<UseGetPortfolioFeedbackParams>) => {
+  const endPoint = '/api/v1/feedback';
+  const queryFn = () =>
+    axiosInstance.get(endPoint, { params: { feedbackId } }).then((res) => res.data);
+
+  return useQuery<Response<UseGetPortfolioFeedbackResponse>>({
+    queryKey: [endPoint, feedbackId],
+    queryFn,
+    enabled: !!feedbackId,
+    retry: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
   });
 };
