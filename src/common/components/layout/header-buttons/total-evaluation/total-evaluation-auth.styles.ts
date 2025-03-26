@@ -22,7 +22,7 @@ export const profileContent = withTheme(
     z-index: 2;
     height: 14.9rem;
     padding: 0.6rem;
-    transform: scale(0.8) translateY(10px);
+    transform: scale(0.8) translateY(1rem);
     min-width: 16.8rem;
     background-color: ${theme.colors.GRAY[950]};
     border-radius: 1.2rem;
@@ -42,7 +42,7 @@ export const profileContent = withTheme(
     @keyframes open-dropdown {
       0% {
         opacity: 0;
-        transform: scale(0.8) translateY(10px);
+        transform: scale(0.8) translateY(1rem);
       }
 
       100% {
@@ -59,7 +59,7 @@ export const profileContent = withTheme(
 
       100% {
         opacity: 0;
-        transform: scale(0.8) translateY(10px);
+        transform: scale(0.8) translateY(1rem);
       }
     }
   `,
@@ -76,6 +76,6 @@ export const subRemainFeebackCountPragraph = withTheme(
     font-style: normal;
     font-weight: 400;
     line-height: 160%; /* 19.2px */
-    letter-spacing: -0.12px;
+    letter-spacing: -0.012px;
   `,
 );
