@@ -7,7 +7,6 @@ import FeedbackSidebar from '@/features/total-evaluation/components/feedback-sid
 import ProjectEvaluationList from '@/features/total-evaluation/components/project-evaluation/project-evaluation-list';
 
 import OverallEvaluation from './components/overall-evaluation/overall-evaluation';
-import RecentFeedbackModal from '../profile/components/recent-feedback-modal/recent-feedback-modal';
 
 import * as styles from './total-evaluation-page.styles';
 
@@ -40,7 +39,6 @@ export default function TotalEvaluationPage() {
 
   return (
     <>
-      <RecentFeedbackModal />
       <div css={styles.container}>
         <FeedbackSidebar />
 
