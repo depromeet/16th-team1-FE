@@ -1,7 +1,7 @@
-import { ReactNode, useContext } from 'react';
+import { ReactNode } from 'react';
 
 import ControlButtons from './control-buttons';
-import { SidebarContext } from '../../context/sidebar/sidebar-context';
+import { useSidebarContext } from '../../context/sidebar/use-sidebar-context';
 import { LeftSidebar } from '../base-sidebar-left/base-sidebar-left';
 
 export interface LeftSlidePanelToggleProps {
@@ -13,7 +13,7 @@ export interface LeftSlidePanelToggleProps {
  * - FeedbackPageNavigator은 도메인 별로 Sidebar를 호출해서 소비하는 컴포넌트
  */
 function FeedbackPageNavigator({ children }: LeftSlidePanelToggleProps) {
-  const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
+  const { isSidebarOpen, setIsSidebarOpen } = useSidebarContext();
 
   return (
     <LeftSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen}>
