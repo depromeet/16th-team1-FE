@@ -6,14 +6,14 @@ import Spacing from '@/common/components/spacing/spacing';
 import { iconTypes } from '@/common/types/icon-types';
 
 import {
-  EVALUATION_LABEL,
-  FEEDBACK_PER_PAGE_CONTENT_TYPE,
-} from '../../constants/evaluation-constant';
-import {
   FeedbackPerPageType,
   ProjectEvaluationType,
   ProjectProcessType,
-} from '../../services/use-get-portfolio-feedback';
+} from '../../../feedback/services/use-get-portfolio-feedback';
+import {
+  EVALUATION_LABEL,
+  FEEDBACK_PER_PAGE_CONTENT_TYPE,
+} from '../../constants/evaluation-constant';
 import EvaluationTitle from '../evaluation-title/evaluation-title';
 import ImprovementSection from '../improvement-section/improvement-section';
 import ImprovementTitle from '../improvement-title/improvement-title';
@@ -157,7 +157,7 @@ function FeedbackPerPageItem({ projectName, feedbackData }: FeedbackPerPageItemP
         {contents.map((content) => (
           <div key={content.type} css={styles.feedbackPerPageContent}>
             <ImprovementTitle improvementTitle={FEEDBACK_PER_PAGE_CONTENT_TYPE[content.type]} />
-            {content.feedbackContentDetailList.map((detailContent) => (
+            {content.editPairs.map((detailContent) => (
               <div key={detailContent.afterEdit} css={styles.improvementSection}>
                 {content.type === 'LOGICAL_LEAP' ? (
                   <LogicalLeap title={content.title} logicalLeapData={detailContent} />

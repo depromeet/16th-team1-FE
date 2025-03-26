@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 
 import Icon from '@/common/components/icon/icon';
 import useShadowScroll from '@/common/hooks/use-shadow-scroll';
-import { useGetFeedbackHistory } from '@/features/feedback-history/services/use-get-feedback-history';
+import { useGetFeedbackHistory } from '@/features/feedback/services/use-get-feedback-history';
 import { parseFeedbackData } from '@/features/profile/util/parse-feedback-data';
 
 import * as styles from './recent-feedback-modal-content.styles';

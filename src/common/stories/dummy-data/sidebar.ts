@@ -1,4 +1,4 @@
-import { ProjectEvaluationType } from '@/features/total-evaluation/services/use-get-portfolio-feedback';
+import { ProjectEvaluationType } from '@/features/feedback/services/use-get-portfolio-feedback';
 
 export const dummyEvaluationData: ProjectEvaluationType[] = [
   {
@@ -44,7 +44,7 @@ export const dummyEvaluationData: ProjectEvaluationType[] = [
           {
             type: 'TRANSLATION_OR_AWKWARD',
             title: '메인 배너 텍스트 수정',
-            feedbackContentDetailList: [
+            editPairs: [
               {
                 beforeEdit: '메인 배너 텍스트 (기존)',
                 afterEdit: '메인 배너 텍스트 (수정)',
@@ -60,7 +60,7 @@ export const dummyEvaluationData: ProjectEvaluationType[] = [
           {
             type: 'TRANSLATION_OR_AWKWARD',
             title: '카드 레이아웃 수정',
-            feedbackContentDetailList: [
+            editPairs: [
               {
                 beforeEdit: '카드 레이아웃 (기존)',
                 afterEdit: '카드 레이아웃 (수정)',
@@ -98,7 +98,7 @@ export const dummyEvaluationData: ProjectEvaluationType[] = [
           {
             type: 'TRANSLATION_OR_AWKWARD',
             title: '검색창 플레이스홀더 수정',
-            feedbackContentDetailList: [
+            editPairs: [
               {
                 beforeEdit: '검색창 플레이스홀더 (기존)',
                 afterEdit: '검색창 플레이스홀더 (개선)',
@@ -114,7 +114,7 @@ export const dummyEvaluationData: ProjectEvaluationType[] = [
           {
             type: 'LENGTH_OR_READABILITY',
             title: '필터 옵션 설명 간결화',
-            feedbackContentDetailList: [
+            editPairs: [
               {
                 beforeEdit: '긴 문장으로 된 필터 옵션 설명',
                 afterEdit: '간결한 문장으로 된 필터 옵션 설명',
@@ -162,7 +162,7 @@ export const dummyEvaluationData: ProjectEvaluationType[] = [
           {
             type: 'REDUNDANCY_OR_CLARITY',
             title: '중복된 코드 블록 제거',
-            feedbackContentDetailList: [
+            editPairs: [
               {
                 beforeEdit: '중복된 코드 블록',
                 afterEdit: '공통 컴포넌트 추출로 중복 제거',
@@ -178,7 +178,7 @@ export const dummyEvaluationData: ProjectEvaluationType[] = [
           {
             type: 'LOGICAL_LEAP',
             title: 'API 호출 시 에러 핸들링 추가',
-            feedbackContentDetailList: [
+            editPairs: [
               {
                 beforeEdit: '기능 설명 없이 API 호출',
                 afterEdit: 'API 호출 전후의 에러 핸들링 추가',
