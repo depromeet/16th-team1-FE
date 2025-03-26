@@ -1,6 +1,9 @@
+// import { useNavigate } from 'react-router';
+
 import { PageLabelKey } from '@/common/constants/path';
 import useDeviceType from '@/common/hooks/use-device-type';
 import { useHeaderContents } from '@/common/hooks/use-header-contents';
+// import { AUTH_SERVICE } from '@/common/services/auth';
 
 import * as styles from './header-navigation-layout.styles';
 
