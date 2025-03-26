@@ -1,20 +1,16 @@
-import { ReactNode, useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 import { getLocalStorage, removeLocalStorage } from '@/common/utils/storage';
 import { useGetPortfolioFeedbackForStatus } from '@/features/feedback/services/use-get-portfolio-feedback';
 import { useFeedbackStore } from '@/store/feedback';
 
-interface FeedbackStateProps {
-  children: ReactNode;
-}
-
 const POLLING_INTERVAL = 5000;
 
 /**
  * 피드백 상태에 따른 작업을 수행하는 컴포넌트
  */
-export default function FeedbackStateObserver({ children }: FeedbackStateProps) {
+export default function FeedbackStateObserver() {
   const navigate = useNavigate();
   const { state, feedbackId, changeState } = useFeedbackStore();
   const { data: feedback, refetch } = useGetPortfolioFeedbackForStatus({
@@ -78,5 +74,5 @@ export default function FeedbackStateObserver({ children }: FeedbackStateProps) 
     }
   }, [changeState]);
 
-  return children;
+  return null;
 }
