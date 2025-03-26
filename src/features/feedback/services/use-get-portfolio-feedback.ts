@@ -74,6 +74,7 @@ interface UseGetPortfolioFeedbackResponse {
   id: string;
   userId: string;
   fileId: string;
+  title: string;
   overallStatus: Status;
   projectStatus: Status;
   overallEvaluation: OverallEvaluationType;
