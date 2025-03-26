@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import { createBrowserRouter } from 'react-router';
 
 import LandingPage from '@/features/landing/landing-page';
@@ -7,69 +6,42 @@ import UploadPage from '@/features/upload/upload-page';
 
 import Authorization from './common/components/auth/Authorization';
 import CommonLayout from './common/components/layout/common-layout';
-import { PAGE_URL, PageLabelKey } from './common/constants/path';
+import { PAGE_URL } from './common/constants/path';
 import LoginPage from './features/login/login-page';
 import TotalEvaluationPage from './features/total-evaluation/total-evaluation-page';
 
-interface RouterInfoType {
-  path: string;
-  element: ReactNode;
-  withAuthorization: boolean;
-  label: PageLabelKey;
-  isHeader: boolean;
-}
-
-const RouterInfo: RouterInfoType[] = [
+export const router = createBrowserRouter([
+  /** 인증이 필요 없는 라우트 */
   {
     path: PAGE_URL.Landing,
-    withAuthorization: false,
-    element: <LandingPage />,
-    label: 'Landing',
-    isHeader: true,
+    element: <CommonLayout isHeader={true} pageLabel="Landing" />,
+    children: [{ index: true, element: <LandingPage /> }],
   },
   {
     path: PAGE_URL.Login,
-    withAuthorization: false,
-    element: <LoginPage />,
-    label: 'Login',
-    isHeader: false,
+    element: <CommonLayout isHeader={false} pageLabel="Login" />,
+    children: [{ index: true, element: <LoginPage /> }],
   },
-  {
-    path: PAGE_URL.Upload,
-    withAuthorization: true,
-    element: <UploadPage />,
-    label: 'Upload',
-    isHeader: true,
-  },
-  {
-    path: PAGE_URL.Loading,
-    withAuthorization: true,
-    element: <FeedbackLoadingPage />,
-    label: 'Loading',
-    isHeader: true,
-  },
-  {
-    path: `${PAGE_URL.TotalEvaluation}/:feedbackId`,
-    withAuthorization: true,
-    element: <TotalEvaluationPage />,
-    label: 'TotalEvaluation',
-    isHeader: true,
-  },
-];
 
-export const router = createBrowserRouter(
-  RouterInfo.map((routerInfo) => ({
-    path: routerInfo.path,
-    element: <CommonLayout isHeader={routerInfo.isHeader} pageLabel={routerInfo.label} />,
+  /** 인증이 필요한 라우트 */
+  {
+    element: <Authorization />,
     children: [
       {
-        index: true,
-        element: routerInfo.withAuthorization ? (
-          <Authorization> {routerInfo.element}</Authorization>
-        ) : (
-          routerInfo.element
-        ),
+        path: PAGE_URL.Upload,
+        element: <CommonLayout isHeader={true} pageLabel="Upload" />,
+        children: [{ index: true, element: <UploadPage /> }],
+      },
+      {
+        path: PAGE_URL.Loading,
+        element: <CommonLayout isHeader={true} pageLabel="Loading" />,
+        children: [{ index: true, element: <FeedbackLoadingPage /> }],
+      },
+      {
+        path: `${PAGE_URL.TotalEvaluation}/:feedbackId`,
+        element: <CommonLayout isHeader={true} pageLabel="TotalEvaluation" />,
+        children: [{ index: true, element: <TotalEvaluationPage /> }],
       },
     ],
-  })),
-);
+  },
+]);

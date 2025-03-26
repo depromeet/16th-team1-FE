@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import FallbackBoundary from '@/common/components/fallback-boundary/fallback-boundary';
 import { scrollToSection } from '@/common/utils/scroll-to-section';
@@ -6,15 +6,15 @@ import AccordionList from '@/features/total-evaluation/components/accordion-list
 
 import { LocationButtonType } from '../../types/sidebar-Info-types';
 import FeedbackContents from '../accordion-list/feedback-contents';
-import { SelectedPageContext } from '../context/selected-page/selected-page-context';
-import { SidebarContext } from '../context/sidebar/sidebar-context';
+import { useSelectedPageContext } from '../context/selected-page/use-selected-page-context';
+import { useSidebarContext } from '../context/sidebar/use-sidebar-context';
 import { PageLocationButton } from '../custom-buttons/page-location-button';
 import { ProjectTitleButton } from '../custom-buttons/project-title-button';
 import FeedbackPageNavigator from '../sidebar/feedback-page-navigator/feedback-page-navigator';
 
 function FeedbackSidebar() {
-  const { isSidebarOpen } = useContext(SidebarContext);
-  const { selectedPage, setSelectedPage } = useContext(SelectedPageContext);
+  const { isSidebarOpen } = useSidebarContext();
+  const { selectedPage, setSelectedPage } = useSelectedPageContext();
   const [currentOpenedTrigger, setCurrentOpenedTrigger] = useState<string[]>([]);
 
   useEffect(() => {
