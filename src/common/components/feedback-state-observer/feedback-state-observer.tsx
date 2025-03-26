@@ -23,22 +23,28 @@ export default function FeedbackStateObserver({ children }: FeedbackStateProps) 
 
   const getFeedbackState = useCallback(() => {
     const { overallStatus, projectStatus } = feedback?.result || {};
-    if (overallStatus === 'COMPLETE' && projectStatus === 'COMPLETE') {
+
+    const isComplete = overallStatus === 'COMPLETE' && projectStatus === 'COMPLETE';
+    const isError = overallStatus === 'ERROR' || projectStatus === 'ERROR';
+    const isInProgress = overallStatus === 'IN_PROGRESS' || projectStatus === 'IN_PROGRESS';
+    const isPending = overallStatus === 'PENDING' && projectStatus === 'PENDING';
+
+    if (isComplete) {
       // 피드백 생성 성공 시
       removeLocalStorage('feedbackId');
 
       changeState('COMPLETE');
 
       navigate(`/total-evaluation/${feedbackId}`);
-    } else if (overallStatus === 'ERROR' || projectStatus === 'ERROR') {
+    } else if (isError) {
       // 피드백 생성 실패 시
       changeState('ERROR');
-    } else if (overallStatus === 'IN_PROGRESS' || projectStatus === 'IN_PROGRESS') {
+    } else if (isInProgress) {
       // 피드백 생성 중
       changeState('IN_PROGRESS');
 
       refetch();
-    } else if (overallStatus === 'PENDING' && projectStatus === 'PENDING') {
+    } else if (isPending) {
       // 피드백 생성 대기 중
       changeState('PENDING');
 
