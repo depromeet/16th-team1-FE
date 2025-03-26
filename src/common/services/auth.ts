@@ -43,11 +43,12 @@ class AuthService {
    * 3. 자동 갱신 설정
    * 4. 사용자 정보 조회 및 상태 저장
    */
-  public async authenticate(): Promise<
-    { accessToken: string; expirationTime: string } | undefined
-  > {
+  public async authenticate(
+    bypass?: boolean,
+  ): Promise<{ accessToken: string; expirationTime: string } | undefined> {
     const { isAuthenticated, userInfo } = useUserStore.getState();
-    if (userInfo !== null && isAuthenticated) return;
+
+    if (!bypass && userInfo !== null && isAuthenticated) return;
 
     try {
       // 1. 토큰 재발급(로그인) 처리
@@ -104,12 +105,13 @@ class AuthService {
   /** 토큰 만료 전 자동 갱신 설정 */
   public silentRefresh(JWT_EXPIRY_MINUTE: string): void {
     // 기존 타이머가 있으면 제거
+
     if (this.refreshTimerId !== null) {
       clearTimeout(this.refreshTimerId);
     }
 
     const refreshTime = (Number(JWT_EXPIRY_MINUTE) - 60) * 1000;
-    this.refreshTimerId = setTimeout(() => this.authenticate(), refreshTime);
+    this.refreshTimerId = setTimeout(() => this.authenticate(true), refreshTime);
   }
 
   /* 타이머 정리 메소드 - 로그아웃 시 호출 */
