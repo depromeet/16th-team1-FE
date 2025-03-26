@@ -13,6 +13,7 @@ export const totalEvaluationSection = css`
   margin: auto;
   flex-direction: column;
   gap: 20rem;
+  padding-top: 4.8rem;
 `;
 
 export const evaluationSection = (gap: string) => css`
@@ -37,4 +38,5 @@ export const fallbackWrapper = css`
   width: 82rem;
   align-self: flex-start;
   margin: 0 auto;
+  padding-top: 3.6rem;
 `;

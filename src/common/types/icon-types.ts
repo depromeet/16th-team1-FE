@@ -28,6 +28,7 @@ export type iconTypes =
   | 'grade-c'
   | 'grade-d'
   | 'left-arrow-with-tail'
+  | 'loading'
   | 'login-fail'
   | 'logo-full-header-desktop'
   | 'logo-full-header-mobile'

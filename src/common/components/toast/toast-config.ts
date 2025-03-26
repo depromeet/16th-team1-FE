@@ -37,7 +37,7 @@ export const toastConfig: Record<
   getFeedbackFailure: {
     message: '피드백을 불러올 수 없어요',
     duration: Infinity,
-    icon: 'checkbox',
+    icon: 'loading',
     iconPosition: 'right',
   },
 };
