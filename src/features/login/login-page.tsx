@@ -20,11 +20,13 @@ function LoginPage() {
   useEffect(() => {
     const loginPageAuth = async () => {
       const { accessToken, expirationTime } = (await AUTH_SERVICE.authenticate()) ?? {};
-      if (accessToken && expirationTime) navigate('/upload');
+      if (accessToken && expirationTime) {
+        navigate('/upload');
+      }
     };
-
-    if (isAuthenticated && userInfo !== null) navigate('/upload');
-    if (!isRollback) loginPageAuth();
+    if (isAuthenticated && userInfo !== null) {
+      navigate('/upload');
+    } else if (!isRollback) loginPageAuth();
   }, [navigate, isRollback, isAuthenticated, userInfo]);
 
   return (
