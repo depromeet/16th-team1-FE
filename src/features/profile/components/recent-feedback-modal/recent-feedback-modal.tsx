@@ -1,4 +1,5 @@
 import { colors } from '@/assets/styles/colors';
+import { BaseButton } from '@/common/components/button/base-button';
 import FallbackBoundary from '@/common/components/fallback-boundary/fallback-boundary';
 import Icon from '@/common/components/icon/icon';
 import Modal from '@/common/components/modal/base-modal';
@@ -38,14 +39,27 @@ export default function RecentFeedbackModal() {
 const fallbacks = {
   suspense: {
     fallbackUI: (
-      <div css={styles.fallbackWrapper}>
+      <div css={styles.fallbackLoadingWrapper}>
         <Skeleton width="5.4rem" />
         <Skeleton height="4.6rem" />
       </div>
     ),
   },
   error: {
-    // 에러 처리 디자인 나오면 적용할 예정입니다!
-    fallbackUI: <div css={styles.fallbackWrapper}>다시 시도</div>,
+    fallbackUI: (onReset: VoidFunction) => (
+      <div css={styles.fallbackErrorWrapper}>
+        <p css={styles.errorText}>
+          문제가 생겨
+          <br />
+          최근 피드백을 불러오는데 실패했어요
+        </p>
+        <BaseButton onClick={onReset}>
+          <div css={styles.buttonWrapper}>
+            <span css={styles.buttonText}>다시 불러오기</span>
+            <Icon name="loading" width={14} color="#2C2C36" />
+          </div>
+        </BaseButton>
+      </div>
+    ),
   },
 };
