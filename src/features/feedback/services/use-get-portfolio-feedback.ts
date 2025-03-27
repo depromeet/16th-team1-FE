@@ -68,9 +68,9 @@ interface AdditionalChatType {
 type Status = 'COMPLETE' | 'IN_PROGRESS' | 'PENDING' | 'ERROR';
 
 interface UseGetPortfolioFeedbackResponse {
-  createdAt: null;
-  updatedAt: null;
-  deletedAt: null;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string;
   id: string;
   userId: string;
   fileId: string;
