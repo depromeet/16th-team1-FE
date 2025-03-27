@@ -85,7 +85,7 @@ export const shadowRight = (isShow?: boolean) => css`
     position: absolute;
     top: -1rem;
     right: -2rem;
-    z-index: 10;
+    z-index: 1;
     width: 5.5rem;
     height: 6.2rem;
     background: linear-gradient(90deg, rgb(24 23 29 / 0%) 0%, #18171d 100%);
@@ -100,7 +100,7 @@ export const shadowLeft = (isShow?: boolean) => css`
     position: absolute;
     top: -1rem;
     left: -2rem;
-    z-index: 10;
+    z-index: 1;
     width: 5.5rem;
     height: 6.2rem;
     background: linear-gradient(270deg, rgb(24 23 29 / 0%) 0%, #18171d 100%);
@@ -232,8 +232,11 @@ export const descriptionWrapper = css`
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
-  padding-left: 3.2rem;
   gap: 0.6rem;
+
+  ${mediaQueries.tabletAndDesktop} {
+    padding-left: 3.2rem;
+  }
 
   ${mediaQueries.mobile} {
     gap: 0.8rem;

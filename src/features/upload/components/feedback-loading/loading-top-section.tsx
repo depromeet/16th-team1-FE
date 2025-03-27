@@ -55,7 +55,6 @@ export default function LoadingTopSection() {
       </FadeInWrapper>
       <Spacing size={isMobile ? 38 : 30} />
       <FadeInWrapper
-        as={'h3'}
         additionalStyles={styles.bottomWrapper}
         intersectionOptions={{
           threshold: 0.3,
@@ -65,10 +64,8 @@ export default function LoadingTopSection() {
           delay: 0.6,
         }}
       >
-        <div css={styles.bottomWrapper}>
-          <span css={styles.exampleDescription}>피드백 예시 보기</span>
-          <Icon name="feedback-loading-down-arrow" customStyle={styles.floating} />
-        </div>
+        <span css={styles.exampleDescription}>피드백 예시 보기</span>
+        <Icon name="feedback-loading-down-arrow" customStyle={styles.floating} />
       </FadeInWrapper>
     </>
   );
