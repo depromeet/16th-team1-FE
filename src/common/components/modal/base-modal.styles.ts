@@ -10,8 +10,9 @@ interface ModalContentProps {
 
 export const modalOverlay = css`
   position: fixed;
-  inset: 0;
+  z-index: 5;
   background: rgb(0 0 0 / 80%);
+  inset: 0;
 `;
 
 export const modalContent = ({
@@ -31,6 +32,7 @@ export const modalContent = ({
   borderRadius: '1.6rem',
   boxShadow: '0 0.4rem 1.05rem 0 rgb(0 0 0 / 82%)',
   outline: 'none',
+  zIndex: 10,
   ...(width && { width }),
   ...(height && { height }),
   ...(padding && { padding }),
