@@ -1,4 +1,3 @@
-import Icon from '@common/components/icon/icon';
 import * as ToastMessage from '@radix-ui/react-toast';
 
 import { toastConfig, ToastType } from './toast-config';
@@ -24,9 +23,9 @@ export default function Toast({ name, open, setOpen, onClick }: ToastProps) {
         css={styles.root(name)}
         onClick={onClick}
       >
-        {iconPosition === 'left' && <Icon name={icon} />}
+        {iconPosition === 'left' && icon}
         <ToastMessage.Title css={styles.title(name)}>{message}</ToastMessage.Title>
-        {iconPosition === 'right' && <Icon name={icon} />}
+        {iconPosition === 'right' && icon}
       </ToastMessage.Root>
 
       <ToastMessage.Viewport css={styles.viewport(name)} />
