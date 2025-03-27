@@ -10,7 +10,6 @@ import OverallEvaluation from './components/overall-evaluation/overall-evaluatio
 
 import * as styles from './total-evaluation-page.styles';
 
-//TODO: Toast 아이콘 reactNode로 수정
 export default function TotalEvaluationPage() {
   const [toastOpen, setToastOpen] = useState(true);
 
