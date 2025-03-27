@@ -1,12 +1,15 @@
 import FallbackBoundary from '@/common/components/fallback-boundary/fallback-boundary';
+import Skeleton from '@/common/components/skeleton/skeleton';
 import { useGetPortfolioFeedbackData } from '@/features/total-evaluation/hooks/use-get-portfolio-feedback-data';
 
 import * as styles from './total-evaluation-user-info.styles';
 
-//TODO: 포트폴리오 피드백 조회 시 createdAt, portfolioName 추가
 function TotalEvalutationUserInfo() {
   return (
-    <FallbackBoundary>
+    <FallbackBoundary
+      suspense={{ fallbackUI: <Skeleton width="22rem" height="1.6rem" /> }}
+      error={{ fallbackUI: <Skeleton width="22rem" height="1.6rem" /> }}
+    >
       <TotalEvalutationUserInfoContent />
     </FallbackBoundary>
   );
@@ -15,12 +18,12 @@ function TotalEvalutationUserInfo() {
 export default TotalEvalutationUserInfo;
 
 const TotalEvalutationUserInfoContent = () => {
-  const { createdAt, fileId } = useGetPortfolioFeedbackData();
+  const { createdAt, title } = useGetPortfolioFeedbackData();
 
   return (
     <div css={styles.container}>
       <p css={styles.date}>{createdAt ?? '-'}</p>
-      <p css={styles.pdf}>{fileId}</p>
+      <p css={styles.pdf}>{title}</p>
     </div>
   );
 };

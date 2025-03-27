@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import FallbackBoundary from '@/common/components/fallback-boundary/fallback-boundary';
 import { scrollToSection } from '@/common/utils/scroll-to-section';
 import AccordionList from '@/features/total-evaluation/components/accordion-list/accordion-list';
+import SidebarFallbackUI from '@/features/total-evaluation/components/fallback-ui/sidebar-fallback-ui';
 
 import { LocationButtonType } from '../../types/sidebar-Info-types';
 import FeedbackContents from '../accordion-list/feedback-contents';
@@ -37,7 +38,10 @@ function FeedbackSidebar() {
 
   return (
     <FeedbackPageNavigator>
-      <FallbackBoundary>
+      <FallbackBoundary
+        suspense={{ fallbackUI: <SidebarFallbackUI /> }}
+        error={{ fallbackUI: <SidebarFallbackUI /> }}
+      >
         <AccordionList
           type="multiple"
           orientation="vertical"

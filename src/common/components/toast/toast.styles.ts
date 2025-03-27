@@ -1,7 +1,31 @@
 import { colors } from '@assets/styles/colors';
-import { css, keyframes } from '@emotion/react';
+import { css, Keyframes, keyframes } from '@emotion/react';
 
 import { ToastType } from './toast-config';
+
+interface ToastVariantType {
+  background: string;
+  border: string;
+  textColor: string;
+  padding: string;
+  gap: string;
+  fontSize: string;
+  isClickable: boolean;
+  animation: {
+    open: Keyframes;
+    close: Keyframes;
+    extra: Keyframes | 'none';
+  };
+  position: {
+    top?: string;
+    bottom?: string;
+    left?: string;
+    right?: string;
+    transform?: string;
+  };
+  boxShadow?: string;
+  backdropFilter?: string;
+}
 
 const slideUp = keyframes`
   from {
@@ -59,7 +83,7 @@ const slideRight = keyframes`
   }
 `;
 
-const toastVariants = {
+const toastVariants: Record<ToastType, ToastVariantType> = {
   aiCompleteLarge: {
     background: `linear-gradient(to right, ${colors.GRAY[1000]}, ${colors.GRAY[1000]}) padding-box,
                    linear-gradient(to right bottom, ${colors.PURPLE[300]}, ${colors.SORA[200]}) border-box`,
@@ -123,37 +147,42 @@ const toastVariants = {
     position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
   },
   getFeedbackFailure: {
-    background: `${colors.GRAY[1000]}`,
+    background: 'rgba(233, 97, 80, 0.10)',
     border: `0.2rem solid rgba(233, 97, 80, 0.15)`,
     textColor: `${colors.RED[500]}`,
     padding: '1.8rem 2.4rem',
-    gap: '1rem',
+    gap: '0.6rem',
     fontSize: '1.6rem',
     isClickable: true,
     animation: {
-      open: slideLeft,
-      close: slideRight,
+      open: slideUp,
+      close: slideDown,
       extra: 'none',
     },
-    position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
+    position: { bottom: '5.6rem', left: '50%', transform: 'translateX(-50%)' },
+    boxShadow: '0 0 80px 0 rgb(0 0 0 / 24%)',
+    backdropFilter: 'blur(1.2rem)',
   },
 };
 
 export const root = (name: ToastType) => {
-  const { background, border, padding, gap, animation, isClickable } = toastVariants[name];
+  const { background, border, padding, gap, animation, isClickable, boxShadow, backdropFilter } =
+    toastVariants[name];
 
   return css`
     display: flex;
     align-items: center;
     justify-content: center;
     padding: ${padding};
+    background: ${background};
+    border: ${border};
     gap: ${gap};
     flex-shrink: 0;
     border-radius: 69rem;
-    background: ${background};
-    border: ${border};
     background-origin: border-box;
     background-clip: padding-box, border-box;
+    box-shadow: ${boxShadow || 'none'};
+    backdrop-filter: ${backdropFilter || 'none'};
     cursor: ${isClickable ? 'pointer' : 'default'};
 
     &[data-state='open'] {
