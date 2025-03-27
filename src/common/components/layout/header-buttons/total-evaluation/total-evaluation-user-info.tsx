@@ -1,6 +1,7 @@
 import FallbackBoundary from '@/common/components/fallback-boundary/fallback-boundary';
 import Skeleton from '@/common/components/skeleton/skeleton';
 import { useGetPortfolioFeedbackData } from '@/features/total-evaluation/hooks/use-get-portfolio-feedback-data';
+import { convertKrDate } from '@/features/total-evaluation/utils/convert-kr-date';
 
 import * as styles from './total-evaluation-user-info.styles';
 
@@ -19,10 +20,11 @@ export default TotalEvalutationUserInfo;
 
 const TotalEvalutationUserInfoContent = () => {
   const { createdAt, title } = useGetPortfolioFeedbackData();
+  const koreanDate = convertKrDate(createdAt);
 
   return (
     <div css={styles.container}>
-      <p css={styles.date}>{createdAt ?? '-'}</p>
+      <p css={styles.date}>{koreanDate ?? '-'}</p>
       <p css={styles.pdf}>{title}</p>
     </div>
   );
