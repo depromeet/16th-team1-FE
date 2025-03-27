@@ -19,7 +19,12 @@ function AuthProfileModalDropdown() {
   const { openModal } = useModalStore();
 
   return (
-    <DropdownMenu.Root defaultOpen={false} open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
+    <DropdownMenu.Root
+      defaultOpen={false}
+      open={isDropdownOpen}
+      onOpenChange={setIsDropdownOpen}
+      modal={false}
+    >
       <DropdownMenu.Trigger asChild>
         <BaseButton css={styles.positionRelative}>
           <AuthProfile />
