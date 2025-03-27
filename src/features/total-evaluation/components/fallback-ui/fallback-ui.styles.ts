@@ -30,3 +30,7 @@ export const tableLeftSection = css`
   gap: 5rem;
   align-items: flex-start;
 `;
+
+export const skeletonWrapper = css`
+  padding: 0.8rem;
+`;

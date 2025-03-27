@@ -3,7 +3,7 @@ import Spacing from '@/common/components/spacing/spacing';
 
 import * as styles from './fallback-ui.styles';
 
-export default function FallbackUI() {
+export default function TotalEvaluationFallbackUI() {
   return (
     <div css={styles.fallbackUI}>
       <Skeleton width="12rem" height="1.6rem" />

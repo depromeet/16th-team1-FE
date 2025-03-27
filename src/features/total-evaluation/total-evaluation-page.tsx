@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import FallbackBoundary from '@/common/components/fallback-boundary/fallback-boundary';
 import Toast from '@/common/components/toast/toast';
-import FallbackUI from '@/features/total-evaluation/components/fallback-ui/fallback-ui';
+import TotalEvaluationFallbackUI from '@/features/total-evaluation/components/fallback-ui/total-evaluation-fallback-ui';
 import FeedbackSidebar from '@/features/total-evaluation/components/feedback-sidebar/feedback-sidebar';
 import ProjectEvaluationList from '@/features/total-evaluation/components/project-evaluation/project-evaluation-list';
 
@@ -18,14 +18,14 @@ export default function TotalEvaluationPage() {
     suspense: {
       fallbackUI: (
         <div css={styles.fallbackWrapper}>
-          <FallbackUI />
+          <TotalEvaluationFallbackUI />
         </div>
       ),
     },
     error: {
       fallbackUI: (onReset: VoidFunction) => (
         <div css={styles.fallbackWrapper}>
-          <FallbackUI />
+          <TotalEvaluationFallbackUI />
           <Toast
             name="getFeedbackFailure"
             open={toastOpen}
