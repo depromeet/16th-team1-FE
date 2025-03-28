@@ -75,7 +75,7 @@ export const subRemainFeebackCountPragraph = withTheme(
     font-size: 1.2rem;
     font-style: normal;
     font-weight: 400;
-    line-height: 160%; /* 19.2px */
-    letter-spacing: -0.012px;
+    line-height: 160%;
+    letter-spacing: -0.012rem;
   `,
 );
