@@ -7,6 +7,11 @@ export type ToastType =
 
 import { ReactNode } from 'react';
 
+import * as totalEvaluationStyles from '@features/total-evaluation/total-evaluation-page.styles';
+
+import { theme } from '@/assets/styles/theme';
+import { BaseButton } from '@/common/components/button/base-button';
+
 import Icon from '../icon/icon';
 
 export const toastConfig: Record<
@@ -40,7 +45,11 @@ export const toastConfig: Record<
   getFeedbackFailure: {
     message: '피드백을 불러올 수 없어요',
     duration: Infinity,
-    icon: <Icon name="loading" />,
+    icon: (
+      <BaseButton css={totalEvaluationStyles.getFeedbackFailureButton}>
+        <Icon name="loading" width={14} color={theme.colors.RED[400]} />
+      </BaseButton>
+    ),
     iconPosition: 'right',
   },
 };

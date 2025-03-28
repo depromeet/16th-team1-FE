@@ -40,3 +40,9 @@ export const fallbackWrapper = css`
   margin: 0 auto;
   padding-top: 3.6rem;
 `;
+
+export const getFeedbackFailureButton = css`
+  padding: 0.6rem;
+  border-radius: 10rem;
+  background-color: rgb(233 97 80 / 15%);
+`;
