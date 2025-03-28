@@ -25,7 +25,7 @@ export const container: containerStyleFnType = (isSidebarOpen, size, animation, 
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 1;
   width: ${size.width}rem;
   height: var(--sidebar-height);
   padding: ${size.padding}rem;
@@ -38,8 +38,8 @@ export const container: containerStyleFnType = (isSidebarOpen, size, animation, 
   background-color: var(--sidebar-bg);
 
   &::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 1rem;
+    height: 1rem;
   }
 
   &::-webkit-scrollbar-track {
@@ -48,7 +48,7 @@ export const container: containerStyleFnType = (isSidebarOpen, size, animation, 
 
   &::-webkit-scrollbar-thumb {
     background-color: ${isSidebarOpen ? '#555' : 'transparent'};
-    border-radius: 10px;
+    border-radius: 1rem;
   }
 `;
 

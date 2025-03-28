@@ -32,7 +32,8 @@ const getPaddingByPage = (pageLabel: PageLabelKey, isMobile: boolean) => {
 };
 
 export const container = (pageLabel: PageLabelKey, isMobile: boolean) => css`
-  --blur: ${pageLabel === 'Landing' || pageLabel === 'TotalEvaluation' ? `1.2rem` : `0`};
+  --blur: ${pageLabel === 'Landing' && `1.2rem`};
+  --background-bg: ${pageLabel !== 'TotalEvaluation' && 'transparent'};
 
   display: flex;
   align-items: center;
@@ -42,8 +43,8 @@ export const container = (pageLabel: PageLabelKey, isMobile: boolean) => css`
   z-index: 1;
   width: 100%;
   padding: ${getPaddingByPage(pageLabel, isMobile)};
-  backdrop-filter: blur(1.2rem);
-  background-color: transparent;
+  backdrop-filter: blur(var(--blur));
+  background-color: var(--background-bg);
 `;
 
 export const leftSection = css`

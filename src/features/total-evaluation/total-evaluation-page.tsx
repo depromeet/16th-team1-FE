@@ -37,15 +37,17 @@ export default function TotalEvaluationPage() {
   };
 
   return (
-    <div css={styles.container}>
-      <FeedbackSidebar />
+    <>
+      <div css={styles.container}>
+        <FeedbackSidebar />
 
-      <FallbackBoundary suspense={fallbacks.suspense} error={fallbacks.error}>
-        <div css={styles.totalEvaluationSection}>
-          <OverallEvaluation />
-          <ProjectEvaluationList />
-        </div>
-      </FallbackBoundary>
-    </div>
+        <FallbackBoundary suspense={fallbacks.suspense} error={fallbacks.error}>
+          <div css={styles.totalEvaluationSection}>
+            <OverallEvaluation />
+            <ProjectEvaluationList />
+          </div>
+        </FallbackBoundary>
+      </div>
+    </>
   );
 }
