@@ -194,7 +194,7 @@ export const shadowRight = (isShow?: boolean) => css`
     z-index: 10;
     width: 5.5rem;
     height: 6.2rem;
-    background: linear-gradient(90deg, rgb(24 23 29 / 0%) 0%, #18171d 100%);
+    background: linear-gradient(90deg, rgb(10 10 12 / 0%) 0%, #0a0a0c 100%);
     transition: opacity 0.4s ease;
     opacity: ${isShow ? 1 : 0};
     pointer-events: none;
@@ -209,7 +209,7 @@ export const shadowLeft = (isShow?: boolean) => css`
     z-index: 10;
     width: 5.5rem;
     height: 6.2rem;
-    background: linear-gradient(270deg, rgb(24 23 29 / 0%) 0%, #18171d 100%);
+    background: linear-gradient(270deg, rgb(24 23 29 / 0%) 0%, #0a0a0c 100%);
     transition: opacity 0.4s ease;
     opacity: ${isShow ? 1 : 0};
     pointer-events: none;
