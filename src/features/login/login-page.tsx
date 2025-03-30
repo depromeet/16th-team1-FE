@@ -18,7 +18,12 @@ function LoginPage() {
   const isRollback = useCheckQueryStrings({ rollback: 'true' });
 
   useEffect(() => {
-    if ((!isAuthenticated || userInfo === null) && !isRollback) {
+    if (isRollback)
+      (async () => {
+        await AUTH_SERVICE.createAuthCycle().withoutRollback().withForceRelogin().execute();
+      })();
+
+    if (!isRollback && (!isAuthenticated || userInfo === null))
       (async () => {
         const { accessToken, expirationTime } =
           (await AUTH_SERVICE.createAuthCycle()
@@ -27,9 +32,8 @@ function LoginPage() {
 
         if (accessToken && expirationTime) navigate('/upload');
       })();
-    }
 
-    if (isAuthenticated && userInfo !== null) navigate('/upload');
+    if (!isRollback && isAuthenticated && userInfo !== null) navigate('/upload');
   }, [navigate, isRollback, isAuthenticated, userInfo]);
 
   return (
