@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 
 import Icon from '@/common/components/icon/icon';
 import { useCheckQueryStrings } from '@/common/hooks/use-check-query-strings';
-import { AUTH_SERVICE } from '@/common/services/auth';
+import { AUTH_SERVICE } from '@/common/services/auth-service';
 import { useUserStore } from '@/store/user-auth';
 
 import GoogleAuthButton from './components/custom-buttons/google-auth-button';

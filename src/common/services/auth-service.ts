@@ -2,95 +2,16 @@ import { AxiosResponse } from 'axios';
 
 import { UserInfo, useUserStore } from '@/store/user-auth';
 
+import { AuthCycleBuilder, AuthCycleOptions } from './auth-builder';
 import { axiosInstance } from './service-config';
 import { ReIssue } from '../types/auth';
-
-/** 인증 사이클 구성 옵션 타입 */
-interface AuthCycleOptions {
-  shouldRollbackOnFailure: boolean; // 실패 시 로그인 페이지로 리다이렉트 여부
-  bypass: boolean; // 이미 인증된 상태를 무시하고 강제 재인증 여부
-  silentOnFailure: boolean; // 실패해도 조용히 넘어갈지 여부 (랜딩 페이지용)
-  customRollbackUrl: string; // 커스텀 롤백 URL (기본값은 /login?rollback=true)
-  setupAutoRefresh: boolean; // 자동 재발급 타이머 설정 여부
-  forceRelogin: boolean; // 강제 재로그인 여부 (rollback=true 쿼리 용)
-  endPoint: string;
-  userInfoEndPoint: string;
-}
-
-/** 인증 사이클 빌더 클래스 */
-class AuthCycleBuilder {
-  private options: AuthCycleOptions = {
-    shouldRollbackOnFailure: true,
-    bypass: false,
-    silentOnFailure: false,
-    customRollbackUrl: '/login?rollback=true',
-    setupAutoRefresh: true,
-    forceRelogin: false,
-    endPoint: `/api/v1/reissue`,
-    userInfoEndPoint: `/api/v1/users/me`,
-  };
-
-  /** 실패 시 롤백 비활성화 (랜딩 페이지용) */
-  public withoutRollback(): AuthCycleBuilder {
-    this.options.shouldRollbackOnFailure = false;
-    return this;
-  }
-
-  /** 재발급 실패해도 넘어가기 (랜딩 페이지용) */
-  public withSilentFailure(): AuthCycleBuilder {
-    this.options.silentOnFailure = true;
-    return this;
-  }
-
-  /** 이미 인증된 상태 무시하고 강제 재인증 */
-  public withBypass(): AuthCycleBuilder {
-    this.options.bypass = true;
-    return this;
-  }
-
-  /** 커스텀 롤백 URL 설정 */
-  public withCustomRollbackUrl(url: string): AuthCycleBuilder {
-    this.options.customRollbackUrl = url;
-    return this;
-  }
-
-  /** 재발급 endPoint URL 설정 */
-  public withEndPoint(url: string): AuthCycleBuilder {
-    this.options.endPoint = url;
-    return this;
-  }
-
-  /** 유저 정보 endPoint URL 설정 */
-  public withUserInfoEndPoint(url: string): AuthCycleBuilder {
-    this.options.userInfoEndPoint = url;
-    return this;
-  }
-
-  /** 자동 재발급 타이머 비활성화 */
-  public withoutAutoRefresh(): AuthCycleBuilder {
-    this.options.setupAutoRefresh = false;
-    return this;
-  }
-
-  /** 강제 재로그인 모드 (rollback=true 쿼리 용) */
-  public withForceRelogin(): AuthCycleBuilder {
-    this.options.forceRelogin = true;
-    return this;
-  }
-
-  /** 인증 사이클 실행 */
-  public async execute(): Promise<{ accessToken: string; expirationTime: string } | undefined> {
-    console.log(this.options);
-    return AUTH_SERVICE.executeAuthCycle(this.options);
-  }
-}
 
 /** 유저 인증 싸이클 인스턴스 클래스*/
 class AuthService {
   private static instance: AuthService | null = null;
   private accessTokenPromise: Promise<AxiosResponse<ReIssue, unknown>> | null = null;
   private refreshTimerId: ReturnType<typeof setTimeout> | null = null;
-  private lastUsedOptions: Partial<AuthCycleOptions> | null = null;
+  private lastUsedBuilder: AuthCycleBuilder | null = null;
 
   /* 생성자는 private으로 외부에서 직접 인스턴스 생성 x */
   private constructor() {}
@@ -118,11 +39,12 @@ class AuthService {
    */
   public async executeAuthCycle(
     options: AuthCycleOptions,
+    builder: AuthCycleBuilder, // 빌더 인스턴스 전달
   ): Promise<{ accessToken: string; expirationTime: string } | undefined> {
     const { isAuthenticated, userInfo } = useUserStore.getState();
 
-    // 재발급에서 빌더 옵션에서 재사용하기 위해 현재 옵션 저장
-    this.lastUsedOptions = { ...options };
+    // 빌더 인스턴스를 저장해두어 silentRefresh 시 재사용
+    this.lastUsedBuilder = builder.clone();
 
     // bypass가 아니면서 이미 인증된 상태라면 바로 리턴
     if (!options.bypass && userInfo !== null && isAuthenticated) return;
@@ -155,7 +77,7 @@ class AuthService {
     } catch (e) {
       // 실패 시 조용히 넘어가기 옵션이 활성화되어 있으면 에러 무시
       if (options.silentOnFailure) {
-        console.warn('Auth cycle failed silently:', e);
+        console.warn('silentOnFailure');
         return;
       }
 
@@ -165,7 +87,7 @@ class AuthService {
         window.location.href = rollbackUrl;
       }
 
-      // 롤백 옵션이 비활성화되어 있으면 에러 전파
+      // 롤백 옵션이 비활성화되어 있으면 상위 컨텍스트로 에러 전파
       throw e;
     }
   }
@@ -219,16 +141,15 @@ class AuthService {
     const refreshTime = (Number(JWT_EXPIRY_MINUTE) - 60) * 1000;
 
     this.refreshTimerId = setTimeout(() => {
-      const cycle = this.createAuthCycle().withBypass();
-
-      const options = this.lastUsedOptions ?? {};
-      if (options.shouldRollbackOnFailure === false) cycle.withoutRollback();
-      if (options.silentOnFailure === true) cycle.withSilentFailure();
-      if (options.setupAutoRefresh === false) cycle.withoutAutoRefresh();
-      if (options.forceRelogin === true) cycle.withForceRelogin();
-      if (options.customRollbackUrl) cycle.withCustomRollbackUrl(options.customRollbackUrl);
-
-      cycle.execute();
+      // 이전 빌더 인스턴스가 있다면 clone하여 그대로 사용
+      if (this.lastUsedBuilder) {
+        // 기존 설정을 유지하면서 bypass 추가
+        const cycle = this.lastUsedBuilder.clone().withBypass();
+        cycle.execute();
+      } else {
+        // 설정이 없으면 기본 빌더로 실행
+        this.createAuthCycle().withBypass().execute();
+      }
     }, 3000);
   }
 
@@ -242,7 +163,6 @@ class AuthService {
 
   /* 사용자 정보 조회 */
   public async getUserInfo(url: string): Promise<UserInfo | null> {
-    // TODO : 에러처리
     const response = await axiosInstance.get<{ result: UserInfo }>(url);
     return response.data.result;
   }

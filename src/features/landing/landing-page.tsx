@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer';
 
 import totalEvaluation from '@/assets/images/total-evaluation.png';
 import useDeviceType from '@/common/hooks/use-device-type';
-import { AUTH_SERVICE } from '@/common/services/auth';
+import { AUTH_SERVICE } from '@/common/services/auth-service';
 
 import FAQ from './components/frequently-asked-questions/frequently-asked-questions';
 import HelpersSection from './components/helpers-section/helpers-section';
@@ -23,7 +23,7 @@ export default function LandingPage() {
     (async () => {
       await AUTH_SERVICE.createAuthCycle()
         .withoutRollback() // 롤백 비활성화
-        .withSilentFailure() // 실패해도 조용히 넘어감
+        .withSilentFailure() // 실패해도 패스
         .execute();
     })();
   }, []);

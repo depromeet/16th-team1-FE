@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router';
 
-import { AUTH_SERVICE } from '@/common/services/auth';
+import { AUTH_SERVICE } from '@/common/services/auth-service';
 import { axiosInstance } from '@/common/services/service-config';
 import { useUserStore } from '@/store/user-auth';
 
