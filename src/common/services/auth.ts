@@ -88,7 +88,7 @@ class AuthCycleBuilder {
 /** 유저 인증 싸이클 인스턴스 클래스*/
 class AuthService {
   private static instance: AuthService | null = null;
-  private accessTokenPromise: Promise<AxiosResponse<ReIssue, unknown>> | undefined;
+  private accessTokenPromise: Promise<AxiosResponse<ReIssue, unknown>> | null = null;
   private refreshTimerId: ReturnType<typeof setTimeout> | null = null;
   private lastUsedOptions: Partial<AuthCycleOptions> | null = null;
 
@@ -172,18 +172,25 @@ class AuthService {
 
   /** 토큰 재발급(로그인) 처리 && RTR 환경에서 strtictMode로 인한 API 2번 호출 문제 대응
    * - try와 함께 catch를 사용하지 않은 이유: 에러의 경우 상위 컨텍스트에서 일괄적으로 처리하기 위함
-   * - finally를 적용한 이유: 에러가 발생했을 때도 accessTokenPromise = undefined;는 반드시 실행
+   * - finally를 적용한 이유: 에러가 발생했을 때도 accessTokenPromise = null;은 반드시 실행
    */
   public async postReIssue(url: string): Promise<ReIssue['result'] | null> {
-    if (this.accessTokenPromise !== undefined) return null;
+    // 경쟁상태 해결(2번 연속 요청 >> 둘 중 하나가 먼저 수행되면 나머지 1개는 무조건 실패)
+    // 이미 진행 중인 재발급 요청이 있다면, 그 요청의 결과를 공유
+    if (this.accessTokenPromise !== null) {
+      // 진행 중인 프로미스가 해결될 때까지 기다림
+      return this.accessTokenPromise.then((response) => response.data.result);
+    }
 
     try {
+      // 첫 요청인 경우 프로미스를 저장
       this.accessTokenPromise = axiosInstance.post<ReIssue>(url);
       const response = await this.accessTokenPromise;
 
       return response.data.result;
     } finally {
-      this.accessTokenPromise = undefined;
+      // 요청 완료 후 항상 프로미스 초기화
+      this.accessTokenPromise = null;
     }
   }
 
