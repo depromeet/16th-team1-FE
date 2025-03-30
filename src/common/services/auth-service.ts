@@ -50,7 +50,10 @@ class AuthService {
     if (!options.bypass && userInfo !== null && isAuthenticated) return;
 
     // 강제 재로그인 모드라면 기존 인증 정보 삭제
-    if (options.forceRelogin) this.logout();
+    if (options.forceRelogin) {
+      this.logout();
+      return;
+    }
 
     try {
       // 1. 토큰 재발급(로그인) 처리
