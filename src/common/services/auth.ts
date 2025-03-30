@@ -186,7 +186,6 @@ class AuthService {
       // 첫 요청인 경우 프로미스를 저장
       this.accessTokenPromise = axiosInstance.post<ReIssue>(url);
       const response = await this.accessTokenPromise;
-
       return response.data.result;
     } finally {
       // 요청 완료 후 항상 프로미스 초기화
@@ -196,28 +195,33 @@ class AuthService {
 
   /* Authorization 헤더에 토큰 등록 */
   public enrollAuthorizationHeader(accessToken: string): void {
-    axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+    axiosInstance.defaults.headers.common = {
+      ...axiosInstance.defaults.headers.common,
+      Authorization: `Bearer ${accessToken}`,
+    };
   }
 
   /* Authorization 헤더에서 토큰 제거 */
   public deleteAuthorizationHeader(): void {
-    delete axiosInstance.defaults.headers.common['Authorization'];
+    const headers = { ...axiosInstance.defaults.headers.common };
+    delete headers['Authorization'];
+    axiosInstance.defaults.headers.common = headers;
   }
 
   /** 토큰 만료 전 자동 갱신 설정 */
-  public silentRefresh(JWT_EXPIRY_MINUTE: string, options?: Partial<AuthCycleOptions>): void {
+  public silentRefresh(JWT_EXPIRY_MINUTE: string): void {
     // 기존 타이머가 있으면 제거
     if (this.refreshTimerId !== null) {
       clearTimeout(this.refreshTimerId);
+      this.refreshTimerId = null;
     }
 
     const refreshTime = (Number(JWT_EXPIRY_MINUTE) - 60) * 1000;
 
     this.refreshTimerId = setTimeout(() => {
-      const options = this.lastUsedOptions ?? {};
-
       const cycle = this.createAuthCycle().withBypass();
 
+      const options = this.lastUsedOptions ?? {};
       if (options.shouldRollbackOnFailure === false) cycle.withoutRollback();
       if (options.silentOnFailure === true) cycle.withSilentFailure();
       if (options.setupAutoRefresh === false) cycle.withoutAutoRefresh();
@@ -225,7 +229,7 @@ class AuthService {
       if (options.customRollbackUrl) cycle.withCustomRollbackUrl(options.customRollbackUrl);
 
       cycle.execute();
-    }, refreshTime);
+    }, 3000);
   }
 
   /* 타이머 정리 메소드 - 로그아웃 시 호출 */
@@ -238,6 +242,7 @@ class AuthService {
 
   /* 사용자 정보 조회 */
   public async getUserInfo(url: string): Promise<UserInfo | null> {
+    // TODO : 에러처리
     const response = await axiosInstance.get<{ result: UserInfo }>(url);
     return response.data.result;
   }
