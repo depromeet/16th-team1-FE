@@ -133,10 +133,7 @@ class AuthService {
   /** 토큰 만료 전 자동 갱신 설정 */
   public silentRefresh(JWT_EXPIRY_MINUTE: string): void {
     // 기존 타이머가 있으면 제거
-    if (this.refreshTimerId !== null) {
-      clearTimeout(this.refreshTimerId);
-      this.refreshTimerId = null;
-    }
+    this.clearRefreshTimer();
 
     const refreshTime = (Number(JWT_EXPIRY_MINUTE) - 60) * 1000;
 
@@ -150,7 +147,7 @@ class AuthService {
         // 설정이 없으면 기본 빌더로 실행
         this.createAuthCycle().withBypass().execute();
       }
-    }, 3000);
+    }, refreshTime);
   }
 
   /* 타이머 정리 메소드 - 로그아웃 시 호출 */
