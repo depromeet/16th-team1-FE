@@ -18,15 +18,18 @@ function LoginPage() {
   const isRollback = useCheckQueryStrings({ rollback: 'true' });
 
   useEffect(() => {
-    const loginPageAuth = async () => {
-      const { accessToken, expirationTime } = (await AUTH_SERVICE.authenticate()) ?? {};
-      if (accessToken && expirationTime) {
-        navigate('/upload');
-      }
-    };
-    if (isAuthenticated && userInfo !== null) {
-      navigate('/upload');
-    } else if (!isRollback) loginPageAuth();
+    if ((!isAuthenticated || userInfo === null) && !isRollback) {
+      (async () => {
+        const { accessToken, expirationTime } =
+          (await AUTH_SERVICE.createAuthCycle()
+            .withoutRollback() // 이미 로그인 페이지에 있으므로 다시 롤백할 필요 없음
+            .execute()) ?? {};
+
+        if (accessToken && expirationTime) navigate('/upload');
+      })();
+    }
+
+    if (isAuthenticated && userInfo !== null) navigate('/upload');
   }, [navigate, isRollback, isAuthenticated, userInfo]);
 
   return (
