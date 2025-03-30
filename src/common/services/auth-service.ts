@@ -101,10 +101,10 @@ class AuthService {
    */
   public async postReIssue(url: string): Promise<ReIssue['result'] | null> {
     // 경쟁상태 해결(2번 연속 요청 >> 둘 중 하나가 먼저 수행되면 나머지 1개는 무조건 실패)
-    // 이미 진행 중인 재발급 요청이 있다면, 그 요청의 결과를 공유
+    // 이미 진행 중인 재발급 요청이 있다면, 해당 프로미스가 해결될 때까지 기다렸다가 그 요청의 결과를 공유
     if (this.accessTokenPromise !== null) {
-      // 진행 중인 프로미스가 해결될 때까지 기다림
-      return this.accessTokenPromise.then((response) => response.data.result);
+      const response = await this.accessTokenPromise;
+      return response.data.result;
     }
 
     try {
