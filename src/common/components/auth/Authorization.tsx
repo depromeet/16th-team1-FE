@@ -31,7 +31,7 @@ function Authorization() {
     const interceptor = axiosInstance.interceptors.response.use(
       (response) => response,
       (error) => {
-        if (error.response?.status === 401 && window.location.pathname !== '/login') {
+        if (error.response?.status === 401) {
           window.location.href = '/login?rollback=true';
         }
         return Promise.reject(error);
