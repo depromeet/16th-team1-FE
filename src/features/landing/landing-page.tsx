@@ -1,9 +1,8 @@
-import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import totalEvaluation from '@/assets/images/total-evaluation.png';
-import { useAuthBuilder } from '@/common/hooks/use-auth-builder';
 import useDeviceType from '@/common/hooks/use-device-type';
+import { useLandginPageAuth } from '@/common/hooks/use-page-auth-service';
 
 import FAQ from './components/frequently-asked-questions/frequently-asked-questions';
 import HelpersSection from './components/helpers-section/helpers-section';
@@ -13,15 +12,12 @@ import RoutingStartSection from './components/routing-section/routing-start-sect
 import * as styles from './landing-page.styles';
 
 export default function LandingPage() {
-  const landingPageAuthBuilder = useAuthBuilder('Landing');
   const { isMobile } = useDeviceType();
   const { ref, inView } = useInView({
     threshold: 0.6,
   });
 
-  useEffect(() => {
-    landingPageAuthBuilder();
-  }, [landingPageAuthBuilder]);
+  useLandginPageAuth();
 
   return (
     <div id="landing-container" css={styles.landingPage}>

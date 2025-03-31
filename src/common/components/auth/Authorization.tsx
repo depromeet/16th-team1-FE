@@ -1,32 +1,9 @@
-import { useEffect } from 'react';
 import { Outlet } from 'react-router';
 
-import { useAuthBuilder } from '@/common/hooks/use-auth-builder';
-import { axiosInstance } from '@/common/services/service-config';
+import { useAuth } from '@/common/hooks/use-page-auth-service';
 
 function Authorization() {
-  const AuthPagesBuilder = useAuthBuilder('AuthPages');
-
-  useEffect(() => {
-    const controller = new AbortController();
-    AuthPagesBuilder();
-
-    const interceptor = axiosInstance.interceptors.response.use(
-      (response) => response,
-      (error) => {
-        if (error.response?.status === 401) {
-          window.location.href = '/login?rollback=true';
-        }
-        return Promise.reject(error);
-      },
-    );
-
-    return () => {
-      axiosInstance.interceptors.response.eject(interceptor);
-      controller.abort();
-    };
-  }, [AuthPagesBuilder]);
-
+  useAuth();
   return <Outlet />;
 }
 
