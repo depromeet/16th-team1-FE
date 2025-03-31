@@ -8,6 +8,7 @@ function Authorization() {
   const AuthPagesBuilder = useAuthBuilder('AuthPages');
 
   useEffect(() => {
+    const controller = new AbortController();
     AuthPagesBuilder();
 
     const interceptor = axiosInstance.interceptors.response.use(
@@ -22,6 +23,7 @@ function Authorization() {
 
     return () => {
       axiosInstance.interceptors.response.eject(interceptor);
+      controller.abort();
     };
   }, [AuthPagesBuilder]);
 
