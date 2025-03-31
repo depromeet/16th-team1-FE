@@ -8,8 +8,14 @@ import { parseFeedbackData } from '@/features/profile/util/parse-feedback-data';
 
 import * as styles from './recent-feedback-modal-content.styles';
 
-export default function RecentFeedbackModalContent() {
-  const { data } = useGetFeedbackHistory('650e6f9b14a5f12a6b5c3f92');
+interface recentFeedbackModalContentProps {
+  closeModal: () => void;
+}
+
+export default function RecentFeedbackModalContent({
+  closeModal,
+}: recentFeedbackModalContentProps) {
+  const { data } = useGetFeedbackHistory();
   const parseData = parseFeedbackData(data.result);
   const [mainRef, setMainRef] = useState<HTMLElement | null>(null);
   const [bottomRef, setBottomRef] = useState<HTMLDivElement | null>(null);
@@ -18,6 +24,7 @@ export default function RecentFeedbackModalContent() {
 
   const handleNavigateToPortfolioDetail = (id: string) => {
     navigate(`/total-evaluation/${id}`);
+    closeModal();
   };
 
   return (
