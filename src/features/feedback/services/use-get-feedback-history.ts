@@ -12,16 +12,11 @@ interface UseGetFeedbackHistoryResponse {
   result: FeedbackItemType[];
 }
 
-export const useGetFeedbackHistory = (userId: string) => {
+export const useGetFeedbackHistory = () => {
   const endPoint = '/api/v1/feedback/recent/feedback';
 
   return useSuspenseQuery<UseGetFeedbackHistoryResponse>({
-    queryKey: [endPoint, userId],
-    queryFn: () =>
-      axiosInstance
-        .get(endPoint, {
-          params: { userId },
-        })
-        .then((res) => res.data),
+    queryKey: [endPoint],
+    queryFn: () => axiosInstance.get(endPoint).then((res) => res.data),
   });
 };

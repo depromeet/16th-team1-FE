@@ -29,7 +29,7 @@ export default function RecentFeedbackModal() {
           </Modal.Close>
         </header>
         <FallbackBoundary suspense={fallbacks.suspense} error={fallbacks.error}>
-          <RecentFeedbackModalContent />
+          <RecentFeedbackModalContent closeModal={closeModal} />
         </FallbackBoundary>
       </Modal.Root>
     </Modal>

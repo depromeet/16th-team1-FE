@@ -10,7 +10,7 @@ import RecentFeedback from '../recent-feedback/recent-feedback';
 import * as styles from './upload.styles';
 
 export default function FeedbackUpload() {
-  const { data: feedbackHistoryResponse } = useGetFeedbackHistory('650e6f9b14a5f12a6b5c3f92');
+  const { data: feedbackHistoryResponse } = useGetFeedbackHistory();
   const feedbackHistory = feedbackHistoryResponse?.result;
 
   return (
