@@ -149,7 +149,7 @@ class AuthService {
         // 설정이 없으면 기본 빌더로 실행
         this.createAuthCycle().withBypass().execute();
       }
-    }, 3000);
+    }, refreshTime);
   }
 
   /* 타이머 정리 메소드 - 로그아웃 시 호출 */

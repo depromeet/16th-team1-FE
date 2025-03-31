@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router';
 import { css } from '@emotion/react';
 
 import Icon from '@/common/components/icon/icon';
+import { useAuthBuilder } from '@/common/hooks/use-auth-builder';
 import { useCheckQueryStrings } from '@/common/hooks/use-check-query-strings';
-import { AUTH_SERVICE } from '@/common/services/auth-service';
 import { useUserStore } from '@/store/user-auth';
 
 import GoogleAuthButton from './components/custom-buttons/google-auth-button';
@@ -13,28 +13,19 @@ import GoogleAuthButton from './components/custom-buttons/google-auth-button';
 import * as styles from './login-page.styles';
 
 function LoginPage() {
+  const { rollback: rollbackAuthBuilder, start: startAuthBuilder } = useAuthBuilder('Login');
+
   const { isAuthenticated, userInfo } = useUserStore();
   const navigate = useNavigate();
   const isRollback = useCheckQueryStrings({ rollback: 'true' });
 
   useEffect(() => {
-    if (isRollback)
-      (async () => {
-        await AUTH_SERVICE.createAuthCycle().withoutRollback().withForceRelogin().execute();
-      })();
+    if (isRollback) rollbackAuthBuilder();
 
-    if (!isRollback && (!isAuthenticated || userInfo === null))
-      (async () => {
-        const { accessToken, expirationTime } =
-          (await AUTH_SERVICE.createAuthCycle()
-            .withoutRollback() // 이미 로그인 페이지에 있으므로 다시 롤백할 필요 없음
-            .execute()) ?? {};
-
-        if (accessToken && expirationTime) navigate('/upload');
-      })();
+    if (!isRollback && (!isAuthenticated || userInfo === null)) startAuthBuilder();
 
     if (!isRollback && isAuthenticated && userInfo !== null) navigate('/upload');
-  }, [navigate, isRollback, isAuthenticated, userInfo]);
+  }, [navigate, rollbackAuthBuilder, startAuthBuilder, isRollback, isAuthenticated, userInfo]);
 
   return (
     <div css={styles.container}>

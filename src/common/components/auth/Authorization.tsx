@@ -1,33 +1,15 @@
 import { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router';
+import { Outlet } from 'react-router';
 
-import { AUTH_SERVICE } from '@/common/services/auth-service';
+import { useAuthBuilder } from '@/common/hooks/use-auth-builder';
 import { axiosInstance } from '@/common/services/service-config';
-import { useUserStore } from '@/store/user-auth';
 
 function Authorization() {
-  // const navigate = useNavigate();
-  // const { isAuthenticated, userInfo } = useUserStore();
-
-  // useEffect(() => {
-  //   const authCylcle = async () => {
-  //     await AUTH_SERVICE.authenticate();
-  //   };
-
-  //   authCylcle();
-  // }, [navigate, isAuthenticated, userInfo]);
+  const AuthPagesBuilder = useAuthBuilder('AuthPages');
 
   useEffect(() => {
-    (async () => {
-      try {
-        // 인증 기반 페이지에서는 표준 인증 사이클 사용
-        await AUTH_SERVICE.createAuthCycle().execute();
-      } catch (e) {
-        console.error(e);
-      }
-    })();
+    AuthPagesBuilder();
 
-    // Axios 인터셉터 설정 (401 에러 시 로그인 페이지로 리다이렉트)
     const interceptor = axiosInstance.interceptors.response.use(
       (response) => response,
       (error) => {
@@ -41,7 +23,7 @@ function Authorization() {
     return () => {
       axiosInstance.interceptors.response.eject(interceptor);
     };
-  }, []);
+  }, [AuthPagesBuilder]);
 
   return <Outlet />;
 }
