@@ -68,18 +68,21 @@ interface AdditionalChatType {
 type Status = 'COMPLETE' | 'IN_PROGRESS' | 'PENDING' | 'ERROR';
 
 interface UseGetPortfolioFeedbackResponse {
-  createdAt: string;
-  updatedAt: string;
-  deletedAt: string;
-  id: string;
-  userId: string;
-  fileId: string;
-  title: string;
-  overallStatus: Status;
-  projectStatus: Status;
-  overallEvaluation: OverallEvaluationType;
-  additionalChat: AdditionalChatType[];
-  projectEvaluation: ProjectEvaluationType[];
+  feedback: {
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: string;
+    id: string;
+    userId: string;
+    fileId: string;
+    title: string;
+    overallStatus: Status;
+    projectStatus: Status;
+    overallEvaluation: OverallEvaluationType;
+    additionalChat: AdditionalChatType[];
+    projectEvaluation: ProjectEvaluationType[];
+  };
+  imageList: string[];
 }
 
 interface UseGetPortfolioFeedbackParams {
