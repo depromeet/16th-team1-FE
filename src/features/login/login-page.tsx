@@ -20,10 +20,13 @@ function LoginPage() {
   const isRollback = useCheckQueryStrings({ rollback: 'true' });
 
   useEffect(() => {
+    // 인증 싸이클에 문제가 발생했기 때문에, 강제 로그아웃
     if (isRollback) rollbackAuthBuilder();
 
+    // 최초 진입시, 로그인 진행
     if (!isRollback && (!isAuthenticated || userInfo === null)) startAuthBuilder();
 
+    // 이미 로그인이 돼있을 경우
     if (!isRollback && isAuthenticated && userInfo !== null) navigate('/upload');
   }, [navigate, rollbackAuthBuilder, startAuthBuilder, isRollback, isAuthenticated, userInfo]);
 

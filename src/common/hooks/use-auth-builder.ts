@@ -18,7 +18,7 @@ export function useAuthBuilder<T extends AuthType>(page: T): BuilderMap[T] {
   const navigate = useNavigate();
 
   const builder: BuilderMap = {
-    /** 랜딩 페이지에서는 인증 시도하되, 실패해도 별다른 조치를 취하지 않음 */
+    /** 랜딩 페이지: 인증 시도하되, 실패해도 별다른 조치를 취하지 않음 */
     Landing: useCallback(async () => {
       await AUTH_SERVICE.createAuthCycle()
         .withoutRollback() // 롤백 비활성화
@@ -26,7 +26,7 @@ export function useAuthBuilder<T extends AuthType>(page: T): BuilderMap[T] {
         .execute();
     }, []),
 
-    /** Login 키: rollback과 start 두 가지 기능 분리 */
+    /** Login페이지: start와 rollback 두 가지 기능 분리 */
     Login: {
       /** 최초 로그인 진행 */
       start: useCallback(async () => {
@@ -51,7 +51,7 @@ export function useAuthBuilder<T extends AuthType>(page: T): BuilderMap[T] {
       }, []),
     },
 
-    /** 인증 기반 페이지에서는 표준 인증 사이클 적용 */
+    /** 인증 기반 페이지: 표준 인증 사이클 적용 */
     AuthPages: useCallback(async () => {
       await AUTH_SERVICE.createAuthCycle().execute();
     }, []),

@@ -30,8 +30,8 @@ class AuthService {
   }
 
   /**
-   * 인증 싸이클 전체를 실행하는 내부 메소드
-   * 빌더 패턴에서 생성된 옵션으로 실행됨
+   * 빌더 패턴에서 생성된 옵션으로 인증 싸이클을 일괄 처리하는 메소드
+   *
    * 1. 토큰 재발급(로그인)
    * 2. 토큰 저장 및 헤더 설정
    * 3. 자동 갱신 설정
@@ -43,19 +43,18 @@ class AuthService {
   ): Promise<{ accessToken: string; expirationTime: string } | undefined> {
     const { isAuthenticated, userInfo } = useUserStore.getState();
 
-    // 빌더 인스턴스를 저장해두어 silentRefresh 시 재사용
-    this.lastUsedBuilder = builder.clone();
-
-    // bypass가 아니면서 이미 인증된 상태라면 바로 리턴
-    if (!options.bypass && userInfo !== null && isAuthenticated) return;
-
     // 강제 재로그인 모드라면 기존 인증 정보 삭제
     if (options.forceLogout) {
       this.logout();
       return;
     }
+    // bypass가 아니면서 이미 인증된 상태라면 바로 리턴
+    if (!options.bypass && userInfo !== null && isAuthenticated) return;
 
     try {
+      // 빌더 인스턴스를 저장해두어 silentRefresh 시 재사용
+      this.lastUsedBuilder = builder.clone();
+
       // 1. 토큰 재발급(로그인) 처리
       const tokenData = await this.postReIssue(options.endPoint);
       if (!tokenData) return;
@@ -78,7 +77,7 @@ class AuthService {
       this.updateUserStore(userData);
       return { accessToken, expirationTime };
     } catch (e) {
-      // 실패 시 조용히 넘어가기 옵션이 활성화되어 있으면 에러 무시
+      // 실패 시 silentOnFailure 옵션이 활성화되어 있으면 에러 무시
       if (options.silentOnFailure) {
         console.warn('silentOnFailure');
         return;
@@ -100,7 +99,7 @@ class AuthService {
    * - finally를 적용한 이유: 에러가 발생했을 때도 accessTokenPromise = null;은 반드시 실행
    */
   public async postReIssue(url: string): Promise<ReIssue['result'] | null> {
-    // 경쟁상태 해결(2번 연속 요청 >> 둘 중 하나가 먼저 수행되면 나머지 1개는 무조건 실패)
+    // 경쟁상태 해결
     // 이미 진행 중인 재발급 요청이 있다면, 해당 프로미스가 해결될 때까지 기다렸다가 그 요청의 결과를 공유
     if (this.accessTokenPromise !== null) {
       const response = await this.accessTokenPromise;
