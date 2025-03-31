@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 import { getLocalStorage, removeLocalStorage } from '@/common/utils/storage';
