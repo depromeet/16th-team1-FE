@@ -7,7 +7,7 @@ export interface AuthCycleOptions {
   silentOnFailure: boolean; // 실패해도 조용히 넘어갈지 여부 (랜딩 페이지용)
   customRollbackUrl: string; // 커스텀 롤백 URL (기본값은 /login?rollback=true)
   setupAutoRefresh: boolean; // 자동 재발급 타이머 설정 여부
-  forceRelogin: boolean; // 강제 재로그인 여부 (rollback=true 쿼리 용)
+  forceLogout: boolean; // 강제 로그아웃 처리 여부 (rollback=true 쿼리)
   endPoint: string;
   userInfoEndPoint: string;
 }
@@ -20,7 +20,7 @@ export class AuthCycleBuilder {
     silentOnFailure: false,
     customRollbackUrl: '/login?rollback=true',
     setupAutoRefresh: true,
-    forceRelogin: false,
+    forceLogout: false,
     endPoint: `/api/v1/reissue`,
     userInfoEndPoint: `/api/v1/users/me`,
   };
@@ -68,8 +68,8 @@ export class AuthCycleBuilder {
   }
 
   /** 강제 재로그인 모드 (rollback=true 쿼리 용) */
-  public withForceRelogin(): AuthCycleBuilder {
-    this.options.forceRelogin = true;
+  public withForceLogout(): AuthCycleBuilder {
+    this.options.forceLogout = true;
     return this;
   }
   /** 현재 빌더 인스턴스의 설정을 그대로 복제하는 메서드 */

@@ -6,7 +6,7 @@ import { AuthCycleBuilder, AuthCycleOptions } from './auth-builder';
 import { axiosInstance } from './service-config';
 import { ReIssue } from '../types/auth';
 
-/** 유저 인증 싸이클 인스턴스 클래스*/
+/** 유저 인증 싸이클에 필요한 싱글톤 인스턴스 클래스*/
 class AuthService {
   private static instance: AuthService | null = null;
   private accessTokenPromise: Promise<AxiosResponse<ReIssue, unknown>> | null = null;
@@ -50,7 +50,7 @@ class AuthService {
     if (!options.bypass && userInfo !== null && isAuthenticated) return;
 
     // 강제 재로그인 모드라면 기존 인증 정보 삭제
-    if (options.forceRelogin) {
+    if (options.forceLogout) {
       this.logout();
       return;
     }
@@ -141,16 +141,15 @@ class AuthService {
     const refreshTime = (Number(JWT_EXPIRY_MINUTE) - 60) * 1000;
 
     this.refreshTimerId = setTimeout(() => {
-      // 이전 빌더 인스턴스가 있다면 clone하여 그대로 사용
+      /** 기존 설정을 유지하면서 bypass 추가 */
       if (this.lastUsedBuilder) {
-        // 기존 설정을 유지하면서 bypass 추가
-        const cycle = this.lastUsedBuilder.clone().withBypass();
-        cycle.execute();
+        // 이전 빌더 인스턴스가 있다면 clone하여 그대로 사용
+        this.lastUsedBuilder.clone().withBypass().execute();
       } else {
         // 설정이 없으면 기본 빌더로 실행
         this.createAuthCycle().withBypass().execute();
       }
-    }, refreshTime);
+    }, 3000);
   }
 
   /* 타이머 정리 메소드 - 로그아웃 시 호출 */
