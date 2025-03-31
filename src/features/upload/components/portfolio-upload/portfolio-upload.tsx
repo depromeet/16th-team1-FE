@@ -28,10 +28,10 @@ export default function PortfolioUpload() {
               onSuccess: async (data) => {
                 const { id } = data.result;
 
-                await startFeedback(id);
+                const { feedbackId } = await startFeedback(id);
 
-                changeState('PENDING', id);
-                setLocalStorage('feedbackId', id);
+                changeState('PENDING', feedbackId);
+                setLocalStorage('feedbackId', feedbackId);
               },
               onError: () => {
                 changeState('ERROR');

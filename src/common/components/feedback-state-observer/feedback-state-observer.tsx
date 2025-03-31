@@ -12,13 +12,13 @@ const POLLING_INTERVAL = 5000;
  */
 export default function FeedbackStateObserver() {
   const navigate = useNavigate();
-  const { state, feedbackId, changeState } = useFeedbackStore();
+  const { feedbackId, changeState } = useFeedbackStore();
   const { data: feedback, refetch } = useGetPortfolioFeedbackForStatus({
     feedbackId,
   });
 
   const getFeedbackState = useCallback(() => {
-    const { overallStatus, projectStatus } = feedback?.result || {};
+    const { overallStatus, projectStatus } = feedback?.result.feedback || {};
 
     const isComplete = overallStatus === 'COMPLETE' && projectStatus === 'COMPLETE';
     const isError = overallStatus === 'ERROR' || projectStatus === 'ERROR';
@@ -37,12 +37,12 @@ export default function FeedbackStateObserver() {
       changeState('ERROR');
     } else if (isInProgress) {
       // 피드백 생성 중
-      changeState('IN_PROGRESS');
+      changeState('IN_PROGRESS', feedbackId);
 
       refetch();
     } else if (isPending) {
       // 피드백 생성 대기 중
-      changeState('PENDING');
+      changeState('PENDING', feedbackId);
 
       refetch();
     }
@@ -64,7 +64,7 @@ export default function FeedbackStateObserver() {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [feedbackId, getFeedbackState, state]);
+  }, [feedbackId, getFeedbackState]);
 
   useEffect(() => {
     const feedbackIdinProgress = getLocalStorage('feedbackId', undefined);

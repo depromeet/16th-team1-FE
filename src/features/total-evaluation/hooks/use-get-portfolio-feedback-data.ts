@@ -8,6 +8,6 @@ export const useGetPortfolioFeedbackData = () => {
   const { data } = useGetPortfolioFeedback({ feedbackId: feedbackId as string });
 
   return {
-    ...data.result,
+    ...data.result.feedback,
   };
 };
