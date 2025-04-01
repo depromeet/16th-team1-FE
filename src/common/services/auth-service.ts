@@ -37,7 +37,7 @@ class AuthService {
 
     try {
       // 1. 토큰 재발급(로그인) 처리
-      const tokenData = await this.requestToken(options.endPoint);
+      const tokenData = await this.requestToken(options.tokenEndPoint);
       if (!tokenData) return;
       const { accessToken, expirationTime } = tokenData;
 
