@@ -10,8 +10,9 @@ export interface AuthCycleOptions {
   onSuccessPageUrl: string; // 인증 성공 시 이동히는 페이지 URL (기본값은 /upload)
   setupAutoRefresh: boolean; // 자동 재발급 타이머 설정 여부
   forceLogout: boolean; // 강제 로그아웃 처리 여부 (rollback=true 쿼리)
-  endPoint: string;
+  tokenEndPoint: string;
   userInfoEndPoint: string;
+  logoutEndPoint: string;
 }
 const defaultOptions: AuthCycleOptions = {
   shouldRollbackOnFailure: true,
@@ -22,8 +23,9 @@ const defaultOptions: AuthCycleOptions = {
   onSuccessPageUrl: '/upload',
   setupAutoRefresh: true,
   forceLogout: false,
-  endPoint: `/api/v1/reissue`,
+  tokenEndPoint: `/api/v1/reissue`,
   userInfoEndPoint: `/api/v1/users/me`,
+  logoutEndPoint: `/api/v1/logout`,
 };
 
 export class AuthCycleBuilder {
@@ -63,14 +65,19 @@ export class AuthCycleBuilder {
     return new AuthCycleBuilder({ ...this.options, onSuccessPageUrl: url });
   }
 
-  /** 재발급 endPoint URL 설정 */
+  /** accessToken tokenEndPoint URL 설정 */
   public withEndPoint(url: string): AuthCycleBuilder {
-    return new AuthCycleBuilder({ ...this.options, endPoint: url });
+    return new AuthCycleBuilder({ ...this.options, tokenEndPoint: url });
   }
 
   /** 유저 정보 endPoint URL 설정 */
   public withUserInfoEndPoint(url: string): AuthCycleBuilder {
     return new AuthCycleBuilder({ ...this.options, userInfoEndPoint: url });
+  }
+
+  /** 로그아웃  endPoint URL 설정 */
+  public withLogoutEndPoint(url: string): AuthCycleBuilder {
+    return new AuthCycleBuilder({ ...this.options, logoutEndPoint: url });
   }
 
   /** 자동 재발급 타이머 비활성화 */

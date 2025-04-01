@@ -11,24 +11,22 @@ import { AuthCycleBuilder, AuthCycleOptions } from '../services/auth-builder';
 import { axiosInstance } from '../services/service-config';
 import { ReIssue } from '../types/auth';
 
-/**
- * 커스텀 훅: useAuthCycle
- * - 인증 싸이클 실행 함수를 반환하며, 진행 상태 및 에러 상태를 관리
- */
-export const useAuthCycle = () => {
-  const { userInfo, isLogin, setIsAuthenticating, setUserInfo, setIsLogin, setAuthError, reset } =
-    useAuthStore();
-
-  const navigate = useNavigate();
-
-  // 경쟁 상태를 대비한 ref
+/** API 요청 관련 함수들 */
+const useAuthApi = () => {
+  // 경쟁 상태 해결을 위한 ref
   const accessTokenPromiseRef = useRef<Promise<AxiosResponse<ReIssue, unknown>> | null>(null);
 
   const requestToken = useCallback(async (url: string): Promise<ReIssue['result'] | null> => {
-    // 이미 진행 중인 토큰 요청이 있다면 해당 프로미스를 재사용
+    // 이미 진행 중인 토큰 요청이 있다면 재사용
     if (accessTokenPromiseRef.current) {
-      const response = await accessTokenPromiseRef.current;
-      return response.data.result;
+      try {
+        const response = await accessTokenPromiseRef.current;
+        return response.data.result;
+      } catch (error) {
+        return catchAuthError(error);
+      } finally {
+        accessTokenPromiseRef.current = null;
+      }
     }
 
     try {
@@ -38,10 +36,34 @@ export const useAuthCycle = () => {
     } catch (error) {
       return catchAuthError(error);
     } finally {
-      // 요청 완료 후 항상 초기화하여 다음 요청이 가능하도록 함
       accessTokenPromiseRef.current = null;
     }
   }, []);
+
+  const fetchUserInfo = useCallback(async (url: string): Promise<UserInfo | null> => {
+    try {
+      const response = await axiosInstance.get(url);
+      return response.data.result;
+    } catch (error) {
+      return catchAuthError(error);
+    }
+  }, []);
+
+  const deleteRefreshToken = useCallback(async (url: string) => {
+    try {
+      const response = await axiosInstance.post(url);
+      return response.data.result;
+    } catch (error) {
+      return catchAuthError(error);
+    }
+  }, []);
+
+  return { requestToken, fetchUserInfo, deleteRefreshToken };
+};
+
+/** 헤더 및 타이머 관리 관련 함수들 */
+const useAuthHelpers = () => {
+  const navigate = useNavigate();
 
   const setAuthorizationHeader = useCallback((accessToken: string): void => {
     axiosInstance.defaults.headers.common = {
@@ -56,130 +78,129 @@ export const useAuthCycle = () => {
     axiosInstance.defaults.headers.common = headers;
   }, []);
 
-  const silentRefresh = useCallback((expirationTime: string, options: AuthCycleOptions) => {
-    clearGlobalRefreshTimer();
-    const refreshTime = (Number(expirationTime) - 60) * 1000;
-    const id = setTimeout(() => {
-      // bypass 옵션 활성화하여 강제 재인증 진행
-      executeAuthCycle({ ...options, bypass: true });
-    }, refreshTime);
-    setRefreshTimerId(id);
-  }, []);
+  const silentRefresh = useCallback(
+    (
+      expirationTime: string,
+      options: AuthCycleOptions,
+      executeAuthCycle: (opts: AuthCycleOptions) => Promise<void>,
+    ) => {
+      clearGlobalRefreshTimer();
+      const refreshTime = (Number(expirationTime) - 60) * 1000;
+      const id = setTimeout(() => {
+        // bypass 옵션 활성화하여 재인증 실행
+        executeAuthCycle({ ...options, bypass: true });
+      }, refreshTime);
+      setRefreshTimerId(id);
+    },
+    [],
+  );
 
-  const fetchUserInfo = useCallback(async (url: string): Promise<UserInfo | null> => {
+  return { setAuthorizationHeader, deleteAuthorizationHeader, silentRefresh, navigate };
+};
+
+export const useLogout = () => {
+  const { deleteAuthorizationHeader } = useAuthHelpers();
+  const { deleteRefreshToken } = useAuthApi();
+  const { reset, setAuthError } = useAuthStore();
+
+  const logout = async (url: string): Promise<void> => {
     try {
-      const response = await axiosInstance.get(url);
-      return response.data.result;
+      await deleteRefreshToken(url);
     } catch (error) {
-      return catchAuthError(error);
+      if (error instanceof CustomAuthError) {
+        setAuthError(error);
+      }
+    } finally {
+      deleteAuthorizationHeader();
+      clearGlobalRefreshTimer();
+      reset();
     }
-  }, []);
+  };
 
-  const updateUserInfoStore = useCallback(
-    (userInfo: UserInfo): void => {
-      setUserInfo(userInfo);
-    },
-    [setUserInfo],
-  );
+  return { logout };
+};
 
-  const updateIsLoginStore = useCallback(
-    (status: boolean): void => {
-      setIsLogin(status);
-    },
-    [setIsLogin],
-  );
-
-  const logout = useCallback((): void => {}, []);
+/** 인증 싸이클 실행 커스텀 훅 */
+export const useAuthCycle = () => {
+  const { userInfo, isLogin, setIsAuthenticating, setUserInfo, setIsLogin, setAuthError } =
+    useAuthStore();
+  const { requestToken, fetchUserInfo } = useAuthApi();
+  const { setAuthorizationHeader, silentRefresh, navigate } = useAuthHelpers();
+  const { logout } = useLogout();
 
   /**
-   * executeAuthCycle
-   * - 빌더 패턴으로 생성한 옵션을 전달받아 인증 싸이클을 실행하는 함수
+   * 인증 싸이클 실행 함수
    */
   const executeAuthCycle = useCallback(
     async (options: AuthCycleOptions): Promise<void> => {
       setIsAuthenticating(true);
       setAuthError(null);
 
-      // 이미 인증된 상태면 인증 진행 생략
-      if (!options.bypass && userInfo !== null && isLogin) {
-        setIsAuthenticating(false);
-        return;
-      }
-
       try {
-        // 강제 로그아웃 옵션이면 로그아웃 후 종료
-        if (options.forceLogout) {
-          logout();
-          deleteAuthorizationHeader();
-          clearGlobalRefreshTimer();
-          reset();
-          setIsAuthenticating(false);
-          return;
-        }
+        if (!options.bypass && userInfo !== null && isLogin) return;
 
-        // 1. 토큰 재발급 (로그인) 처리
-        const tokenData = await requestToken(options.endPoint);
-        if (!tokenData) {
-          setIsAuthenticating(false);
-          return;
-        }
+        // 1. 토큰 재발급
+        const tokenData = await requestToken(options.tokenEndPoint);
+        if (!tokenData) return;
+
         const { accessToken, expirationTime } = tokenData;
 
-        // 2. 헤더 등록
+        // 2. 헤더 설정
         setAuthorizationHeader(accessToken);
 
-        // 3. 자동 갱신 설정
+        // 3. silent refresh 설정
         if (options.setupAutoRefresh) {
-          silentRefresh(expirationTime, options);
+          silentRefresh(expirationTime, options, executeAuthCycle);
         }
 
-        // 4. 사용자 정보 조회 및 상태 업데이트
+        // 4. 사용자 정보 조회 및 업데이트
         const userData = await fetchUserInfo(options.userInfoEndPoint);
-        if (!userData) {
-          setIsAuthenticating(false);
-          return;
-        }
+        if (!userData) return;
+        setUserInfo(userData);
+        setIsLogin(true);
 
-        updateUserInfoStore(userData);
-        updateIsLoginStore(true);
-
+        // 인증 성공 시 옵션에 따른 페이지 이동 처리
         if (options.shouldMoveOnSuccess) {
           navigate(options.onSuccessPageUrl);
         }
-      } catch (error: unknown) {
-        if (options.silentOnFailure) {
-          console.warn('silentOnFailure');
-        } else if (options.shouldRollbackOnFailure) {
-          window.location.href = options.customRollbackUrl;
-        }
-
+      } catch (error) {
+        // 예측 가능한 에러(axios 요청에서 발생한 에러)
         if (error instanceof CustomAuthError) {
           setAuthError(error);
-        } else throw error; // 예측 가능한 범위의 에러가 아닐 경우, 상위 컨텍스트로 throw
+          if (options.silentOnFailure) {
+            console.warn('silentOnFailure');
+          } else if (options.shouldRollbackOnFailure) {
+            await logout(options.logoutEndPoint);
+            navigate(options.customRollbackUrl);
+          }
+        }
+        // 예측 불가능한 에러
+        else {
+          throw error; // 상위 컨텍스트로 throw
+        }
       } finally {
+        // 인증 로딩 상태 종료
         setIsAuthenticating(false);
       }
     },
     [
-      deleteAuthorizationHeader,
-      fetchUserInfo,
-      isLogin,
-      logout,
-      navigate,
-      requestToken,
-      reset,
-      setAuthError,
-      setAuthorizationHeader,
       setIsAuthenticating,
-      silentRefresh,
-      updateIsLoginStore,
-      updateUserInfoStore,
+      setAuthError,
       userInfo,
+      isLogin,
+      requestToken,
+      setAuthorizationHeader,
+      fetchUserInfo,
+      setUserInfo,
+      setIsLogin,
+      silentRefresh,
+      navigate,
+      logout,
     ],
   );
 
   return {
-    executeAuthCycle,
+    executeAuthCycle: executeAuthCycle,
     createAuthCycle: () => new AuthCycleBuilder(),
   };
 };

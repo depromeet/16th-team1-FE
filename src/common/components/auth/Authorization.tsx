@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, useNavigate } from 'react-router';
 
-import { useAuthCycle } from '@/common/hooks/use-auth-cycle';
+import { useAuthCycle, useLogout } from '@/common/hooks/use-auth-cycle';
 import { axiosInstance } from '@/common/services/service-config';
 
 function Authorization() {
+  const navigate = useNavigate();
   const { executeAuthCycle, createAuthCycle } = useAuthCycle();
+  const { logout } = useLogout();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -18,7 +20,8 @@ function Authorization() {
       (response) => response,
       (error) => {
         if (error.response?.status === 401) {
-          window.location.href = '/login?rollback=true';
+          logout(options.logoutEndPoint);
+          navigate('/login?rollback=true');
         }
         return Promise.reject(error);
       },
