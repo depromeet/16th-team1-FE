@@ -1,13 +1,16 @@
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router';
 
-import { useAuthCycle, useLogout } from '@/common/hooks/use-auth-cycle';
+import { useAuthCycle, useClearAuth } from '@/common/hooks/use-auth-cycle';
 import { axiosInstance } from '@/common/services/service-config';
+import { useAuthStore } from '@/store/user-auth';
 
 function Authorization() {
   const navigate = useNavigate();
   const { executeAuthCycle, createAuthCycle } = useAuthCycle();
-  const { logout } = useLogout();
+  const { clearAuthInfo } = useClearAuth();
+
+  const { isLogin } = useAuthStore();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -18,9 +21,9 @@ function Authorization() {
 
     const interceptor = axiosInstance.interceptors.response.use(
       (response) => response,
-      (error) => {
+      async (error) => {
         if (error.response?.status === 401) {
-          logout(options.logoutEndPoint);
+          clearAuthInfo();
           navigate('/login?rollback=true');
         }
         return Promise.reject(error);
@@ -32,7 +35,7 @@ function Authorization() {
       controller.abort();
     };
   }, []);
-  return <Outlet />;
+  return isLogin && <Outlet />;
 }
 
 export default Authorization;

@@ -62,7 +62,7 @@ const useAuthApi = () => {
 };
 
 /** 헤더 및 타이머 관리 관련 함수들 */
-const useAuthHelpers = () => {
+export const useAuthHelpers = () => {
   const navigate = useNavigate();
 
   const setAuthorizationHeader = useCallback((accessToken: string): void => {
@@ -98,10 +98,16 @@ const useAuthHelpers = () => {
   return { setAuthorizationHeader, deleteAuthorizationHeader, silentRefresh, navigate };
 };
 
-export const useLogout = () => {
+export const useClearAuth = () => {
   const { deleteAuthorizationHeader } = useAuthHelpers();
   const { deleteRefreshToken } = useAuthApi();
   const { reset, setAuthError } = useAuthStore();
+
+  const clearAuthInfo = () => {
+    deleteAuthorizationHeader();
+    clearGlobalRefreshTimer();
+    reset();
+  };
 
   const logout = async (url: string): Promise<void> => {
     try {
@@ -111,13 +117,11 @@ export const useLogout = () => {
         setAuthError(error);
       }
     } finally {
-      deleteAuthorizationHeader();
-      clearGlobalRefreshTimer();
-      reset();
+      clearAuthInfo();
     }
   };
 
-  return { logout };
+  return { clearAuthInfo, logout };
 };
 
 /** 인증 싸이클 실행 커스텀 훅 */
@@ -126,7 +130,8 @@ export const useAuthCycle = () => {
     useAuthStore();
   const { requestToken, fetchUserInfo } = useAuthApi();
   const { setAuthorizationHeader, silentRefresh, navigate } = useAuthHelpers();
-  const { logout } = useLogout();
+
+  const { clearAuthInfo } = useClearAuth();
 
   /**
    * 인증 싸이클 실행 함수
@@ -170,7 +175,7 @@ export const useAuthCycle = () => {
           if (options.silentOnFailure) {
             console.warn('silentOnFailure');
           } else if (options.shouldRollbackOnFailure) {
-            await logout(options.logoutEndPoint);
+            clearAuthInfo();
             navigate(options.customRollbackUrl);
           }
         }
@@ -184,18 +189,18 @@ export const useAuthCycle = () => {
       }
     },
     [
-      setIsAuthenticating,
-      setAuthError,
-      userInfo,
-      isLogin,
-      requestToken,
-      setAuthorizationHeader,
+      clearAuthInfo,
       fetchUserInfo,
-      setUserInfo,
-      setIsLogin,
-      silentRefresh,
+      isLogin,
       navigate,
-      logout,
+      requestToken,
+      setAuthError,
+      setAuthorizationHeader,
+      setIsAuthenticating,
+      setIsLogin,
+      setUserInfo,
+      silentRefresh,
+      userInfo,
     ],
   );
 

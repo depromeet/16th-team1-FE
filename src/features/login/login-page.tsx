@@ -22,12 +22,13 @@ function LoginPage() {
 
   useEffect(() => {
     if (isRollback) return;
-    /** 로그인 페이지 진입 시, 로그인 진행
-     * 스토어에 값이 없을 때:
-     * - 서버 사이드 라우팅일 때, refreshToken은 남아 있기 때문에 재발급 요청 후 /upload로 이동
-     * - 최초 로그인 및 로그아웃 상태일 때, 재발급 요청시 401이 발생하지만 롤백없이 유지(=재로그인 유도)
-     */
+    /** 로그인 페이지 진입 시, 로그인 진행 */
     if (!isLogin || userInfo === null) {
+      /**
+       *  스토어에 값이 없을 때:
+       * - 서버 사이드 라우팅일 때, refreshToken은 남아 있기 때문에 재발급 요청 후 /upload로 이동
+       * - 최초 로그인 및 로그아웃 상태일 때, 재발급 요청시 401이 발생하지만 롤백없이 유지(=재로그인 유도)
+       */
       const options = createAuthCycle()
         .withoutRollback() // (로그인 페이지에 있으므로) 롤백 비활성화
         .withMoveOnSuccess() // 성공 시, '/upload' 페이지로 이동
