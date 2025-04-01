@@ -8,6 +8,7 @@ import FeedbackStateObserver from '../feedback-state-observer/feedback-state-obs
 /** 전역적으로 사용되는 로직들을 라우팅 최상단에 배치하는 Config 컴포넌트 */
 export default function GlobalRouteConfig() {
   const { isAuthenticated, userInfo } = useUserStore();
+
   return (
     <>
       {/* 실시간 피드백 flow를 처리하는 옵져버 */}

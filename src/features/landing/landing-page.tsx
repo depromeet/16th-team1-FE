@@ -1,10 +1,11 @@
+import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import { css } from '@emotion/react';
 
 import totalEvaluation from '@/assets/images/total-evaluation.png';
+import { useAuthCycle } from '@/common/hooks/use-auth-cycle';
 import useDeviceType from '@/common/hooks/use-device-type';
-import { useLandginPageAuth } from '@/common/hooks/use-page-auth-service';
 import { axiosInstance } from '@/common/services/service-config';
 
 import FAQ from './components/frequently-asked-questions/frequently-asked-questions';
@@ -20,7 +21,18 @@ export default function LandingPage() {
     threshold: 0.6,
   });
 
-  useLandginPageAuth();
+  const { executeAuthCycle, createAuthCycle } = useAuthCycle();
+
+  useEffect(() => {
+    // 빌더 패턴을 통해 옵션 구성
+    const options = createAuthCycle()
+      .withoutRollback() // 롤백 비활성화
+      .withSilentFailure() // 실패해도 패스 (추후 로그인 페이지에서 다시 로그인 진행)
+      .build();
+
+    // 인증 싸이클 실행
+    executeAuthCycle(options);
+  }, []);
 
   return (
     <div id="landing-container" css={styles.landingPage}>
