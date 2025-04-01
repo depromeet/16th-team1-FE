@@ -2,6 +2,7 @@ import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { axiosInstance } from '@/common/services/service-config';
 import type { Response } from '@/common/types/response';
+import { useAuthStore } from '@/store/user-auth';
 
 export type FeedbackContentType =
   | 'TRANSLATION_OR_AWKWARD'
@@ -103,14 +104,16 @@ export const useGetPortfolioFeedback = ({ feedbackId }: UseGetPortfolioFeedbackP
 export const useGetPortfolioFeedbackForStatus = ({
   feedbackId,
 }: Partial<UseGetPortfolioFeedbackParams>) => {
+  const { isLogin } = useAuthStore();
   const endPoint = '/api/v1/feedback';
-  const queryFn = () =>
-    axiosInstance.get(endPoint, { params: { feedbackId } }).then((res) => res.data);
+  const queryFn = async () => {
+    return await axiosInstance.get(endPoint, { params: { feedbackId } }).then((res) => res.data);
+  };
 
   return useQuery<Response<UseGetPortfolioFeedbackResponse>>({
     queryKey: [endPoint, feedbackId],
     queryFn,
-    enabled: !!feedbackId,
+    enabled: !!feedbackId && !!isLogin,
     retry: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
