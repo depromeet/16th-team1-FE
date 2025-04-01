@@ -1,11 +1,14 @@
 import { css } from '@emotion/react';
 
+import { mediaQueries } from '@/assets/styles/device-width';
+import { FOOTER_HEIGHT } from '@/common/constants/layout';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const container = css`
   display: flex;
   align-items: center;
   width: 100%;
+  height: calc(100dvh - ${FOOTER_HEIGHT.DEFAULT});
   margin: 0 auto;
   padding: 18.3rem 3.2rem 0;
   background: radial-gradient(
@@ -15,6 +18,12 @@ export const container = css`
   );
   flex-direction: column;
   max-width: 65rem;
+  overflow-y: auto;
+
+  ${mediaQueries.mobile} {
+    height: calc(100dvh - ${FOOTER_HEIGHT.MOBILE});
+    margin: auto;
+  }
 `;
 
 export const title = withTheme(
