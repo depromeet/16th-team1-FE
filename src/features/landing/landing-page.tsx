@@ -1,8 +1,11 @@
 import { useInView } from 'react-intersection-observer';
 
+import { css } from '@emotion/react';
+
 import totalEvaluation from '@/assets/images/total-evaluation.png';
 import useDeviceType from '@/common/hooks/use-device-type';
 import { useLandginPageAuth } from '@/common/hooks/use-page-auth-service';
+import { axiosInstance } from '@/common/services/service-config';
 
 import FAQ from './components/frequently-asked-questions/frequently-asked-questions';
 import HelpersSection from './components/helpers-section/helpers-section';
@@ -21,6 +24,18 @@ export default function LandingPage() {
 
   return (
     <div id="landing-container" css={styles.landingPage}>
+      {/* 테스트용 */}
+      <button
+        onClick={async () => {
+          const response = await axiosInstance.get(`/api/v1/users/me`);
+          console.log(response.data);
+        }}
+        css={css`
+          font-size: 3rem;
+        `}
+      >
+        내 정보 확인(테스트용)
+      </button>
       <div css={styles.flexColumn(isMobile ? 4.8 : 10)} id="start-section">
         <RoutingStartSection />
         <img
