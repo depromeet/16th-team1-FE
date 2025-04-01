@@ -1,10 +1,11 @@
 import { useCallback, useRef } from 'react';
 
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 
 import { clearGlobalRefreshTimer, setRefreshTimerId } from '@/auth-timer';
-import { UserInfo, useUserStore } from '@/store/user-auth';
+import { UserInfo, useAuthStore } from '@/store/user-auth';
 
+import { catchAuthError, CustomAuthError } from '../error/custom-auth-error';
 import { AuthCycleBuilder, AuthCycleOptions } from '../services/auth-builder';
 import { axiosInstance } from '../services/service-config';
 import { ReIssue } from '../types/auth';
@@ -14,8 +15,8 @@ import { ReIssue } from '../types/auth';
  * - 인증 싸이클 실행 함수를 반환하며, 진행 상태 및 에러 상태를 관리
  */
 export const useAuthCycle = () => {
-  const { userInfo, isLogin, isAuthenticating, setIsAuthenticating, setUserInfo, reset } =
-    useUserStore();
+  const { userInfo, isLogin, setIsAuthenticating, setUserInfo, setAuthError, reset } =
+    useAuthStore();
 
   // 경쟁 상태를 대비한 ref
   const accessTokenPromiseRef = useRef<Promise<AxiosResponse<ReIssue, unknown>> | null>(null);
@@ -31,6 +32,8 @@ export const useAuthCycle = () => {
       accessTokenPromiseRef.current = axiosInstance.post(url);
       const response = await accessTokenPromiseRef.current;
       return response.data.result;
+    } catch (error) {
+      return catchAuthError(error);
     } finally {
       // 요청 완료 후 항상 초기화하여 다음 요청이 가능하도록 함
       accessTokenPromiseRef.current = null;
@@ -61,8 +64,12 @@ export const useAuthCycle = () => {
   }, []);
 
   const fetchUserInfo = useCallback(async (url: string): Promise<UserInfo | null> => {
-    const response = await axiosInstance.get(url);
-    return response.data.result;
+    try {
+      const response = await axiosInstance.get(url);
+      return response.data.result;
+    } catch (error) {
+      return catchAuthError(error);
+    }
   }, []);
 
   const updateUserStore = useCallback(
@@ -72,11 +79,7 @@ export const useAuthCycle = () => {
     [setUserInfo],
   );
 
-  const logout = useCallback((): void => {
-    deleteAuthorizationHeader();
-    clearGlobalRefreshTimer();
-    reset();
-  }, [deleteAuthorizationHeader, reset]);
+  const logout = useCallback((): void => {}, []);
 
   /**
    * executeAuthCycle
@@ -85,7 +88,7 @@ export const useAuthCycle = () => {
   const executeAuthCycle = useCallback(
     async (options: AuthCycleOptions): Promise<void> => {
       setIsAuthenticating(true);
-      // setAuthError(null);
+      setAuthError(null);
 
       // 이미 인증된 상태면 인증 진행 생략
       if (!options.bypass && userInfo !== null && isLogin) {
@@ -97,6 +100,9 @@ export const useAuthCycle = () => {
         // 강제 로그아웃 옵션이면 로그아웃 후 종료
         if (options.forceLogout) {
           logout();
+          deleteAuthorizationHeader();
+          clearGlobalRefreshTimer();
+          reset();
           setIsAuthenticating(false);
           return;
         }
@@ -124,24 +130,28 @@ export const useAuthCycle = () => {
           return;
         }
         updateUserStore(userData);
-      } catch (e: unknown) {
+      } catch (error: unknown) {
         if (options.silentOnFailure) {
           console.warn('silentOnFailure');
         } else if (options.shouldRollbackOnFailure) {
           window.location.href = options.customRollbackUrl;
-        } else {
-          // setAuthError(e);
+        }
+
+        if (error instanceof CustomAuthError) {
+          setAuthError(error);
         }
       } finally {
-        // setAuthError(true);
         setIsAuthenticating(false);
       }
     },
     [
+      deleteAuthorizationHeader,
       fetchUserInfo,
       isLogin,
       logout,
       requestToken,
+      reset,
+      setAuthError,
       setAuthorizationHeader,
       setIsAuthenticating,
       silentRefresh,
@@ -152,8 +162,6 @@ export const useAuthCycle = () => {
 
   return {
     executeAuthCycle,
-    isAuthenticating,
-    // authError,
     createAuthCycle: () => new AuthCycleBuilder(),
   };
 };

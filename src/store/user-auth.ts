@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 
+import { CustomAuthError } from '@/common/error/custom-auth-error';
+
 export interface UserInfo {
   email: string;
   name: string;
@@ -16,8 +18,8 @@ export interface UserStore {
   isAuthenticating: boolean;
   setIsAuthenticating: (status: boolean) => void;
 
-  authError: unknown | null;
-  setAuthError: () => void;
+  authError: CustomAuthError | null;
+  setAuthError: (authError: CustomAuthError | null) => void;
 
   reset: () => void;
 }
@@ -44,7 +46,11 @@ export const useAuthStore = create<UserStore>((set) => ({
   },
 
   authError: null,
-  setAuthError: () => {},
+  setAuthError: (authError: CustomAuthError | null) => {
+    set({
+      authError: authError,
+    });
+  },
 
   reset: () =>
     set({
