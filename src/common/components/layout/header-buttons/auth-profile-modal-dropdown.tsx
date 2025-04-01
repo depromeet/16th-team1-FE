@@ -3,6 +3,7 @@ import { useState } from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 import { BaseButton } from '@/common/components/button/base-button';
+import { getValueOrHyphen } from '@/common/utils/get-value-or-hyphen';
 import { useGetRemainingCountQuery } from '@/features/upload/services/queries';
 import { useModalStore } from '@/store/modal';
 
@@ -43,7 +44,7 @@ function AuthProfileModalDropdown() {
               />
 
               <p css={styles.subRemainFeebackCountPragraph}>
-                이번 달 남은 피드백 {remainCount ? remainCount : '-'}
+                이번 달 남은 피드백 {getValueOrHyphen(remainCount)}
               </p>
             </div>
           </DropdownMenu.Item>

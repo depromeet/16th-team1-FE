@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import Icon from '@/common/components/icon/icon';
+import { getValueOrHyphen } from '@/common/utils/get-value-or-hyphen';
 
 import * as styles from './file-upload.styles';
 
@@ -71,7 +72,7 @@ export default function FileUpload({ onSubmit, remainCount }: FileUploadProps) {
               {isDisabled ? (
                 <p>이번 달에 사용 가능한 피드백을 모두 받았어요</p>
               ) : (
-                <p>이번 달 남은 피드백 횟수 {remainCount || '-'}회</p>
+                <p>이번 달 남은 피드백 횟수 {getValueOrHyphen(remainCount)}회</p>
               )}
             </div>
           </div>
