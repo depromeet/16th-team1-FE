@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
-import { useUserStore } from '@/store/user-auth';
+import { useAuthStore } from '@/store/user-auth';
 
 import { useCheckQueryStrings } from './use-check-query-strings';
 import { AUTH_SERVICE } from '../services/auth-service';
@@ -24,7 +24,7 @@ export const useLandginPageAuth = () => {
 /** 로그인 페이지 인증 커스텀 훅 */
 export const useLoginPageAuth = () => {
   const navigate = useNavigate();
-  const { isLogin, userInfo } = useUserStore();
+  const { isLogin, userInfo } = useAuthStore();
   const isRollback = useCheckQueryStrings({ rollback: 'true' });
 
   const startAuthBuilder = useCallback(async () => {

@@ -22,7 +22,7 @@ export interface UserStore {
   reset: () => void;
 }
 
-export const useUserStore = create<UserStore>((set) => ({
+export const useAuthStore = create<UserStore>((set) => ({
   userInfo: null,
   setUserInfo: (userInfo: UserInfo) =>
     set({

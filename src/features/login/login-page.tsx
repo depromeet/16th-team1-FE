@@ -7,7 +7,7 @@ import Icon from '@/common/components/icon/icon';
 import { useAuthCycle } from '@/common/hooks/use-auth-cycle';
 import { useCheckQueryStrings } from '@/common/hooks/use-check-query-strings';
 import { axiosInstance } from '@/common/services/service-config';
-import { useUserStore } from '@/store/user-auth';
+import { useAuthStore } from '@/store/user-auth';
 
 import GoogleAuthButton from './components/custom-buttons/google-auth-button';
 
@@ -17,7 +17,7 @@ function LoginPage() {
   const { executeAuthCycle, createAuthCycle } = useAuthCycle();
 
   const navigate = useNavigate();
-  const { isLogin, userInfo } = useUserStore();
+  const { isLogin, userInfo } = useAuthStore();
   const isRollback = useCheckQueryStrings({ rollback: 'true' });
 
   useEffect(() => {

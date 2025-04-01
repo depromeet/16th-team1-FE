@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 
-import { UserInfo, useUserStore } from '@/store/user-auth';
+import { UserInfo, useAuthStore } from '@/store/user-auth';
 
 import { AuthCycleBuilder, AuthCycleOptions } from './auth-builder';
 import { axiosInstance } from './service-config';
@@ -30,7 +30,7 @@ class AuthService {
 
   /** 빌더 패턴에서 생성된 옵션으로 인증 싸이클을 일괄 처리하는 메소드 */
   public async executeAuthCycle(options: AuthCycleOptions) {
-    const { isLogin, userInfo } = useUserStore.getState();
+    const { isLogin, userInfo } = useAuthStore.getState();
 
     if (options.forceLogout) return this.logout();
     if (!options.bypass && userInfo !== null && isLogin) return;
@@ -129,7 +129,7 @@ class AuthService {
 
   /* 스토어에 사용자 정보 업데이트 */
   private updateUserStore(userInfo: UserInfo): void {
-    const { setUserInfo } = useUserStore.getState();
+    const { setUserInfo } = useAuthStore.getState();
     setUserInfo(userInfo);
   }
 
@@ -137,8 +137,8 @@ class AuthService {
   public logout(): void {
     this.deleteAuthorizationHeader();
     this.clearRefreshTimer();
-    const { resetUserInfo } = useUserStore.getState();
-    resetUserInfo();
+    const { reset } = useAuthStore.getState();
+    reset();
   }
 }
 

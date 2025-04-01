@@ -1,13 +1,13 @@
 import { Outlet } from 'react-router';
 
 import RecentFeedbackModal from '@/features/profile/components/recent-feedback-modal/recent-feedback-modal';
-import { useUserStore } from '@/store/user-auth';
+import { useAuthStore } from '@/store/user-auth';
 
 import FeedbackStateObserver from '../feedback-state-observer/feedback-state-observer';
 
 /** 전역적으로 사용되는 로직들을 라우팅 최상단에 배치하는 Config 컴포넌트 */
 export default function GlobalRouteConfig() {
-  const { isLogin, userInfo } = useUserStore();
+  const { isLogin, userInfo } = useAuthStore();
 
   return (
     <>
