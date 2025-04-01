@@ -40,15 +40,15 @@ function LoginPage() {
     if (!isRollback && (!isLogin || userInfo === null)) {
       const options = createAuthCycle()
         .withoutRollback() // (로그인 페이지에 있으므로) 롤백 비활성화
+        .withMoveOnSuccess() // 성공 시, '/upload' 페이지로 이동
         .build();
 
       executeAuthCycle(options);
-      navigate('/upload');
     }
 
     // 이미 로그인이 돼있을 경우
     if (!isRollback && isLogin && userInfo !== null) navigate('/upload');
-  }, []);
+  }, [createAuthCycle, executeAuthCycle, isLogin, isRollback, navigate, userInfo]);
 
   return (
     <div css={styles.container}>

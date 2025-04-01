@@ -1,6 +1,7 @@
 import { useCallback, useRef } from 'react';
+import { useNavigate } from 'react-router';
 
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 
 import { clearGlobalRefreshTimer, setRefreshTimerId } from '@/auth-timer';
 import { UserInfo, useAuthStore } from '@/store/user-auth';
@@ -17,6 +18,8 @@ import { ReIssue } from '../types/auth';
 export const useAuthCycle = () => {
   const { userInfo, isLogin, setIsAuthenticating, setUserInfo, setIsLogin, setAuthError, reset } =
     useAuthStore();
+
+  const navigate = useNavigate();
 
   // 경쟁 상태를 대비한 ref
   const accessTokenPromiseRef = useRef<Promise<AxiosResponse<ReIssue, unknown>> | null>(null);
@@ -162,6 +165,7 @@ export const useAuthCycle = () => {
       fetchUserInfo,
       isLogin,
       logout,
+      navigate,
       requestToken,
       reset,
       setAuthError,
