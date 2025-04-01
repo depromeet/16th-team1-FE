@@ -7,7 +7,7 @@ import FeedbackStateObserver from '../feedback-state-observer/feedback-state-obs
 
 /** 전역적으로 사용되는 로직들을 라우팅 최상단에 배치하는 Config 컴포넌트 */
 export default function GlobalRouteConfig() {
-  const { isAuthenticated, userInfo } = useUserStore();
+  const { isLogin, userInfo } = useUserStore();
 
   return (
     <>
@@ -15,7 +15,7 @@ export default function GlobalRouteConfig() {
       <FeedbackStateObserver />
 
       {/* 최근 피드백 모달 */}
-      {isAuthenticated && userInfo && <RecentFeedbackModal />}
+      {isLogin && userInfo && <RecentFeedbackModal />}
 
       <Outlet />
     </>

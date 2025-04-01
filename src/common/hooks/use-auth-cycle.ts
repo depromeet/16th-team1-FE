@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
 import { AxiosResponse } from 'axios';
 
@@ -14,12 +14,10 @@ import { ReIssue } from '../types/auth';
  * - 인증 싸이클 실행 함수를 반환하며, 진행 상태 및 에러 상태를 관리
  */
 export const useAuthCycle = () => {
-  const [isAuthenticating, setIsAuthenticating] = useState(false);
-  // TODO: 커스텀 에러로 변경
-  // const [authError, setAuthError] = useState<Error | null>(null);
-  const { userInfo, isAuthenticated, setUserInfo, resetUserInfo } = useUserStore();
+  const { userInfo, isLogin, isAuthenticating, setIsAuthenticating, setUserInfo, reset } =
+    useUserStore();
 
-  // 경쟁 상태 해결을 위한 ref
+  // 경쟁 상태를 대비한 ref
   const accessTokenPromiseRef = useRef<Promise<AxiosResponse<ReIssue, unknown>> | null>(null);
 
   const requestToken = useCallback(async (url: string): Promise<ReIssue['result'] | null> => {
@@ -77,8 +75,8 @@ export const useAuthCycle = () => {
   const logout = useCallback((): void => {
     deleteAuthorizationHeader();
     clearGlobalRefreshTimer();
-    resetUserInfo();
-  }, [clearGlobalRefreshTimer, deleteAuthorizationHeader, resetUserInfo]);
+    reset();
+  }, [deleteAuthorizationHeader, reset]);
 
   /**
    * executeAuthCycle
@@ -90,7 +88,7 @@ export const useAuthCycle = () => {
       // setAuthError(null);
 
       // 이미 인증된 상태면 인증 진행 생략
-      if (!options.bypass && userInfo !== null && isAuthenticated) {
+      if (!options.bypass && userInfo !== null && isLogin) {
         setIsAuthenticating(false);
         return;
       }
@@ -131,10 +129,9 @@ export const useAuthCycle = () => {
           console.warn('silentOnFailure');
         } else if (options.shouldRollbackOnFailure) {
           window.location.href = options.customRollbackUrl;
+        } else {
+          // setAuthError(e);
         }
-        // else {
-        //   throw e;
-        // }
       } finally {
         // setAuthError(true);
         setIsAuthenticating(false);
@@ -142,10 +139,11 @@ export const useAuthCycle = () => {
     },
     [
       fetchUserInfo,
-      isAuthenticated,
+      isLogin,
       logout,
       requestToken,
       setAuthorizationHeader,
+      setIsAuthenticating,
       silentRefresh,
       updateUserStore,
       userInfo,

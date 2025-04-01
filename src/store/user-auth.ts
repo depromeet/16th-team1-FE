@@ -8,23 +8,49 @@ export interface UserInfo {
 
 export interface UserStore {
   userInfo: UserInfo | null;
-  isAuthenticated: boolean;
   setUserInfo: (user: UserInfo) => void;
-  resetUserInfo: () => void;
+
+  isLogin: boolean;
+  setIsLogin: (status: boolean) => void;
+
+  isAuthenticating: boolean;
+  setIsAuthenticating: (status: boolean) => void;
+
+  authError: unknown | null;
+  setAuthError: () => void;
+
+  reset: () => void;
 }
 
 export const useUserStore = create<UserStore>((set) => ({
   userInfo: null,
-  isAuthenticated: false,
   setUserInfo: (userInfo: UserInfo) =>
     set({
       userInfo,
-      isAuthenticated: true,
     }),
 
-  resetUserInfo: () =>
+  isLogin: false,
+  setIsLogin: (status: boolean) => {
+    set({
+      isLogin: status,
+    });
+  },
+
+  isAuthenticating: false,
+  setIsAuthenticating: (status: boolean) => {
+    set({
+      isAuthenticating: status,
+    });
+  },
+
+  authError: null,
+  setAuthError: () => {},
+
+  reset: () =>
     set({
       userInfo: null,
-      isAuthenticated: false,
+      isLogin: false,
+      isAuthenticating: false,
+      authError: null,
     }),
 }));

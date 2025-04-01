@@ -30,10 +30,10 @@ class AuthService {
 
   /** 빌더 패턴에서 생성된 옵션으로 인증 싸이클을 일괄 처리하는 메소드 */
   public async executeAuthCycle(options: AuthCycleOptions) {
-    const { isAuthenticated, userInfo } = useUserStore.getState();
+    const { isLogin, userInfo } = useUserStore.getState();
 
     if (options.forceLogout) return this.logout();
-    if (!options.bypass && userInfo !== null && isAuthenticated) return;
+    if (!options.bypass && userInfo !== null && isLogin) return;
 
     try {
       // 1. 토큰 재발급(로그인) 처리

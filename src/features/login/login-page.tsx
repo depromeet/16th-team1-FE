@@ -17,7 +17,7 @@ function LoginPage() {
   const { executeAuthCycle, createAuthCycle } = useAuthCycle();
 
   const navigate = useNavigate();
-  const { isAuthenticated, userInfo } = useUserStore();
+  const { isLogin, userInfo } = useUserStore();
   const isRollback = useCheckQueryStrings({ rollback: 'true' });
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function LoginPage() {
      * - 서버 사이드 라우팅일 때, refreshToken은 남아 있기 때문에 재발급 요청 후 /upload로 이동
      * - 최초 로그인 및 로그아웃 상태일 때, 재발급 요청시 401이 발생하지만 롤백없이 유지(=재로그인 유도)
      */
-    if (!isRollback && (!isAuthenticated || userInfo === null)) {
+    if (!isRollback && (!isLogin || userInfo === null)) {
       const options = createAuthCycle()
         .withoutRollback() // (로그인 페이지에 있으므로) 롤백 비활성화
         .build();
@@ -47,7 +47,7 @@ function LoginPage() {
     }
 
     // 이미 로그인이 돼있을 경우
-    if (!isRollback && isAuthenticated && userInfo !== null) navigate('/upload');
+    if (!isRollback && isLogin && userInfo !== null) navigate('/upload');
   }, []);
 
   return (
