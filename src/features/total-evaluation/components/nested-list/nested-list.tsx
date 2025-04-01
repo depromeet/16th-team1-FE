@@ -14,7 +14,7 @@ export default function NestedList({ gap, listItems }: NestedListProps) {
   return (
     <div css={styles.nestedList}>
       <ol css={styles.orderedList(gap)}>
-        {listItems.map((item) => (
+        {listItems?.map((item) => (
           <li key={item.title} css={styles.orderListText}>
             {item.title}
             {item.content && (

@@ -37,7 +37,7 @@ function FeedbackContents({ renderContentButton, renderTriggerButton }: Accordio
       </Accordion.Item>
 
       {/* 일반 항목들 */}
-      {dataList.map(({ projectName, feedbackPerPage }) => (
+      {dataList?.map(({ projectName, feedbackPerPage }) => (
         <Accordion.Item key={projectName} value={projectName} css={styles.container}>
           <Accordion.Header>
             <Accordion.Trigger asChild>{renderTriggerButton(projectName)}</Accordion.Trigger>

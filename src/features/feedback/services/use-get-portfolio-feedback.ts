@@ -79,7 +79,7 @@ interface UseGetPortfolioFeedbackResponse {
     overallStatus: Status;
     projectStatus: Status;
     overallEvaluation: OverallEvaluationType;
-    additionalChat: AdditionalChatType[];
+    additionalChat: AdditionalChatType[] | null;
     projectEvaluation: ProjectEvaluationType[];
   };
   imageList: string[];
