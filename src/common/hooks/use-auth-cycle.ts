@@ -15,7 +15,7 @@ import { ReIssue } from '../types/auth';
  * - 인증 싸이클 실행 함수를 반환하며, 진행 상태 및 에러 상태를 관리
  */
 export const useAuthCycle = () => {
-  const { userInfo, isLogin, setIsAuthenticating, setUserInfo, setAuthError, reset } =
+  const { userInfo, isLogin, setIsAuthenticating, setUserInfo, setIsLogin, setAuthError, reset } =
     useAuthStore();
 
   // 경쟁 상태를 대비한 ref
@@ -72,11 +72,18 @@ export const useAuthCycle = () => {
     }
   }, []);
 
-  const updateUserStore = useCallback(
+  const updateUserInfoStore = useCallback(
     (userInfo: UserInfo): void => {
       setUserInfo(userInfo);
     },
     [setUserInfo],
+  );
+
+  const updateIsLoginStore = useCallback(
+    (status: boolean): void => {
+      setIsLogin(status);
+    },
+    [setIsLogin],
   );
 
   const logout = useCallback((): void => {}, []);
@@ -129,7 +136,13 @@ export const useAuthCycle = () => {
           setIsAuthenticating(false);
           return;
         }
-        updateUserStore(userData);
+
+        updateUserInfoStore(userData);
+        updateIsLoginStore(true);
+
+        if (options.shouldMoveOnSuccess) {
+          navigate(options.onSuccessPageUrl);
+        }
       } catch (error: unknown) {
         if (options.silentOnFailure) {
           console.warn('silentOnFailure');
@@ -139,7 +152,7 @@ export const useAuthCycle = () => {
 
         if (error instanceof CustomAuthError) {
           setAuthError(error);
-        }
+        } else throw error; // 예측 가능한 범위의 에러가 아닐 경우, 상위 컨텍스트로 throw
       } finally {
         setIsAuthenticating(false);
       }
@@ -155,7 +168,8 @@ export const useAuthCycle = () => {
       setAuthorizationHeader,
       setIsAuthenticating,
       silentRefresh,
-      updateUserStore,
+      updateIsLoginStore,
+      updateUserInfoStore,
       userInfo,
     ],
   );
