@@ -26,6 +26,7 @@ export const modalDescription = css`
   gap: 2.4rem;
   align-self: stretch;
   padding-right: 0.4rem;
+  height: 100%;
   ${scrollbar}
 `;
 
