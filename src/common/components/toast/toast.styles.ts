@@ -9,7 +9,6 @@ interface ToastVariantType {
   textColor: string;
   padding: string;
   gap: string;
-  fontSize: string;
   isClickable: boolean;
   animation: {
     open: Keyframes;
@@ -84,30 +83,12 @@ const slideRight = keyframes`
 `;
 
 const toastVariants: Record<ToastType, ToastVariantType> = {
-  aiCompleteLarge: {
-    background: `linear-gradient(to right, ${colors.GRAY[1000]}, ${colors.GRAY[1000]}) padding-box,
-                   linear-gradient(to right bottom, ${colors.PURPLE[300]}, ${colors.SORA[200]}) border-box`,
-    border: '0.15rem solid transparent',
-    textColor: `linear-gradient(270deg, ${colors.SORA[200]}, ${colors.PURPLE[300]})`,
-    padding: '3.2rem 4rem',
-    gap: '1.6rem',
-    fontSize: '2.4rem',
-    isClickable: true,
-    animation: {
-      open: slideUp,
-      close: slideDown,
-      extra: floating,
-    },
-    position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
-  },
-  aiCompleteSmall: {
-    background: `linear-gradient(to right, ${colors.GRAY[1000]}, ${colors.GRAY[1000]}) padding-box,
-                   linear-gradient(to right bottom, ${colors.PURPLE[300]}, ${colors.SORA[200]}) border-box`,
-    border: '0.15rem solid transparent',
-    textColor: `linear-gradient(270deg, ${colors.SORA[200]}, ${colors.PURPLE[300]})`,
+  feedbackPending: {
+    background: `${colors.GRAY[1000]}`,
+    border: `0.15rem solid ${colors.GREEN[500]}`,
+    textColor: `${colors.GREEN[500]}`,
     padding: '2.2rem 3rem',
     gap: '0.7rem',
-    fontSize: '1.658rem',
     isClickable: false,
     animation: {
       open: slideUp,
@@ -116,13 +97,12 @@ const toastVariants: Record<ToastType, ToastVariantType> = {
     },
     position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
   },
-  loginFailure: {
+  feedbackError: {
     background: `${colors.GRAY[1000]}`,
     border: `0.15rem solid ${colors.RED[500]}`,
     textColor: `${colors.RED[500]}`,
     padding: '2.2rem 3rem',
     gap: '0.7rem',
-    fontSize: '1.658rem',
     isClickable: false,
     animation: {
       open: slideLeft,
@@ -131,20 +111,21 @@ const toastVariants: Record<ToastType, ToastVariantType> = {
     },
     position: { top: '2rem', right: '2rem' },
   },
-  pdfSubmit: {
-    background: `${colors.GRAY[1000]}`,
-    border: `0.15rem solid ${colors.GREEN[500]}`,
-    textColor: `${colors.GREEN[500]}`,
-    padding: '2.2rem 3rem',
-    gap: '0.7rem',
-    fontSize: '1.658rem',
-    isClickable: false,
+  feedbackSuccess: {
+    border: `0.2rem solid rgba(255, 255, 255, 0.30)`,
+    background: `var(--gradient, linear-gradient(137deg, #E1C6FE 0%, #AFE7FF 100%))`,
+    padding: `2.4rem 3.2rem`,
+    gap: `0.6rem`,
+    textColor: `#18171D`,
+    isClickable: true,
     animation: {
       open: slideUp,
       close: slideDown,
-      extra: 'none',
+      extra: floating,
     },
     position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
+    boxShadow: `0 0 8rem 0 rgba(0, 0, 0, 0.40)`,
+    backdropFilter: `blur(1.2rem)`,
   },
   getFeedbackFailure: {
     background: 'rgba(233, 97, 80, 0.10)',
@@ -152,7 +133,6 @@ const toastVariants: Record<ToastType, ToastVariantType> = {
     textColor: `${colors.RED[500]}`,
     padding: '1.8rem 2.4rem',
     gap: '0.6rem',
-    fontSize: '1.6rem',
     isClickable: true,
     animation: {
       open: slideUp,
@@ -160,7 +140,7 @@ const toastVariants: Record<ToastType, ToastVariantType> = {
       extra: 'none',
     },
     position: { bottom: '5.6rem', left: '50%', transform: 'translateX(-50%)' },
-    boxShadow: '0 0 80px 0 rgb(0 0 0 / 24%)',
+    boxShadow: '0 0 8rem 0 rgb(0 0 0 / 24%)',
     backdropFilter: 'blur(1.2rem)',
   },
 };
@@ -178,7 +158,7 @@ export const root = (name: ToastType) => {
     border: ${border};
     gap: ${gap};
     flex-shrink: 0;
-    border-radius: 69rem;
+    border-radius: 100rem;
     background-origin: border-box;
     background-clip: padding-box, border-box;
     box-shadow: ${boxShadow || 'none'};
@@ -198,17 +178,17 @@ export const root = (name: ToastType) => {
 };
 
 export const title = (name: ToastType) => {
-  const { textColor, fontSize } = toastVariants[name];
+  const { textColor } = toastVariants[name];
 
   return css`
     background: ${textColor};
     color: transparent;
-    font-size: ${fontSize};
+    font-size: 1.6rem;
+    font-style: normal;
     font-weight: 600;
-    line-height: normal;
+    line-height: 150%;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: -0.0332rem;
   `;
 };
 
@@ -217,6 +197,7 @@ export const viewport = (name: ToastType) => {
 
   return css`
     position: fixed;
+    z-index: 100;
     ${Object.entries(position)
       .map(([key, value]) => `${key}: ${value};`)
       .join('')}
