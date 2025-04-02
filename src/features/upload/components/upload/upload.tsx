@@ -1,8 +1,7 @@
 // import { css } from '@emotion/react';
+import FallbackBoundary from '@/common/components/fallback-boundary/fallback-boundary';
 
 // import { axiosInstance } from '@/common/services/service-config';
-
-import FallbackBoundary from '@/common/components/fallback-boundary/fallback-boundary';
 
 import PortfolioUpload from '../portfolio-upload/portfolio-upload';
 import RecentFeedback from '../recent-feedback/recent-feedback';

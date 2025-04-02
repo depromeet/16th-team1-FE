@@ -3,6 +3,7 @@ import { useState } from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 import { BaseButton } from '@/common/components/button/base-button';
+import { useClearAuth } from '@/common/hooks/use-auth-cycle';
 import { getValueOrHyphen } from '@/common/utils/get-value-or-hyphen';
 import { useGetRemainingCountQuery } from '@/features/upload/services/queries';
 import { useModalStore } from '@/store/modal';
@@ -18,6 +19,8 @@ function AuthProfileModalDropdown() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const { openModal } = useModalStore();
+
+  const { logout } = useClearAuth();
 
   return (
     <DropdownMenu.Root
@@ -60,8 +63,9 @@ function AuthProfileModalDropdown() {
           <DropdownMenu.Item asChild>
             <SingleProfileModalButton
               label="로그아웃"
-              handleClick={() => {
+              handleClick={async () => {
                 setIsDropdownOpen(false);
+                await logout();
               }}
             />
           </DropdownMenu.Item>
