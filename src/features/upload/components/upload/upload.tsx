@@ -25,7 +25,7 @@ export default function FeedbackUpload() {
         `}
       >
         내 정보 확인(테스트용)
-      </button> */} */}
+      </button> */}
       <FallbackBoundary suspense={{ fallbackUI: null }} error={{ fallbackUI: null }}>
         <RecentFeedback />
       </FallbackBoundary>
