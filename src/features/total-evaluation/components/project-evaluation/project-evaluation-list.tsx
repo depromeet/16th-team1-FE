@@ -4,7 +4,7 @@ import { useGetPortfolioFeedbackData } from '@/features/total-evaluation/hooks/u
 export default function ProjectEvaluationList() {
   const { projectEvaluation } = useGetPortfolioFeedbackData();
 
-  return projectEvaluation.map((project) => (
+  return projectEvaluation?.map((project) => (
     <ProjectEvaluation key={project.projectName} projectEvaluation={project} />
   ));
 }
