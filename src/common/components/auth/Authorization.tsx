@@ -14,6 +14,8 @@ function Authorization() {
 
   useEffect(() => {
     const controller = new AbortController();
+
+    // 일반적인 인증 싸이클 빌더 옵션 적용
     const options = createAuthCycle().build();
 
     // 인증 싸이클 실행
