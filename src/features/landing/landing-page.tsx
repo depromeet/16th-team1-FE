@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { css } from '@emotion/react';
+// import { css } from '@emotion/react';
 
 import totalEvaluation from '@/assets/images/total-evaluation.png';
 import { useAuthCycle } from '@/common/hooks/use-auth-cycle';
 import useDeviceType from '@/common/hooks/use-device-type';
-import { axiosInstance } from '@/common/services/service-config';
+// import { axiosInstance } from '@/common/services/service-config';
 
 import FAQ from './components/frequently-asked-questions/frequently-asked-questions';
 import HelpersSection from './components/helpers-section/helpers-section';

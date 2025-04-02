@@ -102,6 +102,7 @@ export const useClearAuth = () => {
   const { deleteAuthorizationHeader } = useAuthHelpers();
   const { deleteRefreshToken } = useAuthApi();
   const { reset, setAuthError } = useAuthStore();
+  const navigate = useNavigate();
 
   const clearAuthInfo = () => {
     deleteAuthorizationHeader();
@@ -109,7 +110,7 @@ export const useClearAuth = () => {
     reset();
   };
 
-  const logout = async (url: string): Promise<void> => {
+  const logout = async (url: string = '/api/v1/logout'): Promise<void> => {
     try {
       await deleteRefreshToken(url);
     } catch (error) {
@@ -118,6 +119,7 @@ export const useClearAuth = () => {
       }
     } finally {
       clearAuthInfo();
+      navigate('/');
     }
   };
 
