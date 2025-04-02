@@ -1,10 +1,16 @@
 import GeneralSans from '@assets/fonts/GeneralSans-Variable.woff2';
+import Pretendard from '@assets/fonts/PretendardVariable.woff2';
 import { css } from '@emotion/react';
 
 export const globalStyles = css`
   @font-face {
     font-family: GeneralSans;
     src: url(${GeneralSans}) format('woff2');
+  }
+
+  @font-face {
+    font-family: Pretendard;
+    src: url(${Pretendard}) format('woff2');
   }
 
   *,
