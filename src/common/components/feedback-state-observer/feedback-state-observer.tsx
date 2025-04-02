@@ -1,5 +1,4 @@
 import { useCallback, useEffect } from 'react';
-import { useNavigate } from 'react-router';
 
 import { getLocalStorage, removeLocalStorage } from '@/common/utils/storage';
 import { useGetPortfolioFeedbackForStatus } from '@/features/feedback/services/use-get-portfolio-feedback';
@@ -11,7 +10,6 @@ const POLLING_INTERVAL = 5000;
  * 피드백 상태에 따른 작업을 수행하는 컴포넌트
  */
 export default function FeedbackStateObserver() {
-  const navigate = useNavigate();
   const { feedbackId, changeState } = useFeedbackStore();
   const { data: feedback, refetch } = useGetPortfolioFeedbackForStatus({
     feedbackId,
@@ -30,8 +28,6 @@ export default function FeedbackStateObserver() {
       removeLocalStorage('feedbackId');
 
       changeState('COMPLETE');
-
-      navigate(`/total-evaluation/${feedbackId}`);
     } else if (isError) {
       // 피드백 생성 실패 시
       changeState('ERROR');
@@ -46,7 +42,7 @@ export default function FeedbackStateObserver() {
 
       refetch();
     }
-  }, [changeState, feedback?.result, feedbackId, navigate, refetch]);
+  }, [changeState, feedback?.result, feedbackId, refetch]);
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
