@@ -19,13 +19,11 @@ type ContentType = {
 };
 
 export const useHeaderContents = (pageLabel: PageLabelKey) => {
-  const { isLogin } = useAuthStore();
-
   const content: ContentType = {
     Landing: {
       left: <HeaderLogo />,
       middle: <LandingScrollSectionButtons />,
-      right: isLogin ? <AuthProfileModalDropdown /> : <LandingAuthButtons />,
+      right: <LandingAuthButtons />,
     },
     Login: {
       left: null,
