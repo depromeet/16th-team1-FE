@@ -9,12 +9,12 @@ import { getValueOrHyphen } from '@/common/utils/get-value-or-hyphen';
 
 import * as styles from './file-upload.styles';
 
-const MAX_FILE_SIZE = 1024 * 1024 * 5;
+const MAX_FILE_SIZE = 1024 * 1024 * 50;
 
 const schema = z.object({
   file: z
     .instanceof(File, { message: '파일을 업로드해주세요' })
-    .refine((file) => file?.size <= MAX_FILE_SIZE, `5MB까지 업로드 가능합니다.`)
+    .refine((file) => file?.size <= MAX_FILE_SIZE, `50MB까지 업로드 가능합니다.`)
     .refine((file) => file?.type?.includes('pdf'), 'PDF 파일을 업로드해주세요.'),
 });
 
