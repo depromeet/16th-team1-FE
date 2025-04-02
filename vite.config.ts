@@ -1,9 +1,15 @@
-import { VitePWA } from 'vite-plugin-pwa';
+/// <reference types="vitest" />
+import path from 'path';
+
 import { defineConfig } from 'vite';
+// import mkcert from 'vite-plugin-mkcert';
+import { VitePWA } from 'vite-plugin-pwa';
+import svgr from 'vite-plugin-svgr';
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
+    svgr(),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
@@ -15,8 +21,26 @@ export default defineConfig({
         lang: 'ko',
       },
     }),
+    // mkcert(),
   ],
+  resolve: {
+    alias: [
+      { find: '@', replacement: path.resolve(__dirname, 'src') },
+      { find: '@assets', replacement: path.resolve(__dirname, 'src/assets') },
+      { find: '@common', replacement: path.resolve(__dirname, 'src/common') },
+      { find: '@features', replacement: path.resolve(__dirname, 'src/features') },
+    ],
+  },
+
   server: {
     port: 3000,
+    // host: 'critix.kr',
+  },
+  test: {
+    coverage: {
+      provider: 'v8',
+    },
+    environment: 'jsdom',
+    setupFiles: ['./vitest.setup.ts'],
   },
 });

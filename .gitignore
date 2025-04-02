@@ -29,3 +29,10 @@ dist-ssr
 
 # env
 .env
+
+# vitest
+coverage
+
+
+# cert
+cert

@@ -1,0 +1,68 @@
+name: 'Chromatic Deployment'
+
+on:
+  pull_request:
+    branches: [develop]
+    paths:
+      - '**.stories.ts'
+      - '**.stories.tsx'
+
+jobs:
+  chromatic-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_ENV
+
+      - name: Cache pnpm dependencies
+        uses: actions/cache@v3
+        with:
+          path: $(pnpm store path)
+          key: pnpm-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            pnpm-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build Storybook
+        run: pnpm run build-storybook
+
+      - name: Publish Chromatic
+        id: chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
+      - name: Comment on PR with Chromatic URL
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.ACTION_TOKEN }}
+          script: |
+            if (context.payload.pull_request) {
+              const prNumber = context.payload.pull_request.number;
+              const storybookUrl = "${{ steps.chromatic.outputs.storybookUrl }}";
+              github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: `🚀 **Storybook Deploy** : ${storybookUrl}`
+              });
+            } else {
+              console.log("🚨 PR 이벤트가 아니므로 댓글을 남기지 않습니다.");
+            }
