@@ -173,6 +173,7 @@ export const useAuthCycle = () => {
         if (error instanceof CustomAuthError) {
           setAuthError(error);
           if (options.silentOnFailure) {
+            clearAuthInfo();
             console.warn('silentOnFailure');
           } else if (options.shouldRollbackOnFailure) {
             clearAuthInfo();
