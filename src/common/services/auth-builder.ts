@@ -90,12 +90,8 @@ export class AuthCycleBuilder {
     return new AuthCycleBuilder({ ...this.options, forceLogout: true });
   }
 
+  /** 최종 옵션 생성 */
   public build(): AuthCycleOptions {
     return this.options;
-  }
-
-  /** 인증 싸이클 실행 */
-  public async execute() {
-    return AUTH_SERVICE.executeAuthCycle(this.options);
   }
 }
