@@ -13,7 +13,7 @@ import { ReIssue } from '../types/auth';
 
 /** API 요청 관련 함수들 */
 const useAuthApi = () => {
-  // 경쟁 상태 해결을 위한 ref
+  // RTR 환경에서 strtictMode로 인한 API 2번 호출 문제(=경쟁상태)를 해결하기 위한 ref
   const accessTokenPromiseRef = useRef<Promise<AxiosResponse<ReIssue, unknown>> | null>(null);
 
   const requestToken = useCallback(async (url: string): Promise<ReIssue['result'] | null> => {
@@ -29,6 +29,7 @@ const useAuthApi = () => {
       }
     }
 
+    // 첫 요청인 경우 프로미스를 저장
     try {
       accessTokenPromiseRef.current = axiosInstance.post(url);
       const response = await accessTokenPromiseRef.current;
@@ -65,6 +66,7 @@ const useAuthApi = () => {
 export const useAuthHelpers = () => {
   const navigate = useNavigate();
 
+  /* Authorization 헤더에 토큰 등록 */
   const setAuthorizationHeader = useCallback((accessToken: string): void => {
     axiosInstance.defaults.headers.common = {
       ...axiosInstance.defaults.headers.common,
@@ -72,20 +74,25 @@ export const useAuthHelpers = () => {
     };
   }, []);
 
+  /* Authorization 헤더에서 토큰 제거 */
   const deleteAuthorizationHeader = useCallback((): void => {
     const headers = { ...axiosInstance.defaults.headers.common };
     delete headers['Authorization'];
     axiosInstance.defaults.headers.common = headers;
   }, []);
 
+  /** 토큰 만료 전 자동 갱신 설정 */
   const silentRefresh = useCallback(
     (
       expirationTime: string,
       options: AuthCycleOptions,
       executeAuthCycle: (opts: AuthCycleOptions) => Promise<void>,
     ) => {
+      // 기존 타이머가 있으면 제거
       clearGlobalRefreshTimer();
+
       const refreshTime = (Number(expirationTime) - 60) * 1000;
+
       const id = setTimeout(() => {
         // bypass 옵션 활성화하여 재인증 실행
         executeAuthCycle({ ...options, bypass: true });
@@ -98,6 +105,7 @@ export const useAuthHelpers = () => {
   return { setAuthorizationHeader, deleteAuthorizationHeader, silentRefresh, navigate };
 };
 
+/** 인증 정보 제거에 대한 커스텀 훅 */
 export const useClearAuth = () => {
   const { deleteAuthorizationHeader } = useAuthHelpers();
   const { deleteRefreshToken } = useAuthApi();
@@ -126,7 +134,7 @@ export const useClearAuth = () => {
   return { clearAuthInfo, logout };
 };
 
-/** 인증 싸이클 실행 커스텀 훅 */
+/** 메인 인증 싸이클 실행 커스텀 훅 */
 export const useAuthCycle = () => {
   const { userInfo, isLogin, setIsAuthenticating, setUserInfo, setIsLogin, setAuthError } =
     useAuthStore();
@@ -137,7 +145,7 @@ export const useAuthCycle = () => {
   const hasNavigatedOnSuccess = useRef(false);
 
   /**
-   * 인증 싸이클 실행 함수
+   * 빌더 패턴에서 생성된 옵션으로 인증 싸이클을 실행하는 메인 함수
    */
   const executeAuthCycle = useCallback(
     async (options: AuthCycleOptions): Promise<void> => {
