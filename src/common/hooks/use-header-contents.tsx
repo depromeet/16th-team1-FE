@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 
+import { useAuthStore } from '@/store/user-auth';
+
 import AuthProfileModalDropdown from '../components/layout/header-buttons/auth-profile-modal-dropdown';
 import HeaderLogo from '../components/layout/header-buttons/header-logo';
 import LandingAuthButtons from '../components/layout/header-buttons/landing/landing-auth-buttons';
@@ -17,11 +19,13 @@ type ContentType = {
 };
 
 export const useHeaderContents = (pageLabel: PageLabelKey) => {
+  const { isLogin } = useAuthStore();
+
   const content: ContentType = {
     Landing: {
       left: <HeaderLogo />,
       middle: <LandingScrollSectionButtons />,
-      right: <LandingAuthButtons />,
+      right: isLogin ? <AuthProfileModalDropdown /> : <LandingAuthButtons />,
     },
     Login: {
       left: null,
