@@ -1,10 +1,17 @@
 import { css } from '@emotion/react';
 
+import { mediaQueries } from '@/assets/styles/device-width';
+import { FOOTER_HEIGHT } from '@/common/constants/layout';
+
 export const container = css`
   background-color: #18171d;
-  min-height: 100dvh;
+  min-height: calc(100dvh - ${FOOTER_HEIGHT.DEFAULT});
   min-width: 100dvw;
   display: flex;
+
+  ${mediaQueries.mobile} {
+    height: calc(100dvh - ${FOOTER_HEIGHT.MOBILE});
+  }
 `;
 
 export const totalEvaluationSection = css`

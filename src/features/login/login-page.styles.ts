@@ -1,6 +1,9 @@
 import { css } from '@emotion/react';
 
+import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
+
+import { FOOTER_HEIGHT } from './../../common/constants/layout';
 
 export const container = withTheme(
   (theme) => css`
@@ -8,9 +11,13 @@ export const container = withTheme(
     align-items: center;
     justify-content: center;
     width: 100dvw;
-    height: 100dvh;
-    padding: 12rem 34.3rem 35.9rem;
+    height: calc(100dvh - ${FOOTER_HEIGHT.DEFAULT});
     background-color: ${theme.colors.GRAY.bg};
+
+    ${mediaQueries.mobile} {
+      height: calc(100dvh - ${FOOTER_HEIGHT.MOBILE});
+      margin: auto;
+    }
   `,
 );
 
@@ -18,18 +25,31 @@ export const content = css`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 6rem;
   width: 65.3rem;
   height: 30.1rem;
-  gap: 6rem;
+  margin: 12rem auto auto;
+
+  ${mediaQueries.mobile} {
+    width: auto;
+    height: auto;
+    margin: auto;
+  }
 `;
 
 export const descriptioinWrapper = css`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 4rem;
   width: 45.3rem;
   height: 19.3rem;
+  white-space: nowrap;
+  flex-direction: column;
+  gap: 4rem;
+
+  ${mediaQueries.mobile} {
+    width: auto;
+    height: auto;
+  }
 `;
 
 export const titleWrapper = css`
@@ -37,8 +57,12 @@ export const titleWrapper = css`
   flex-direction: column;
   gap: 0.8rem;
   align-items: center;
-  width: 100%;
   height: 8.1rem;
+
+  ${mediaQueries.mobile} {
+    width: auto;
+    height: auto;
+  }
 `;
 
 export const title = withTheme(
