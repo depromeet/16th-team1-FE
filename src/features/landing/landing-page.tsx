@@ -37,7 +37,7 @@ export default function LandingPage() {
   return (
     <div id="landing-container" css={styles.landingPage}>
       {/* 테스트용 */}
-      <button
+      {/* <button
         onClick={async () => {
           const response = await axiosInstance.get(`/api/v1/users/me`);
           console.log(response.data);
@@ -47,7 +47,7 @@ export default function LandingPage() {
         `}
       >
         내 정보 확인(테스트용)
-      </button>
+      </button> */}
       <div css={styles.flexColumn(isMobile ? 4.8 : 10)} id="start-section">
         <RoutingStartSection />
         <img
