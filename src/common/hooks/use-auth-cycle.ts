@@ -130,8 +130,9 @@ export const useAuthCycle = () => {
     useAuthStore();
   const { requestToken, fetchUserInfo } = useAuthApi();
   const { setAuthorizationHeader, silentRefresh, navigate } = useAuthHelpers();
-
   const { clearAuthInfo } = useClearAuth();
+
+  const hasNavigatedOnSuccess = useRef(false);
 
   /**
    * 인증 싸이클 실행 함수
@@ -165,7 +166,8 @@ export const useAuthCycle = () => {
         setIsLogin(true);
 
         // 인증 성공 시 옵션에 따른 페이지 이동 처리
-        if (options.shouldMoveOnSuccess) {
+        if (options.shouldMoveOnSuccess && !hasNavigatedOnSuccess.current) {
+          hasNavigatedOnSuccess.current = true;
           navigate(options.onSuccessPageUrl);
         }
       } catch (error) {
