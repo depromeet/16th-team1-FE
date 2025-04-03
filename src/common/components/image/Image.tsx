@@ -1,43 +1,34 @@
-// TODO : lazy 로딩(loading 속성? react?), decoding 속성, 반응형 srcset size
+// TODO : lazy 로딩(loading 속성? react?), decoding 속성, 반응형 srcset size, fetchPriority
 
-interface ImageProps {
+import { forwardRef, ImgHTMLAttributes, useState } from 'react';
+
+interface ImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'css'> {
   src: string; // 이미지 경로
   alt: string;
   width?: number;
   height?: number;
-  className?: string;
-  fetchPriority?: 'high' | 'low' | 'auto';
-  decoding?: 'async' | 'auto' | 'sync';
 }
 
-function Image({
-  src,
-  alt,
-  width,
-  height,
-  className,
-  fetchPriority = 'auto',
-  decoding = 'async',
-}: ImageProps) {
-  const webpSrc = src.replace(/\.(png|jpg|jpeg)$/, '.webp');
+const Image = forwardRef<HTMLImageElement, ImageProps>(
+  ({ src, alt, width, height, ...props }, ref) => {
+    const [errored, setErrored] = useState(false);
 
-  return (
-    <picture>
-      <source srcSet={webpSrc} type="image/webp" />
+    const cleanSrc = src.split('?')[0];
+    const webpSrc = cleanSrc.replace(/\.(png|jpg|jpeg)$/, '.webp');
+
+    return (
       <img
-        src={src}
+        ref={ref}
+        src={!errored ? webpSrc : src}
         alt={alt}
         width={width}
         height={height}
-        className={className}
-        fetchPriority={fetchPriority}
-        decoding={decoding}
-        onError={(e) => {
-          e.currentTarget.src = webpSrc;
-        }}
+        onError={() => setErrored(true)}
+        {...props}
       />
-    </picture>
-  );
-}
+    );
+  },
+);
+Image.displayName = 'Image';
 
 export default Image;
