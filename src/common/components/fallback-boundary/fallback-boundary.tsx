@@ -2,6 +2,8 @@
 import { ErrorInfo, ReactNode, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
+import { QueryErrorResetBoundary } from '@tanstack/react-query';
+
 import Skeleton from '../skeleton/skeleton';
 
 type ResetDetails =
@@ -25,22 +27,28 @@ export default function FallbackBoundary({
   error = {},
   suspense = {},
 }: FallbackBoundaryProps) {
-  const { fallbackUI: errorFallbackUI = <Skeleton />, onError, onReset } = error;
+  const { fallbackUI: errorFallbackUI = <Skeleton />, onError } = error;
   const { fallbackUI: suspenseFallbackUI = <Skeleton /> } = suspense;
 
   return (
-    <ErrorBoundary
-      // errorFallbackUI가 함수일 경우 resetErrorBoundary 주입
-      fallbackRender={({ resetErrorBoundary }) => {
-        if (typeof errorFallbackUI === 'function') {
-          return errorFallbackUI(resetErrorBoundary);
-        }
-        return errorFallbackUI;
-      }}
-      onError={onError}
-      onReset={onReset}
-    >
-      <Suspense fallback={suspenseFallbackUI}>{children}</Suspense>
-    </ErrorBoundary>
+    <QueryErrorResetBoundary>
+      {({ reset }) => (
+        <ErrorBoundary
+          fallbackRender={({ resetErrorBoundary }) => {
+            if (typeof errorFallbackUI === 'function') {
+              return errorFallbackUI(() => {
+                reset();
+                resetErrorBoundary();
+              });
+            }
+            return errorFallbackUI;
+          }}
+          onError={onError}
+          onReset={reset}
+        >
+          <Suspense fallback={suspenseFallbackUI}>{children}</Suspense>
+        </ErrorBoundary>
+      )}
+    </QueryErrorResetBoundary>
   );
 }
