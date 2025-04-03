@@ -37,7 +37,6 @@ export default function FallbackBoundary({
           fallbackRender={({ resetErrorBoundary }) => {
             if (typeof errorFallbackUI === 'function') {
               return errorFallbackUI(() => {
-                reset();
                 resetErrorBoundary();
               });
             }
