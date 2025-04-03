@@ -31,7 +31,7 @@ export default function ProjectsWrapper() {
         {
           scrollTrigger: {
             trigger: container.current,
-            start: 'center center',
+            start: 'center-=56px center',
             pin: document.querySelector('#landing-container'),
             scrub: 1,
             toggleActions: 'play pause reverse pause',
