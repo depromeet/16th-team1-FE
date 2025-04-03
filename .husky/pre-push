@@ -1,13 +1,1 @@
-pnpm optimize:images
-
-if [ -n "$(git status --porcelain src/assets/images/*.webp)" ]; then
-  echo "변환된 이미지를 커밋합니다"
-
-  git add src/assets/images/*.webp
-
-  git commit -m "chore: optimize images to webp before push" --no-verify
-else
-  echo "✅ No image changes detected."
-fi
-
 pnpm run build

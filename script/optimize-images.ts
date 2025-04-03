@@ -30,7 +30,7 @@ const convertToWebp = async (filePath: string) => {
     : image; // 작으면 그대로 사용
 
   await transformer.withMetadata().toFormat('webp', { quality: 80 }).toFile(outputFilePath);
-  fs.unlinkSync(filePath);
+  // fs.unlinkSync(filePath);
 };
 
 function scanAndConvert(dir: string) {

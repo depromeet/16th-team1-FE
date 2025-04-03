@@ -1,30 +1,18 @@
 import { execSync } from 'child_process';
 
-try {
-  console.log('🔧 Optimizing images...');
-  execSync('pnpm optimize:images', { stdio: 'inherit' });
+// 다른 스크립트(이미지 리사이징 진행) 가능
+// execSync('npx tsx script/optimize-images.ts');
 
-  // 변경된 .webp 파일이 있는지 확인
-  const changed = execSync('git status --porcelain', { encoding: 'utf8' })
-    .split('\n')
-    .filter((line) => line.match(/^\s?[AM]\s.*\.webp$/));
+const IMG_PATH = 'src/assets/images';
 
-  if (changed.length > 0) {
-    console.log(`📸 ${changed.length} optimized images detected.`);
+// 2. 변경된 파일 확인
+const result = execSync(`git status --porcelain ${IMG_PATH}`).toString();
+console.log(result);
 
-    // 변경된 .webp 파일 스테이징
-    execSync('git add src/assets/images/**/*.webp');
-
-    // 커밋
-    execSync('git commit -m "chore: optimize images" --no-verify', {
-      stdio: 'inherit',
-    });
-
-    console.log('✅ Optimized images committed.');
-  } else {
-    console.log('✅ No new optimized images to commit.');
-  }
-} catch (error) {
-  console.error('❌ Failed during image optimization or commit:', error);
-  process.exit(1);
+if (result) {
+  console.log('최적화 이미지 파일 자동 커밋 실행');
+  execSync(`git add ${IMG_PATH}`);
+  execSync('git commit -m "chore: optimize images" --no-verify');
+} else {
+  console.log('이미지 변경 사항 없음');
 }
