@@ -50,18 +50,6 @@ const slideDown = keyframes`
   }
 `;
 
-const floating = keyframes`
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-`;
-
 const spin = keyframes`
   0% {
     transform: rotate(0deg);
@@ -99,22 +87,6 @@ const toastVariants: Record<ToastType, ToastVariantType> = {
       open: slideUp,
       close: slideDown,
       extra: 'none',
-    },
-    position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
-    boxShadow: `0 0 8rem 0 rgba(0, 0, 0, 0.40)`,
-    backdropFilter: `blur(1.2rem)`,
-  },
-  feedbackSuccess: {
-    border: `0.2rem solid #DDE1FB;`,
-    background: `var(--gradient, linear-gradient(137deg, #E1C6FE 0%, #AFE7FF 100%))`,
-    padding: `2.4rem 3.2rem`,
-    gap: `0.6rem`,
-    textColor: `#18171D`,
-    isClickable: true,
-    animation: {
-      open: slideUp,
-      close: slideDown,
-      extra: floating,
     },
     position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
     boxShadow: `0 0 8rem 0 rgba(0, 0, 0, 0.40)`,
