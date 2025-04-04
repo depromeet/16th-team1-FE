@@ -39,6 +39,7 @@ export type iconTypes =
   | 'plus'
   | 'smile'
   | 'spark'
+  | 'spinner'
   | 'symbol'
   | 'thumb'
   | 'triangle'
