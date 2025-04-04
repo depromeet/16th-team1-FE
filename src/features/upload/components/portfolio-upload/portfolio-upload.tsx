@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { setLocalStorage } from '@/common/utils/storage';
 import { useGetStartFeedback } from '@/features/feedback/services/use-get-start-feedback';
 import { useFeedbackStore } from '@/store/feedback';
@@ -14,13 +16,20 @@ const IS_TMP_LAUNCHING_DAY_HANDLE_ERROR = (error: unknown) => {
 };
 
 export default function PortfolioUpload() {
-  const { mutateAsync: postPortfolio } = usePostPortfolioMutation();
+  const { mutateAsync: postPortfolio, isPending: isPostPortfolioPending } =
+    usePostPortfolioMutation();
   const { data: remainingCount } = useGetRemainingCountQuery();
-  const { mutateAsync: startFeedback } = useGetStartFeedback();
+  const { mutateAsync: startFeedback, isPending: isStartFeedbackPending } = useGetStartFeedback();
   const { changeState } = useFeedbackStore();
+
+  const [progress, setProgress] = useState<number>();
+
+  const isLoading = isPostPortfolioPending || isStartFeedbackPending;
 
   return (
     <FileUpload
+      isLoading={isLoading}
+      progress={progress}
       remainCount={remainingCount?.result.remainCount}
       onSubmit={async ({ file }) => {
         try {
@@ -30,6 +39,11 @@ export default function PortfolioUpload() {
           await postPortfolio(
             {
               file,
+              onUploadProgress: ({ loaded, total }) => {
+                if (!total) return;
+                const percentage = Math.round((loaded / total) * 100); // 업로드 진행률
+                setProgress(percentage);
+              },
             },
             {
               onSuccess: async (data) => {

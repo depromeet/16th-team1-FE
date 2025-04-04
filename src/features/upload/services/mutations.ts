@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
+import { AxiosProgressEvent } from 'axios';
 
 import { useAuthStore } from '@/store/user-auth';
 
@@ -31,8 +32,15 @@ export const usePostPortfolioMutation = () => {
       if (!LAUNCHING_DAY_TMP_ACCESS_USER.includes(email!))
         throw new Error(LAUNCHING_DAY_TMP_ACCESS_ERROR_MESSAGE);
     },
-    mutationFn: async ({ file }: PortfolioRequest) => {
-      const data = await postPortfolio({ file });
+    mutationFn: async ({
+      file,
+      onUploadProgress,
+    }: PortfolioRequest & {
+      onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
+      onDownloadProgress?: (progressEvent: AxiosProgressEvent) => void;
+    }) => {
+      const data = await postPortfolio({ file, onUploadProgress });
+
       return data;
     },
   });
