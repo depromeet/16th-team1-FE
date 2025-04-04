@@ -12,7 +12,7 @@ export default function FeedbackUpload() {
   return (
     <div css={styles.container}>
       <h1 css={styles.title}>PDF를 업로드해주세요</h1>
-      <p css={styles.description}>PDF 용량은 최대 50MB, 장수는 최대 50장 가능해요.</p>
+      <p css={styles.description}>PDF는 50MB 이하, 50페이지 이내로 올려주세요.</p>
       <PortfolioUpload />
       {/* 테스트용 */}
       {/* <button

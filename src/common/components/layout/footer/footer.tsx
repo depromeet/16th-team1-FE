@@ -31,7 +31,7 @@ export default function Footer() {
   return (
     <footer css={styles.footer(isShortFooter, footerColor)}>
       <Icon name="logo-full-login" width={isMobile ? 53 : 88} />
-      © 2025 All Rights Reserved
+      <span css={styles.text}>© 2025 All Rights Reserved</span>
       <Icon name="behance-logo" width={isMobile ? 20 : 27} />
     </footer>
   );
