@@ -7,6 +7,7 @@ import UploadPage from '@/features/upload/upload-page';
 import Authorization from './common/components/auth/Authorization';
 import GlobalRouteConfig from './common/components/global-route-config/global-route-config';
 import CommonLayout from './common/components/layout/common-layout';
+import NotFoundPage from './common/components/not-found-page/not-found-page';
 import { PAGE_URL } from './common/constants/path';
 import LoginPage from './features/login/login-page';
 import TotalEvaluationPage from './features/total-evaluation/total-evaluation-page';
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
             children: [{ index: true, element: <TotalEvaluationPage /> }],
           },
         ],
+      },
+      {
+        path: '*',
+        element: <NotFoundPage />,
       },
     ],
   },
