@@ -33,6 +33,7 @@ export type iconTypes =
   | 'logo-full-header-desktop'
   | 'logo-full-header-mobile'
   | 'logo-full-login'
+  | 'not-found'
   | 'pdf-submit-success'
   | 'pdf'
   | 'pin'
