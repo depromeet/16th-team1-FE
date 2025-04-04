@@ -21,6 +21,11 @@ export const globalStyles = css`
     box-sizing: border-box;
   }
 
+  html,
+  body {
+    font-synthesis: none;
+  }
+
   body {
     line-height: 1.5;
     box-sizing: border-box;
