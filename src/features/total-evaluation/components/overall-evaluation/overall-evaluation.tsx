@@ -4,6 +4,7 @@ import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import Spacing from '@/common/components/spacing/spacing';
 import { iconTypes } from '@/common/types/icon-types';
+import { getValueOrHyphen } from '@/common/utils/get-value-or-hyphen';
 import { useGetPortfolioFeedbackData } from '@/features/total-evaluation/hooks/use-get-portfolio-feedback-data';
 
 import { EVALUATION_LABEL } from '../../constants/evaluation-constant';
@@ -20,7 +21,7 @@ export type GradeType = 'A' | 'B' | 'C' | 'D';
 
 export default function OverallEvaluation() {
   const { overallEvaluation } = useGetPortfolioFeedbackData();
-  const { summary, strengths, improvements, ...evaluationItems } = overallEvaluation;
+  const { summary, strengths, improvements, ...evaluationItems } = overallEvaluation ?? {};
 
   const GRADE_THRESHOLDS: { threshold: number; grade: GradeType }[] = [
     { threshold: 65, grade: 'D' },
@@ -48,7 +49,7 @@ export default function OverallEvaluation() {
         <SummaryTitle title="포트폴리오 종합 평가" />
 
         <div css={styles.flexColumn}>
-          <EvaluationSummary evaluationSummary={summary} />
+          <EvaluationSummary evaluationSummary={getValueOrHyphen(summary) as string} />
           <Spacing size={4.8} />
           <EvaluationChart
             overallEvaluationGrade={getOverallGrade()}

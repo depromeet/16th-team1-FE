@@ -1,8 +1,7 @@
 // import { css } from '@emotion/react';
+import FallbackBoundary from '@/common/components/fallback-boundary/fallback-boundary';
 
 // import { axiosInstance } from '@/common/services/service-config';
-
-import { useGetFeedbackHistory } from '@features/feedback/services/use-get-feedback-history';
 
 import PortfolioUpload from '../portfolio-upload/portfolio-upload';
 import RecentFeedback from '../recent-feedback/recent-feedback';
@@ -10,9 +9,6 @@ import RecentFeedback from '../recent-feedback/recent-feedback';
 import * as styles from './upload.styles';
 
 export default function FeedbackUpload() {
-  const { data: feedbackHistoryResponse } = useGetFeedbackHistory();
-  const feedbackHistory = feedbackHistoryResponse?.result;
-
   return (
     <div css={styles.container}>
       <h1 css={styles.title}>PDF를 업로드해주세요</h1>
@@ -30,9 +26,9 @@ export default function FeedbackUpload() {
       >
         내 정보 확인(테스트용)
       </button> */}
-      {feedbackHistory && feedbackHistory?.length > 0 && (
-        <RecentFeedback history={feedbackHistory || []} />
-      )}
+      <FallbackBoundary suspense={{ fallbackUI: null }} error={{ fallbackUI: null }}>
+        <RecentFeedback />
+      </FallbackBoundary>
     </div>
   );
 }

@@ -3,19 +3,24 @@ import { useNavigate } from 'react-router';
 import { css } from '@emotion/react';
 
 import { Button } from '@/common/components/button/Button';
-import useDeviceType from '@/common/hooks/use-device-type';
+import { useAuthStore } from '@/store/user-auth';
+
+import ProfileMenu from '../profile-menu';
 
 import * as styles from './landing-auth-buttons.styles';
 
 function LandingAuthButtons() {
   const navigate = useNavigate();
-  const { isMobile } = useDeviceType();
+
+  const { isLogin } = useAuthStore();
   return (
     <div css={styles.container}>
-      {!isMobile && (
+      {isLogin ? (
+        <ProfileMenu />
+      ) : (
         <Button
           size="small"
-          variant="text"
+          variant="primary"
           usage="text"
           onClick={() => navigate('/login')}
           css={css`
@@ -26,18 +31,6 @@ function LandingAuthButtons() {
           Login
         </Button>
       )}
-
-      <Button
-        size="small"
-        variant="primary"
-        usage="text"
-        css={css`
-          width: 8.1rem;
-          height: 3.4rem;
-        `}
-      >
-        Sign up
-      </Button>
     </div>
   );
 }

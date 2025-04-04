@@ -13,7 +13,7 @@ interface UseGetFeedbackHistoryResponse {
 }
 
 export const useGetFeedbackHistory = () => {
-  const endPoint = '/api/v1/feedback/recent/feedback';
+  const endPoint = '/api/v1/feedback/list';
 
   return useSuspenseQuery<UseGetFeedbackHistoryResponse>({
     queryKey: [endPoint],

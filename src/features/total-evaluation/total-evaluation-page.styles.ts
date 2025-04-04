@@ -2,7 +2,6 @@ import { css } from '@emotion/react';
 
 export const container = css`
   background-color: #18171d;
-  min-height: 100dvh;
   min-width: 100dvw;
   display: flex;
 `;

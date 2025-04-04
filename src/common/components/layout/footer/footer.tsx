@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 
 import Icon from '@/common/components/icon/icon';
@@ -14,11 +15,24 @@ export default function Footer() {
 
   const isShortFooter = pathname.includes(PAGE_URL.TotalEvaluation) && isSidebarOpen;
 
+  const [footerColor, setFooterColor] = useState('transparent');
+
+  /** footer 바로 위 형제 요소 배경색 추출 */
+  useEffect(() => {
+    const childElement = document.querySelector('footer');
+    const previousSibling = childElement?.previousElementSibling;
+
+    if (previousSibling) {
+      const parentBgColor = window.getComputedStyle(previousSibling).backgroundColor;
+      setFooterColor(parentBgColor);
+    }
+  }, []);
+
   return (
-    <div css={styles.footer(isShortFooter)}>
+    <footer css={styles.footer(isShortFooter, footerColor)}>
       <Icon name="logo-full-login" width={isMobile ? 53 : 88} />
       © 2025 All Rights Reserved
       <Icon name="behance-logo" width={isMobile ? 20 : 27} />
-    </div>
+    </footer>
   );
 }

@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 
+import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const container = css`
@@ -15,6 +16,10 @@ export const container = css`
   );
   flex-direction: column;
   max-width: 65rem;
+
+  ${mediaQueries.mobile} {
+    margin: auto;
+  }
 `;
 
 export const title = withTheme(

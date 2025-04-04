@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 
+import { CustomAuthError } from '@/common/error/custom-auth-error';
+
 export interface UserInfo {
   email: string;
   name: string;
@@ -8,23 +10,53 @@ export interface UserInfo {
 
 export interface UserStore {
   userInfo: UserInfo | null;
-  isAuthenticated: boolean;
   setUserInfo: (user: UserInfo) => void;
-  resetUserInfo: () => void;
+
+  isLogin: boolean;
+  setIsLogin: (status: boolean) => void;
+
+  isAuthenticating: boolean;
+  setIsAuthenticating: (status: boolean) => void;
+
+  authError: CustomAuthError | null;
+  setAuthError: (authError: CustomAuthError | null) => void;
+
+  reset: () => void;
 }
 
-export const useUserStore = create<UserStore>((set) => ({
+export const useAuthStore = create<UserStore>((set) => ({
   userInfo: null,
-  isAuthenticated: false,
   setUserInfo: (userInfo: UserInfo) =>
     set({
       userInfo,
-      isAuthenticated: true,
     }),
 
-  resetUserInfo: () =>
+  isLogin: false,
+  setIsLogin: (status: boolean) => {
+    set({
+      isLogin: status,
+    });
+  },
+
+  isAuthenticating: false,
+  setIsAuthenticating: (status: boolean) => {
+    set({
+      isAuthenticating: status,
+    });
+  },
+
+  authError: null,
+  setAuthError: (authError: CustomAuthError | null) => {
+    set({
+      authError: authError,
+    });
+  },
+
+  reset: () =>
     set({
       userInfo: null,
-      isAuthenticated: false,
+      isLogin: false,
+      isAuthenticating: false,
+      authError: null,
     }),
 }));

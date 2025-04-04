@@ -18,7 +18,7 @@ export const firstLine = css`
   display: flex;
   gap: 2rem;
 
-  & > div:nth-child(1) {
+  & > div:nth-of-type(1) {
     flex-basis: 38.7rem;
     background: rgb(174 232 255 / 3%);
     border: 0 solid rgb(174 232 255 / 15%);
@@ -29,7 +29,7 @@ export const firstLine = css`
     }
   }
 
-  & > div:nth-child(2) {
+  & > div:nth-of-type(2) {
     flex: 1;
     background: rgb(215 176 255 / 3%);
     border: 0 solid rgb(213 178 255 / 15%);
@@ -38,11 +38,11 @@ export const firstLine = css`
   ${mediaQueries.mobileAndTablet} {
     flex-direction: column;
 
-    & > div:nth-child(1) {
+    & > div:nth-of-type(1) {
       flex: 1;
     }
 
-    & > div:nth-child(2) {
+    & > div:nth-of-type(2) {
       flex: 1;
     }
   }
@@ -56,13 +56,13 @@ export const secondLine = css`
   display: flex;
   gap: 2rem;
 
-  & > div:nth-child(1) {
+  & > div:nth-of-type(1) {
     background: rgb(58 255 10 / 4%);
     border: 0 solid #24242b;
     flex: 1;
   }
 
-  & > div:nth-child(2) {
+  & > div:nth-of-type(2) {
     background: rgb(255 117 104 / 3%);
     border: 0 solid #24242b;
     flex: 1;

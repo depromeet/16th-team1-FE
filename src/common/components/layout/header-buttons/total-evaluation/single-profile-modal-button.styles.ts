@@ -21,8 +21,10 @@ export const SingleButton = withTheme(
 );
 
 export const ButtonLabel = withTheme(
-  (theme) => css`
+  (theme, disabled: boolean) => css`
+    --color: ${disabled ? theme.colors.GRAY[800] : theme.colors.GRAY[100]};
+
     ${theme.fonts.SUBTITLE.SUB5_SB}
-    color: ${theme.colors.GRAY[100]};
+    color: var(--color);
   `,
 );
