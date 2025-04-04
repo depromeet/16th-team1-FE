@@ -20,6 +20,7 @@ export const tableRow = withTheme(
 
 export const label = withTheme(
   (theme) => css`
+    min-width: 10.2rem;
     width: 10.2rem;
     color: ${theme.colors.GRAY[300]};
     font-size: 1.6rem;
