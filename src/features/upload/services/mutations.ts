@@ -37,7 +37,6 @@ export const usePostPortfolioMutation = () => {
       onUploadProgress,
     }: PortfolioRequest & {
       onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
-      onDownloadProgress?: (progressEvent: AxiosProgressEvent) => void;
     }) => {
       const data = await postPortfolio({ file, onUploadProgress });
 
