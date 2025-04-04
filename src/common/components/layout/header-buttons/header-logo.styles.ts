@@ -5,6 +5,7 @@ export const container = (isMobile: boolean) => css`
 
   display: flex;
   align-items: center;
+  width: 16.2rem;
   height: 3.4rem;
   padding-left: var(--pading-left);
 `;
