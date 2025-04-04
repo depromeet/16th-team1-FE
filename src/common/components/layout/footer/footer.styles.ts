@@ -22,8 +22,13 @@ export const footer = withTheme(
   `,
 );
 
-export const text = css`
+export const text = (isShortFooter: boolean) => css`
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+
+  ${isShortFooter &&
+  css`
+    all: unset;
+  `}
 `;
