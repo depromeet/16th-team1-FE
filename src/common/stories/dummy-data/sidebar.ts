@@ -5,7 +5,7 @@ export const dummyEvaluationData: ProjectEvaluationType[] = [
     projectName: '프로젝트 A',
     projectSummary:
       '프로젝트 A는 UI/UX 개선을 주 목적으로 진행되었고, 트래픽이 약 20% 상승하는 효과를 얻었습니다.',
-    imageUrl: 'https://i.ibb.co/78i51C4/25.png',
+    projectImageUrl: 'https://i.ibb.co/78i51C4/25.png',
     negativeFeedback: [
       {
         title: '디자인 개선 필요',
@@ -76,7 +76,7 @@ export const dummyEvaluationData: ProjectEvaluationType[] = [
     projectName: '프로젝트 B',
     projectSummary:
       '프로젝트 B는 검색 기능 고도화와 필터링 시스템을 도입하여 사용자 편의성을 높였습니다.',
-    imageUrl: 'https://i.ibb.co/78i51C4/25.png',
+    projectImageUrl: 'https://i.ibb.co/78i51C4/25.png',
     negativeFeedback: [
       {
         title: '검색 속도 개선 필요',
@@ -130,7 +130,7 @@ export const dummyEvaluationData: ProjectEvaluationType[] = [
     projectName: '프로젝트 C',
     projectSummary:
       '프로젝트 C는 신규 런칭 서비스로 사용자 피드백 기반의 MVP를 빠르게 제작하였습니다.',
-    imageUrl: 'https://i.ibb.co/78i51C4/25.png',
+    projectImageUrl: 'https://i.ibb.co/78i51C4/25.png',
     negativeFeedback: [
       {
         title: '도큐멘테이션 부족',
