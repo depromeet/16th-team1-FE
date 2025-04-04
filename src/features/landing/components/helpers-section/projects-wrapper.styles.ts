@@ -8,5 +8,7 @@ export const projectContainer = css`
 `;
 
 export const projectScrollContainer = css`
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
 `;
