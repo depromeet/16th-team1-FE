@@ -1,5 +1,7 @@
 import { Outlet } from 'react-router';
 
+import { css } from '@emotion/react';
+
 import Footer from '@/common/components/layout/footer/footer';
 import { PageLabelKey } from '@/common/constants/path';
 

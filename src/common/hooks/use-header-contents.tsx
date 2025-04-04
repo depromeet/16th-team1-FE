@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 
+import useDeviceType from './use-device-type';
 import HeaderLogo from '../components/layout/header-buttons/header-logo';
 import LandingAuthButtons from '../components/layout/header-buttons/landing/landing-auth-buttons';
 import LandingScrollSectionButtons from '../components/layout/header-buttons/landing/landing-scroll-section-buttons';
@@ -17,6 +18,8 @@ type ContentType = {
 };
 
 export const useHeaderContents = (pageLabel: PageLabelKey) => {
+  const { isMobile } = useDeviceType();
+
   const content: ContentType = {
     Landing: {
       left: <HeaderLogo />,
@@ -24,9 +27,9 @@ export const useHeaderContents = (pageLabel: PageLabelKey) => {
       right: <LandingAuthButtons />,
     },
     Login: {
-      left: null,
+      left: isMobile ? <HeaderLogo /> : null,
       middle: null,
-      right: null,
+      right: isMobile ? <LandingAuthButtons /> : null,
     },
     Upload: {
       left: <HeaderLogo />,
