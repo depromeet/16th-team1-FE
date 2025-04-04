@@ -4,6 +4,7 @@ import { Controller, FieldValues, SubmitErrorHandler, useForm } from 'react-hook
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
+import BarChart from '@/common/components/bar-chart/bar-chart';
 import Icon from '@/common/components/icon/icon';
 import { getValueOrHyphen } from '@/common/utils/get-value-or-hyphen';
 
@@ -21,10 +22,17 @@ const schema = z.object({
 interface FileUploadProps {
   onSubmit: (data: FieldValues) => unknown;
   remainCount?: number;
+  isLoading?: boolean;
+  progress?: number;
 }
 
 // 파일 업로드용 컴포넌트
-export default function FileUpload({ onSubmit, remainCount }: FileUploadProps) {
+export default function FileUpload({
+  onSubmit,
+  remainCount,
+  isLoading,
+  progress,
+}: FileUploadProps) {
   const isDisabled = remainCount === 0;
 
   const { handleSubmit, control, setValue } = useForm({
@@ -71,10 +79,17 @@ export default function FileUpload({ onSubmit, remainCount }: FileUploadProps) {
             <div css={styles.description}>
               {isDisabled ? (
                 <p>이번 달에 사용 가능한 피드백을 모두 받았어요</p>
+              ) : isLoading ? (
+                'PDF 업로드 중...'
               ) : (
                 <p>이번 달 남은 피드백 횟수 {getValueOrHyphen(remainCount)}회</p>
               )}
             </div>
+            {progress && progress > 0 && (
+              <div css={styles.progress}>
+                <BarChart value={progress || 0} />
+              </div>
+            )}
           </div>
         )}
       />
