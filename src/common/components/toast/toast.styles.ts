@@ -1,6 +1,8 @@
 import { colors } from '@assets/styles/colors';
 import { css, Keyframes, keyframes } from '@emotion/react';
 
+import { withTheme } from '@/common/utils/with-theme';
+
 import { ToastType } from './toast-config';
 
 interface ToastVariantType {
@@ -60,35 +62,22 @@ const floating = keyframes`
   }
 `;
 
-const slideLeft = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(10rem);
+const spin = keyframes`
+  0% {
+    transform: rotate(0deg);
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
-const slideRight = keyframes`
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(10rem);
+  100% {
+    transform: rotate(360deg);
   }
 `;
 
 const toastVariants: Record<ToastType, ToastVariantType> = {
   feedbackPending: {
-    background: `${colors.GRAY[1000]}`,
-    border: `0.15rem solid ${colors.GREEN[500]}`,
-    textColor: `${colors.GREEN[500]}`,
-    padding: '2.2rem 3rem',
-    gap: '0.7rem',
+    background: `rgba(24, 23, 29, 0.20)`,
+    border: `0.2rem solid rgba(255, 255, 255, 0.30)`,
+    textColor: `${colors.GRAY[200]}`,
+    padding: '2.4rem 3.2rem',
+    gap: '0.6rem',
     isClickable: false,
     animation: {
       open: slideUp,
@@ -96,23 +85,27 @@ const toastVariants: Record<ToastType, ToastVariantType> = {
       extra: 'none',
     },
     position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
+    boxShadow: `0 0 8rem 0 rgba(0, 0, 0, 0.40)`,
+    backdropFilter: `blur(1.2rem)`,
   },
   feedbackError: {
-    background: `${colors.GRAY[1000]}`,
-    border: `0.15rem solid ${colors.RED[500]}`,
-    textColor: `${colors.RED[500]}`,
-    padding: '2.2rem 3rem',
-    gap: '0.7rem',
-    isClickable: false,
+    border: `0.2rem solid rgba(255, 89, 89, 0.30)`,
+    background: `rgba(227, 45, 45, 0.20)`,
+    textColor: `${colors.GRAY[100]}`,
+    padding: '2.1rem 2.4rem',
+    gap: '0.8rem',
+    isClickable: true,
     animation: {
-      open: slideLeft,
-      close: slideRight,
+      open: slideUp,
+      close: slideDown,
       extra: 'none',
     },
-    position: { top: '2rem', right: '2rem' },
+    position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
+    boxShadow: `0 0 8rem 0 rgba(0, 0, 0, 0.40)`,
+    backdropFilter: `blur(1.2rem)`,
   },
   feedbackSuccess: {
-    border: `0.2rem solid rgba(255, 255, 255, 0.30)`,
+    border: `0.2rem solid #DDE1FB;`,
     background: `var(--gradient, linear-gradient(137deg, #E1C6FE 0%, #AFE7FF 100%))`,
     padding: `2.4rem 3.2rem`,
     gap: `0.6rem`,
@@ -203,3 +196,21 @@ export const viewport = (name: ToastType) => {
       .join('')}
   `;
 };
+
+export const spinnerStyle = css`
+  display: inline-block;
+  animation: ${spin} 2s linear infinite;
+`;
+
+export const errorWrapper = withTheme(
+  (theme) => css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 0.8rem;
+    border-radius: 10rem;
+    background: rgb(150 84 84 / 46%);
+    ${theme.fonts.SUBTITLE.SUB5_SB};
+    color: ${theme.colors.GRAY[50]};
+  `,
+);
