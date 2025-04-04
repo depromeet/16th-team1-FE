@@ -40,7 +40,7 @@ export const container = (pageLabel: PageLabelKey, isMobile: boolean) => css`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 10;
   width: 100%;
   padding: ${getPaddingByPage(pageLabel, isMobile)};
   backdrop-filter: blur(var(--blur));
