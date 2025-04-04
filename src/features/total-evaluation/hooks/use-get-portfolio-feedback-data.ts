@@ -7,7 +7,25 @@ export const useGetPortfolioFeedbackData = () => {
 
   const { data } = useGetPortfolioFeedback({ feedbackId: feedbackId as string });
 
+  // pageNumber형식에서 숫자만 추출
+  const transformedPageNumberData = {
+    ...data,
+    result: {
+      ...data.result,
+      feedback: {
+        ...data.result.feedback,
+        projectEvaluation: data.result.feedback.projectEvaluation.map((project) => ({
+          ...project,
+          feedbackPerPage: project.feedbackPerPage.map((page) => ({
+            ...page,
+            pageNumber: page.pageNumber.split('.')[0],
+          })),
+        })),
+      },
+    },
+  };
+
   return {
-    ...data.result.feedback,
+    ...transformedPageNumberData.result.feedback,
   };
 };
