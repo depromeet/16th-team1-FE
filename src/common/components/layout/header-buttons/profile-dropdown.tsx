@@ -12,9 +12,9 @@ import AuthProfile from './auth-profile';
 import SingleProfileModalButton from './total-evaluation/single-profile-modal-button';
 import { BaseButton } from '../../button/base-button';
 
-import * as styles from './auth-profile-dropdown-menu.styles';
+import * as styles from './profile-dropdown.styles';
 
-function AuthProfileDropdownMenu() {
+function ProfileDropdown() {
   const { result: { remainCount } = {} } = useGetRemainingCountQuery().data ?? {};
 
   const { data: feedbackHistoryResponse } = useGetFeedbackHistory();
@@ -82,4 +82,4 @@ function AuthProfileDropdownMenu() {
   );
 }
 
-export default AuthProfileDropdownMenu;
+export default ProfileDropdown;

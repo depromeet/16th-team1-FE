@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 
-import AuthProfileMenu from '../components/layout/header-buttons/auth-profile-menu';
 import HeaderLogo from '../components/layout/header-buttons/header-logo';
 import LandingAuthButtons from '../components/layout/header-buttons/landing/landing-auth-buttons';
 import LandingScrollSectionButtons from '../components/layout/header-buttons/landing/landing-scroll-section-buttons';
+import ProfileMenu from '../components/layout/header-buttons/profile-menu';
 import TotalEvalutationSidebarButtons from '../components/layout/header-buttons/total-evaluation/total-evaluation-sidebar-buttons';
 import TotalEvalutationUserInfo from '../components/layout/header-buttons/total-evaluation/total-evaluation-user-info';
 import { PageLabelKey } from '../constants/path';
@@ -31,17 +31,17 @@ export const useHeaderContents = (pageLabel: PageLabelKey) => {
     Upload: {
       left: <HeaderLogo />,
       middle: null,
-      right: <AuthProfileMenu />,
+      right: <ProfileMenu />,
     },
     Loading: {
       left: <HeaderLogo />,
       middle: null,
-      right: <AuthProfileMenu />,
+      right: <ProfileMenu />,
     },
     TotalEvaluation: {
       left: <TotalEvalutationSidebarButtons />,
       middle: <TotalEvalutationUserInfo />,
-      right: <AuthProfileMenu />,
+      right: <ProfileMenu />,
     },
   };
 
