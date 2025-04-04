@@ -26,9 +26,19 @@ export const useToast = () => {
   const [toastOpen, setToastOpen] = useState(true);
 
   const navigateTotalEvaluationPage = () => {
-    if (state === 'COMPLETE') {
-      changeState('IDLE');
-      navigate(`/total-evaluation/${feedbackId}`);
+    switch (state) {
+      case 'ERROR':
+        changeState('IDLE');
+        navigate('/upload');
+        break;
+
+      case 'COMPLETE':
+        changeState('IDLE');
+        navigate(`/total-evaluation/${feedbackId}`);
+        break;
+
+      default:
+        break;
     }
   };
 
