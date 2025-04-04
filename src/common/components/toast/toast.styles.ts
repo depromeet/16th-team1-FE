@@ -146,6 +146,7 @@ export const title = (name: ToastType) => {
   const { textColor } = toastVariants[name];
 
   return css`
+    flex-shrink: 0;
     background: ${textColor};
     color: transparent;
     font-size: 1.6rem;
@@ -172,6 +173,7 @@ export const viewport = (name: ToastType) => {
 export const spinnerStyle = css`
   display: inline-block;
   animation: ${spin} 2s linear infinite;
+  flex-shrink: 0;
 `;
 
 export const errorWrapper = withTheme(
