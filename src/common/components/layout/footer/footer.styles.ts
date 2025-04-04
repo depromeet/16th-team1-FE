@@ -21,3 +21,9 @@ export const footer = withTheme(
     }
   `,
 );
+
+export const text = css`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+`;
