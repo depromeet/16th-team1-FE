@@ -3,19 +3,15 @@ import { css } from '@emotion/react';
 import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
-import { FOOTER_HEIGHT } from './../../common/constants/layout';
-
 export const container = withTheme(
   (theme) => css`
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100dvw;
-    height: calc(100dvh - ${FOOTER_HEIGHT.DEFAULT});
     background-color: ${theme.colors.GRAY.bg};
 
     ${mediaQueries.mobile} {
-      height: calc(100dvh - ${FOOTER_HEIGHT.MOBILE});
       margin: auto;
     }
   `,

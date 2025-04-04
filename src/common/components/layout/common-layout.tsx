@@ -16,7 +16,9 @@ function CommonLayout({ isHeader, pageLabel }: CommonLayoutProps) {
   return (
     <div css={styles.container(pageLabel)}>
       {isHeader && <HeaderNavigation pageLabel={pageLabel} />}
-      <Outlet />
+      <div css={styles.content}>
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );
