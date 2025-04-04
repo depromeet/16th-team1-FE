@@ -3,7 +3,6 @@ import { useInView } from 'react-intersection-observer';
 
 // import { css } from '@emotion/react';
 
-import totalEvaluation from '@/assets/images/total-evaluation.png';
 import { useAuthCycle } from '@/common/hooks/use-auth-cycle';
 import useDeviceType from '@/common/hooks/use-device-type';
 // import { axiosInstance } from '@/common/services/service-config';
@@ -14,6 +13,8 @@ import RoutingBottomSection from './components/routing-section/routing-bottom-se
 import RoutingStartSection from './components/routing-section/routing-start-section';
 
 import * as styles from './landing-page.styles';
+
+export const TMP_AWS_IMAGE_BASE_URL = 'https://critix-resource.s3.us-east-2.amazonaws.com';
 
 export default function LandingPage() {
   const { isMobile } = useDeviceType();
@@ -36,23 +37,18 @@ export default function LandingPage() {
 
   return (
     <div id="landing-container" css={styles.landingPage}>
-      {/* 테스트용 */}
-      {/* <button
-        onClick={async () => {
-          const response = await axiosInstance.get(`/api/v1/users/me`);
-          console.log(response.data);
-        }}
-        css={css`
-          font-size: 3rem;
-        `}
-      >
-        내 정보 확인(테스트용)
-      </button> */}
       <div css={styles.flexColumn(isMobile ? 4.8 : 10)} id="start-section">
         <RoutingStartSection />
-        <img
+        {/* <img
+        TODO: S3참조 제거
           ref={ref}
           src={totalEvaluation}
+          css={styles.image(inView)}
+          alt="total evalution image"
+        /> */}
+        <img
+          ref={ref}
+          src={`${TMP_AWS_IMAGE_BASE_URL}/total-evaluation.png`}
           css={styles.image(inView)}
           alt="total evalution image"
         />

@@ -21,7 +21,7 @@ const getPaddingByPage = (pageLabel: PageLabelKey, isMobile: boolean) => {
       padding: `1rem`,
     },
     Login: {
-      padding: '0',
+      padding: `1.1rem 2rem`,
     },
     Loading: {
       padding: isMobile ? `1.1rem 2rem` : `1rem`,
@@ -34,10 +34,11 @@ const getPaddingByPage = (pageLabel: PageLabelKey, isMobile: boolean) => {
 export const container = (pageLabel: PageLabelKey, isMobile: boolean) => css`
   --blur: ${pageLabel === 'Landing' && `1.2rem`};
   --background-bg: ${pageLabel !== 'TotalEvaluation' && 'transparent'};
+  --position: ${pageLabel === 'Login' ? 'static' : 'fixed'};
 
   display: flex;
   align-items: center;
-  position: fixed;
+  position: var(--position);
   top: 0;
   left: 0;
   z-index: 10;

@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
       },
       {
         path: PAGE_URL.Login,
-        element: <CommonLayout isHeader={false} pageLabel="Login" />,
+        element: <CommonLayout isHeader={true} pageLabel="Login" />,
         children: [{ index: true, element: <LoginPage /> }],
       },
 

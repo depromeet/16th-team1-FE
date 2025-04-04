@@ -2,9 +2,16 @@ import { setLocalStorage } from '@/common/utils/storage';
 import { useGetStartFeedback } from '@/features/feedback/services/use-get-start-feedback';
 import { useFeedbackStore } from '@/store/feedback';
 
-import { usePostPortfolioMutation } from '../../services/mutations';
+import {
+  LAUNCHING_DAY_TMP_ACCESS_ERROR_MESSAGE,
+  usePostPortfolioMutation,
+} from '../../services/mutations';
 import { useGetRemainingCountQuery } from '../../services/queries';
 import FileUpload from '../file-upload/file-upload';
+
+const IS_TMP_LAUNCHING_DAY_HANDLE_ERROR = (error: unknown) => {
+  return error instanceof Error && error.message === LAUNCHING_DAY_TMP_ACCESS_ERROR_MESSAGE;
+};
 
 export default function PortfolioUpload() {
   const { mutateAsync: postPortfolio } = usePostPortfolioMutation();
@@ -33,14 +40,19 @@ export default function PortfolioUpload() {
                 changeState('PENDING', feedbackId);
                 setLocalStorage('feedbackId', feedbackId);
               },
-              onError: () => {
+              onError: (error) => {
+                if (IS_TMP_LAUNCHING_DAY_HANDLE_ERROR(error)) {
+                  throw error;
+                }
                 changeState('ERROR');
               },
             },
           );
         } catch (error) {
-          // TODO: 업로드 실패 시 액션
-          if (error instanceof Error) {
+          if (IS_TMP_LAUNCHING_DAY_HANDLE_ERROR(error)) {
+            alert(LAUNCHING_DAY_TMP_ACCESS_ERROR_MESSAGE);
+          } else if (error instanceof Error) {
+            // TODO: 업로드 실패 시 액션
             changeState('ERROR');
           }
         }
