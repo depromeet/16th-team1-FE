@@ -27,13 +27,13 @@ type Story = StoryObj<typeof Toast>;
 
 export const Default: Story = {
   args: {
-    name: 'feedbackSuccess',
+    name: 'feedbackPending',
     open: false,
   },
   render: function Render(args) {
     const [{ open }, updateArgs] = useArgs();
     const onClick =
-      args.name === 'feedbackSuccess'
+      args.name === 'feedbackPending'
         ? () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
             updateArgs({ open: false });
