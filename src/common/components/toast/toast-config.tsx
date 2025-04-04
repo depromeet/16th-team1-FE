@@ -1,8 +1,4 @@
-export type ToastType =
-  | 'feedbackPending'
-  | 'feedbackError'
-  | 'feedbackSuccess'
-  | 'getFeedbackFailure';
+export type ToastType = 'feedbackPending' | 'feedbackError' | 'getFeedbackFailure';
 
 import { ReactNode } from 'react';
 
@@ -28,14 +24,8 @@ export const toastConfig: Record<
 
   feedbackError: {
     message: '오류가 발생했어요',
-    duration: Infinity,
+    duration: 3000,
     icon: <div css={toastStyles.errorWrapper}>다시 시도</div>,
-    iconPosition: 'right',
-  },
-  feedbackSuccess: {
-    message: '피드백 보러가기',
-    duration: Infinity,
-    icon: <Icon name="arrow-right-with-tail" color="#18171D" width={18} />,
     iconPosition: 'right',
   },
   getFeedbackFailure: {

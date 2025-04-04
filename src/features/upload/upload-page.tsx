@@ -6,7 +6,7 @@ import Upload from './components/upload/upload';
 export default function UploadPage() {
   const { state } = useFeedbackStore();
 
-  if (state === 'PENDING' || state === 'IN_PROGRESS') {
+  if (state === 'PENDING' || state === 'IN_PROGRESS' || state === 'COMPLETE') {
     return <FeedbackLoading />;
   }
 
