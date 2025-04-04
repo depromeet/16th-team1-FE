@@ -54,7 +54,7 @@ export interface ProjectEvaluationType {
   projectName: string;
   process: ProjectProcessType[];
   processReview: string;
-  imageUrl: string;
+  projectImageUrl: string;
   positiveFeedback: ListContentType[];
   negativeFeedback: ListContentType[];
   feedbackPerPage: FeedbackPerPageType[];

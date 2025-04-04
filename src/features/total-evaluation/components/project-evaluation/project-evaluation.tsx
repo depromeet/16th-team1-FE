@@ -43,7 +43,7 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
     projectName,
     positiveFeedback,
     negativeFeedback,
-    imageUrl,
+    projectImageUrl,
     processReview,
     process,
     feedbackPerPage,
@@ -58,7 +58,7 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
         <Spacing size={1.6} />
         <h3 css={styles.projectName}>{projectName}</h3>
         <Spacing size={2.4} />
-        <img src={imageUrl} css={styles.projectImage} />
+        <img src={projectImageUrl} css={styles.projectImage} />
         <Spacing size={3.2} />
         <div css={styles.projectProcessItems}>
           {PROCESS_CATEGORIES.map((category, idx) => (
