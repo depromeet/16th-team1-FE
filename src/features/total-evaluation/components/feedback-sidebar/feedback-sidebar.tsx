@@ -13,6 +13,8 @@ import { PageLocationButton } from '../custom-buttons/page-location-button';
 import { ProjectTitleButton } from '../custom-buttons/project-title-button';
 import FeedbackPageNavigator from '../sidebar/feedback-page-navigator/feedback-page-navigator';
 
+import * as styles from './feedback-sidebar.styles';
+
 function FeedbackSidebar() {
   const { isSidebarOpen } = useSidebarContext();
   const { selectedPage, setSelectedPage } = useSelectedPageContext();
@@ -54,7 +56,7 @@ function FeedbackSidebar() {
                 isCurrentTriggerSelected={currentOpenedTrigger.includes(accordionTrigger)}
                 onClick={() => handleTriggerButton(accordionTrigger)}
               >
-                {accordionTrigger}
+                <p css={styles.overFlowTextWrapper}>{accordionTrigger}</p>
               </ProjectTitleButton>
             )}
             /** 각 메뉴가 트리거되면 나타나는 세부 컨텐츠 */
@@ -65,7 +67,7 @@ function FeedbackSidebar() {
                 buttonIndex={buttonIndex}
                 onClick={() => handleContentButton(value)}
               >
-                {buttonFormatByButtonType(type, value)}
+                <p css={styles.overFlowTextWrapper}>{buttonFormatByButtonType(type, value)}</p>
               </PageLocationButton>
             )}
           />
