@@ -98,6 +98,7 @@ export const useGetPortfolioFeedback = ({ feedbackId }: UseGetPortfolioFeedbackP
   return useSuspenseQuery<Response<UseGetPortfolioFeedbackResponse>>({
     queryKey: [endPoint, feedbackId],
     queryFn,
+    retry: false,
   });
 };
 
