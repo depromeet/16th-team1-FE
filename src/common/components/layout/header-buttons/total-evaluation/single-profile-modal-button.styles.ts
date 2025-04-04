@@ -12,10 +12,10 @@ export const SingleButton = withTheme(
     height: 3.2rem;
     padding: 0.6rem 0.8rem;
     flex-direction: column;
-    border-radius: 1.2rem;
+    border-radius: 0.8rem;
 
     &:hover {
-      background-color: ${theme.colors.GRAY[900]};
+      background-color: ${theme.colors.GRAY[950]};
     }
   `,
 );
