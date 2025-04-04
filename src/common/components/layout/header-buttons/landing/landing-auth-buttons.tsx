@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import { Button } from '@/common/components/button/Button';
 import { useAuthStore } from '@/store/user-auth';
 
-import AuthProfileModalDropdown from '../auth-profile-modal-dropdown';
+import AuthProfileMenu from '../auth-profile-menu';
 
 import * as styles from './landing-auth-buttons.styles';
 
@@ -16,7 +16,7 @@ function LandingAuthButtons() {
   return (
     <div css={styles.container}>
       {isLogin ? (
-        <AuthProfileModalDropdown />
+        <AuthProfileMenu />
       ) : (
         <Button
           size="small"

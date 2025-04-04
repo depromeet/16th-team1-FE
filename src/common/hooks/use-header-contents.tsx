@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import AuthProfileModalDropdown from '../components/layout/header-buttons/auth-profile-modal-dropdown';
+import AuthProfileMenu from '../components/layout/header-buttons/auth-profile-menu';
 import HeaderLogo from '../components/layout/header-buttons/header-logo';
 import LandingAuthButtons from '../components/layout/header-buttons/landing/landing-auth-buttons';
 import LandingScrollSectionButtons from '../components/layout/header-buttons/landing/landing-scroll-section-buttons';
@@ -31,17 +31,17 @@ export const useHeaderContents = (pageLabel: PageLabelKey) => {
     Upload: {
       left: <HeaderLogo />,
       middle: null,
-      right: <AuthProfileModalDropdown />,
+      right: <AuthProfileMenu />,
     },
     Loading: {
       left: <HeaderLogo />,
       middle: null,
-      right: <AuthProfileModalDropdown />,
+      right: <AuthProfileMenu />,
     },
     TotalEvaluation: {
       left: <TotalEvalutationSidebarButtons />,
       middle: <TotalEvalutationUserInfo />,
-      right: <AuthProfileModalDropdown />,
+      right: <AuthProfileMenu />,
     },
   };
 

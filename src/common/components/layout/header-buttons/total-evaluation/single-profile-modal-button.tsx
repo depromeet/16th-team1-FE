@@ -7,13 +7,14 @@ import * as styles from './single-profile-modal-button.styles';
 interface SingleProfileModalButtonProps {
   label: string;
   handleClick?: () => void;
+  disabled?: boolean;
 }
 
 const SingleProfileModalButton = forwardRef<HTMLButtonElement, SingleProfileModalButtonProps>(
-  ({ label, handleClick }, ref) => {
+  ({ label, handleClick, disabled = false }, ref) => {
     return (
-      <BaseButton css={styles.SingleButton} onClick={handleClick} ref={ref}>
-        <p css={styles.ButtonLabel}>{label}</p>
+      <BaseButton css={styles.SingleButton} onClick={handleClick} ref={ref} disabled={disabled}>
+        <p css={styles.ButtonLabel(disabled)}>{label}</p>
       </BaseButton>
     );
   },
