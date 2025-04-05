@@ -42,6 +42,7 @@ function MobileView() {
       <div css={styles.content}>
         <Icon
           name="logo-full-login"
+          width={128}
           customStyle={css`
             flex-shrink: 0;
           `}

@@ -32,6 +32,8 @@ export default function FeedbackStateObserver() {
       changeState('COMPLETE');
 
       navigate(`/total-evaluation/${feedbackId}`);
+
+      changeState('IDLE');
     } else if (isError) {
       // 피드백 생성 실패 시
       changeState('ERROR');
