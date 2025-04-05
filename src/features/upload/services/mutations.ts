@@ -21,6 +21,7 @@ const LAUNCHING_DAY_TMP_ACCESS_USER = [
   'suker800@gmail.com',
   'suker80@catholic.ac.kr',
   'dahye8927@gmail.com',
+  'cowboysjin@gmail.com',
 ];
 
 export const usePostPortfolioMutation = () => {
