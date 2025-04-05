@@ -1,6 +1,6 @@
-import detailEvaluationChart from '@assets/images/detail-evaluation-chart.png';
-import gradeSmall from '@assets/images/grade-small.png';
-import grade from '@assets/images/grade.png';
+// import detailEvaluationChart from '@assets/images/detail-evaluation-chart.png';
+// import gradeSmall from '@assets/images/grade-small.png';
+// import grade from '@assets/images/grade.png';
 import { css } from '@emotion/react';
 
 import { theme } from '@/assets/styles/theme';
@@ -8,8 +8,8 @@ import Icon from '@/common/components/icon/icon';
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import useDeviceType from '@/common/hooks/use-device-type';
 
-import { TMP_AWS_IMAGE_BASE_URL } from '../../landing-page';
-import { extractImageFilename } from '../../utils/extract-image-file-name';
+// import { TMP_AWS_IMAGE_BASE_URL } from '../../landing-page';
+// import { extractImageFilename } from '../../utils/extract-image-file-name';
 
 import * as styles from './total-evaluation-grid.styles';
 
@@ -46,14 +46,7 @@ export default function TotalEvaluationGrid() {
               TODO: S3참조 제거
               <img src={isMobile ? gradeSmall : grade} alt="등급" /> */}
 
-              <img
-                src={
-                  isMobile
-                    ? `${TMP_AWS_IMAGE_BASE_URL}/${extractImageFilename(gradeSmall)}`
-                    : `${TMP_AWS_IMAGE_BASE_URL}/${extractImageFilename(grade)}`
-                }
-                alt="등급"
-              />
+              <img src={isMobile ? `/images/grade-small.png` : `/images/grade.png`} alt="등급" />
             </div>
           </div>
         </FadeInWrapper>
@@ -80,13 +73,7 @@ export default function TotalEvaluationGrid() {
             <br /> 세부 평가 항목의 점수는
           </h3>
           <div css={styles.chartExample}>
-            {/* 
-            TODO: S3참조 제거
-            <img src={detailEvaluationChart} alt="세부 평가 차트" /> */}
-            <img
-              src={`${TMP_AWS_IMAGE_BASE_URL}/${extractImageFilename(detailEvaluationChart)}`}
-              alt="세부 평가 차트"
-            />
+            <img src={'/images/detail-evaluation-chart.png'} alt="세부 평가 차트" />
           </div>
         </FadeInWrapper>
       </div>
