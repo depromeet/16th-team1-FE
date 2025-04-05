@@ -21,91 +21,90 @@ export default function ProjectsWrapper() {
   const swiperRef = useRef<SwiperType>();
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
-      const totalWidth = container.current?.offsetWidth || 0;
+  useGSAP(() => {
+    const totalWidth = container.current?.offsetWidth || 0;
 
-      gsap.fromTo(
-        container.current,
-        { x: 0 },
-        {
-          scrollTrigger: {
-            trigger: container.current,
-            start: 'center-=56px center',
-            pin: document.querySelector('#landing-container'),
-            scrub: 1,
-            toggleActions: 'play pause reverse pause',
-            end: () => '+=' + totalWidth * 4,
-            onUpdate: (update) => {
-              const progress = update.progress * 100;
-              const swiper = swiperRef.current;
+    gsap.fromTo(
+      container.current,
+      { x: 0 },
+      {
+        scrollTrigger: {
+          trigger: container.current,
+          pin: true,
+          start: 'center-=56px center',
+          scrub: 1,
+          toggleActions: 'play pause reverse pause',
+          end: () => '+=' + totalWidth * 4,
+          onUpdate: (update) => {
+            const progress = update.progress * 100;
+            const swiper = swiperRef.current;
 
-              // 첫 번째 슬라이더 영역일 때
-              if (progress < 25) {
-                // 첫 번째 슬라이더가 아닌 다른 슬라이더라면
-                // slideTo 중복 호출 방지를 위한 조건
-                if (swiper?.realIndex !== 0) {
-                  swiper?.slideTo(0);
-                }
-
-                return;
+            // 첫 번째 슬라이더 영역일 때
+            if (progress < 25) {
+              // 첫 번째 슬라이더가 아닌 다른 슬라이더라면
+              // slideTo 중복 호출 방지를 위한 조건
+              if (swiper?.realIndex !== 0) {
+                swiper?.slideTo(0);
               }
-              if (25 <= progress && progress < 50) {
-                if (swiper?.realIndex !== 1) {
-                  swiper?.slideTo(1);
-                }
 
-                return;
+              return;
+            }
+            if (25 <= progress && progress < 50) {
+              if (swiper?.realIndex !== 1) {
+                swiper?.slideTo(1);
               }
-              if (50 <= progress && progress < 75) {
-                if (swiper?.realIndex !== 2) {
-                  swiper?.slideTo(2);
-                }
 
-                return;
+              return;
+            }
+            if (50 <= progress && progress < 75) {
+              if (swiper?.realIndex !== 2) {
+                swiper?.slideTo(2);
               }
-              if (progress >= 75) {
-                if (swiper?.realIndex !== 3) {
-                  swiper?.slideTo(3);
-                }
 
-                return;
+              return;
+            }
+            if (progress >= 75) {
+              if (swiper?.realIndex !== 3) {
+                swiper?.slideTo(3);
               }
-            },
+
+              return;
+            }
           },
         },
-      );
-    },
-    {
-      scope: container,
-    },
-  );
+      },
+    );
+  });
 
   return (
-    <FadeInWrapper
-      additionalStyles={styles.projectContainer}
-      intersectionOptions={{
-        threshold: 0.3,
-        triggerOnce: true,
-      }}
-      transitionOptions={{
-        delay: 0.5,
+    <div
+      style={{
+        width: '100vw',
+        height: 'fit-content',
       }}
     >
       <div ref={container} id="projects-container" css={styles.projectScrollContainer}>
-        <Swiper slidesPerView={1} onSwiper={(swiper) => (swiperRef.current = swiper)}>
-          {projectsData.map((project, index) => (
-            <SwiperSlide key={index}>
-              <Projects
-                imageUrl={project.image}
-                feedbackType={project.feedbackType}
-                feedbackDescription={project.feedbackDescription}
-                process={project.process}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <FadeInWrapper
+          additionalStyles={styles.projectContainer}
+          intersectionOptions={{
+            threshold: 0.3,
+            triggerOnce: true,
+          }}
+        >
+          <Swiper slidesPerView={1} onSwiper={(swiper) => (swiperRef.current = swiper)}>
+            {projectsData.map((project, index) => (
+              <SwiperSlide key={index}>
+                <Projects
+                  imageUrl={project.image}
+                  feedbackType={project.feedbackType}
+                  feedbackDescription={project.feedbackDescription}
+                  process={project.process}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </FadeInWrapper>
       </div>
-    </FadeInWrapper>
+    </div>
   );
 }

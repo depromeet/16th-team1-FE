@@ -7,6 +7,8 @@ import useDeviceType from '@/common/hooks/use-device-type';
 import useShadowScroll from '@/common/hooks/use-shadow-scroll';
 
 import { detailImprovementData } from '../../common/data';
+import { TMP_AWS_IMAGE_BASE_URL } from '../../landing-page';
+import { extractImageFilename } from '../../utils/extract-image-file-name';
 
 import * as styles from './detail-improvement.styles';
 
@@ -62,12 +64,21 @@ export default function DetailImprovement() {
       <div css={styles.improvementContentWrapper}>
         {currentImprovementData && (
           <>
-            <img
+            {/* <img
+            TODO: S3참조 제거
               css={styles.image}
               src={currentImprovementData.image}
               width={624}
               alt={`${currentImprovementData.title} image`}
+            /> */}
+
+            <img
+              css={styles.image}
+              src={`${TMP_AWS_IMAGE_BASE_URL}/${extractImageFilename(currentImprovementData.image)}`}
+              width={624}
+              alt={`${currentImprovementData.title} image`}
             />
+
             <div css={styles.improvementTextWrapper}>
               <div css={styles.improvementTitleWrapper}>
                 <Icon name="checkbox" color={theme.colors.GRAY[200]} width={isMobile ? 20 : 28} />

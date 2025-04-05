@@ -1,9 +1,10 @@
 import { ReactNode } from 'react';
 
-import AuthProfileModalDropdown from '../components/layout/header-buttons/auth-profile-modal-dropdown';
+import useDeviceType from './use-device-type';
 import HeaderLogo from '../components/layout/header-buttons/header-logo';
 import LandingAuthButtons from '../components/layout/header-buttons/landing/landing-auth-buttons';
 import LandingScrollSectionButtons from '../components/layout/header-buttons/landing/landing-scroll-section-buttons';
+import ProfileMenu from '../components/layout/header-buttons/profile-menu';
 import TotalEvalutationSidebarButtons from '../components/layout/header-buttons/total-evaluation/total-evaluation-sidebar-buttons';
 import TotalEvalutationUserInfo from '../components/layout/header-buttons/total-evaluation/total-evaluation-user-info';
 import { PageLabelKey } from '../constants/path';
@@ -17,6 +18,8 @@ type ContentType = {
 };
 
 export const useHeaderContents = (pageLabel: PageLabelKey) => {
+  const { isMobile } = useDeviceType();
+
   const content: ContentType = {
     Landing: {
       left: <HeaderLogo />,
@@ -24,24 +27,24 @@ export const useHeaderContents = (pageLabel: PageLabelKey) => {
       right: <LandingAuthButtons />,
     },
     Login: {
-      left: null,
+      left: isMobile ? <HeaderLogo /> : null,
       middle: null,
-      right: null,
+      right: isMobile ? <LandingAuthButtons /> : null,
     },
     Upload: {
       left: <HeaderLogo />,
       middle: null,
-      right: <AuthProfileModalDropdown />,
+      right: <ProfileMenu />,
     },
     Loading: {
       left: <HeaderLogo />,
       middle: null,
-      right: <AuthProfileModalDropdown />,
+      right: <ProfileMenu />,
     },
     TotalEvaluation: {
       left: <TotalEvalutationSidebarButtons />,
       middle: <TotalEvalutationUserInfo />,
-      right: <AuthProfileModalDropdown />,
+      right: <ProfileMenu />,
     },
   };
 

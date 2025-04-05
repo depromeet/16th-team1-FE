@@ -12,17 +12,19 @@ export const SingleButton = withTheme(
     height: 3.2rem;
     padding: 0.6rem 0.8rem;
     flex-direction: column;
-    border-radius: 1.2rem;
+    border-radius: 0.8rem;
 
     &:hover {
-      background-color: ${theme.colors.GRAY[900]};
+      background-color: ${theme.colors.GRAY[950]};
     }
   `,
 );
 
 export const ButtonLabel = withTheme(
-  (theme) => css`
+  (theme, disabled: boolean) => css`
+    --color: ${disabled ? theme.colors.GRAY[800] : theme.colors.GRAY[100]};
+
     ${theme.fonts.SUBTITLE.SUB5_SB}
-    color: ${theme.colors.GRAY[100]};
+    color: var(--color);
   `,
 );

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type ProcessState = 'PENDING' | 'IN_PROGRESS' | 'ERROR' | 'COMPLETE' | 'IDLE';
+export type ProcessState = 'PENDING' | 'IN_PROGRESS' | 'ERROR' | 'COMPLETE' | 'IDLE';
 
 interface FeedbackState {
   state: ProcessState;

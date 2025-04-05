@@ -92,7 +92,7 @@ function EvaluationSection({ titleKey, iconName, color, listItems }: EvaluationS
     <section css={commonStyles.evaluationSection('2.4rem')}>
       <EvaluationTitle
         title={EVALUATION_LABEL[titleKey]}
-        icon={<Icon name={iconName} color={color} />}
+        icon={<Icon name={iconName} color={color} width={32} />}
         color={color}
       />
       <NestedList listItems={listItems} />

@@ -81,3 +81,14 @@ export const folder = (isDisabled?: boolean) => css`
   opacity: ${isDisabled ? 0.3 : 1};
   cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
 `;
+
+export const progress = css`
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 9.6rem);
+  height: fit-content;
+  margin: 0 4.8rem 3.2rem;
+  border-radius: 999px;
+`;

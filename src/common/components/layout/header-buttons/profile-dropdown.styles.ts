@@ -24,7 +24,7 @@ export const profileContent = withTheme(
     padding: 0.6rem;
     transform: scale(0.8) translateY(1rem);
     min-width: 16.8rem;
-    background-color: ${theme.colors.GRAY[950]};
+    background-color: ${theme.colors.GRAY[990]};
     border-radius: 1.2rem;
     flex-direction: column;
     gap: 1rem;

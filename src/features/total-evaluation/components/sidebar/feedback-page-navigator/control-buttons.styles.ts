@@ -7,7 +7,6 @@ export const container = css`
   width: 100%;
   color: white;
   font-size: 2.4rem;
-  padding-left: 0.8rem;
 `;
 
 export const controlButtons = css`

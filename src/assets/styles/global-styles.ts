@@ -6,11 +6,15 @@ export const globalStyles = css`
   @font-face {
     font-family: GeneralSans;
     src: url(${GeneralSans}) format('woff2');
+    font-weight: 100 900;
+    font-display: swap;
   }
 
   @font-face {
     font-family: Pretendard;
     src: url(${Pretendard}) format('woff2');
+    font-weight: 100 900;
+    font-display: swap;
   }
 
   *,

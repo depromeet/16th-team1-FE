@@ -28,7 +28,7 @@ export default function LoadingProjectEvaluation() {
           <figure css={styles.titleWrapper}>
             <span css={styles.caption}>
               프로젝트 평가
-              <Icon name="pin" color="#C3C3C6" />
+              <Icon name="pin" color="#C3C3C6" width={18} />
             </span>
             <Spacing size={1.2} />
             <h2 css={styles.mainTitle}>카페 쿠폰 적립 프로젝트</h2>

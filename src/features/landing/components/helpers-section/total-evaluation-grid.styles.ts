@@ -143,7 +143,7 @@ export const list = withTheme(
       color: #fff !important;
 
       &:not(:first-of-type) {
-        margin-top: 3.2rem;
+        margin-top: 2rem;
       }
 
       &::before {
@@ -160,7 +160,7 @@ export const list = withTheme(
       & > li {
         ${theme.fonts.SUBTITLE.SUB5_SB};
         &:not(:first-of-type) {
-          margin-top: 1.6rem;
+          margin-top: 1.4rem;
         }
       }
     }

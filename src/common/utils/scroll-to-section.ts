@@ -12,12 +12,11 @@ export const scrollToSection = (id: string) => {
   const elementOffsetTop = element.offsetTop - HEADER_PLACEHOLER_HEIGHT_PX;
 
   if (id === 'help-section') {
-    const projectsContainer = document.getElementById('projects-container');
     // 기존 scrollIntoView 메서드로는 중간 가로 스크롤 영역 때문에 제대로 동작하지 않음.
     gsap.to(window, {
       duration: 1,
       scrollTo: {
-        y: elementOffsetTop + (projectsContainer?.clientWidth || 0) * 4,
+        y: elementOffsetTop,
       },
     });
   } else if (id.startsWith('feedback-') || id.endsWith('-section')) {

@@ -43,7 +43,7 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
     projectName,
     positiveFeedback,
     negativeFeedback,
-    imageUrl,
+    projectImageUrl,
     processReview,
     process,
     feedbackPerPage,
@@ -58,7 +58,7 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
         <Spacing size={1.6} />
         <h3 css={styles.projectName}>{projectName}</h3>
         <Spacing size={2.4} />
-        <img src={imageUrl} css={styles.projectImage} />
+        <img src={projectImageUrl} css={styles.projectImage} />
         <Spacing size={3.2} />
         <div css={styles.projectProcessItems}>
           {PROCESS_CATEGORIES.map((category, idx) => (
@@ -74,7 +74,7 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
         <section css={styles.evaluationSection('3.2rem')}>
           <EvaluationTitle
             title={EVALUATION_LABEL['positives']}
-            icon={<Icon name="smile" color={theme.colors.SORA[400]} />}
+            icon={<Icon name="smile" color={theme.colors.SORA[400]} width={32} />}
             color={theme.colors.SORA[400]}
           />
           <NestedList listItems={positiveFeedback} gap={3.2} />
@@ -116,7 +116,6 @@ export default function ProjectEvaluation({ projectEvaluation }: ProjectEvaluati
       <section css={styles.oneLineSummaryWrapper}>
         <span css={styles.oneLineSummaryTitle}>한 줄 요약</span>
         <p css={styles.oneLineSummaryDescription}>{projectSummary}</p>
-        <Spacing size={10} />
       </section>
     </div>
   );

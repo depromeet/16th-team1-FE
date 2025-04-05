@@ -13,6 +13,7 @@ interface HeaderNavigationProps {
 function HeaderNavigation({ pageLabel }: HeaderNavigationProps) {
   const { left, middle, right } = useHeaderContents(pageLabel);
   const { isMobile } = useDeviceType();
+
   // const navigate = useNavigate();
   return (
     <>
