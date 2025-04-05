@@ -1,5 +1,5 @@
-import loadingTotalEvaluationSmall from '@/assets/images/loading-total-evaluation-small.png';
-import loadingTotalEvaluation from '@/assets/images/loading-total-evaluation.png';
+// import loadingTotalEvaluationSmall from '@/assets/images/loading-total-evaluation-small.png';
+// import loadingTotalEvaluation from '@/assets/images/loading-total-evaluation.png';
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import useDeviceType from '@/common/hooks/use-device-type';
 
@@ -21,7 +21,11 @@ export default function LoadingTotalEvaluation() {
         }}
       >
         <img
-          src={isMobile ? loadingTotalEvaluationSmall : loadingTotalEvaluation}
+          src={
+            isMobile
+              ? '/images/loading-total-evaluation-small.png'
+              : '/images/loading-total-evaluation.png'
+          }
           css={styles.image}
           alt="loading total evaluation image"
         />

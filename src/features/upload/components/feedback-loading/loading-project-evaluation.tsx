@@ -1,4 +1,4 @@
-import loadingProjectEvaluation from '@/assets/images/loading-project-evaluation.png';
+// import loadingProjectEvaluation from '@/assets/images/loading-project-evaluation.png';
 import Icon from '@/common/components/icon/icon';
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import Spacing from '@/common/components/spacing/spacing';
@@ -35,7 +35,7 @@ export default function LoadingProjectEvaluation() {
             <Spacing size={2.4} />
           </figure>
           <img
-            src={loadingProjectEvaluation}
+            src={'/images/loading-project-evaluation.png'}
             css={styles.image}
             alt="loading progect evaluation image"
           />
