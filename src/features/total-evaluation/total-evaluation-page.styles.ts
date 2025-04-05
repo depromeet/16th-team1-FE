@@ -12,7 +12,7 @@ export const totalEvaluationSection = css`
   margin: auto;
   flex-direction: column;
   gap: 20rem;
-  padding-top: 4.8rem;
+  padding: 4.8rem 0 10rem;
 `;
 
 export const evaluationSection = (gap: string) => css`
