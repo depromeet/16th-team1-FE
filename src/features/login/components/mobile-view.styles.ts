@@ -8,11 +8,8 @@ export const container = withTheme(
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100dvw;
+    margin: auto;
     background-color: ${theme.colors.GRAY.bg};
-    ${mediaQueries.mobile} {
-      margin: auto;
-    }
   `,
 );
 
@@ -54,7 +51,7 @@ export const titleWrapper = css`
 
 export const title = withTheme(
   (theme) => css`
-    ${theme.fonts.HEADLINE.HEAD2}
+    ${theme.fonts.HEADLINE.HEAD5}
     background: ${theme.colors.GRADIENT[300]};
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -63,7 +60,7 @@ export const title = withTheme(
 
 export const subTitle = withTheme(
   (theme) => css`
-    ${theme.fonts.SUBTITLE.SUB2_SB}
-    color: ${theme.colors.GRAY[200]};
+    ${theme.fonts.SUBTITLE.SUB5_SB}
+    color: ${theme.colors.GRAY[300]};
   `,
 );
