@@ -1,8 +1,8 @@
-import grammarImage from '@/assets/images/grammar.png';
-import logicImage from '@/assets/images/logic.png';
-import readabilityImage from '@/assets/images/readability.png';
-import redundancyImage from '@/assets/images/redundancy.png';
-import translationImage from '@/assets/images/translation.png';
+// import grammarImage from '@/assets/images/grammar.png';
+// import logicImage from '@/assets/images/logic.png';
+// import readabilityImage from '@/assets/images/readability.png';
+// import redundancyImage from '@/assets/images/redundancy.png';
+// import translationImage from '@/assets/images/translation.png';
 
 export const LOADING_TITLE = {
   total: {
@@ -66,14 +66,14 @@ export const EVALUATION_OPTIONS = [
     title: '번역체/어색한 표현',
     original: '사용자마다 동일하게 나타나는 불편을 발견했습니다.',
     revised: '모든 사용자에게 공통적으로 나타나는 불편을 발견했어요.',
-    image: translationImage,
+    image: '/images/translation.png',
   },
   {
     key: 'readability',
     title: '가독성 개선',
     original: 'Fact 데이터는 중복된 표현이며, "취합"보다는 "분석"이 더 직관적임.',
     revised: '리서치 단계 2-1: 주문 과정에 대한 객관적 데이터 분석',
-    image: readabilityImage,
+    image: '/images/readability.png',
   },
   {
     key: 'redundancy',
@@ -81,7 +81,7 @@ export const EVALUATION_OPTIONS = [
     original:
       '"평균 30분 이상"과 "평균 45분 이상"은 패턴이 동일하게 반복됨.<br/>"평균"을 생략해도 의미 전달 가능.',
     revised: '"업체 탐색에 30분 이상 소요됨" / "디자인 수정에 45분 이상 걸림"',
-    image: redundancyImage,
+    image: '/images/redundancy.png',
   },
   {
     key: 'logic',
@@ -90,13 +90,13 @@ export const EVALUATION_OPTIONS = [
       '"더 선호했습니다"라고 결론을 내렸지만, 선호 이유가 부족함. A안의 필터 사용률이 60%인데, 이 수치가 B안의 90%와 비교해 부족한 이유를 설명해야 함.',
     revised:
       '"A/B 테스트 결과, 70%의 사용자들이 B안의 단계별 필터링 방식을 더 편리하다고 느꼈는데, 단계별 필터링이 탐색 피로도를 낮추는 데 효과적이었기 때문이다" 라는 내용이 들어간다면 효과적일 것임.',
-    image: logicImage,
+    image: '/images/logic.png',
   },
   {
     key: 'grammar',
     title: '맞춤법 수정',
     original: '비스니스 모델을 기반으로 서비스 멥을 작성하여',
     revised: '비즈니스 모델을 기반으로 서비스 맵을 작성하여',
-    image: grammarImage,
+    image: '/images/grammar.png',
   },
 ];
