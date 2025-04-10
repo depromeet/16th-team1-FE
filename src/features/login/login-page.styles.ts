@@ -8,11 +8,11 @@ export const container = withTheme(
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100dvw;
     background-color: ${theme.colors.GRAY.bg};
+    margin: 12rem auto auto;
 
     ${mediaQueries.mobile} {
-      margin: auto;
+      margin: 9rem auto auto;
     }
   `,
 );
@@ -24,12 +24,11 @@ export const content = css`
   gap: 6rem;
   width: 65.3rem;
   height: 30.1rem;
-  margin: 12rem auto auto;
 
   ${mediaQueries.mobile} {
     width: auto;
     height: auto;
-    margin: auto;
+    gap: 4.2rem;
   }
 `;
 
@@ -45,6 +44,7 @@ export const descriptioinWrapper = css`
   ${mediaQueries.mobile} {
     width: auto;
     height: auto;
+    gap: 2.8rem;
   }
 `;
 
@@ -58,6 +58,7 @@ export const titleWrapper = css`
   ${mediaQueries.mobile} {
     width: auto;
     height: auto;
+    gap: 0.6rem;
   }
 `;
 
@@ -67,12 +68,20 @@ export const title = withTheme(
     background: ${theme.colors.GRADIENT[300]};
     background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    ${mediaQueries.mobile} {
+      ${theme.fonts.HEADLINE.HEAD5}
+    }
   `,
 );
 
 export const subTitle = withTheme(
   (theme) => css`
     ${theme.fonts.SUBTITLE.SUB2_SB}
-    color: ${theme.colors.GRAY[200]};
+    color: ${theme.colors.GRAY[200]} !important;
+
+    ${mediaQueries.mobile} {
+      ${theme.fonts.SUBTITLE.SUB5_SB}
+    }
   `,
 );
