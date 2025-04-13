@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import { ToastType } from '@/common/components/toast/toast-config';
 import { useFeedbackStore, ProcessState } from '@/store/feedback';
-import { useAuthStore } from '@/store/user-auth';
 
 const mapProcessStateToToastType = (state: ProcessState): ToastType | null => {
   switch (state) {
@@ -19,17 +18,10 @@ const mapProcessStateToToastType = (state: ProcessState): ToastType | null => {
 
 export const useToast = () => {
   const navigate = useNavigate();
+
   const { state, changeState } = useFeedbackStore();
-  const { isLogin } = useAuthStore();
 
-  const toastType = mapProcessStateToToastType(state);
   const [toastOpen, setToastOpen] = useState(true);
-
-  useEffect(() => {
-    if (!isLogin) {
-      changeState('IDLE');
-    }
-  }, [isLogin, changeState]);
 
   const navigateTotalEvaluationPage = () => {
     if (state === 'ERROR') {
@@ -37,6 +29,8 @@ export const useToast = () => {
       navigate('/upload');
     }
   };
+
+  const toastType = mapProcessStateToToastType(state);
 
   return {
     toastType,
