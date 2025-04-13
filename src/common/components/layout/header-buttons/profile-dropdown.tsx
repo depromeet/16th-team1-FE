@@ -6,6 +6,7 @@ import { useClearAuth } from '@/common/hooks/use-auth-cycle';
 import { getValueOrHyphen } from '@/common/utils/get-value-or-hyphen';
 import { useGetFeedbackHistory } from '@/features/feedback/services/use-get-feedback-history';
 import { useGetRemainingCountQuery } from '@/features/upload/services/queries';
+import { useFeedbackStore } from '@/store/feedback';
 import { useModalStore } from '@/store/modal';
 
 import AuthProfile from './auth-profile';
@@ -26,6 +27,9 @@ function ProfileDropdown() {
   const { openModal } = useModalStore();
 
   const { logout } = useClearAuth();
+
+  const { changeState } = useFeedbackStore();
+
   return (
     <DropdownMenu.Root
       defaultOpen={false}
@@ -72,6 +76,7 @@ function ProfileDropdown() {
               label="로그아웃"
               handleClick={async () => {
                 setIsDropdownOpen(false);
+                changeState('IDLE');
                 await logout();
               }}
             />
