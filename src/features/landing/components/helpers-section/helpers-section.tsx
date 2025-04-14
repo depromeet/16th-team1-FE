@@ -93,23 +93,25 @@ export default function HelpersSection() {
         </div>
       </section>
 
-      <section css={styles.sectionWrapper}>
-        <FadeInWrapper
-          additionalStyles={styles.titleWrapper}
-          intersectionOptions={{
-            threshold: 0.3,
-            triggerOnce: true,
-          }}
-        >
-          <SectionBadge color="#D7B1FF" text="프로젝트 평가" />
-          <h2 css={styles.sectionTitle}>
-            프로젝트 과정에서 놓친 부분은 없는지
-            <br />
-            단계별로 확인해요
-          </h2>
-        </FadeInWrapper>
-        <ProjectsWrapper />
-      </section>
+      <div id="project-section-wrapper" css={styles.sectionContainer}>
+        <section id="project-section" css={styles.sectionWrapper}>
+          <FadeInWrapper
+            additionalStyles={styles.titleWrapper}
+            intersectionOptions={{
+              threshold: 0.3,
+              triggerOnce: true,
+            }}
+          >
+            <SectionBadge color="#D7B1FF" text="프로젝트 평가" />
+            <h2 css={styles.sectionTitle}>
+              프로젝트 과정에서 놓친 부분은 없는지
+              <br />
+              단계별로 확인해요
+            </h2>
+          </FadeInWrapper>
+          <ProjectsWrapper />
+        </section>
+      </div>
 
       <section css={styles.sectionWrapper}>
         <FadeInWrapper
