@@ -1,5 +1,7 @@
 import { useState, useMemo, useCallback } from 'react';
 
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
@@ -77,6 +79,7 @@ export default function DetailImprovement() {
               src={`${TMP_AWS_IMAGE_BASE_URL}/${extractImageFilename(currentImprovementData.image)}`}
               width={624}
               alt={`${currentImprovementData.title} image`}
+              onLoad={() => ScrollTrigger.refresh()}
             />
 
             <div css={styles.improvementTextWrapper}>

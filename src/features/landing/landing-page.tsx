@@ -3,6 +3,8 @@ import { useInView } from 'react-intersection-observer';
 
 // import { css } from '@emotion/react';
 
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import { useAuthCycle } from '@/common/hooks/use-auth-cycle';
 import useDeviceType from '@/common/hooks/use-device-type';
 // import { axiosInstance } from '@/common/services/service-config';
@@ -51,6 +53,7 @@ export default function LandingPage() {
           src={`${TMP_AWS_IMAGE_BASE_URL}/total-evaluation.png`}
           css={styles.image(inView)}
           alt="total evalution image"
+          onLoad={() => ScrollTrigger.refresh()}
         />
       </div>
       <div css={styles.flexColumn(isMobile ? 16 : 22)}>
