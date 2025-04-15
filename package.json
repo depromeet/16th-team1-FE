@@ -17,7 +17,8 @@
     "chromatic": "sh script/publish_chromatic.sh",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "gitcase": "git config --local include.path ./.gitconfig && git rm -r --cached . && git add ."
+    "gitcase": "git config --local include.path ./.gitconfig && git rm -r --cached . && git add .",
+    "generate:images": "node script/generate-image-url.ts"
   },
   "lint-staged": {
     "./src/**/*.{ts,tsx}": [

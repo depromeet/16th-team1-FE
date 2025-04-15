@@ -1,0 +1,35 @@
+export const IMAGES: Record<string, string> = {
+  'detail-evaluation-chart': new URL('@/assets/images/detail-evaluation-chart.png', import.meta.url)
+    .href,
+  'grade-small': new URL('@/assets/images/grade-small.png', import.meta.url).href,
+  grade: new URL('@/assets/images/grade.png', import.meta.url).href,
+  grammar: new URL('@/assets/images/grammar.png', import.meta.url).href,
+  'improvement-01': new URL('@/assets/images/improvement-01.png', import.meta.url).href,
+  'improvement-02': new URL('@/assets/images/improvement-02.png', import.meta.url).href,
+  'improvement-03': new URL('@/assets/images/improvement-03.png', import.meta.url).href,
+  'improvement-04': new URL('@/assets/images/improvement-04.png', import.meta.url).href,
+  'improvement-05': new URL('@/assets/images/improvement-05.png', import.meta.url).href,
+  'loading-project-evaluation': new URL(
+    '@/assets/images/loading-project-evaluation.png',
+    import.meta.url,
+  ).href,
+  'loading-total-evaluation-small': new URL(
+    '@/assets/images/loading-total-evaluation-small.png',
+    import.meta.url,
+  ).href,
+  'loading-total-evaluation': new URL(
+    '@/assets/images/loading-total-evaluation.png',
+    import.meta.url,
+  ).href,
+  logic: new URL('@/assets/images/logic.png', import.meta.url).href,
+  'project-01': new URL('@/assets/images/project-01.png', import.meta.url).href,
+  'project-02': new URL('@/assets/images/project-02.png', import.meta.url).href,
+  'project-03': new URL('@/assets/images/project-03.png', import.meta.url).href,
+  'project-04': new URL('@/assets/images/project-04.png', import.meta.url).href,
+  readability: new URL('@/assets/images/readability.png', import.meta.url).href,
+  redundancy: new URL('@/assets/images/redundancy.png', import.meta.url).href,
+  'step-card-01': new URL('@/assets/images/step-card-01.png', import.meta.url).href,
+  'step-card-02': new URL('@/assets/images/step-card-02.png', import.meta.url).href,
+  'total-evaluation': new URL('@/assets/images/total-evaluation.png', import.meta.url).href,
+  translation: new URL('@/assets/images/translation.png', import.meta.url).href,
+};

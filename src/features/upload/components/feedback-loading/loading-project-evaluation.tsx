@@ -2,8 +2,8 @@
 import Icon from '@/common/components/icon/icon';
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import Spacing from '@/common/components/spacing/spacing';
+import { IMAGES } from '@/common/constants/images';
 import useDeviceType from '@/common/hooks/use-device-type';
-import { TMP_AWS_IMAGE_BASE_URL } from '@/features/landing/landing-page';
 
 import TotalEvaluationBottom from './loading-evaluation-bottom';
 
@@ -36,7 +36,7 @@ export default function LoadingProjectEvaluation() {
             <Spacing size={2.4} />
           </figure>
           <img
-            src={`${TMP_AWS_IMAGE_BASE_URL}/loading-project-evaluation.png`}
+            src={IMAGES['loading-project-evaluation']}
             css={styles.image}
             alt="loading progect evaluation image"
           />

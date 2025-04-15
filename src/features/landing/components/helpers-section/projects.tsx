@@ -1,10 +1,9 @@
 import Icon from '@/common/components/icon/icon';
+import { IMAGES } from '@/common/constants/images';
 import useDeviceType from '@/common/hooks/use-device-type';
 
 import * as styles from './projects-styles';
 import { PROCESS_COLOR } from '../../constants/colors';
-import { TMP_AWS_IMAGE_BASE_URL } from '../../landing-page';
-import { extractImageFilename } from '../../utils/extract-image-file-name';
 
 interface ProjectsProps {
   imageUrl: string;
@@ -25,13 +24,7 @@ export default function Projects({
     <div css={styles.container}>
       <div css={styles.imageContainer}>
         <div css={styles.imageWrapper}>
-          {/* 
-          TODO: S3참조 제거
-          <img src={imageUrl} alt="프로젝트 피드백" /> */}
-          <img
-            src={`${TMP_AWS_IMAGE_BASE_URL}/${extractImageFilename(imageUrl)}`}
-            alt="프로젝트 피드백"
-          />
+          <img src={IMAGES[imageUrl]} alt="프로젝트 피드백" />
         </div>
         <div css={styles.description}>{feedbackDescription}</div>
       </div>

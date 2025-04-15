@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-// import { css } from '@emotion/react';
-
+import { IMAGES } from '@/common/constants/images';
 import { useAuthCycle } from '@/common/hooks/use-auth-cycle';
 import useDeviceType from '@/common/hooks/use-device-type';
-// import { axiosInstance } from '@/common/services/service-config';
 
 import FAQ from './components/frequently-asked-questions/frequently-asked-questions';
 import HelpersSection from './components/helpers-section/helpers-section';
@@ -13,8 +11,6 @@ import RoutingBottomSection from './components/routing-section/routing-bottom-se
 import RoutingStartSection from './components/routing-section/routing-start-section';
 
 import * as styles from './landing-page.styles';
-
-export const TMP_AWS_IMAGE_BASE_URL = 'https://critix-resource.s3.us-east-2.amazonaws.com';
 
 export default function LandingPage() {
   const { isMobile } = useDeviceType();
@@ -39,16 +35,9 @@ export default function LandingPage() {
     <div id="landing-container" css={styles.landingPage}>
       <div css={styles.flexColumn(isMobile ? 4.8 : 10)} id="start-section">
         <RoutingStartSection />
-        {/* <img
-        TODO: S3참조 제거
-          ref={ref}
-          src={totalEvaluation}
-          css={styles.image(inView)}
-          alt="total evalution image"
-        /> */}
         <img
           ref={ref}
-          src={`${TMP_AWS_IMAGE_BASE_URL}/total-evaluation.png`}
+          src={IMAGES['total-evaluation']}
           css={styles.image(inView)}
           alt="total evalution image"
         />
