@@ -1,5 +1,4 @@
 import Icon from '@/common/components/icon/icon';
-import { IMAGES } from '@/common/constants/images';
 import useDeviceType from '@/common/hooks/use-device-type';
 import { getImageUrl } from '@/common/utils/get-image-url';
 
