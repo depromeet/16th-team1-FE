@@ -1,14 +1,15 @@
 import { useState, useMemo, useCallback } from 'react';
 
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import useDeviceType from '@/common/hooks/use-device-type';
 import useShadowScroll from '@/common/hooks/use-shadow-scroll';
+import { getImageUrl } from '@/common/utils/get-image-url';
 
 import { detailImprovementData } from '../../common/data';
-import { TMP_AWS_IMAGE_BASE_URL } from '../../landing-page';
-import { extractImageFilename } from '../../utils/extract-image-file-name';
 
 import * as styles from './detail-improvement.styles';
 
@@ -64,19 +65,12 @@ export default function DetailImprovement() {
       <div css={styles.improvementContentWrapper}>
         {currentImprovementData && (
           <>
-            {/* <img
-            TODO: S3참조 제거
-              css={styles.image}
-              src={currentImprovementData.image}
-              width={624}
-              alt={`${currentImprovementData.title} image`}
-            /> */}
-
             <img
               css={styles.image}
-              src={`${TMP_AWS_IMAGE_BASE_URL}/${extractImageFilename(currentImprovementData.image)}`}
+              src={getImageUrl(currentImprovementData.image)}
               width={624}
               alt={`${currentImprovementData.title} image`}
+              onLoad={() => ScrollTrigger.refresh()}
             />
 
             <div css={styles.improvementTextWrapper}>
