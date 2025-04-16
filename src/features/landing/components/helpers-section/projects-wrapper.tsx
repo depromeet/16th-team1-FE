@@ -75,7 +75,7 @@ export default function ProjectsWrapper() {
   return (
     <div
       style={{
-        width: '100vw',
+        width: '100%',
         height: 'fit-content',
       }}
     >

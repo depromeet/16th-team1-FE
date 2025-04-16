@@ -37,6 +37,24 @@ export default function LandingPage() {
     executeAuthCycle(options);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      ScrollTrigger.refresh();
+    };
+
+    const observer = new ResizeObserver((entries) => {
+      entries.forEach(() => {
+        handleResize();
+      });
+    });
+
+    observer.observe(document.body);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div id="landing-container" css={styles.landingPage}>
       <div css={styles.flexColumn(isMobile ? 4.8 : 10)} id="start-section">
