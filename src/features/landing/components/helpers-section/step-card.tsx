@@ -1,9 +1,7 @@
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
-
-import { TMP_AWS_IMAGE_BASE_URL } from '../../landing-page';
-import { extractImageFilename } from '../../utils/extract-image-file-name';
+import { getImageUrl } from '@/common/utils/get-image-url';
 
 import * as styles from './step-card.styles';
 
@@ -33,12 +31,9 @@ export default function StepCard({ idx, step, text, image, aspectRatio, width }:
         <p css={styles.stepExplainText}>{text}</p>
       </div>
       <div>
-        {/* 
-        TODO: S3참조 제거
-        <img css={styles.image(aspectRatio, width)} src={image} alt={`${step}: ${text}`} /> */}
         <img
           css={styles.image(aspectRatio, width)}
-          src={`${TMP_AWS_IMAGE_BASE_URL}/${extractImageFilename(image)}`}
+          src={getImageUrl(image)}
           alt={`${step}: ${text}`}
           onLoad={() => ScrollTrigger.refresh()}
         />

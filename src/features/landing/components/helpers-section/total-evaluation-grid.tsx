@@ -8,11 +8,7 @@ import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import useDeviceType from '@/common/hooks/use-device-type';
-
-// import { TMP_AWS_IMAGE_BASE_URL } from '../../landing-page';
-// import { extractImageFilename } from '../../utils/extract-image-file-name';
-
-import { TMP_AWS_IMAGE_BASE_URL } from '../../landing-page';
+import { getImageUrl } from '@/common/utils/get-image-url';
 
 import * as styles from './total-evaluation-grid.styles';
 
@@ -45,16 +41,8 @@ export default function TotalEvaluationGrid() {
           </div>
           <div css={styles.gradeWrapper}>
             <div css={styles.gradeExample}>
-              {/* 
-              TODO: S3참조 제거
-              <img src={isMobile ? gradeSmall : grade} alt="등급" /> */}
-
               <img
-                src={
-                  isMobile
-                    ? `${TMP_AWS_IMAGE_BASE_URL}/grade-small.png`
-                    : `${TMP_AWS_IMAGE_BASE_URL}/grade.png`
-                }
+                src={isMobile ? getImageUrl('grade-small') : getImageUrl('grade')}
                 alt="등급"
                 onLoad={() => ScrollTrigger.refresh()}
               />
@@ -85,7 +73,7 @@ export default function TotalEvaluationGrid() {
           </h3>
           <div css={styles.chartExample}>
             <img
-              src={`${TMP_AWS_IMAGE_BASE_URL}/detail-evaluation-chart.png`}
+              src={getImageUrl('detail-evaluation-chart')}
               alt="세부 평가 차트"
               onLoad={() => ScrollTrigger.refresh()}
             />
