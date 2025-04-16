@@ -4,6 +4,7 @@ import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import Spacing from '@/common/components/spacing/spacing';
 import { IMAGES } from '@/common/constants/images';
 import useDeviceType from '@/common/hooks/use-device-type';
+import { getImageUrl } from '@/common/utils/get-image-url';
 
 import TotalEvaluationBottom from './loading-evaluation-bottom';
 
@@ -36,7 +37,7 @@ export default function LoadingProjectEvaluation() {
             <Spacing size={2.4} />
           </figure>
           <img
-            src={IMAGES['loading-project-evaluation']}
+            src={getImageUrl('loading-project-evaluation')}
             css={styles.image}
             alt="loading progect evaluation image"
           />

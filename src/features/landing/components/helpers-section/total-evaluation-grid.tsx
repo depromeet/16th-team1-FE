@@ -8,6 +8,7 @@ import Icon from '@/common/components/icon/icon';
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import { IMAGES } from '@/common/constants/images';
 import useDeviceType from '@/common/hooks/use-device-type';
+import { getImageUrl } from '@/common/utils/get-image-url';
 
 import * as styles from './total-evaluation-grid.styles';
 
@@ -40,7 +41,7 @@ export default function TotalEvaluationGrid() {
           </div>
           <div css={styles.gradeWrapper}>
             <div css={styles.gradeExample}>
-              <img src={isMobile ? IMAGES['grade-small'] : IMAGES['grade']} alt="등급" />
+              <img src={isMobile ? getImageUrl('grade-small') : getImageUrl('grade')} alt="등급" />
             </div>
           </div>
         </FadeInWrapper>
@@ -67,7 +68,7 @@ export default function TotalEvaluationGrid() {
             <br /> 세부 평가 항목의 점수는
           </h3>
           <div css={styles.chartExample}>
-            <img src={IMAGES['detail-evaluation-chart']} alt="세부 평가 차트" />
+            <img src={getImageUrl('detail-evaluation-chart')} alt="세부 평가 차트" />
           </div>
         </FadeInWrapper>
       </div>

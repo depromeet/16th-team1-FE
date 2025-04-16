@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { IMAGES } from '@/common/constants/images';
 import { useAuthCycle } from '@/common/hooks/use-auth-cycle';
 import useDeviceType from '@/common/hooks/use-device-type';
+import { getImageUrl } from '@/common/utils/get-image-url';
 
 import FAQ from './components/frequently-asked-questions/frequently-asked-questions';
 import HelpersSection from './components/helpers-section/helpers-section';
@@ -37,7 +38,7 @@ export default function LandingPage() {
         <RoutingStartSection />
         <img
           ref={ref}
-          src={IMAGES['total-evaluation']}
+          src={getImageUrl('total-evaluation')}
           css={styles.image(inView)}
           alt="total evalution image"
         />

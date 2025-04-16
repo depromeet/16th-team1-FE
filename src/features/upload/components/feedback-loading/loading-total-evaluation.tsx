@@ -3,6 +3,7 @@
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import { IMAGES } from '@/common/constants/images';
 import useDeviceType from '@/common/hooks/use-device-type';
+import { getImageUrl } from '@/common/utils/get-image-url';
 
 import LoadingEvaluationBottom from './loading-evaluation-bottom';
 
@@ -23,7 +24,9 @@ export default function LoadingTotalEvaluation() {
       >
         <img
           src={
-            isMobile ? IMAGES['loading-total-evaluation-small'] : IMAGES['loading-total-evaluation']
+            isMobile
+              ? getImageUrl('loading-total-evaluation-small')
+              : getImageUrl('loading-total-evaluation')
           }
           css={styles.image}
           alt="loading total evaluation image"

@@ -1,6 +1,7 @@
 import Icon from '@/common/components/icon/icon';
 import { IMAGES } from '@/common/constants/images';
 import useDeviceType from '@/common/hooks/use-device-type';
+import { getImageUrl } from '@/common/utils/get-image-url';
 
 import * as styles from './projects-styles';
 import { PROCESS_COLOR } from '../../constants/colors';
@@ -24,7 +25,7 @@ export default function Projects({
     <div css={styles.container}>
       <div css={styles.imageContainer}>
         <div css={styles.imageWrapper}>
-          <img src={IMAGES[imageUrl]} alt="프로젝트 피드백" />
+          <img src={getImageUrl(imageUrl)} alt="프로젝트 피드백" />
         </div>
         <div css={styles.description}>{feedbackDescription}</div>
       </div>

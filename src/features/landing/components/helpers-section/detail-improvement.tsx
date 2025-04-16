@@ -6,6 +6,7 @@ import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import { IMAGES } from '@/common/constants/images';
 import useDeviceType from '@/common/hooks/use-device-type';
 import useShadowScroll from '@/common/hooks/use-shadow-scroll';
+import { getImageUrl } from '@/common/utils/get-image-url';
 
 import { detailImprovementData } from '../../common/data';
 
@@ -65,7 +66,7 @@ export default function DetailImprovement() {
           <>
             <img
               css={styles.image}
-              src={IMAGES[currentImprovementData.image]}
+              src={getImageUrl(currentImprovementData.image)}
               width={624}
               alt={`${currentImprovementData.title} image`}
             />

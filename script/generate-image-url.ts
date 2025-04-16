@@ -18,7 +18,7 @@ function generateImageUrl() {
 
   const imageEntries = files.map((file) => {
     const key = path.basename(file, path.extname(file));
-    return `  '${key}': new URL('@/assets/images/${file}', import.meta.url).href,`;
+    return `  '${key}': '../../../src/assets/images/${file}',`;
   });
 
   const typeFile = ['export const IMAGES: Record<string, string> = {', ...imageEntries, '};'].join(

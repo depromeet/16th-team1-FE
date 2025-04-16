@@ -1,5 +1,6 @@
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import { IMAGES } from '@/common/constants/images';
+import { getImageUrl } from '@/common/utils/get-image-url';
 
 import * as styles from './step-card.styles';
 
@@ -29,7 +30,11 @@ export default function StepCard({ idx, step, text, image, aspectRatio, width }:
         <p css={styles.stepExplainText}>{text}</p>
       </div>
       <div>
-        <img css={styles.image(aspectRatio, width)} src={IMAGES[image]} alt={`${step}: ${text}`} />
+        <img
+          css={styles.image(aspectRatio, width)}
+          src={getImageUrl(image)}
+          alt={`${step}: ${text}`}
+        />
       </div>
     </FadeInWrapper>
   );
