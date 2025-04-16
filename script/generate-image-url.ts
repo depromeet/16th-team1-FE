@@ -13,19 +13,33 @@ const OUTPUT_FILE = path.resolve(__dirname, '../src/common/constants/images.ts')
 // 지원할 이미지 확장자
 const SUPPORTED_EXTENSIONS = /\.(png|jpe?g|webp|svg)$/;
 
-function generateImageUrl() {
+function generateImageImportsAndMap() {
   const files = fs.readdirSync(IMAGES_DIR).filter((file) => SUPPORTED_EXTENSIONS.test(file));
 
-  const imageEntries = files.map((file) => {
-    const key = path.basename(file, path.extname(file));
-    return `  '${key}': '../../../src/assets/images/${file}',`;
+  // import 구문 생성
+  const importStatements = files.map((file) => {
+    const key = path.basename(file, path.extname(file)).replace(/-/g, '');
+    return `import ${key} from '@/assets/images/${file}';`;
   });
 
-  const typeFile = ['export const IMAGES: Record<string, string> = {', ...imageEntries, '};'].join(
-    '\n',
-  );
+  // IMAGES 객체 생성
+  const imageEntries = files.map((file) => {
+    const key = path.basename(file, path.extname(file));
+    const varName = key.replace(/-/g, '');
+    return `  '${key}': ${varName},`;
+  });
 
-  fs.writeFileSync(OUTPUT_FILE, typeFile, 'utf-8');
+  const fullContent = [
+    ...importStatements,
+    '',
+    'export const IMAGES: Record<string, string> = {',
+    ...imageEntries,
+    '};',
+    '',
+  ].join('\n');
+
+  fs.writeFileSync(OUTPUT_FILE, fullContent, 'utf-8');
+  console.log('✅ images.ts 파일이 성공적으로 생성되었습니다!');
 }
 
-generateImageUrl();
+generateImageImportsAndMap();
