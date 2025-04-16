@@ -2,7 +2,6 @@
 import Icon from '@/common/components/icon/icon';
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import Spacing from '@/common/components/spacing/spacing';
-import { IMAGES } from '@/common/constants/images';
 import useDeviceType from '@/common/hooks/use-device-type';
 import { getImageUrl } from '@/common/utils/get-image-url';
 

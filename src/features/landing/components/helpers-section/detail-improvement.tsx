@@ -3,7 +3,6 @@ import { useState, useMemo, useCallback } from 'react';
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
-import { IMAGES } from '@/common/constants/images';
 import useDeviceType from '@/common/hooks/use-device-type';
 import useShadowScroll from '@/common/hooks/use-shadow-scroll';
 import { getImageUrl } from '@/common/utils/get-image-url';

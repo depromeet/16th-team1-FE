@@ -1,5 +1,4 @@
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
-import { IMAGES } from '@/common/constants/images';
 import { getImageUrl } from '@/common/utils/get-image-url';
 
 import * as styles from './step-card.styles';

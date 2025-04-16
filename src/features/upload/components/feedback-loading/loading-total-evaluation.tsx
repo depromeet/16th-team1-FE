@@ -1,7 +1,6 @@
 // import loadingTotalEvaluationSmall from '@/assets/images/loading-total-evaluation-small.png';
 // import loadingTotalEvaluation from '@/assets/images/loading-total-evaluation.png';
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
-import { IMAGES } from '@/common/constants/images';
 import useDeviceType from '@/common/hooks/use-device-type';
 import { getImageUrl } from '@/common/utils/get-image-url';
 
