@@ -10,5 +10,4 @@ export const projectContainer = css`
 export const projectScrollContainer = css`
   display: flex;
   justify-content: center;
-  width: 100vw;
 `;
