@@ -1,14 +1,16 @@
 import { useState } from 'react';
 
-import { setLocalStorage } from '@/common/utils/storage';
+import { getLocalStorage, setLocalStorage } from '@/common/utils/storage';
 import { useGetStartFeedback } from '@/features/feedback/services/use-get-start-feedback';
 import { useFeedbackStore } from '@/store/feedback';
+import { useAuthStore } from '@/store/user-auth';
 
 import { usePostPortfolioMutation } from '../../services/mutations';
 import { useGetRemainingCountQuery } from '../../services/queries';
 import FileUpload from '../file-upload/file-upload';
 
 export default function PortfolioUpload() {
+  const { userInfo } = useAuthStore();
   const { mutateAsync: postPortfolio, isPending: isPostPortfolioPending } =
     usePostPortfolioMutation();
   const { data: remainingCount } = useGetRemainingCountQuery();
@@ -29,6 +31,8 @@ export default function PortfolioUpload() {
           const formData = new FormData();
           formData.append('file', file);
 
+          changeState('IDLE');
+
           await postPortfolio(
             {
               file,
@@ -45,10 +49,21 @@ export default function PortfolioUpload() {
                 const { feedbackId } = await startFeedback(id);
 
                 changeState('PENDING', feedbackId);
-                setLocalStorage('feedbackId', feedbackId);
+
+                const email = userInfo?.email || '';
+                const prevFeedbacks = JSON.parse(getLocalStorage('feedbacks') || '{}');
+                setLocalStorage(
+                  'feedbacks',
+                  JSON.stringify({
+                    ...prevFeedbacks,
+                    [email]: feedbackId,
+                  }),
+                );
               },
               onError: () => {
                 changeState('ERROR');
+
+                setProgress(undefined);
               },
             },
           );
@@ -56,6 +71,8 @@ export default function PortfolioUpload() {
           if (error instanceof Error) {
             // TODO: 업로드 실패 시 액션
             changeState('ERROR');
+
+            setProgress(undefined);
           }
         }
       }}
