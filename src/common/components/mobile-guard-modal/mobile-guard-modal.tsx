@@ -6,16 +6,26 @@ import AlertModal from '@/common/components/modal/alert-modal';
 import Spacing from '@/common/components/spacing/spacing';
 import { PAGE_URL } from '@/common/constants/path';
 import { useMobileGuardModalStore } from '@/store/mobile-guard-modal';
+import { useModalStore } from '@/store/modal';
 
 import * as styles from './mobile-guard-modal.styles';
 
 export default function MobileGuardModal() {
   const navigate = useNavigate();
   const { isMobileGuardModalOpen, closeMobileGuardModal } = useMobileGuardModalStore();
+  const { isOpen: isRecentFeedbackModalOpen, closeModal: closeRecentFeedbackModal } =
+    useModalStore();
 
   const handleClickAlertModal = () => {
     closeMobileGuardModal();
-    navigate(PAGE_URL.Landing, { replace: true });
+    if (isRecentFeedbackModalOpen) {
+      closeRecentFeedbackModal();
+    }
+
+    setTimeout(() => {
+      document.body.style.pointerEvents = '';
+      navigate(PAGE_URL.Landing, { replace: true });
+    }, 0);
   };
 
   return (

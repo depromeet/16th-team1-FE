@@ -43,16 +43,18 @@ function ModalRoot({ children, width, height, padding, backgroundColor, gap }: M
 }
 
 const Trigger = AlertDialog.Trigger;
-const Cancel = AlertDialog.Cancel;
 const Title = AlertDialog.Title;
 const Description = AlertDialog.Description;
+const Cancel = AlertDialog.Cancel;
+const Action = AlertDialog.Action;
 
 const AlertModal = Object.assign(AlertDialogModal, {
-  Button: Trigger,
-  Cancel: Cancel,
-  Title: Title,
-  Description: Description,
   Root: ModalRoot,
+  Button: Trigger,
+  Title,
+  Description,
+  Cancel,
+  Action,
 });
 
 export default AlertModal;
