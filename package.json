@@ -18,7 +18,7 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "gitcase": "git config --local include.path ./.gitconfig && git rm -r --cached . && git add .",
-    "generate:images": "node script/generate-image-url.ts"
+    "generate:images": "npx tsx script/generate-image-url.ts"
   },
   "lint-staged": {
     "./src/**/*.{ts,tsx}": [
