@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import Icon from '@/common/components/icon/icon';
+import useDeviceType from '@/common/hooks/use-device-type';
 import useShadowScroll from '@/common/hooks/use-shadow-scroll';
 import { useGetFeedbackHistory } from '@/features/feedback/services/use-get-feedback-history';
 import { parseFeedbackData } from '@/features/profile/util/parse-feedback-data';
+import { useMobileGuardModalStore } from '@/store/mobile-guard-modal';
 
 import * as styles from './recent-feedback-modal-content.styles';
 
@@ -15,6 +17,7 @@ interface recentFeedbackModalContentProps {
 export default function RecentFeedbackModalContent({
   closeModal,
 }: recentFeedbackModalContentProps) {
+  const { isMobile } = useDeviceType();
   const { data } = useGetFeedbackHistory();
   const parseData = parseFeedbackData(data.result);
   const [mainRef, setMainRef] = useState<HTMLElement | null>(null);
@@ -22,7 +25,13 @@ export default function RecentFeedbackModalContent({
   const { bottom } = useShadowScroll({ mainRef, refs: { bottom: bottomRef } });
   const navigate = useNavigate();
 
+  const { openMobileGuardModal } = useMobileGuardModalStore();
+
   const handleNavigateToPortfolioDetail = (id: string) => {
+    if (isMobile) {
+      openMobileGuardModal();
+      return;
+    }
     navigate(`/total-evaluation/${id}`);
     closeModal();
   };
