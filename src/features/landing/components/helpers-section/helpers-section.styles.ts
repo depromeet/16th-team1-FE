@@ -3,7 +3,13 @@ import { css } from '@emotion/react';
 import { mediaQueries } from '@/assets/styles/device-width';
 import { withTheme } from '@/common/utils/with-theme';
 
+export const sectionContainer = css`
+  width: 100%;
+  height: fit-content;
+`;
+
 export const sectionWrapper = css`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,3 +1,5 @@
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import Icon from '@/common/components/icon/icon';
 import useDeviceType from '@/common/hooks/use-device-type';
 import { getImageUrl } from '@/common/utils/get-image-url';
@@ -24,7 +26,11 @@ export default function Projects({
     <div css={styles.container}>
       <div css={styles.imageContainer}>
         <div css={styles.imageWrapper}>
-          <img src={getImageUrl(imageUrl)} alt="프로젝트 피드백" />
+          <img
+            src={getImageUrl(imageUrl)}
+            alt="프로젝트 피드백"
+            onLoad={() => ScrollTrigger.refresh()}
+          />
         </div>
         <div css={styles.description}>{feedbackDescription}</div>
       </div>

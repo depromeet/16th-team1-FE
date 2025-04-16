@@ -2,6 +2,7 @@
 // import gradeSmall from '@assets/images/grade-small.png';
 // import grade from '@assets/images/grade.png';
 import { css } from '@emotion/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
@@ -40,7 +41,11 @@ export default function TotalEvaluationGrid() {
           </div>
           <div css={styles.gradeWrapper}>
             <div css={styles.gradeExample}>
-              <img src={isMobile ? getImageUrl('grade-small') : getImageUrl('grade')} alt="등급" />
+              <img
+                src={isMobile ? getImageUrl('grade-small') : getImageUrl('grade')}
+                alt="등급"
+                onLoad={() => ScrollTrigger.refresh()}
+              />
             </div>
           </div>
         </FadeInWrapper>
@@ -67,7 +72,11 @@ export default function TotalEvaluationGrid() {
             <br /> 세부 평가 항목의 점수는
           </h3>
           <div css={styles.chartExample}>
-            <img src={getImageUrl('detail-evaluation-chart')} alt="세부 평가 차트" />
+            <img
+              src={getImageUrl('detail-evaluation-chart')}
+              alt="세부 평가 차트"
+              onLoad={() => ScrollTrigger.refresh()}
+            />
           </div>
         </FadeInWrapper>
       </div>

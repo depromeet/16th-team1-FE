@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import { useAuthCycle } from '@/common/hooks/use-auth-cycle';
 import useDeviceType from '@/common/hooks/use-device-type';
 import { getImageUrl } from '@/common/utils/get-image-url';
@@ -31,6 +33,24 @@ export default function LandingPage() {
     executeAuthCycle(options);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      ScrollTrigger.refresh();
+    };
+
+    const observer = new ResizeObserver((entries) => {
+      entries.forEach(() => {
+        handleResize();
+      });
+    });
+
+    observer.observe(document.body);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div id="landing-container" css={styles.landingPage}>
       <div css={styles.flexColumn(isMobile ? 4.8 : 10)} id="start-section">
@@ -40,6 +60,7 @@ export default function LandingPage() {
           src={getImageUrl('total-evaluation')}
           css={styles.image(inView)}
           alt="total evalution image"
+          onLoad={() => ScrollTrigger.refresh()}
         />
       </div>
       <div css={styles.flexColumn(isMobile ? 16 : 22)}>

@@ -1,3 +1,5 @@
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import { getImageUrl } from '@/common/utils/get-image-url';
 
@@ -33,6 +35,7 @@ export default function StepCard({ idx, step, text, image, aspectRatio, width }:
           css={styles.image(aspectRatio, width)}
           src={getImageUrl(image)}
           alt={`${step}: ${text}`}
+          onLoad={() => ScrollTrigger.refresh()}
         />
       </div>
     </FadeInWrapper>
