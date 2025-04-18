@@ -1,25 +1,10 @@
-import { ReactNode } from 'react';
-
 import * as Dialog from '@radix-ui/react-dialog';
 
-import * as styles from './base-modal.styles';
+import { ModalContentProps, ModalProps } from './modal-types';
 
-interface BaseModalProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  children: ReactNode;
-}
+import * as styles from './index.styles';
 
-interface ModalContentProps {
-  children: ReactNode;
-  width?: string;
-  height?: string;
-  padding?: string;
-  backgroundColor?: string;
-  gap?: string;
-}
-
-function BaseModal({ open, onOpenChange, children }: BaseModalProps) {
+function BaseModal({ open, onOpenChange, children }: ModalProps) {
   if (!open) return null;
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -28,12 +13,20 @@ function BaseModal({ open, onOpenChange, children }: BaseModalProps) {
   );
 }
 
-function ModalRoot({ children, width, height, padding, backgroundColor, gap }: ModalContentProps) {
+function ModalRoot({
+  children,
+  width,
+  height,
+  padding,
+  backgroundColor,
+  gap,
+  zIndex,
+}: ModalContentProps) {
   return (
     <Dialog.Portal>
-      <Dialog.Overlay css={styles.modalOverlay} />
+      <Dialog.Overlay css={styles.modalOverlay(zIndex)} />
       <Dialog.Content
-        css={styles.modalContent({ width, height, padding, backgroundColor, gap })}
+        css={styles.modalContent({ width, height, padding, backgroundColor, gap, zIndex })}
         aria-describedby={undefined}
       >
         {children}

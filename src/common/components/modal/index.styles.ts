@@ -1,15 +1,10 @@
 import { css, CSSObject } from '@emotion/react';
 
-interface ModalContentProps {
-  width?: string;
-  height?: string;
-  padding?: string;
-  backgroundColor?: string;
-  gap?: string;
-}
+import { ModalContentStyleProps } from './modal-types';
 
-export const modalOverlay = css`
+export const modalOverlay = (zIndex: number) => css`
   position: fixed;
+  z-index: ${zIndex};
   background: rgb(0 0 0 / 80%);
   inset: 0;
 `;
@@ -20,7 +15,8 @@ export const modalContent = ({
   padding,
   backgroundColor,
   gap,
-}: ModalContentProps): CSSObject => ({
+  zIndex,
+}: ModalContentStyleProps): CSSObject => ({
   display: 'flex',
   alignItems: 'flex-start',
   position: 'fixed',
@@ -31,6 +27,7 @@ export const modalContent = ({
   borderRadius: '1.6rem',
   boxShadow: '0 0.4rem 1.05rem 0 rgb(0 0 0 / 82%)',
   outline: 'none',
+  zIndex: zIndex + 1,
   ...(width && { width }),
   ...(height && { height }),
   ...(padding && { padding }),
