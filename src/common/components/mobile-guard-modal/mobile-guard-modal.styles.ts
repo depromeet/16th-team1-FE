@@ -19,6 +19,7 @@ export const modalTitle = withTheme(
   (theme) => css`
     ${theme.fonts.SUBTITLE.SUB3_B}
     color:#fff;
+    white-space: nowrap;
   `,
 );
 
@@ -27,5 +28,6 @@ export const modalText = withTheme(
     ${theme.fonts.CAPTION.CAPTION1_SB}
     color: ${theme.colors.GRAY[400]};
     text-align: center;
+    white-space: nowrap;
   `,
 );

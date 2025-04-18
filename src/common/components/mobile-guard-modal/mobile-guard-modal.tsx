@@ -16,6 +16,9 @@ export default function MobileGuardModal() {
   const { isOpen: isRecentFeedbackModalOpen, closeModal: closeRecentFeedbackModal } =
     useModalStore();
 
+  /**
+   * 모바일뷰 접근 제한 모달 닫을 경우 랜딩 페이지로 라우팅
+   */
   const handleClickAlertModal = () => {
     closeMobileGuardModal();
     if (isRecentFeedbackModalOpen) {
@@ -30,7 +33,12 @@ export default function MobileGuardModal() {
 
   return (
     <AlertModal open={isMobileGuardModalOpen} onOpenChange={handleClickAlertModal}>
-      <AlertModal.Root padding="2.4rem" gap="3.2rem" backgroundColor={theme.colors.GRAY[900]}>
+      <AlertModal.Root
+        padding="2.4rem"
+        gap="3.2rem"
+        backgroundColor={theme.colors.GRAY[900]}
+        width="28rem"
+      >
         <div css={styles.flexColumn}>
           <span css={styles.modalIcon}>🏃🏼</span>
           <Spacing size={0.4} />
