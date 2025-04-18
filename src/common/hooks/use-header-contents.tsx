@@ -42,9 +42,9 @@ export const useHeaderContents = (pageLabel: PageLabelKey) => {
       right: <ProfileMenu />,
     },
     TotalEvaluation: {
-      left: <TotalEvalutationSidebarButtons />,
-      middle: <TotalEvalutationUserInfo />,
-      right: <ProfileMenu />,
+      left: isMobile ? null : <TotalEvalutationSidebarButtons />,
+      middle: isMobile ? null : <TotalEvalutationUserInfo />,
+      right: isMobile ? null : <ProfileMenu />,
     },
   };
 
