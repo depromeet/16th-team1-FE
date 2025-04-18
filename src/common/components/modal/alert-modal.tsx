@@ -1,26 +1,10 @@
-import { ReactNode } from 'react';
-
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 
-import * as styles from './alert-modal.styles';
+import { ModalContentProps, ModalProps } from './modal-types';
 
-interface AlertModalProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  children: ReactNode;
-}
+import * as styles from './index.styles';
 
-interface ModalContentProps {
-  children: ReactNode;
-  width?: string;
-  height?: string;
-  padding?: string;
-  backgroundColor?: string;
-  gap?: string;
-  zIndex: number;
-}
-
-function AlertDialogModal({ open, onOpenChange, children }: AlertModalProps) {
+function AlertDialogModal({ open, onOpenChange, children }: ModalProps) {
   if (!open) return null;
   return (
     <AlertDialog.Root open={open} onOpenChange={onOpenChange}>
