@@ -1,4 +1,8 @@
-export type ToastType = 'feedbackPending' | 'feedbackError' | 'getFeedbackFailure';
+export type ToastType =
+  | 'feedbackPending'
+  | 'feedbackError'
+  | 'onlyDesignerPortfolioAllowed'
+  | 'getFeedbackFailure';
 
 import { ReactNode } from 'react';
 
@@ -21,12 +25,17 @@ export const toastConfig: Record<
     icon: <Icon name="spinner" customStyle={toastStyles.spinnerStyle} />,
     iconPosition: 'left',
   },
-
   feedbackError: {
     message: '오류가 발생했어요',
     duration: 3000,
     icon: <div css={toastStyles.errorWrapper}>다시 시도</div>,
     iconPosition: 'right',
+  },
+  onlyDesignerPortfolioAllowed: {
+    message: '디자이너 포트폴리오만 업로드 할 수 있어요!',
+    duration: 3000,
+    icon: <Icon name="alert-triangle" color={theme.colors.RED[500]} />,
+    iconPosition: 'left',
   },
   getFeedbackFailure: {
     message: '피드백을 불러올 수 없어요',
