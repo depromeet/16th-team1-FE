@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import { ToastType } from '@/common/components/toast/toast-config';
@@ -31,6 +31,14 @@ export const useToast = () => {
   };
 
   const toastType = mapProcessStateToToastType(state);
+
+  useEffect(() => {
+    if (toastType) {
+      setToastOpen(true);
+    } else {
+      setToastOpen(false);
+    }
+  }, [toastType]);
 
   return {
     toastType,

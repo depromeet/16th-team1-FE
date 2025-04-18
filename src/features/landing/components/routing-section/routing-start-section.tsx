@@ -17,7 +17,7 @@ export default function RoutingStartSection() {
   return (
     <section css={styles.flexColumn}>
       <p css={styles.mainText('start')}>
-        Just upload <br />
+        Just Upload <br />
         Your Portfolio
       </p>
       <Spacing size={isMobile ? 1.6 : 3.2} />
