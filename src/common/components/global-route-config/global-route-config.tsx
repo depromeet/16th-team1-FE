@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router';
 
+import MobileGuardModal from '@/common/components/mobile-guard-modal/mobile-guard-modal';
 import Toast from '@/common/components/toast/toast';
 import { useToast } from '@/common/hooks/use-toast';
 import RecentFeedbackModal from '@/features/profile/components/recent-feedback-modal/recent-feedback-modal';
@@ -9,7 +10,6 @@ import FeedbackStateObserver from '../feedback-state-observer/feedback-state-obs
 
 /** 전역적으로 사용되는 로직들을 라우팅 최상단에 배치하는 Config 컴포넌트 */
 export default function GlobalRouteConfig() {
-
   const { toastType, toastOpen, setToastOpen, navigateTotalEvaluationPage } = useToast();
 
   const { isLogin, userInfo } = useAuthStore();
@@ -21,6 +21,9 @@ export default function GlobalRouteConfig() {
 
       {/* 최근 피드백 모달 */}
       {isLogin && userInfo && <RecentFeedbackModal />}
+
+      {/* 모바일 접근 제한 모달 */}
+      <MobileGuardModal />
 
       {/* 피드백 로딩 상태에 따른 토스트 메세지 */}
       {toastType && (

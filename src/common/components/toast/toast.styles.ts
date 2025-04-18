@@ -92,6 +92,22 @@ const toastVariants: Record<ToastType, ToastVariantType> = {
     boxShadow: `0 0 8rem 0 rgba(0, 0, 0, 0.40)`,
     backdropFilter: `blur(1.2rem)`,
   },
+  onlyDesignerPortfolioAllowed: {
+    border: `0.2rem solid rgba(255, 89, 89, 0.30)`,
+    background: `rgba(227, 45, 45, 0.20)`,
+    textColor: `${colors.GRAY[100]}`,
+    padding: '2.1rem 2.4rem',
+    gap: '0.8rem',
+    isClickable: false,
+    animation: {
+      open: slideUp,
+      close: slideDown,
+      extra: 'none',
+    },
+    position: { bottom: '10rem', left: '50%', transform: 'translateX(-50%)' },
+    boxShadow: `0 0 8rem 0 rgba(0, 0, 0, 0.40)`,
+    backdropFilter: `blur(1.2rem)`,
+  },
   getFeedbackFailure: {
     background: 'rgba(233, 97, 80, 0.10)',
     border: `0.2rem solid rgba(233, 97, 80, 0.15)`,

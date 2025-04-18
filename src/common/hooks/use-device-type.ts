@@ -7,10 +7,13 @@ type DeviceState = {
 };
 
 export default function useDeviceType() {
-  const [deviceState, setDeviceState] = useState<DeviceState>({
-    isMobile: false,
-    isTablet: false,
-    isDesktop: false,
+  const [deviceState, setDeviceState] = useState<DeviceState>(() => {
+    const width = window.innerWidth;
+    return {
+      isMobile: width <= 767,
+      isTablet: width > 767 && width <= 1009,
+      isDesktop: width > 1009,
+    };
   });
 
   const handleResize = () => {

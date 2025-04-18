@@ -4,6 +4,8 @@ import { convertDateStringToObject } from '@common/utils/date';
 import { css } from '@emotion/react';
 
 import Icon from '@/common/components/icon/icon';
+import useDeviceType from '@/common/hooks/use-device-type';
+import { useMobileGuardModalStore } from '@/store/mobile-guard-modal';
 
 import * as styles from './recent-feedback-list-item.styles';
 
@@ -19,11 +21,21 @@ export default function RecentFeedbackListItem({
   fileName,
 }: RecentFeedbackListItemProps) {
   const navigate = useNavigate();
+  const { isMobile } = useDeviceType();
+  const { openMobileGuardModal } = useMobileGuardModalStore();
 
   const parsedDate = convertDateStringToObject(date);
 
+  const handleClickTotalEvaluation = () => {
+    if (isMobile) {
+      openMobileGuardModal();
+      return;
+    }
+    navigate(`/total-evaluation/${feedbackId}`);
+  };
+
   return (
-    <li onClick={() => navigate(`/total-evaluation/${feedbackId}`)} css={styles.container}>
+    <li onClick={handleClickTotalEvaluation} css={styles.container}>
       <div
         css={styles.date}
       >{`${parsedDate.year.toString().slice(2)}. ${parsedDate.month}. ${parsedDate.day}`}</div>

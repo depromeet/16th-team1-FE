@@ -4,6 +4,7 @@ import FallbackBoundary from '@/common/components/fallback-boundary/fallback-bou
 import Icon from '@/common/components/icon/icon';
 import Modal from '@/common/components/modal/base-modal';
 import Skeleton from '@/common/components/skeleton/skeleton';
+import { useGetModalZIndex } from '@/common/hooks/use-get-modal-z-index';
 import { useModalStore } from '@/store/modal';
 
 import RecentFeedbackModalContent from './recent-feedback-modal-content';
@@ -12,6 +13,9 @@ import * as styles from './recent-feedback-modal.styles';
 
 export default function RecentFeedbackModal() {
   const { isOpen, closeModal } = useModalStore();
+  const { getModalZIndex } = useGetModalZIndex();
+
+  const zIndex = getModalZIndex('recentFeedbackModal');
 
   return (
     <Modal open={isOpen} onOpenChange={closeModal}>
@@ -20,6 +24,7 @@ export default function RecentFeedbackModal() {
         height="47.1rem"
         padding="2.4rem 1.6rem 2.8rem 1.6rem"
         gap="2.4rem"
+        zIndex={zIndex}
         backgroundColor={colors.GRAY[990]}
       >
         <header css={styles.modalHeader}>

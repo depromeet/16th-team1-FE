@@ -1,6 +1,12 @@
 import { create } from 'zustand';
 
-export type ProcessState = 'PENDING' | 'IN_PROGRESS' | 'ERROR' | 'COMPLETE' | 'IDLE';
+export type ProcessState =
+  | 'PENDING'
+  | 'IN_PROGRESS'
+  | 'ERROR'
+  | 'ONLY_DESIGNER_PORTFOLIO'
+  | 'COMPLETE'
+  | 'IDLE';
 
 interface FeedbackState {
   state: ProcessState;
@@ -33,6 +39,14 @@ export const useFeedbackStore = create<FeedbackState>((set) => ({
         set((prev) => {
           if (prev.state !== 'ERROR') {
             return { state: 'ERROR', feedbackId };
+          }
+          return prev;
+        });
+        break;
+      case 'ONLY_DESIGNER_PORTFOLIO':
+        set((prev) => {
+          if (prev.state !== 'ONLY_DESIGNER_PORTFOLIO') {
+            return { state: 'ONLY_DESIGNER_PORTFOLIO', feedbackId };
           }
           return prev;
         });

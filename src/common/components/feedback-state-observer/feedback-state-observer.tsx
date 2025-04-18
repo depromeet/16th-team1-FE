@@ -1,9 +1,10 @@
 import { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
-import { getLocalStorage, removeLocalStorage } from '@/common/utils/storage';
+import { getLocalStorage, setLocalStorage } from '@/common/utils/storage';
 import { useGetPortfolioFeedbackForStatus } from '@/features/feedback/services/use-get-portfolio-feedback';
 import { useFeedbackStore } from '@/store/feedback';
+import { useAuthStore } from '@/store/user-auth';
 
 const POLLING_INTERVAL = 5000;
 
@@ -12,6 +13,7 @@ const POLLING_INTERVAL = 5000;
  */
 export default function FeedbackStateObserver() {
   const navigate = useNavigate();
+  const { userInfo } = useAuthStore();
   const { feedbackId, changeState } = useFeedbackStore();
   const { data: feedback, refetch } = useGetPortfolioFeedbackForStatus({
     feedbackId,
@@ -27,7 +29,14 @@ export default function FeedbackStateObserver() {
 
     if (isComplete) {
       // 피드백 생성 성공 시
-      removeLocalStorage('feedbackId');
+      const feedbacks = JSON.parse(getLocalStorage('feedbacks', undefined) || '{}');
+      const { email } = userInfo || {};
+
+      if (!email) return;
+
+      delete feedbacks[email];
+
+      setLocalStorage('feedbacks', JSON.stringify(feedbacks));
 
       changeState('COMPLETE');
 
@@ -69,12 +78,19 @@ export default function FeedbackStateObserver() {
   }, [feedbackId, getFeedbackState]);
 
   useEffect(() => {
-    const feedbackIdinProgress = getLocalStorage('feedbackId', undefined);
+    const { email } = userInfo || {};
+    if (!email) return;
+
+    const feedbacks = JSON.parse(getLocalStorage('feedbacks', undefined) || '{}');
+
+    if (!feedbacks) return;
+
+    const feedbackIdinProgress = feedbacks[email];
 
     if (feedbackIdinProgress) {
       changeState('PENDING', feedbackIdinProgress);
     }
-  }, [changeState]);
+  }, [changeState, userInfo]);
 
   return null;
 }

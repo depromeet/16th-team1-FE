@@ -4,6 +4,7 @@ import Icon from '@/common/components/icon/icon';
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import useDeviceType from '@/common/hooks/use-device-type';
 import useShadowScroll from '@/common/hooks/use-shadow-scroll';
+import { getImageUrl } from '@/common/utils/get-image-url';
 
 import { EVALUATION_OPTIONS } from '../../constants/loading-constant';
 
@@ -56,7 +57,7 @@ export default function LoadingPageEvaluation() {
 
       {currentData && (
         <main key={currentData.key} css={styles.mainContent}>
-          <img src={currentData.image} alt={currentData.title} css={styles.image} />
+          <img src={getImageUrl(currentData.image)} alt={currentData.title} css={styles.image} />
           <div css={styles.contentBox}>
             <h2 css={styles.sectionTitle}>
               <Icon name="checkbox" width={isMobile ? 20 : isTablet ? 28 : 24} />
