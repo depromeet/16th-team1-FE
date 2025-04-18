@@ -11,6 +11,8 @@ const mapProcessStateToToastType = (state: ProcessState): ToastType | null => {
       return 'feedbackPending';
     case 'ERROR':
       return 'feedbackError';
+    case 'ONLY_DESIGNER_PORTFOLIO':
+      return 'onlyDesignerPortfolioAllowed';
     default:
       return null;
   }
