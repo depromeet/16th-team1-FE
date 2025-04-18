@@ -5,6 +5,7 @@ import { Button } from '@/common/components/button/Button';
 import AlertModal from '@/common/components/modal/alert-modal';
 import Spacing from '@/common/components/spacing/spacing';
 import { PAGE_URL } from '@/common/constants/path';
+import { useGetModalZIndex } from '@/common/hooks/use-get-modal-z-index';
 import { useMobileGuardModalStore } from '@/store/mobile-guard-modal';
 import { useModalStore } from '@/store/modal';
 
@@ -15,6 +16,10 @@ export default function MobileGuardModal() {
   const { isMobileGuardModalOpen, closeMobileGuardModal } = useMobileGuardModalStore();
   const { isOpen: isRecentFeedbackModalOpen, closeModal: closeRecentFeedbackModal } =
     useModalStore();
+
+  const { getModalZIndex } = useGetModalZIndex();
+
+  const zIndex = getModalZIndex('mobileGuardModal');
 
   /**
    * 모바일뷰 접근 제한 모달 닫을 경우 랜딩 페이지로 라우팅
@@ -38,6 +43,7 @@ export default function MobileGuardModal() {
         gap="3.2rem"
         backgroundColor={theme.colors.GRAY[900]}
         width="28rem"
+        zIndex={zIndex}
       >
         <div css={styles.flexColumn}>
           <span css={styles.modalIcon}>🏃🏼</span>

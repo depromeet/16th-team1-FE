@@ -17,6 +17,7 @@ interface ModalContentProps {
   padding?: string;
   backgroundColor?: string;
   gap?: string;
+  zIndex: number;
 }
 
 function BaseModal({ open, onOpenChange, children }: BaseModalProps) {
@@ -28,12 +29,20 @@ function BaseModal({ open, onOpenChange, children }: BaseModalProps) {
   );
 }
 
-function ModalRoot({ children, width, height, padding, backgroundColor, gap }: ModalContentProps) {
+function ModalRoot({
+  children,
+  width,
+  height,
+  padding,
+  backgroundColor,
+  gap,
+  zIndex,
+}: ModalContentProps) {
   return (
     <Dialog.Portal>
-      <Dialog.Overlay css={styles.modalOverlay} />
+      <Dialog.Overlay css={styles.modalOverlay(zIndex)} />
       <Dialog.Content
-        css={styles.modalContent({ width, height, padding, backgroundColor, gap })}
+        css={styles.modalContent({ width, height, padding, backgroundColor, gap, zIndex })}
         aria-describedby={undefined}
       >
         {children}

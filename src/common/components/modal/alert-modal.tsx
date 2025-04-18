@@ -17,6 +17,7 @@ interface ModalContentProps {
   padding?: string;
   backgroundColor?: string;
   gap?: string;
+  zIndex: number;
 }
 
 function AlertDialogModal({ open, onOpenChange, children }: AlertModalProps) {
@@ -28,12 +29,20 @@ function AlertDialogModal({ open, onOpenChange, children }: AlertModalProps) {
   );
 }
 
-function ModalRoot({ children, width, height, padding, backgroundColor, gap }: ModalContentProps) {
+function ModalRoot({
+  children,
+  width,
+  height,
+  padding,
+  backgroundColor,
+  gap,
+  zIndex,
+}: ModalContentProps) {
   return (
     <AlertDialog.Portal>
-      <AlertDialog.Overlay css={styles.modalOverlay} />
+      <AlertDialog.Overlay css={styles.modalOverlay(zIndex)} />
       <AlertDialog.Content
-        css={styles.modalContent({ width, height, padding, backgroundColor, gap })}
+        css={styles.modalContent({ width, height, padding, backgroundColor, gap, zIndex })}
         aria-describedby={undefined}
       >
         {children}
