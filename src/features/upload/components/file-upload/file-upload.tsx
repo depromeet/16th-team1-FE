@@ -4,9 +4,10 @@ import { Controller, FieldValues, SubmitErrorHandler, useForm } from 'react-hook
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-import BarChart from '@/common/components/bar-chart/bar-chart';
 import Icon from '@/common/components/icon/icon';
 import { getValueOrHyphen } from '@/common/utils/get-value-or-hyphen';
+
+import BarChart from '../bar-chart/bar-chart';
 
 import * as styles from './file-upload.styles';
 
