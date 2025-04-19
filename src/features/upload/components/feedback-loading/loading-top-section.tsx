@@ -51,7 +51,7 @@ export default function LoadingTopSection() {
           delay: 0.4,
         }}
       >
-        AI 피드백이 완료될 때까지 페이지를 닫지 마세요
+        피드백은 최대 2분까지 소요될 수 있습니다
       </FadeInWrapper>
       <Spacing size={isMobile ? 38 : 30} />
       <FadeInWrapper
