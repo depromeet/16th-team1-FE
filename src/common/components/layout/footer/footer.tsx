@@ -32,7 +32,13 @@ export default function Footer() {
     <footer css={styles.footer(isShortFooter, footerColor)}>
       <Icon name="logo-full-login" width={isMobile ? 53 : 88} />
       <span css={styles.text(isShortFooter)}>© 2025 All Rights Reserved</span>
-      <Icon name="behance-logo" width={isMobile ? 20 : 27} />
+      <a
+        href="https://www.behance.net/gallery/223971927/Critix-AI-Portfolio-feedback-service-for-Designer"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Icon name="behance-logo" width={isMobile ? 20 : 27} />
+      </a>
     </footer>
   );
 }
