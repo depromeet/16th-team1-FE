@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useMemo } from 'react';
 
+import { Z_INDEX } from '@/common/constants/z-index';
 import { useMobileGuardModalStore } from '@/store/mobile-guard-modal';
 import { useModalStore } from '@/store/modal';
 
@@ -15,8 +16,6 @@ export const useGetModalZIndex = () => {
     mobileGuardModal: isMobileGuardModalOpen,
   };
 
-  const MIN_MODAL_Z_INDEX = 11;
-
   const openModals = useMemo(
     () =>
       Object.entries(modalState)
@@ -27,7 +26,7 @@ export const useGetModalZIndex = () => {
 
   const getModalZIndex = (id: ModalType): number => {
     const index = openModals.indexOf(id);
-    return MIN_MODAL_Z_INDEX + (index >= 0 ? index * 2 : 0);
+    return Z_INDEX.minModal + (index >= 0 ? index * 2 : 0);
   };
 
   return { getModalZIndex };

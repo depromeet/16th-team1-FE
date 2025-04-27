@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 
+import { Z_INDEX } from '@/common/constants/z-index';
 import { withTheme } from '@/common/utils/with-theme';
 
 // scrollbar 스타일 적용
@@ -20,7 +21,7 @@ export const scrollbar = css`
 export const modalDescription = css`
   display: flex;
   align-items: flex-start;
-  z-index: 1;
+  z-index: ${Z_INDEX.default};
   overflow-y: auto;
   flex-direction: column;
   gap: 2.4rem;
@@ -101,7 +102,7 @@ export const shadow = (isShow?: boolean) => css`
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 0;
+  z-index: ${Z_INDEX.feedbackModalShadow};
   width: 100%;
   height: 10.1rem;
   background: linear-gradient(180deg, rgb(32 32 40 / 0%) 0%, #202028 100%);
