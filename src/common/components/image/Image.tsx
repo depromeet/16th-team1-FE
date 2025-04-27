@@ -7,10 +7,12 @@ interface ImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'css'> {
   alt: string;
   width?: number;
   height?: number;
+  loading?: 'eager' | 'lazy';
+  fetchPriority?: 'high' | 'low' | 'auto';
 }
 
 const Image = forwardRef<HTMLImageElement, ImageProps>(
-  ({ src, alt, width, height, ...props }, ref) => {
+  ({ src, alt, width, height, loading, fetchPriority, ...props }, ref) => {
     const [errored, setErrored] = useState(false);
 
     const cleanSrc = src.split('?')[0];
@@ -19,10 +21,13 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
     return (
       <img
         ref={ref}
+        loading={loading}
         src={!errored ? webpSrc : src}
         alt={alt}
         width={width}
         height={height}
+        // eslint-disable-next-line react/no-unknown-property
+        fetchpriority={fetchPriority}
         onError={() => setErrored(true)}
         {...props}
       />
