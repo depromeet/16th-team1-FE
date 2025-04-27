@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { theme } from '@/assets/styles/theme';
 import Icon from '@/common/components/icon/icon';
+import Image from '@/common/components/image/Image';
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import useDeviceType from '@/common/hooks/use-device-type';
 import useShadowScroll from '@/common/hooks/use-shadow-scroll';
@@ -65,7 +66,8 @@ export default function DetailImprovement() {
       <div css={styles.improvementContentWrapper}>
         {currentImprovementData && (
           <>
-            <img
+            {/* 랜딩 페이지 이미지 -  세부 개선점 */}
+            <Image
               css={styles.image}
               src={getImageUrl(currentImprovementData.image)}
               width={624}

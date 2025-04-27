@@ -3,6 +3,7 @@ import { useInView } from 'react-intersection-observer';
 
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import Image from '@/common/components/image/Image';
 import { useAuthCycle } from '@/common/hooks/use-auth-cycle';
 import useDeviceType from '@/common/hooks/use-device-type';
 import { getImageUrl } from '@/common/utils/get-image-url';
@@ -55,12 +56,14 @@ export default function LandingPage() {
     <div id="landing-container" css={styles.landingPage}>
       <div css={styles.flexColumn(isMobile ? 4.8 : 10)} id="start-section">
         <RoutingStartSection />
-        <img
+        {/* 랜딩 페이지 이미지 - 최상단 */}
+        <Image
           ref={ref}
           src={getImageUrl('total-evaluation')}
           css={styles.image(inView)}
           alt="total evalution image"
           onLoad={() => ScrollTrigger.refresh()}
+          priority
         />
       </div>
       <div css={styles.flexColumn(isMobile ? 16 : 22)}>
