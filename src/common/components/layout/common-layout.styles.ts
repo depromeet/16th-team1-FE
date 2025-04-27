@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 
 import { theme } from '@/assets/styles/theme';
 import { PageLabelKey } from '@/common/constants/path';
+import { Z_INDEX } from '@/common/constants/z-index';
 
 export const container = (pageLabel: PageLabelKey) => css`
   display: flex;
@@ -14,7 +15,7 @@ export const container = (pageLabel: PageLabelKey) => css`
   &::before {
     position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: ${Z_INDEX.underlay};
     content: '';
     background-color: var(--background-bg);
   }

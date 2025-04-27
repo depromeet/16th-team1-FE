@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 
+import { Z_INDEX } from '@/common/constants/z-index';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const pageLocationButton = withTheme(
@@ -29,7 +30,7 @@ export const pageLocationButton = withTheme(
       position: absolute;
       top: 0;
       left: 0;
-      z-index: -1;
+      z-index: ${Z_INDEX.underlay};
       width: ${isCurrentContentSelected ? (isSidebarOpen ? '100%' : '0') : '0'};
       height: 100%;
       transition: width 0.3s ease;

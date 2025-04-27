@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 
+import { Z_INDEX } from '@/common/constants/z-index';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const projectEvaluationWrapper = css`
@@ -73,7 +74,7 @@ export const projectProcessItem = css`
   flex-direction: column;
   gap: 0.6rem;
   align-items: center;
-  z-index: 2;
+  z-index: ${Z_INDEX.default};
 `;
 
 export const processIcon = (color: string) => css`

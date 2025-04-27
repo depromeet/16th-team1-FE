@@ -1,5 +1,7 @@
 import { css } from '@emotion/react';
 
+import { Z_INDEX } from '@/common/constants/z-index';
+
 type containerStyleFnType = (
   isSidebarOpen: boolean,
   size: {
@@ -25,7 +27,7 @@ export const container: containerStyleFnType = (isSidebarOpen, size, animation, 
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: ${Z_INDEX.sideBar};
   width: ${size.width}rem;
   height: var(--sidebar-height);
   padding: ${size.padding}rem;
