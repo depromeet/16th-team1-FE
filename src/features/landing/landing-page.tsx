@@ -59,7 +59,7 @@ export default function LandingPage() {
         {/* 랜딩 페이지 이미지 - 최상단 */}
         <Image
           ref={ref}
-          src={getImageUrl('total-evaluation')}
+          name="total-evaluation"
           css={styles.image(inView)}
           alt="total evalution image"
           onLoad={() => ScrollTrigger.refresh()}

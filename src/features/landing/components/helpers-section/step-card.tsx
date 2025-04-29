@@ -1,4 +1,3 @@
-import { css } from '@emotion/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Image from '@/common/components/image/Image';
