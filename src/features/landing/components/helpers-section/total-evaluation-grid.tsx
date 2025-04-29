@@ -9,7 +9,6 @@ import Icon from '@/common/components/icon/icon';
 import Image from '@/common/components/image/Image';
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import useDeviceType from '@/common/hooks/use-device-type';
-import { getImageUrl } from '@/common/utils/get-image-url';
 
 import * as styles from './total-evaluation-grid.styles';
 
@@ -44,7 +43,7 @@ export default function TotalEvaluationGrid() {
             <div css={styles.gradeExample}>
               {/* 랜딩 페이지 이미지 - 등급 */}
               <Image
-                src={isMobile ? getImageUrl('grade-small') : getImageUrl('grade')}
+                name={isMobile ? 'grade-small' : 'grade'}
                 alt="등급"
                 onLoad={() => ScrollTrigger.refresh()}
               />
@@ -76,7 +75,7 @@ export default function TotalEvaluationGrid() {
           <div css={styles.chartExample}>
             {/* 랜딩 페이지 이미지 - 세부 차트 */}
             <Image
-              src={getImageUrl('detail-evaluation-chart')}
+              name={'detail-evaluation-chart'}
               alt="세부 평가 차트"
               onLoad={() => ScrollTrigger.refresh()}
               loading="lazy"

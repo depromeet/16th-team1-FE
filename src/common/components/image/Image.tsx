@@ -1,7 +1,6 @@
 import { forwardRef, ImgHTMLAttributes, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { ImageName } from '@/common/types/image-types';
 import { imageMap } from '@/common/utils/get-image-url';
 
 interface ImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'css' | 'src'> {
@@ -9,7 +8,7 @@ interface ImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'css' | '
    * 로컬 이미지 키
    * name 지정 시 webp/png 우선 사용
    */
-  name?: ImageName;
+  name?: string;
   /**
    * 외부 URL 또는 기본 src
    * name이 없거나 imageMap[name] 결과가 없으면 이 값을 사용

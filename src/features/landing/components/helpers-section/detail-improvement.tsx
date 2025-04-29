@@ -8,7 +8,6 @@ import Image from '@/common/components/image/Image';
 import FadeInWrapper from '@/common/components/interaction/fade-in-wrapper';
 import useDeviceType from '@/common/hooks/use-device-type';
 import useShadowScroll from '@/common/hooks/use-shadow-scroll';
-import { getImageUrl } from '@/common/utils/get-image-url';
 
 import { detailImprovementData } from '../../common/data';
 
@@ -69,7 +68,7 @@ export default function DetailImprovement() {
             {/* 랜딩 페이지 이미지 -  세부 개선점 */}
             <Image
               css={styles.image}
-              src={getImageUrl(currentImprovementData.image)}
+              name={currentImprovementData.image}
               width={624}
               alt={`${currentImprovementData.title} image`}
               onLoad={() => ScrollTrigger.refresh()}

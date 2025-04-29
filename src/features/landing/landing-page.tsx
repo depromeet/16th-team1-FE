@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from '@/common/components/image/Image';
 import { useAuthCycle } from '@/common/hooks/use-auth-cycle';
 import useDeviceType from '@/common/hooks/use-device-type';
-import { getImageUrl } from '@/common/utils/get-image-url';
 
 import FAQ from './components/frequently-asked-questions/frequently-asked-questions';
 import HelpersSection from './components/helpers-section/helpers-section';
