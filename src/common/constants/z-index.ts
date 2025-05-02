@@ -4,8 +4,8 @@ export const Z_INDEX = {
   default: 1,
   dropdown: 7,
   shadow: 8,
-  sideBar: 9,
   header: 10,
-  minModal: 11,
+  sideBar: 11,
+  minModal: 12,
   toast: 100,
 };
