@@ -3,8 +3,11 @@ import path from 'path';
 
 import { defineConfig } from 'vite';
 // import mkcert from 'vite-plugin-mkcert';
+// import { createHtmlPlugin } from 'vite-plugin-html';
 import { VitePWA } from 'vite-plugin-pwa';
 import svgr from 'vite-plugin-svgr';
+
+// import { injectFontsToHead } from './src/common/utils/preload';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -24,6 +27,7 @@ export default defineConfig({
         lang: 'ko',
       },
     }),
+    // createHtmlPlugin({ inject: { tags: injectFontsToHead } }),
     // mkcert(),
   ],
   resolve: {
