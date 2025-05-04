@@ -1,7 +1,8 @@
 /// <reference types="vitest" />
 import path from 'path';
 
-import { defineConfig } from 'vite';
+import { visualizer } from 'rollup-plugin-visualizer';
+import { defineConfig, type PluginOption } from 'vite';
 // import mkcert from 'vite-plugin-mkcert';
 // import { createHtmlPlugin } from 'vite-plugin-html';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -9,12 +10,25 @@ import svgr from 'vite-plugin-svgr';
 
 // import { injectFontsToHead } from './src/common/utils/preload';
 
-// https://vite.dev/config/
 export default defineConfig({
   build: {
     sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ['react', 'react-dom'],
+          swiper: ['swiper'],
+          gsap: ['gsap'],
+          zod: ['zod'],
+        },
+      },
+    },
   },
   plugins: [
+    visualizer({
+      filename: 'dist/stats.html',
+      open: true,
+    }) as PluginOption,
     svgr(),
     VitePWA({
       registerType: 'autoUpdate',

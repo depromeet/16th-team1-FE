@@ -100,6 +100,7 @@
     "lint-staged": "^15.4.3",
     "postcss-styled-syntax": "^0.7.1",
     "prettier": "^3.4.2",
+    "rollup-plugin-visualizer": "^5.14.0",
     "storybook": "^8.5.3",
     "stylelint": "^16.14.1",
     "stylelint-config-standard": "^37.0.0",
