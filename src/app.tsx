@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { RouterProvider } from 'react-router';
 
 import { globalStyles } from '@assets/styles/global-styles';
@@ -21,7 +22,9 @@ function App() {
         <SidebarProvider>
           <SelectedPageProvider>
             <Global styles={globalStyles} />
-            <RouterProvider router={router} />
+            <Suspense fallback={<></>}>
+              <RouterProvider router={router} />
+            </Suspense>
           </SelectedPageProvider>
         </SidebarProvider>
       </ThemeProvider>

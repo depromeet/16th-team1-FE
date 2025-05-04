@@ -1,16 +1,19 @@
+import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router';
 
-import LandingPage from '@/features/landing/landing-page';
-import FeedbackLoadingPage from '@/features/upload/components/feedback-loading/feedback-loading';
-import UploadPage from '@/features/upload/upload-page';
+const LandingPage = lazy(() => import('@/features/landing/landing-page'));
+const LoginPage = lazy(() => import('@/features/login/login-page'));
+const UploadPage = lazy(() => import('@/features/upload/upload-page'));
+const FeedbackLoadingPage = lazy(
+  () => import('@/features/upload/components/feedback-loading/feedback-loading'),
+);
+const TotalEvaluationPage = lazy(() => import('@/features/total-evaluation/total-evaluation-page'));
+const NotFoundPage = lazy(() => import('./common/components/not-found-page/not-found-page'));
 
 import Authorization from './common/components/auth/Authorization';
 import GlobalRouteConfig from './common/components/global-route-config/global-route-config';
 import CommonLayout from './common/components/layout/common-layout';
-import NotFoundPage from './common/components/not-found-page/not-found-page';
 import { PAGE_URL } from './common/constants/path';
-import LoginPage from './features/login/login-page';
-import TotalEvaluationPage from './features/total-evaluation/total-evaluation-page';
 
 export const router = createBrowserRouter([
   {
