@@ -1,18 +1,10 @@
 import GeneralSans from '@assets/fonts/GeneralSans-Variable.woff2';
-import Pretendard from '@assets/fonts/PretendardVariable.woff2';
 import { css } from '@emotion/react';
 
 export const globalStyles = css`
   @font-face {
     font-family: GeneralSans;
     src: url(${GeneralSans}) format('woff2');
-    font-weight: 100 900;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: Pretendard;
-    src: url(${Pretendard}) format('woff2');
     font-weight: 100 900;
     font-display: swap;
   }
@@ -195,7 +187,7 @@ export const globalStyles = css`
     font-size: 62.5%; /* 1rem = 10px */
     text-size-adjust: none;
     font-family:
-      Pretendard,
+      'Pretendard Variable',
       -apple-system,
       BlinkMacSystemFont,
       system-ui,
