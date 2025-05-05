@@ -1,4 +1,4 @@
-import { forwardRef, ImgHTMLAttributes, useState } from 'react';
+import { forwardRef, ImgHTMLAttributes, useState, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import { imageMap } from '@/common/utils/get-image-url';
@@ -8,12 +8,15 @@ interface ImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'css' | '
    * 로컬 이미지 키
    * name 지정 시 webp/png 우선 사용
    */
+
   name?: string;
+
   /**
    * 외부 URL 또는 기본 src
    * name이 없거나 imageMap[name] 결과가 없으면 이 값을 사용
    */
   src?: string;
+
   alt: string;
   width?: number;
   height?: number;
@@ -24,34 +27,37 @@ interface ImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'css' | '
 const Image = forwardRef<HTMLImageElement, ImageProps>(
   (
     { name, src: fallbackSrc, alt, width, height, priority = false, rootMargin = '0px', ...props },
-    ref,
+    externalRef, // 외부에서 넘겨준 ref
   ) => {
     const entry = name ? imageMap[name] || {} : {};
     const { png, webp } = entry;
     const [errored, setErrored] = useState(false);
-    const { ref: inViewRef, inView } = useInView({
+
+    // 뷰포트 기반 이미지 로딩
+    const { ref: lazyRef, inView } = useInView({
       rootMargin,
       triggerOnce: true,
-      ...(priority && { fallbackInView: true }),
+      fallbackInView: priority, // priority면 무조건 inView처럼 동작
     });
 
-    // imageMap에 webp/png가 없으면 fallbackSrc 사용
+    // 이미지 로딩 시점 및 경로
     const hasLocal = Boolean(webp || png);
     const preferredLocal = errored ? png : (webp ?? png);
     const srcToUse = hasLocal ? preferredLocal : fallbackSrc;
-
     const shouldLoad = priority || inView;
 
-    const setRefs = (node: HTMLImageElement | null) => {
-      inViewRef(node);
-      if (!ref) return;
-      if (typeof ref === 'function') ref(node);
-      else ref.current = node;
-    };
+    const mergedRef = useMemo(() => {
+      return (node: HTMLImageElement | null) => {
+        lazyRef(node);
+        if (!externalRef) return;
+        if (typeof externalRef === 'function') externalRef(node);
+        else externalRef.current = node;
+      };
+    }, [lazyRef, externalRef]);
 
     return (
       <img
-        ref={setRefs}
+        ref={mergedRef}
         src={shouldLoad ? srcToUse : undefined}
         alt={alt}
         width={width}
