@@ -5,10 +5,9 @@ import { imageMap } from '@/common/utils/get-image-url';
 
 interface ImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'css' | 'src'> {
   /**
-   * 로컬 이미지 키
-   * name 지정 시 webp/png 우선 사용
+   * 로컬에 보관중인 이미지 이름
+   * name 지정 시 webp -> png 우선 사용
    */
-
   name?: string;
 
   /**

@@ -1,10 +1,14 @@
+/** 1. 기존 코드(LCP를 위한 랜딩 페이지 외의 이미지들)를 위해 유지 */
 import { IMAGES } from '@/common/constants/images';
 
 export const getImageUrl = (name: string) => {
   return new URL(IMAGES[name], import.meta.url).href;
 };
 
-/** 동적으로 @/assets/images에 존재하는 이미지들을 매핑 */
+/**
+ * 2. <Image /> 컴포넌트에 사용할 이미지들에 사용
+ * 동적으로 @/assets/images에 존재하는 이미지들을 매핑
+ */
 type ImageEntry = { png?: string; webp?: string };
 
 const pngModules = import.meta.glob('@/assets/images/*.png', {
