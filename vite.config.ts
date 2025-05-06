@@ -1,14 +1,12 @@
 /// <reference types="vitest" />
 import path from 'path';
 
+// import mkcert from 'vite-plugin-mkcert';
+
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, type PluginOption } from 'vite';
-// import mkcert from 'vite-plugin-mkcert';
-// import { createHtmlPlugin } from 'vite-plugin-html';
 import { VitePWA } from 'vite-plugin-pwa';
 import svgr from 'vite-plugin-svgr';
-
-// import { injectFontsToHead } from './src/common/utils/preload';
 
 export default defineConfig({
   build: {
@@ -27,7 +25,7 @@ export default defineConfig({
   plugins: [
     visualizer({
       filename: 'dist/stats.html',
-      open: true,
+      open: false,
     }) as PluginOption,
     svgr(),
     VitePWA({
