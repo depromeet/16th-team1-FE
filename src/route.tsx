@@ -1,7 +1,6 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router';
 
-const LandingPage = lazy(() => import('@/features/landing/landing-page'));
 const LoginPage = lazy(() => import('@/features/login/login-page'));
 const UploadPage = lazy(() => import('@/features/upload/upload-page'));
 const FeedbackLoadingPage = lazy(
@@ -14,6 +13,7 @@ import Authorization from './common/components/auth/Authorization';
 import GlobalRouteConfig from './common/components/global-route-config/global-route-config';
 import CommonLayout from './common/components/layout/common-layout';
 import { PAGE_URL } from './common/constants/path';
+import LandingPage from './features/landing/landing-page';
 
 export const router = createBrowserRouter([
   {

@@ -22,6 +22,8 @@ function App() {
         <SidebarProvider>
           <SelectedPageProvider>
             <Global styles={globalStyles} />
+
+            {/* route 단위로 lazy loading을 적용함으로써 임시 Suspense 적용 */}
             <Suspense fallback={<></>}>
               <RouterProvider router={router} />
             </Suspense>
