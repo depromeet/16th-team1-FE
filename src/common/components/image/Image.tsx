@@ -1,5 +1,6 @@
-import { forwardRef, ImgHTMLAttributes, useState, useMemo } from 'react';
+import { forwardRef, ImgHTMLAttributes, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { mergeRefs } from 'react-merge-refs';
 
 import { imageMap } from '@/common/utils/get-image-url';
 
@@ -45,14 +46,7 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
     const srcToUse = hasLocal ? preferredLocal : fallbackSrc;
     const shouldLoad = priority || inView;
 
-    const mergedRef = useMemo(() => {
-      return (node: HTMLImageElement | null) => {
-        lazyRef(node);
-        if (!externalRef) return;
-        if (typeof externalRef === 'function') externalRef(node);
-        else externalRef.current = node;
-      };
-    }, [lazyRef, externalRef]);
+    const mergedRef = mergeRefs<HTMLImageElement>([lazyRef, externalRef]);
 
     return (
       <img
