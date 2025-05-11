@@ -1,8 +1,8 @@
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Icon from '@/common/components/icon/icon';
+import Image from '@/common/components/image/Image';
 import useDeviceType from '@/common/hooks/use-device-type';
-import { getImageUrl } from '@/common/utils/get-image-url';
 
 import * as styles from './projects-styles';
 import { PROCESS_COLOR } from '../../constants/colors';
@@ -26,11 +26,8 @@ export default function Projects({
     <div css={styles.container}>
       <div css={styles.imageContainer}>
         <div css={styles.imageWrapper}>
-          <img
-            src={getImageUrl(imageUrl)}
-            alt="프로젝트 피드백"
-            onLoad={() => ScrollTrigger.refresh()}
-          />
+          {/* 랜딩 페이지 이미지 - 프로젝트 평가 */}
+          <Image name={imageUrl} alt="프로젝트 피드백" onLoad={() => ScrollTrigger.refresh()} />
         </div>
         <div css={styles.description}>{feedbackDescription}</div>
       </div>

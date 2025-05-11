@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { RouterProvider } from 'react-router';
 
 import { globalStyles } from '@assets/styles/global-styles';
@@ -21,7 +22,11 @@ function App() {
         <SidebarProvider>
           <SelectedPageProvider>
             <Global styles={globalStyles} />
-            <RouterProvider router={router} />
+
+            {/* route 단위로 lazy loading을 적용함으로써 임시 Suspense 적용 */}
+            <Suspense fallback={<></>}>
+              <RouterProvider router={router} />
+            </Suspense>
           </SelectedPageProvider>
         </SidebarProvider>
       </ThemeProvider>
