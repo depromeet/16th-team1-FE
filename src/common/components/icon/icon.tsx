@@ -25,7 +25,7 @@ export default function Icon({ name, width, color, customStyle, onClick }: IconP
       onClick={onClick}
       css={[
         css`
-          cursor: ${onClick ? 'pointer' : 'default'};
+          cursor: ${onClick ? 'pointer' : 'inherit'};
 
           path {
             fill: ${color !== undefined && color};

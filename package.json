@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "npx tsx script/generate-icon-types.ts && vite",
-    "build": "npx tsx script/generate-icon-types.ts && tsc -b && vite build",
+    "optimize:images": "npx tsx script/optimize-images.ts",
+    "commit:images": "npx tsx script/commit-optimized-images.ts",
+    "build": "pnpm optimize:images && pnpm commit:images && npx tsx script/generate-icon-types.ts && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "pwa": "pwa-assets-generator --preset minimal public/vite.svg",
@@ -53,7 +55,9 @@
     "react-hook-form": "^7.54.2",
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.16.0",
+    "react-merge-refs": "^3.0.1",
     "react-router": "^7.1.5",
+    "sharp": "^0.33.5",
     "swiper": "^11.2.5",
     "vite-plugin-mkcert": "^1.17.7",
     "zod": "^3.24.2",
@@ -96,6 +100,7 @@
     "lint-staged": "^15.4.3",
     "postcss-styled-syntax": "^0.7.1",
     "prettier": "^3.4.2",
+    "rollup-plugin-visualizer": "^5.14.0",
     "storybook": "^8.5.3",
     "stylelint": "^16.14.1",
     "stylelint-config-standard": "^37.0.0",
@@ -104,8 +109,10 @@
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",
     "vite": "^6.0.5",
+    "vite-plugin-html": "^3.2.2",
     "vite-plugin-pwa": "^0.21.1",
     "vite-plugin-svgr": "^4.3.0",
     "vitest": "^3.0.5"
-  }
+  },
+  "packageManager": "pnpm@10.9.0+sha512.0486e394640d3c1fb3c9d43d49cf92879ff74f8516959c235308f5a8f62e2e19528a65cdc2a3058f587cde71eba3d5b56327c8c33a97e4c4051ca48a10ca2d5f"
 }

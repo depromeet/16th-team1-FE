@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 
 import { mediaQueries } from '@/assets/styles/device-width';
+import { Z_INDEX } from '@/common/constants/z-index';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const detailImprovementWrapper = css`
@@ -191,7 +192,7 @@ export const shadowRight = (isShow?: boolean) => css`
     position: absolute;
     top: -1rem;
     right: -2rem;
-    z-index: 10;
+    z-index: ${Z_INDEX.shadow};
     width: 5.5rem;
     height: 6.2rem;
     background: linear-gradient(90deg, rgb(10 10 12 / 0%) 0%, #0a0a0c 100%);
@@ -206,7 +207,7 @@ export const shadowLeft = (isShow?: boolean) => css`
     position: absolute;
     top: -1rem;
     left: -2rem;
-    z-index: 10;
+    z-index: ${Z_INDEX.shadow};
     width: 5.5rem;
     height: 6.2rem;
     background: linear-gradient(270deg, rgb(24 23 29 / 0%) 0%, #0a0a0c 100%);

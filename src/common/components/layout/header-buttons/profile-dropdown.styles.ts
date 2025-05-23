@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 
+import { Z_INDEX } from '@/common/constants/z-index';
 import { withTheme } from '@/common/utils/with-theme';
 
 export const container = css`
@@ -19,7 +20,7 @@ export const profileContent = withTheme(
     position: absolute;
     top: 1rem;
     right: 2rem;
-    z-index: 2;
+    z-index: ${Z_INDEX.dropdown};
     height: 14.9rem;
     padding: 0.6rem;
     transform: scale(0.8) translateY(1rem);

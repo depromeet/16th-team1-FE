@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 
 import { PageLabelKey } from '@/common/constants/path';
+import { Z_INDEX } from '@/common/constants/z-index';
 
 export const HEADER_PLACEHOLER_HEIGHT_REM = 6;
 
@@ -41,7 +42,7 @@ export const container = (pageLabel: PageLabelKey, isMobile: boolean) => css`
   position: var(--position);
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: ${Z_INDEX.header};
   width: 100%;
   padding: ${getPaddingByPage(pageLabel, isMobile)};
   backdrop-filter: blur(var(--blur));

@@ -1,6 +1,7 @@
 import { colors } from '@assets/styles/colors';
 import { css, Keyframes, keyframes } from '@emotion/react';
 
+import { Z_INDEX } from '@/common/constants/z-index';
 import { withTheme } from '@/common/utils/with-theme';
 
 import { ToastType } from './toast-config';
@@ -179,7 +180,7 @@ export const viewport = (name: ToastType) => {
 
   return css`
     position: fixed;
-    z-index: 100;
+    z-index: ${Z_INDEX.toast};
     ${Object.entries(position)
       .map(([key, value]) => `${key}: ${value};`)
       .join('')}
